@@ -1,0 +1,95 @@
+@import './cyclone-reset.scss';
+
+body {
+  #content {
+    display: grid;
+    font-family: 'Space Mono', 'Courier New', Courier, monospace;
+    grid-template-areas: 
+      "header header header header"
+      "aside aside aside aside"
+      "main main main main"
+      "footer footer footer footer";
+
+    header {
+      align-items: center;
+      background-color: black;
+      display: flex;
+      grid-area: header;
+      padding-inline: 1rem;
+      justify-content: space-between;
+
+      .header-left {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+
+        .header-logo {
+          @keyframes spin {
+            0% {
+              transform: rotate(0deg);
+            }
+            100% {
+              transform: rotate(360deg);
+            }
+          }
+
+          animation: spin 33s linear infinite;
+
+          height: 55px;
+          opacity: 0.5;
+          transition: all 0.380ms ease-in-out;
+
+          &:hover {
+            animation-play-state: paused;
+            opacity: 1;
+          }
+        }
+
+        .header-title { 
+          color: white;
+          font-size: 2rem;
+        }
+      }
+
+      .header-right {
+        align-items: center;
+        display: flex;
+        gap: 3rem;
+
+        .nav-toggle-button {
+          z-index: 1;
+        }
+      }
+    }
+
+    aside {
+      grid-area: aside;
+      background-color: rgba(1, 0, 0, 0.864);
+      min-height: 500px;
+
+      .zig-zag-nav {
+        .nav-ul {
+          display: flex;
+          flex-direction: column;
+
+        }
+      }
+    }
+
+    main {
+      background-color: blue;
+      grid-area: main;
+      min-height: 100vh;
+    }
+
+    footer {
+      background-color: green;
+      grid-area: footer;
+    }
+
+    // #cyclone-moon {
+    //   position: fixed;
+    //   bottom: 0;
+    // }
+  }
+}

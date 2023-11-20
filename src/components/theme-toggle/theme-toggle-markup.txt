@@ -1,0 +1,7 @@
+<div id="theme-toggle-container">
+  <input type="checkbox" id="theme-toggle-checkbox"/>
+  <label id="theme-toggle-label" for="theme-toggle-checkbox">
+    <i class="fa-solid fa-sun" id="sun"></i>
+    <i class="fa-solid fa-moon" id="moon"></i>
+  </label>
+</div>

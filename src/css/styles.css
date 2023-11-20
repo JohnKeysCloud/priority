@@ -1,0 +1,310 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  font: inherit;
+}
+
+html {
+  box-sizing: inherit;
+}
+
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+body {
+  line-height: 1.5;
+  min-height: 100vh;
+  position: relative;
+  text-rendering: optimizeSpeed;
+}
+
+html,
+body,
+div,
+span,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+abbr,
+address,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+samp,
+small,
+strong,
+sub,
+sup,
+var,
+b,
+i,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  background: transparent;
+  border: 0;
+  font-size: 100%;
+  margin: 0;
+  outline: 0;
+  padding: 0;
+  vertical-align: baseline;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+h1,
+h2,
+h3,
+h3,
+h5,
+h6 {
+  font-weight: normal;
+}
+
+img,
+picture,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+img {
+  image-rendering: crisp-edges;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  font-family: inherit;
+  padding: 0;
+}
+
+picture img {
+  object-fit: contain;
+}
+
+/* change colours to suit your needs */
+ins {
+  background-color: #ff9;
+  color: #000;
+  text-decoration: none;
+}
+
+/* change colours to suit your needs */
+mark {
+  background-color: #ff9;
+  color: #000;
+  font-style: italic;
+  font-weight: bold;
+}
+
+del {
+  text-decoration: line-through;
+}
+
+dfn {
+  font-style: italic;
+  margin-right: 3px;
+}
+
+abbr[title],
+dfn[title] {
+  cursor: help;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* change border colour to suit your needs */
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #cccccc;
+  margin: 1em 0;
+  padding: 0;
+}
+
+input,
+select {
+  vertical-align: middle;
+}
+
+em {
+  font-style: italic;
+}
+
+.accessibility {
+  height: 1px;
+  left: -9999px;
+  overflow: hidden;
+  position: absolute;
+  top: auto;
+  width: 1px;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+/* * UTILITIES */
+.no-select {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+             supported by Chrome, Edge, Opera and Firefox */
+}
+
+body #content {
+  display: grid;
+  font-family: "Space Mono", "Courier New", Courier, monospace;
+  grid-template-areas: "header header header header" "aside aside aside aside" "main main main main" "footer footer footer footer";
+}
+body #content header {
+  align-items: center;
+  background-color: black;
+  display: flex;
+  grid-area: header;
+  padding-inline: 1rem;
+  justify-content: space-between;
+}
+body #content header .header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+body #content header .header-left .header-logo {
+  animation: spin 33s linear infinite;
+  height: 55px;
+  opacity: 0.5;
+  transition: all 0.38ms ease-in-out;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+body #content header .header-left .header-logo:hover {
+  animation-play-state: paused;
+  opacity: 1;
+}
+body #content header .header-left .header-title {
+  color: white;
+  font-size: 2rem;
+}
+body #content header .header-right {
+  align-items: center;
+  display: flex;
+  gap: 3rem;
+}
+body #content header .header-right .nav-toggle-button {
+  z-index: 1;
+}
+body #content aside {
+  grid-area: aside;
+  background-color: rgba(1, 0, 0, 0.864);
+  min-height: 500px;
+}
+body #content aside .zig-zag-nav .nav-ul {
+  display: flex;
+  flex-direction: column;
+}
+body #content main {
+  background-color: blue;
+  grid-area: main;
+  min-height: 100vh;
+}
+body #content footer {
+  background-color: green;
+  grid-area: footer;
+}
+
+/*# sourceMappingURL=styles.css.map */

@@ -1,0 +1,7 @@
+<button
+  class="nav-toggle-button"
+  aria-label="Open Navigation Menu"
+  aria-expanded="false"
+>
+  <div class="nav-toggle-bars"></div>
+</button>
