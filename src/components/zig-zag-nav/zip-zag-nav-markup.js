@@ -3,12 +3,16 @@ import { activateListeners } from './zig-zag-nav.js';
 
 // * pageNames is an array of strings that will be used to create the nav links
 // * initialPage is a string that will be used to set the aria-current attribute (use the index of the page name)
-// * navType is a string that will be used to determine if the nav links are buttons or anchors options are 'button' or 'a'
+// * buttonOrAnchor is a string that will be used to determine if the nav links are buttons or anchors options are 'button' or 'a'
+// * id is a string that will be used to set the id attribute of the nav's nested UL element
 
-function createZigZagNav(pageNames, initialPage, navType) {
+function createZigZagNav(pageNames, initialPage, buttonOrAnchor, ariaControlsID) {
   const zigZagNav = document.createElement('nav');
   zigZagNav.classList.add('zig-zag-nav');
+  zigZagNav.setAttribute('id', ariaControlsID);
   zigZagNav.setAttribute('aria-label', 'Main Navigation');
+  zigZagNav.setAttribute('aria-hidden', true);
+  zigZagNav.setAttribute('data-visibility', false);
 
   const navUL = document.createElement('ul');
   navUL.classList.add('nav-ul');
@@ -23,10 +27,10 @@ function createZigZagNav(pageNames, initialPage, navType) {
     linkNumberSpan.setAttribute('aria-hidden', true);
     linkNumberSpan.textContent = `0${index}`;
 
-    const navLink = document.createElement(navType === 'button' ? 'button' : 'a');
+    const navLink = document.createElement(buttonOrAnchor === 'button' ? 'button' : 'a' ? 'a' : alert('Accepts only "button" or "a" as arguments'));
     navLink.classList.add('nav-link');
 
-    if (navType === 'a') {
+    if (buttonOrAnchor === 'a') {
       navLink.setAttribute('href', '#'); // ! UPDATE THIS TO USE THE PAGE NAME
     }
 

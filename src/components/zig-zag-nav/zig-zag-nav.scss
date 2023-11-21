@@ -20,18 +20,17 @@
   $link-shadow: unset;
   $link-rotation: 0deg;
 
-  border: 2px solid red;
-  display: none;
-  right: 0;
-  top: 200px;
+  &[data-visibility=false] {
+    display: none;
+  }
 
-  &.open {
-    animation: fade-in 1s ease-in-out;
+  &[data-visibility=closing] {
+    animation: fade-out 380ms ease-in-out;
+  }
+
+  &[data-visibility=true] {
+    animation: fade-in 380ms ease-in-out;
     display: flex;
-
-    &.closing {
-      animation: fade-out 150ms ease-in-out;
-    }
   }
 
   .nav-ul {
@@ -63,22 +62,8 @@
         z-index: 0;
       }
 
-      &::before {
-        border-right: 2px solid $link-color;
-      }
-
-      &::after {
-        border-left: 2px solid $link-color;
-      }
-
       &:hover {
         transform: rotate(0);
-
-        &::before,
-        &::after {
-          transform: scaleX(1);
-          transition: transform 250ms ease-in-out;
-        }
       }
     }
 
@@ -121,7 +106,6 @@
 
 @media (max-width: 35em) {
   .zig-zag-nav {
-    display: none;
     position: fixed;
     inset:  0 0 0 30%;
   }

@@ -3,22 +3,23 @@ import { HIDE_NAV_EVENT, SHOW_NAV_EVENT } from '../../js/eventNames.js';
 
 function hideNav() {
   const zigZagNav = document.querySelector('.zig-zag-nav');
-  zigZagNav.classList.remove('closing');
+  
   zigZagNav.removeEventListener('animationend', hideNav);
   
-  zigZagNav.classList.remove('open');
+  zigZagNav.setAttribute('aria-hidden', true);
+  zigZagNav.setAttribute('data-visibility', false);
 }
 
 function initiateHideNav() {
   const zigZagNav = document.querySelector('.zig-zag-nav');
-  zigZagNav.classList.add('closing');
+  zigZagNav.setAttribute('data-visibility', 'closing');
   zigZagNav.addEventListener('animationend', hideNav);
 }
 
 function showNav() {
   const zigZagNav = document.querySelector('.zig-zag-nav');
-  zigZagNav.classList.add('open');
   zigZagNav.setAttribute('aria-hidden', false);
+  zigZagNav.setAttribute('data-visibility', true);
 }
 
 function activateListeners() {

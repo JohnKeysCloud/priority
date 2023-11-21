@@ -240,18 +240,21 @@ input:-webkit-autofill:active {
              supported by Chrome, Edge, Opera and Firefox */
 }
 
+body {
+  background: url("../assets/images/space-background.webp") center/cover no-repeat;
+}
 body #content {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   font-family: "Space Mono", "Courier New", Courier, monospace;
-  grid-template-areas: "header header header header" "aside aside aside aside" "main main main main" "footer footer footer footer";
 }
 body #content header {
   align-items: center;
-  background-color: black;
   display: flex;
   grid-area: header;
   padding-inline: 1rem;
   justify-content: space-between;
+  z-index: 1;
 }
 body #content header .header-left {
   display: flex;
@@ -285,15 +288,16 @@ body #content header .header-right {
   display: flex;
   gap: 3rem;
 }
-body #content header .header-right .nav-toggle-button {
-  z-index: 1;
+body #content .zig-zag-nav {
+  backdrop-filter: blur(0.1rem);
+  background: hsla(0, 0%, 100%, 0.1);
+  padding-inline: 1rem;
+  padding-top: calc(55px + 1rem);
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
-body #content aside {
-  grid-area: aside;
-  background-color: rgba(1, 0, 0, 0.864);
-  min-height: 500px;
-}
-body #content aside .zig-zag-nav .nav-ul {
+body #content .zig-zag-nav .nav-ul {
   display: flex;
   flex-direction: column;
 }
@@ -305,6 +309,12 @@ body #content main {
 body #content footer {
   background-color: green;
   grid-area: footer;
+}
+
+@media (max-width: 35em) {
+  body #content .zig-zag-nav {
+    padding: min(30vh, 10rem) 2rem;
+  }
 }
 
 /*# sourceMappingURL=styles.css.map */

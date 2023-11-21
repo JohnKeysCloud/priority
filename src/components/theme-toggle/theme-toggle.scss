@@ -55,8 +55,8 @@ $theme-icon-space-between: calc($theme-toggle-icon-width * 2 + $theme-toggle-gap
   opacity: 0;
   -webkit-transform: translateX($theme-icon-space-between) rotate(0);
   transform: translateX($theme-icon-space-between) rotate(0);
-  -webkit-transition: all 0.38s ease-in-out;
-  transition: all 0.38s ease-in-out;
+  -webkit-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
 }
 
 #moon {
@@ -65,8 +65,8 @@ $theme-icon-space-between: calc($theme-toggle-icon-width * 2 + $theme-toggle-gap
   opacity: 1;
   -webkit-transform: translateX(0px) rotate(0);
   transform: translateX(0px) rotate(0);
-  -webkit-transition: all 0.38s ease-in-out;
-  transition: all 0.38s ease-in-out;
+  -webkit-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
 }
 
 #theme-toggle-checkbox:checked ~ #theme-toggle-label > #sun {

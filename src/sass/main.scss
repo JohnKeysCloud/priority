@@ -1,22 +1,24 @@
 @import './cyclone-reset.scss';
 
 body {
+  background: url('../assets/images/space-background.webp') center / cover no-repeat;
+
   #content {
-    display: grid;
+    display: flex;
+    flex-direction: column;
     font-family: 'Space Mono', 'Courier New', Courier, monospace;
-    grid-template-areas: 
-      "header header header header"
-      "aside aside aside aside"
-      "main main main main"
-      "footer footer footer footer";
+
+    $logo-height: 55px;
+    $content-padding: 1rem;
+    $nav-desktop-padding-top: calc($logo-height + $content-padding);
 
     header {
       align-items: center;
-      background-color: black;
       display: flex;
       grid-area: header;
-      padding-inline: 1rem;
+      padding-inline: $content-padding;
       justify-content: space-between;
+      z-index: 1;
 
       .header-left {
         display: flex;
@@ -35,7 +37,7 @@ body {
 
           animation: spin 33s linear infinite;
 
-          height: 55px;
+          height: $logo-height;
           opacity: 0.5;
           transition: all 0.380ms ease-in-out;
 
@@ -55,24 +57,22 @@ body {
         align-items: center;
         display: flex;
         gap: 3rem;
-
-        .nav-toggle-button {
-          z-index: 1;
-        }
       }
     }
 
-    aside {
-      grid-area: aside;
-      background-color: rgba(1, 0, 0, 0.864);
-      min-height: 500px;
+    .zig-zag-nav {
+      backdrop-filter: blur(0.1rem);
+      background: hsl(0 0% 100% / 0.1);
+      padding-inline: 1rem;
+      padding-top: $nav-desktop-padding-top;
+      position: fixed;
+      top: 0;
+      width: 100%;
 
-      .zig-zag-nav {
-        .nav-ul {
-          display: flex;
-          flex-direction: column;
 
-        }
+      .nav-ul {
+        display: flex;
+        flex-direction: column;
       }
     }
 
@@ -86,10 +86,16 @@ body {
       background-color: green;
       grid-area: footer;
     }
+  }
+}
 
-    // #cyclone-moon {
-    //   position: fixed;
-    //   bottom: 0;
-    // }
+@media (max-width: 35em) {
+  // add body and content to specficity
+  body {
+    #content {
+      .zig-zag-nav {
+        padding: min(30vh, 10rem) 2rem;
+      }
+    }
   }
 }
