@@ -2,28 +2,31 @@
 
 body {
   background: url('../assets/images/space-background.webp') center / cover no-repeat;
+  font-size: clamp(0.75rem, 5vw, 0.8313rem);
 
   #content {
     display: flex;
     flex-direction: column;
     font-family: 'Space Mono', 'Courier New', Courier, monospace;
 
-    $logo-height: 55px;
-    $content-padding: 1rem;
-    $nav-desktop-padding-top: calc($logo-height + $content-padding);
+    $content-inline-padding: 1rem;
+
+    $logo-height: clamp(50px, 8vw, 55px);
+    $header-left-gap: 0.5rem;
 
     header {
       align-items: center;
       display: flex;
       grid-area: header;
-      padding-inline: $content-padding;
+      padding-top: 1rem;
+      padding-inline: $content-inline-padding;
       justify-content: space-between;
       z-index: 1;
 
       .header-left {
         display: flex;
         align-items: center;
-        gap: 0.5rem;
+        gap: $header-left-gap;
 
         .header-logo {
           @keyframes spin {
@@ -36,10 +39,9 @@ body {
           }
 
           animation: spin 33s linear infinite;
-
           height: $logo-height;
           opacity: 0.5;
-          transition: all 0.380ms ease-in-out;
+          transition: all 0.38ms ease-in-out;
 
           &:hover {
             animation-play-state: paused;
@@ -47,39 +49,169 @@ body {
           }
         }
 
-        .header-title { 
+        .header-title {
           color: white;
-          font-size: 2rem;
+          // font-size: clamp(1rem, 5vw, 2rem);
+          font-size: 1.5rem
         }
       }
 
       .header-right {
         align-items: center;
         display: flex;
-        gap: 3rem;
+        gap: 1.375rem;
       }
     }
 
     .zig-zag-nav {
-      backdrop-filter: blur(0.1rem);
+      backdrop-filter: blur(1rem);
       background: hsl(0 0% 100% / 0.1);
-      padding-inline: 1rem;
-      padding-top: $nav-desktop-padding-top;
+      border-bottom-left-radius: 3rem;
+      border-bottom-right-radius: 3rem;
+      padding-bottom: 2rem;
+      padding-inline: 2rem;
+      padding-top: calc($logo-height + $content-inline-padding);
       position: fixed;
-      top: 0;
       width: 100%;
+      top: 0;
+
+      .nav-list-container {
+        &:has(.nav-link:hover) .nav-list-header::before {
+          opacity: 0;
+        }
+
+        .nav-list-header {
+          color: white;
+          font-size: 1rem;
+          text-transform: uppercase;
+
+          &::before {
+            content: '>';
+            margin-inline-end: 0.5rem;
+            left: -1rem;
+            position: absolute;
+            top: 0;
+            transition: opacity 760ms ease-in-out;
+          }
+        }
+
+        .nav-ul {
+          display: flex;
+          gap: 1rem;
+          flex-direction: column;
+
+          // ! test
+          // ! test
+          // ! test
+          #add-project-li {
+            $gap: 0.5rem;  
+
+            align-items: start;
+            display: flex;
+            gap: $gap;
+            flex-direction: row;
+
+            #project-input-container {
+              align-items: center;
+              gap: $gap;
+              display: flex;
+
+              #project-name-input {
+                border: none;
+                border-radius: 100vw;
+                padding: 0.25rem 1rem;
+              } 
+            }
+
+            #project-buttons-container {
+              display: flex;
+              gap: $gap;
+
+              #add-project-button,
+              #cancel-add-project-button {
+                // border: 1px solid white;
+                border-radius: 100vw;
+                color: white;
+                cursor: pointer;
+                padding: 2px 8px;
+                position: relative;
+
+                &::before {
+                  background: linear-gradient(to bottom, silver, silver, transparent);
+                  border-radius: inherit;
+                  content: '';
+                  display: inline-block;
+                  height: 100%;
+                  inset: 0;
+                  opacity: 0.3;
+                  position: absolute;
+                  transform: scale(0);
+                  transform-origin: bottom center;
+                  transition: transform 100ms ease-in-out;
+                  width: 100%;
+                  z-index: -1;
+                }
+
+                &:hover::before {
+                  transform: scale(1);
+                } 
+              }
 
 
-      .nav-ul {
-        display: flex;
-        flex-direction: column;
+            }
+          }
+
+          .nav-link {
+            white-space: nowrap;
+            // ? .nav-link::before used in zigZagNav styling
+            &::after {
+              content: '>';
+              opacity: 0;
+              position: absolute;
+              top: 0;
+              left: -1rem;
+              transition: opacity 380ms ease-in-out;
+            }
+
+            &:hover::after {
+              opacity: 1;
+            }
+
+            &.special-nav-link {
+              transition: transform 380ms ease-in-out;
+            }
+
+            &.special-nav-link:hover {
+              transform: translateX(0.25rem) scale(1.125);
+            }
+
+            &.special-nav-link::after {
+              content: '+';
+              opacity: 1; 
+              transition: transform 380ms ease-in-out;
+            }
+
+            &.special-nav-link:hover::after {
+              transform: translate(-0.25rem) scale(3) rotate(360deg);
+            }
+          }
+        }
       }
     }
 
     main {
-      background-color: blue;
-      grid-area: main;
+      // border: 2px solid red;
+      display: grid;
+      place-items: center;
       min-height: 100vh;
+      padding-inline: 1rem;
+
+      .main-container {
+        // border: 2px solid blue;
+        border-radius: 50px;
+        height: 100%;
+        width: 88vw;
+      }
     }
 
     footer {
@@ -94,7 +226,30 @@ body {
   body {
     #content {
       .zig-zag-nav {
+        border-radius: unset;
+        flex-direction: column;
         padding: min(30vh, 10rem) 2rem;
+        inset: 0 0 0 30%;
+
+        .nav-list-container {
+          .nav-ul {
+            // ! test
+            // ! test
+            #add-project-li {
+              flex-direction: column; 
+              
+              #project-input-container {
+                #project-name-input {
+                  // width: 100%;
+                  // margin-right: 3rem;
+                }
+              }
+            }
+            // ! test
+            // ! test
+            // ! test
+          }
+        }
       }
     }
   }

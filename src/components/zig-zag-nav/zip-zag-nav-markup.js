@@ -1,12 +1,17 @@
 import './zig-zag-nav.scss';
 import { activateListeners } from './zig-zag-nav.js';
 
-// * pageNames is an array of strings that will be used to create the nav links
 // * initialPage is a string that will be used to set the aria-current attribute (use the index of the page name)
-// * buttonOrAnchor is a string that will be used to determine if the nav links are buttons or anchors options are 'button' or 'a'
+// * anchorOrButton is a string that will be used to determine if the nav links are buttons or anchors options are 'button' or 'a'
 // * id is a string that will be used to set the id attribute of the nav's nested UL element
 
-function createZigZagNav(pageNames, initialPage, buttonOrAnchor, ariaControlsID) {
+function createZigZagNav(
+  objectOfLists,
+  initialPage,
+  anchorOrButton,
+  ariaControlsID,
+  specialNavLink
+) {
   const zigZagNav = document.createElement('nav');
   zigZagNav.classList.add('zig-zag-nav');
   zigZagNav.setAttribute('id', ariaControlsID);
@@ -14,39 +19,72 @@ function createZigZagNav(pageNames, initialPage, buttonOrAnchor, ariaControlsID)
   zigZagNav.setAttribute('aria-hidden', true);
   zigZagNav.setAttribute('data-visibility', false);
 
-  const navUL = document.createElement('ul');
-  navUL.classList.add('nav-ul');
+  for (const list in objectOfLists) {
+    const listContainer = document.createElement('div');
+    listContainer.classList.add('nav-list-container');
 
-  const listFragment = document.createDocumentFragment();
-  pageNames.forEach((page, index) => {
-    const navLI = document.createElement('li');
-    navLI.classList.add('nav-li');
+    const listHeader = document.createElement('h2');
+    listHeader.classList.add('nav-list-header');
+    listHeader.textContent = list;
 
-    const linkNumberSpan = document.createElement('span');
-    linkNumberSpan.classList.add('nav-number');
-    linkNumberSpan.setAttribute('aria-hidden', true);
-    linkNumberSpan.textContent = `0${index}`;
+    const listUL = document.createElement('ul');
+    listUL.classList.add('nav-ul');
 
-    const navLink = document.createElement(buttonOrAnchor === 'button' ? 'button' : 'a' ? 'a' : alert('Accepts only "button" or "a" as arguments'));
-    navLink.classList.add('nav-link');
+    const groupedListElements = objectOfLists[list].listElements;
 
-    if (buttonOrAnchor === 'a') {
-      navLink.setAttribute('href', '#'); // ! UPDATE THIS TO USE THE PAGE NAME
-    }
+    const listFragment = document.createDocumentFragment();
+    groupedListElements.forEach((pageNameAndHref, index) => {
+      const pageName = pageNameAndHref[0];
+      const pageHref = pageNameAndHref[1];
 
-    if (page === initialPage) {
-      navLink.setAttribute('aria-current', 'page');
-    }
+      const navLI = document.createElement('li');
+      navLI.classList.add('nav-li');
+
+      const linkNumberSpan = document.createElement('span');
+      linkNumberSpan.classList.add('nav-number');
+      linkNumberSpan.setAttribute('aria-hidden', true);
+      linkNumberSpan.textContent = `0${index}`;
+
+      const navLink = document.createElement(
+        anchorOrButton === 'button'
+          ? 'button'
+          : 'a'
+          ? 'a'
+          : alert('Accepts only "button" or "a" as arguments')
+      );
+      navLink.classList.add('nav-link');
+
+      if (anchorOrButton === 'a') {
+        navLink.setAttribute('href', pageHref); // ! UPDATE THIS TO USE THE PAGE NAME
+      }
+
+      if (pageName === initialPage) {
+        navLink.setAttribute('aria-current', 'page');
+      }
+
+      if (pageName === specialNavLink) {
+        navLink.classList.add('special-nav-link');
+      }
+      
+      zigZagNav.appendChild(listHeader);
+
+      if (!navLink.classList.contains('special-nav-link')) {
+        navLink.appendChild(linkNumberSpan);
+      }
+      
+      navLink.appendChild(document.createTextNode(pageName));
+      navLI.appendChild(navLink);
+      listFragment.appendChild(navLI);
+    });
+
+    listUL.appendChild(listFragment);
     
-    navLink.appendChild(linkNumberSpan);
-    navLink.appendChild(document.createTextNode(page));
-    navLI.appendChild(navLink);
-    listFragment.appendChild(navLI);
-  });
+    listContainer.appendChild(listHeader);
+    listContainer.appendChild(listUL);
 
-  navUL.appendChild(listFragment);
 
-  zigZagNav.appendChild(navUL);
+    zigZagNav.appendChild(listContainer);
+  }
 
   activateListeners();
 

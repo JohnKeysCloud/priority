@@ -1,102 +1,95 @@
 import '../css/styles.css';
 import '../components/zig-zag-nav/zig-zag-nav.scss';
 
-import priorityLogo from '../assets/images/priority-logo.webp';
-
-import { createThemeToggleButton } from '../components/theme-toggle/theme-toggle.markup';
-import { createNavToggleButton } from '../components/nav-toggle/nav-toggle-markup';
 import { createZigZagNav } from '../components/zig-zag-nav/zip-zag-nav-markup';
+import { createHeader } from './header-markup';
+import { createListIcon } from '../components/listIcon/listIcon.js';
 
 const content = document.getElementById('content');
-const pages = [
-  'All Tasks',
-  'Today',
-  'Next 7 Days',
-  'Important',
-  'project',
-  'New Project',
-];
 
 // ! CREATE HEADER
-const header = document.createElement('header');
-
-const headerLeft = document.createElement('div');
-headerLeft.classList.add('header-left');
-
-const headerLogo = document.createElement('img');
-headerLogo.classList.add('header-logo');
-headerLogo.setAttribute('src', priorityLogo);
-headerLogo.setAttribute('alt', 'Priority Logo');
-
-const headerTitle = document.createElement('h1');
-headerTitle.classList.add('header-title');
-headerTitle.textContent = '<pr{io}rity>';
-
-headerLeft.appendChild(headerLogo);
-headerLeft.appendChild(headerTitle);
-
-const headerRight = document.createElement('div');
-headerRight.classList.add('header-right');
-
-headerRight.appendChild(createThemeToggleButton());
-headerRight.appendChild(createNavToggleButton('nav-primary-aria'));
-
-header.appendChild(headerLeft);
-header.appendChild(headerRight);
-
-content.appendChild(header);
+content.appendChild(createHeader());  
 
 // ! CREATE NAV
 // ? createZigZagNav accepts 4 arguments:
-  // * pageNames is an array of strings that will be used to create the nav links
-  // * initialPage is a string that will be used to set the aria - current attribute (use the index of the page name object)
-  // * navType is a string that will be used to determine if the nav links are buttons or anchors options are 'button' or 'a'
-  // * id is a string that will be used to set the id attribute of the nav's nested element
-content.appendChild(createZigZagNav(pages, pages[0], 'button', 'nav-primary-aria'));
+// * objectOfLists is an object that contains the list objects that will be used to create the nav lists
+// * initialPage is a string that will be used to set the aria - current attribute (use the index of the page name object)
+// * navType is a string that will be used to determine if the nav links are buttons or anchors options are 'button' or 'a'
+// * id is a string that will be used to set the id attribute of the nav's nested element
+// * specialNavLink is a string that matches a page name in the objectOfLists that will be used to create a special nav link
+  // * with custom behavior (adjustable in zigZagNav.js)
+  
+const listObjects = {
+  Home: {
+    listElements: [
+      ['All Tasks', '#'],
+      ['Today', '#'],
+      ['Next 7 Days', '#'],
+      ['Important', '#'],
+    ],
+  },
+  Projects: {
+    listElements: [
+      ['Add Project', '#'],
+      ['add-project-form', '#'],
+    ],
+  },
+};
+const initialPage = listObjects.Home.listElements[0][0];
 
-// const pageSections = [createHeader,createAside,createMain, createFooter];
+content.appendChild(
+  createZigZagNav(listObjects, initialPage, 'button', 'nav-primary-aria', 'Add Project')
+);
 
-// function createHeader() {
-//   const header = document.createElement('header');
-//   const headerTitle = document.createElement('h1');
-//   headerTitle.classList.add('header-title');
-//   headerTitle.textContent = 'toDo';
-//   header.appendChild(headerTitle);
 
-//   return header
-// }
+// ! test
+// ! test
+// ! test
+const addProjectTestLi = document.querySelector(
+  '#nav-primary-aria > div:nth-child(2) > ul > li:nth-child(2)'
+);
+addProjectTestLi.setAttribute('id', 'add-project-li');
+addProjectTestLi.innerHTML = ''; // clear the li
 
-// function createAside() {
-//   const aside = document.createElement('aside');
-//   aside.textContent = 'aside';
+const projectInputContainer = document.createElement('div');
+projectInputContainer.setAttribute('id', 'project-input-container');
 
-//   return aside;
-// }
+const projectNameInput = document.createElement('input');
+projectNameInput.setAttribute('id', 'project-name-input');
+projectNameInput.setAttribute('type', 'text');
+projectNameInput.setAttribute('placeholder', 'Enter Project Name');
+projectNameInput.setAttribute('max-length', 24);
 
-// function createMain() {
-//   const main = document.createElement('main');
-//   main.textContent = 'main';
+const projectButtonsContainer = document.createElement('div');
+projectButtonsContainer.setAttribute('id', 'project-buttons-container');
 
-//   return main;
-// }
+const addProjectButton = document.createElement('button');
+addProjectButton.setAttribute('id', 'add-project-button');
+addProjectButton.setAttribute('type', 'button');
+addProjectButton.setAttribute('aria-label', 'Add Project');
+addProjectButton.textContent = 'add';
 
-// function createFooter() {
-//   const footer = document.createElement('footer');
-//   footer.textContent = 'footer';
+const cancelAddProjectButton = document.createElement('button');
+cancelAddProjectButton.setAttribute('id', 'cancel-add-project-button');
+cancelAddProjectButton.setAttribute('type', 'button');
+cancelAddProjectButton.setAttribute('aria-label', 'Cancel Add Project');
+cancelAddProjectButton.textContent = 'cancel';
 
-//   return footer
-// }
+projectInputContainer.appendChild(createListIcon());
+projectInputContainer.appendChild(projectNameInput);
 
-// function renderPage(pageSections) {
-//   const content = document.getElementById('content');
+projectButtonsContainer.appendChild(addProjectButton);
+projectButtonsContainer.appendChild(cancelAddProjectButton);
 
-//   while (content.firstChild) {
-//     content.removeChild(content.firstChild);
-//   }
+addProjectTestLi.appendChild(projectInputContainer);
+addProjectTestLi.appendChild(projectButtonsContainer);
+// ! test
+// ! test
+// ! test
 
-//   pageSections.forEach(section => {
-//     content.appendChild(section());
-//   });
-// }
+const main = document.createElement('main');
+const mainContainer = document.createElement('div');
+mainContainer.classList.add('main-container');
 
-// renderPage(pageSections);
+main.appendChild(mainContainer);
+content.appendChild(main);

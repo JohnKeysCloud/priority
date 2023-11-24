@@ -1,0 +1,36 @@
+$size: 0.75rem;
+
+.list-icon-container {
+  aspect-ratio: 1 / 1;
+  position: relative;
+  width: $size;
+
+  .list-icon-bars {
+    background-color: white;
+    height: 2px;
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  &::before,
+  &::after {
+    content: '';
+    width: 100%;
+    height: 2px;
+    background-color: white;
+    position: absolute;
+  }
+
+  &::before {
+    top: 0;
+  }
+
+  &::after {
+    bottom: 0;
+  }
+
+
+
+}

@@ -1,24 +1,31 @@
 @keyframes fade-in {
   from {
     opacity: 0;
+    transform: translateY(-100%);
   }
   to {
     opacity: 1;
+    transform: translateY(0);
   }
 }
 @keyframes fade-out {
   from {
+    transform: translateY(0);
     opacity: 1;
   }
   to {
     opacity: 0;
+    transform: translateY(-100%);
   }
 }
 
 .zig-zag-nav {
-  $link-color: white;
+  $text-color: white;
   $link-shadow: unset;
   $link-rotation: 0deg;
+
+  display: flex;
+  gap: 5rem;
 
   &[data-visibility=false] {
     display: none;
@@ -27,85 +34,117 @@
   &[data-visibility=closing] {
     animation: fade-out 380ms ease-in-out;
   }
+  
 
   &[data-visibility=true] {
     animation: fade-in 380ms ease-in-out;
-    display: flex;
   }
 
-  .nav-ul {
+  .nav-list-container {
+    color: $text-color;
+    display: flex;
+    flex-direction: column;
     gap: 1.5rem;
-    list-style: none;
 
-    .nav-li {
+    .nav-list-header {
+      color: inherit;
       position: relative;
-      transition: transform 250ms ease-in-out;
-
-      &:nth-of-type(odd) {
-        transform: rotate(calc($link-rotation * -1));
-      }
-
-      &:nth-of-type(even) {
-        transform: rotate($link-rotation);
-      }
-
-      &::before,
-      &::after {
-        border-radius: 100px;
-        content: '';
-        inset: -5px -15px;
-        opacity: 0.1;
-        pointer-events: none;
-        position: absolute;
-        transform: scaleX(0);
-        transform-origin: center;
-        z-index: 0;
-      }
-
-      &:hover {
-        transform: rotate(0);
-      }
+      text-transform: uppercase;
     }
 
-    .nav-link {
-      background: linear-gradient(skyblue, white, white);
-      background: -webkit-linear-gradient(skyblue, white, white);
-      background-clip: text;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      cursor: pointer;
-      display: inline-block;
-      position: relative;
-      text-decoration: none;
-      text-shadow: $link-shadow;
-      text-transform: uppercase;
-      transition: all 500ms ease-in-out;
+    .nav-ul {
+      list-style: none;
 
-      .nav-number {
-        font-weight: bold;
-        margin-inline-end: 0.75rem;
-      }
+      .nav-li {
+        position: relative;
+        transition: transform 250ms ease-in-out;
 
-      &::before {
-        content: '';
-        border-bottom: 2px dashed $link-color;
-        inset: 5px 0 0 0;
-        padding-top: 1rem;
-        position: absolute;
-        transition: opacity 250ms ease-in-out, transform 380ms ease-in-out;
-        transform: scaleX(0);
-      }
+        &:nth-of-type(odd) {
+          transform: rotate(calc($link-rotation * -1));
+        }
 
-      &[aria-current]::before {
-        opacity: 1;
-        transform: scaleX(1);
+        &:nth-of-type(even) {
+          transform: rotate($link-rotation);
+        }
+
+        &::before,
+        &::after {
+          border-radius: 100px;
+          content: '';
+          inset: -5px -15px;
+          opacity: 0.1;
+          pointer-events: none;
+          position: absolute;
+          transform: scaleX(0);
+          transform-origin: center;
+          z-index: 0;
+        }
+
+        &:hover {
+          transform: rotate(0);
+        }
+
+        .nav-link {
+          color: $text-color;
+          cursor: pointer;
+          display: inline-block;
+          position: relative;
+          text-decoration: none;
+          text-shadow: $link-shadow;
+          text-transform: uppercase;
+          transition: all 500ms ease-in-out;
+
+          .nav-number {
+            display: inline-block;
+            font-weight: bold;
+            margin-inline-end: 0.75rem;
+            position: relative;
+          }
+
+          &::before {
+            content: '';
+            border-bottom: 2px dashed white;
+            inset: 5px 0 0 0;
+            padding-top: 1rem;
+            position: absolute;
+            transition: opacity 250ms ease-in-out, transform 380ms ease-in-out;
+            transform: scaleX(0);
+          }
+
+          &[aria-current]::before {
+            opacity: 1;
+            transform: scaleX(1);
+          }
+        }
       }
     }
   }
 } 
 
 @media (max-width: 35em) {
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  @keyframes fade-out {
+    from {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+  }
+
   .zig-zag-nav {
+    flex-direction: column;
     position: fixed;
     inset:  0 0 0 30%;
   }
