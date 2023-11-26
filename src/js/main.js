@@ -3,22 +3,27 @@ import '../components/zig-zag-nav/zig-zag-nav.scss';
 
 import { createZigZagNav } from '../components/zig-zag-nav/zip-zag-nav-markup';
 import { createHeader } from './header-markup';
-import { createListIcon } from '../components/listIcon/listIcon.js';
+import { modifyListElement } from '../utilities/modify-li.js';
+import { createModifiedLiContent } from './createModifiedLi.js';
 
 const content = document.getElementById('content');
 
-// ! CREATE HEADER
+// ! CREATE header
 content.appendChild(createHeader());  
 
-// ! CREATE NAV
-// ? createZigZagNav accepts 4 arguments:
-// * objectOfLists is an object that contains the list objects that will be used to create the nav lists
-// * initialPage is a string that will be used to set the aria - current attribute (use the index of the page name object)
-// * navType is a string that will be used to determine if the nav links are buttons or anchors options are 'button' or 'a'
-// * id is a string that will be used to set the id attribute of the nav's nested element
-// * specialNavLink is a string that matches a page name in the objectOfLists that will be used to create a special nav link
-  // * with custom behavior (adjustable in zigZagNav.js)
-  
+// ! CREATE nav
+/* 
+  ┌─────────────────────────────────────────────────────────────────────────┐
+  │ // PARAM: createZigZagNav                                               │
+  │ // ? 1. objectOfLists                                                   │
+  │ // ? 2. initialPage (used to set the aria - current attribute)          │
+  │ // ? 3. navType (anchor for 'a' tags / button for 'button tags)         │
+  │ // ? 4. id (sets navigations id for aria in conjunction with a nav      │
+  │   // ? toggle button)                                                   │                                                               │
+  │ // ? 5. specialNavLinkArr is an array of page names with that will      │
+  │   // ? be used to create a special nav links via a unique css class     │
+  └─────────────────────────────────────────────────────────────────────────┘
+ */
 const listObjects = {
   Home: {
     listElements: [
@@ -31,61 +36,34 @@ const listObjects = {
   Projects: {
     listElements: [
       ['Add Project', '#'],
-      ['add-project-form', '#'],
+      ['ADD_PROJECT_FORM', '#'],
     ],
   },
 };
 const initialPage = listObjects.Home.listElements[0][0];
+const specialNavListItemArray = ['Add Project', 'ADD_PROJECT_FORM'];
 
 content.appendChild(
-  createZigZagNav(listObjects, initialPage, 'button', 'nav-primary-aria', 'Add Project')
+  createZigZagNav(listObjects, initialPage, 'button', 'nav-primary-aria', specialNavListItemArray)
 );
 
+// ! MODIFY zigZagNav List Element to create Add Project Button
+/* 
+┌─────────────────────────────────────────────────────────────────────────┐
+│ // PARAM: modifyListElement                                             │
+│ // ? 1.listElement                                                      │
+│ // ? 2.listItemIndex                                                    │
+│ // ? 3.listElementContentArray;                                         │
+│ // ? 4.id for modified element                                           │
+└─────────────────────────────────────────────────────────────────────────┘
+*/
+const projectList = document.querySelector('.nav-list-container:nth-child(2) > ul');
+modifyListElement(projectList, 2, createModifiedLiContent(), 'add-project-li');
 
-// ! test
-// ! test
-// ! test
-const addProjectTestLi = document.querySelector(
-  '#nav-primary-aria > div:nth-child(2) > ul > li:nth-child(2)'
-);
-addProjectTestLi.setAttribute('id', 'add-project-li');
-addProjectTestLi.innerHTML = ''; // clear the li
 
-const projectInputContainer = document.createElement('div');
-projectInputContainer.setAttribute('id', 'project-input-container');
-
-const projectNameInput = document.createElement('input');
-projectNameInput.setAttribute('id', 'project-name-input');
-projectNameInput.setAttribute('type', 'text');
-projectNameInput.setAttribute('placeholder', 'Enter Project Name');
-projectNameInput.setAttribute('max-length', 24);
-
-const projectButtonsContainer = document.createElement('div');
-projectButtonsContainer.setAttribute('id', 'project-buttons-container');
-
-const addProjectButton = document.createElement('button');
-addProjectButton.setAttribute('id', 'add-project-button');
-addProjectButton.setAttribute('type', 'button');
-addProjectButton.setAttribute('aria-label', 'Add Project');
-addProjectButton.textContent = 'add';
-
-const cancelAddProjectButton = document.createElement('button');
-cancelAddProjectButton.setAttribute('id', 'cancel-add-project-button');
-cancelAddProjectButton.setAttribute('type', 'button');
-cancelAddProjectButton.setAttribute('aria-label', 'Cancel Add Project');
-cancelAddProjectButton.textContent = 'cancel';
-
-projectInputContainer.appendChild(createListIcon());
-projectInputContainer.appendChild(projectNameInput);
-
-projectButtonsContainer.appendChild(addProjectButton);
-projectButtonsContainer.appendChild(cancelAddProjectButton);
-
-addProjectTestLi.appendChild(projectInputContainer);
-addProjectTestLi.appendChild(projectButtonsContainer);
-// ! test
-// ! test
-// ! test
+// !
+// !
+// !
 
 const main = document.createElement('main');
 const mainContainer = document.createElement('div');

@@ -10,7 +10,7 @@ function createZigZagNav(
   initialPage,
   anchorOrButton,
   ariaControlsID,
-  specialNavLink
+  specialNavListItemArray
 ) {
   const zigZagNav = document.createElement('nav');
   zigZagNav.classList.add('zig-zag-nav');
@@ -26,6 +26,7 @@ function createZigZagNav(
     const listHeader = document.createElement('h2');
     listHeader.classList.add('nav-list-header');
     listHeader.textContent = list;
+    zigZagNav.appendChild(listHeader);
 
     const listUL = document.createElement('ul');
     listUL.classList.add('nav-ul');
@@ -37,42 +38,31 @@ function createZigZagNav(
       const pageName = pageNameAndHref[0];
       const pageHref = pageNameAndHref[1];
 
-      const navLI = document.createElement('li');
-      navLI.classList.add('nav-li');
-
-      const linkNumberSpan = document.createElement('span');
-      linkNumberSpan.classList.add('nav-number');
-      linkNumberSpan.setAttribute('aria-hidden', true);
-      linkNumberSpan.textContent = `0${index}`;
-
       const navLink = document.createElement(
         anchorOrButton === 'button'
           ? 'button'
           : 'a'
           ? 'a'
-          : alert('Accepts only "button" or "a" as arguments')
+          : console.log('zigZagNav only accepts "button" or "a" as arguments')
       );
       navLink.classList.add('nav-link');
-
       if (anchorOrButton === 'a') {
         navLink.setAttribute('href', pageHref); // ! UPDATE THIS TO USE THE PAGE NAME
       }
-
       if (pageName === initialPage) {
         navLink.setAttribute('aria-current', 'page');
       }
 
-      if (pageName === specialNavLink) {
-        navLink.classList.add('special-nav-link');
-      }
-      
-      zigZagNav.appendChild(listHeader);
+      const navLI = document.createElement('li');
+      navLI.classList.add('nav-li');
+      specialNavListItemArray.forEach((specialNavLink) => {
+        if (pageName === specialNavLink) {
+          navLI.classList.add('special-nav-li');
+        }
+      });
 
-      if (!navLink.classList.contains('special-nav-link')) {
-        navLink.appendChild(linkNumberSpan);
-      }
-      
-      navLink.appendChild(document.createTextNode(pageName));
+      navLink.textContent = pageName;
+
       navLI.appendChild(navLink);
       listFragment.appendChild(navLI);
     });
@@ -81,7 +71,6 @@ function createZigZagNav(
     
     listContainer.appendChild(listHeader);
     listContainer.appendChild(listUL);
-
 
     zigZagNav.appendChild(listContainer);
   }

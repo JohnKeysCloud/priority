@@ -97,19 +97,19 @@ body {
 
         .nav-ul {
           display: flex;
-          gap: 1rem;
+          gap: 2rem;
           flex-direction: column;
 
-          // ! test
-          // ! test
-          // ! test
+          // TODO:
           #add-project-li {
-            $gap: 0.5rem;  
+            $gap: 1.25rem;  
 
-            align-items: start;
             display: flex;
             gap: $gap;
-            flex-direction: row;
+            flex-direction: column;
+            margin-right: 1rem;
+            padding-top: 1rem;
+            justify-content: end;
 
             #project-input-container {
               align-items: center;
@@ -119,21 +119,22 @@ body {
               #project-name-input {
                 border: none;
                 border-radius: 100vw;
-                padding: 0.25rem 1rem;
+                padding: 1rem;
               } 
             }
 
             #project-buttons-container {
               display: flex;
               gap: $gap;
+              align-self: start;
 
               #add-project-button,
               #cancel-add-project-button {
-                // border: 1px solid white;
+                border: 2px solid hsla(0%, 0%, 100%, 0.25);
                 border-radius: 100vw;
                 color: white;
                 cursor: pointer;
-                padding: 2px 8px;
+                padding: 15px;
                 position: relative;
 
                 &::before {
@@ -156,8 +157,29 @@ body {
                   transform: scale(1);
                 } 
               }
+            }
+          }
 
+          .special-nav-li:first-of-type {
+            .nav-link {
+              font-size: 1rem;
+              text-decoration: underline;
 
+              transition: transform 380ms ease-in-out;
+              &:hover {
+                transform: translateX(0.25rem) scale(1) rotate(0);
+              }
+
+              &::after {
+                content: '+';
+                opacity: 1; 
+                position: absolute;
+                transition: transform 380ms ease-in-out;
+              }
+
+              &:hover::after {
+                transform: translate(-0.25rem) scale(2) rotate(360deg);
+              }
             }
           }
 
@@ -169,32 +191,30 @@ body {
               opacity: 0;
               position: absolute;
               top: 0;
-              left: -1rem;
+              left: -0.75rem;
               transition: opacity 380ms ease-in-out;
             }
 
             &:hover::after {
               opacity: 1;
             }
-
-            &.special-nav-link {
-              transition: transform 380ms ease-in-out;
-            }
-
-            &.special-nav-link:hover {
-              transform: translateX(0.25rem) scale(1.125);
-            }
-
-            &.special-nav-link::after {
-              content: '+';
-              opacity: 1; 
-              transition: transform 380ms ease-in-out;
-            }
-
-            &.special-nav-link:hover::after {
-              transform: translate(-0.25rem) scale(3) rotate(360deg);
-            }
           }
+        }
+      }
+
+      .nav-list-container:nth-child(2) {
+        max-height: 300px;
+        width: 100%;
+        
+        .nav-ul {
+          border: 3px solid hsla(0%, 0%, 100%, 0.1);
+          border-radius: 55px;
+          display: flex;
+          flex-wrap: wrap;
+          gap: 1rem;
+          flex-direction: column;
+          overflow: scroll;
+          padding: 2rem;
         }
       }
     }
@@ -231,23 +251,18 @@ body {
         padding: min(30vh, 10rem) 2rem;
         inset: 0 0 0 30%;
 
-        .nav-list-container {
+        .nav-list-container:nth-child(2) {
           .nav-ul {
-            // ! test
-            // ! test
+            border-radius: 0;
+            flex-direction: column;
+            padding: 1.125rem;
+            flex-wrap: nowrap;
+
             #add-project-li {
-              flex-direction: column; 
-              
-              #project-input-container {
-                #project-name-input {
-                  // width: 100%;
-                  // margin-right: 3rem;
-                }
+              .list-icon-container  {
+                display: none;
               }
             }
-            // ! test
-            // ! test
-            // ! test
           }
         }
       }
