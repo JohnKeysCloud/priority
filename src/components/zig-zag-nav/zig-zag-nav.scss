@@ -25,7 +25,8 @@
   $link-rotation: 0deg;
 
   display: flex;
-  gap: 5rem;
+  gap: 3rem;
+  z-index: 1;
 
   &[data-visibility=false] {
     display: none;
@@ -144,8 +145,8 @@
   }
 
   .zig-zag-nav {
-    flex-direction: column;
-    position: fixed;
-    inset:  0 0 0 30%;
+    // flex-direction: column;
+    // position: fixed;
+    // inset:  0 0 0 30%;
   }
 }
