@@ -1,17 +1,42 @@
-function handleNewProjectButton() {
-  const newProjectButton = document.getElementById('new-project-button');
+import { events } from "../utilities/pubsub";
+import { checkTargetElementExistence } from "../utilities/check-target-element-existence";
+import { handleNewProjectCancelButton } from "./handleNewProjectCancelButton";
 
-  newProjectButton.addEventListener('click', () => {
-    const projectFormContainer = document.getElementById('project-form-container');
-    const projectFormContainerHidden = projectFormContainer.getAttribute('data-hidden');
+function setAttributes(element, attributes) {
+  for (const key in attributes) {
+    element.setAttribute(key, attributes[key]);
+  }
+}
 
-  // TODO:
-  // ? refactor below to account for animating from display none 
-
-  projectFormContainerHidden === 'true'
-    ? projectFormContainer.setAttribute('data-hidden', false)
-    : projectFormContainer.setAttribute('data-hidden', true);
+function publishProjectButtonListener(targetElement) {
+  events.on('toggleDisplayFormContainerVisibility', () => {
+    const projectFormContainerHidden = targetElement.getAttribute('data-hidden');
+    if (projectFormContainerHidden === 'true') {
+      setAttributes(targetElement, {
+        'data-hidden': 'false',
+        'aria-label': 'visible',
+      });
+    } else if (projectFormContainerHidden === 'false') {
+      setAttributes(targetElement, {
+        'data-hidden': 'true',
+        'aria-label': 'hidden',
+      });  
+    }
   });
 }
 
-export { handleNewProjectButton };
+function emitPublishProjectButtonListener() {
+  events.emit('toggleDisplayFormContainerVisibility');
+
+  handleNewProjectCancelButton();
+}
+
+function handleNewProjectButton() {
+  const newProjectButton = document.getElementById('new-project-button');
+
+  checkTargetElementExistence('#project-form-container', publishProjectButtonListener);
+
+  newProjectButton.addEventListener('click', emitPublishProjectButtonListener);
+}
+
+export { handleNewProjectButton, emitPublishProjectButtonListener };

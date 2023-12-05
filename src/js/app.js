@@ -71,43 +71,10 @@ navContainerTwo.insertBefore(
   
 const navContainerTwoUL = document.querySelector('.nav-list-container:nth-child(2) > ul');
 
-let projectItemCount = 0;
-for (let i = 0; i < projectItemCount; i++) {
-  navContainerTwoUL.appendChild(createProjectItem(`Project ${i}`));
-}
-
-// create an array of all the list items in the nav
-// on click of the add project button, unshift the add project form into the array
-// whatever is typed into the project form will also be unshifted into the array
-// when the add button is clicked, the array will be iterated over and the list items will be created
-// the array will be cleared and the add project form will be removed from the array
-// the array will be iterated over and the list items will be created
-
-// add event listeners to all items in the first ul of the nav list container
-// depending on the text content of the item, a different function will be called
-// the function will create the appropriate content for the main container
-// the function will also remove the content from the main container
-
-// add event listeners to all items in the second ul of the nav list container
-// depending on the text content of the item, a different function will be called
-// the function will create the appropriate content for the main container
-// the function will also remove the content from the main container
-
-// the main container will consist of a main with a div inside of it
-// the container will have two sections. One for the the title and one for the content
-// for nav ul 1, it will show tasks to be done in the timeframe selected
-
-// for nav ul 2, it will show the projects and the tasks associated with the project
-// the tasks will be sorted by priority, date, then completion
-
-// task ui:
-// a list element composed of a checkbox, title, description underneath, due date (if there is one), a star icon to mark as important,
-// and a three dot icon to open a menu with edit and delete options.
-// clicking edit will replace the content of the list element with a form to edit the task (the same form used to create a task)
-
-
-
-
+// let projectItemCount = 9;
+// for (let i = 0; i < projectItemCount; i++) {
+//   navContainerTwoUL.appendChild(createProjectItem(`Project ${i}`));
+// }
 
 // !
 // !

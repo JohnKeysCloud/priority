@@ -1,4 +1,4 @@
-@keyframes fade-in {
+@keyframes slide-in {
   from {
     opacity: 0;
     transform: translateY(-100%);
@@ -8,7 +8,7 @@
     transform: translateY(0);
   }
 }
-@keyframes fade-out {
+@keyframes slide-out {
   from {
     transform: translateY(0);
     opacity: 1;
@@ -33,12 +33,12 @@
   }
 
   &[data-visibility=closing] {
-    animation: fade-out 380ms ease-in-out;
+    animation: slide-out 380ms ease-in-out;
   }
   
 
   &[data-visibility=true] {
-    animation: fade-in 380ms ease-in-out;
+    animation: slide-in 380ms ease-in-out;
   }
 
   .nav-list-container {
@@ -123,7 +123,7 @@
 } 
 
 @media (max-width: 35em) {
-  @keyframes fade-in {
+  @keyframes slide-in {
     from {
       opacity: 0;
       transform: translateX(100%);
@@ -133,7 +133,7 @@
       transform: translateX(0);
     }
   }
-  @keyframes fade-out {
+  @keyframes slide-out {
     from {
       opacity: 1;
       transform: translateX(0);

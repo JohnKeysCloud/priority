@@ -364,12 +364,37 @@ body #content .zig-zag-nav .nav-list-container:nth-child(2) #add-project-contain
   flex-direction: column;
 }
 body #content .zig-zag-nav .nav-list-container:nth-child(2) #add-project-container #project-form-container[data-hidden=true] {
-  display: none;
+  animation: fade-out 333ms ease-in-out;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+    visibility: visible;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
 }
 body #content .zig-zag-nav .nav-list-container:nth-child(2) #add-project-container #project-form-container {
+  animation: fade-in 333ms ease-in-out;
   display: flex;
   gap: 1.25rem;
   padding-top: 1rem;
+  pointer-events: all;
+}
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+  }
+  100% {
+    opacity: 1;
+    visibility: visible;
+  }
 }
 body #content .zig-zag-nav .nav-list-container:nth-child(2) #add-project-container #new-project-button {
   cursor: pointer;
@@ -378,11 +403,8 @@ body #content .zig-zag-nav .nav-list-container:nth-child(2) #add-project-contain
   position: relative;
   text-decoration: underline;
   text-transform: uppercase;
-  transition: transform 380ms ease-in-out;
+  transition: all 150ms ease-in-out;
   white-space: nowrap;
-}
-body #content .zig-zag-nav .nav-list-container:nth-child(2) #add-project-container #new-project-button:hover {
-  transform: translateX(0.25rem) scale(1) rotate(0);
 }
 body #content .zig-zag-nav .nav-list-container:nth-child(2) #add-project-container #new-project-button::after {
   content: "+";
@@ -391,8 +413,18 @@ body #content .zig-zag-nav .nav-list-container:nth-child(2) #add-project-contain
   position: absolute;
   transition: transform 380ms ease-in-out;
 }
+body #content .zig-zag-nav .nav-list-container:nth-child(2) #add-project-container #new-project-button:hover {
+  transform: translateX(0.25rem) scale(1) rotate(0);
+}
 body #content .zig-zag-nav .nav-list-container:nth-child(2) #add-project-container #new-project-button:hover::after {
   transform: translate(-0.25rem) scale(2) rotate(360deg);
+}
+body #content .zig-zag-nav .nav-list-container:nth-child(2) #add-project-container #new-project-button:active {
+  opacity: 0.75;
+  transform: translateX(0.25rem) scale(0.99) rotate(0);
+}
+body #content .zig-zag-nav .nav-list-container:nth-child(2) #add-project-container #new-project-button:active::after {
+  transform: translate(-0.25rem) scale(1.01) rotate(360deg);
 }
 body #content .zig-zag-nav .nav-list-container:nth-child(2) #add-project-container #project-input-container {
   align-items: center;

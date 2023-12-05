@@ -147,13 +147,40 @@ body {
           flex-direction: column;
 
           #project-form-container[data-hidden=true] {
-            display: none; // ? hidden by default
+            @keyframes fade-out {
+              0% {
+                opacity: 1;
+                visibility: visible;
+              }
+              100% {
+                opacity: 0;
+                visibility: hidden;
+              }
+            }
+
+            animation: fade-out 333ms ease-in-out;
+            opacity: 0;
+            pointer-events: none;
+            visibility: hidden; 
           }
           
           #project-form-container {
+            @keyframes fade-in {
+              0% {
+                opacity: 0;
+                visibility: hidden;
+              }
+              100% {
+                opacity: 1;
+                visibility: visible;
+              }
+            }
+
+            animation: fade-in 333ms ease-in-out;
             display: flex;
             gap: $gap;
             padding-top: 1rem;
+            pointer-events: all;
           }
 
           #new-project-button {
@@ -163,12 +190,8 @@ body {
             position: relative;
             text-decoration: underline;
             text-transform: uppercase;
-            transition: transform 380ms ease-in-out;
+            transition: all 150ms ease-in-out;
             white-space: nowrap;
-            
-            &:hover {
-              transform: translateX(0.25rem) scale(1) rotate(0);
-            }
 
             &::after {
               content: '+';
@@ -177,11 +200,23 @@ body {
               position: absolute;
               transition: transform 380ms ease-in-out;
             }
-
-            &:hover::after {
-              transform: translate(-0.25rem) scale(2) rotate(360deg);
+            
+            &:hover {
+              transform: translateX(0.25rem) scale(1) rotate(0);
+              
+              &::after {
+                transform: translate(-0.25rem) scale(2) rotate(360deg);
+              }
             }
-          
+            
+            &:active {
+              opacity: 0.75;
+              transform: translateX(0.25rem) scale(0.99) rotate(0);
+              
+              &::after {
+                transform: translate(-0.25rem) scale(1.01) rotate(360deg);
+              }
+            }
           }
 
           #project-input-container {

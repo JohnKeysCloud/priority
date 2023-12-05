@@ -7,7 +7,9 @@
     "build": "webpack --progress  --mode=production",
     "dev": "webpack --progress --mode=development",
     "serve": "webpack serve --progress",
-    "watch-sass": "sass --watch ./src/sass/main.scss:./src/css/styles.css"
+    "watch-sass": "sass --watch ./src/sass/main.scss:./src/css/styles.css",
+    "gitpush": "./gitpush.sh",
+    "gitpushnode": "node gitpush.sh"
   },
   "keywords": [],
   "author": "cycl0n3",
