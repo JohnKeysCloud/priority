@@ -1,12 +1,10 @@
-import { events } from "../utilities/pubsub";
+// * UTILITIES
 import { checkTargetElementExistence } from "../utilities/check-target-element-existence";
-import { handleNewProjectCancelButton } from "./handleNewProjectCancelButton";
+import { events } from "../utilities/pubsub";
+import { setAttributes } from "../utilities/set-attributes";
 
-function setAttributes(element, attributes) {
-  for (const key in attributes) {
-    element.setAttribute(key, attributes[key]);
-  }
-}
+// * HANDLER FUNCTIONS
+import { handleNewProjectCancelButton } from "./handleNewProjectCancelButton";
 
 function publishProjectButtonListener(targetElement) {
   events.on('toggleDisplayFormContainerVisibility', () => {
@@ -39,4 +37,4 @@ function handleNewProjectButton() {
   newProjectButton.addEventListener('click', emitPublishProjectButtonListener);
 }
 
-export { handleNewProjectButton, emitPublishProjectButtonListener };
+export { emitPublishProjectButtonListener, handleNewProjectButton };
