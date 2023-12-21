@@ -5,6 +5,7 @@ import { setAttributes } from "../utilities/set-attributes";
 
 // * HANDLER FUNCTIONS
 import { handleNewProjectCancelButton } from "./handleNewProjectCancelButton";
+import { handleNewProjectAddButton } from "./handle-project-add-button";
 
 function publishProjectButtonListener(targetElement) {
   events.on('toggleDisplayFormContainerVisibility', () => {
@@ -20,21 +21,21 @@ function publishProjectButtonListener(targetElement) {
         'aria-label': 'hidden',
       });  
     }
+    handleNewProjectCancelButton();
+    handleNewProjectAddButton(); 
   });
 }
 
 function emitPublishProjectButtonListener() {
   events.emit('toggleDisplayFormContainerVisibility');
-
-  handleNewProjectCancelButton();
 }
 
 function handleNewProjectButton() {
   const newProjectButton = document.getElementById('new-project-button');
-
-  checkTargetElementExistence('#project-form-container', publishProjectButtonListener);
-
   newProjectButton.addEventListener('click', emitPublishProjectButtonListener);
+
+  const projectFormContainer = checkTargetElementExistence('#project-form-container');
+  publishProjectButtonListener(projectFormContainer);
 }
 
 export { emitPublishProjectButtonListener, handleNewProjectButton };

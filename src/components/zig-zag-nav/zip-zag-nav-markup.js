@@ -55,11 +55,13 @@ function createZigZagNav(
 
       const navLI = document.createElement('li');
       navLI.classList.add('nav-li');
-      specialNavListItemArray.forEach((specialNavLink) => {
-        if (pageName === specialNavLink) {
-          navLI.classList.add('special-nav-li');
-        }
-      });
+      if (specialNavListItemArray) {
+        specialNavListItemArray.forEach((specialNavLink) => {
+          if (pageName === specialNavLink) {
+            navLI.classList.add('special-nav-li');
+          }
+        });
+      }
 
       navLink.textContent = pageName;
 

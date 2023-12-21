@@ -1,10 +1,10 @@
-function projectFactory(title) {
-  if (typeof title !== 'string') {
-    throw new Error('Title must be a string');
+function projectFactory(name) {
+  if (typeof name !== 'string') {
+    throw new Error('name must be a string');
   }
 
   let state = {
-    title: title,
+    name: name,
     tasks: [],
   }
   return {
@@ -15,11 +15,11 @@ function projectFactory(title) {
     getTasks: () => {
       return state.tasks;
     },
-    getTitle: () => {
-      return state.title;
+    getName: () => {
+      return state.name;
     },
-    setTitle: (title) => {
-      state.title = title;
+    setName: (name) => {
+      state.name = name;
     },
   }
 }
@@ -84,19 +84,26 @@ function taskFactory(title, details, dueDate, priority) {
   };
 }
 
-const project1 = projectFactory('project1');
-const project2 = projectFactory('project2');
+// const project1 = projectFactory('project1');
+// const project2 = projectFactory('project2');
 
-const task1 = taskFactory('task1', 'details1', 'dueDate1', 'priority1');
-const task2 = taskFactory('task2', 'details2', 'dueDate2', 'priority2');
-const task3 = taskFactory('task3', 'details3', 'dueDate3', 'priority3');
+// const task1 = taskFactory('task1', 'details1', 'dueDate1', 'priority1');
+// const task2 = taskFactory('task2', 'details2', 'dueDate2', 'priority2');
+// const task3 = taskFactory('task3', 'details3', 'dueDate3', 'priority3');
 
-project1.addTask(task1);
-project1.addTask(task2);
-project2.addTask(task3);
+// project1.addTask(task1);
+// project1.addTask(task2);
+// project2.addTask(task3);
 
-console.log(project1.getTitle());
-console.log(project2.getTitle());
+// console.log(project1.getTitle());
+// console.log(project2.getTitle());
 
-console.log(project1.getTasks());
-console.log(project2.getTasks());
+// let projectOneTasks = []
+// for (let i = 0; i < project1.getTasks().length; i++) {
+//   projectOneTasks.push(project1.getTasks()[i]);
+// }
+// console.log(projectOneTasks);
+
+// // console.log(project2.getTasks());
+
+export { projectFactory, taskFactory };

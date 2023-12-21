@@ -23,7 +23,8 @@ function checkTargetElementVisibility(targetElement) {
 }
 
 function handleNewProjectCancelButton() {
-  checkTargetElementExistence('#project-form-container', checkTargetElementVisibility);
+  const projectFormContainer = checkTargetElementExistence('#project-form-container');
+  checkTargetElementVisibility(projectFormContainer);
 }
 
 export { handleNewProjectCancelButton };

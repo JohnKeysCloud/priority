@@ -1,4 +1,4 @@
-function checkTargetElementExistence(selector, callback) {
+function checkTargetElementExistence(selector) {
   const targetElement = document.querySelector(selector);
   
   if (!targetElement) {
@@ -6,10 +6,7 @@ function checkTargetElementExistence(selector, callback) {
     return;
   }
 
-  if (callback) {
-    callback(targetElement);
-    return;
-  }  
+  return targetElement
 }
 
 export { checkTargetElementExistence };

@@ -43,38 +43,22 @@ const listObjects = {
     ],
   },
   Projects: {
-    listElements: [
-    ],
+    listElements: [],
   },
 };
-const initialPage = listObjects.Home.listElements[0][0];
-const specialNavListItemArray = ['New Project'];
 content.appendChild(
-  createZigZagNav(listObjects, initialPage, 'button', 'nav-primary-aria', specialNavListItemArray)
+  createZigZagNav(listObjects, 'All Tasks', 'button', 'nav-primary-aria')
 );
 
-// * UPDATE zigZagNav List Element to create Add Project Button
-/* 
-┌─────────────────────────────────────────────────────────────────────────┐
-│ // PARAM: modifyListElement                                             │
-│ // ? 1.listElement                                                      │
-│ // ? 2.listItemIndex                                                    │
-│ // ? 3.listElementContentArray;                                         │
-│ // ? 4.id for modified element                                           │
-└─────────────────────────────────────────────────────────────────────────┘
-*/
-const navContainerTwo = document.querySelector('.nav-list-container:nth-child(2)');
-navContainerTwo.insertBefore(
+// * UPDATE zigZagNav List Element to create Add Project Button and classify Project List
+const projectNavListContainer = document.querySelector('.nav-list-container:nth-child(2)');
+projectNavListContainer.setAttribute('id', 'project-nav-list-container');
+projectNavListContainer.insertBefore(
   createAddProjectContainer(),
-  navContainerTwo.lastChild
-  );
-  
-const navContainerTwoUL = document.querySelector('.nav-list-container:nth-child(2) > ul');
-
-// let projectItemCount = 9;
-// for (let i = 0; i < projectItemCount; i++) {
-//   navContainerTwoUL.appendChild(createProjectItem(`Project ${i}`));
-// }
+  projectNavListContainer.lastChild
+);
+const projectNavList = projectNavListContainer.querySelector('.nav-ul');
+projectNavList.setAttribute('id', 'project-nav-list');
 
 // !
 // !

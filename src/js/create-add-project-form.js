@@ -1,3 +1,4 @@
+import { events } from "../utilities/pubsub";
 import { createListIcon } from "../components/listIcon/listIcon";
 
 function createAddProjectContainer() {
@@ -6,6 +7,12 @@ function createAddProjectContainer() {
   projectNameInput.setAttribute('type', 'text');
   projectNameInput.setAttribute('placeholder', 'Enter Project Name');
   projectNameInput.setAttribute('max-length', 24);
+  projectNameInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      events.emit('addProject');
+    }
+  });
 
   const addProjectButton = document.createElement('button');
   addProjectButton.setAttribute('id', 'add-project-button');
