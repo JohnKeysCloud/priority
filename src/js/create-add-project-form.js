@@ -1,5 +1,11 @@
-import { events } from "../utilities/pubsub";
+// * COMPONENTS
 import { createListIcon } from "../components/listIcon/listIcon";
+
+// * EVENT NAMES
+import { ADD_NEW_PROJECT } from "./eventNames";
+
+// * UTILITIES
+import { events } from "../utilities/pubsub";
 
 function createAddProjectContainer() {
   const projectNameInput = document.createElement('input');
@@ -10,7 +16,7 @@ function createAddProjectContainer() {
   projectNameInput.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
       e.preventDefault();
-      events.emit('addProject');
+      events.emit(ADD_NEW_PROJECT);
     }
   });
 

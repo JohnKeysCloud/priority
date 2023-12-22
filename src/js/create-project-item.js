@@ -1,3 +1,4 @@
+// * COMPONENTS
 import { createListIcon } from "../components/listIcon/listIcon";
 
 function createProjectItem(projectName) {

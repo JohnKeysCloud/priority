@@ -1,4 +1,7 @@
+// * UTILITES
 import { events } from '../../utilities/pubsub.js';
+
+// * EVENT NAMES
 import { HIDE_NAV_EVENT, SHOW_NAV_EVENT } from '../../js/eventNames.js';
 
 function toggleNavButton() {

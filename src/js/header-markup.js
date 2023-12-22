@@ -1,7 +1,9 @@
+// * ASSETS
 import priorityLogo from '../assets/images/priority-logo.webp';
 
-import { createThemeToggleButton } from '../components/theme-toggle/theme-toggle.markup';
+// * COMPONENTS
 import { createNavToggleButton } from '../components/nav-toggle/nav-toggle-markup';
+import { createThemeToggleButton } from '../components/theme-toggle/theme-toggle.markup';
 
 function createHeader() {
   const header = document.createElement('header');

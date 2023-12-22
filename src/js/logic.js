@@ -84,26 +84,4 @@ function taskFactory(title, details, dueDate, priority) {
   };
 }
 
-// const project1 = projectFactory('project1');
-// const project2 = projectFactory('project2');
-
-// const task1 = taskFactory('task1', 'details1', 'dueDate1', 'priority1');
-// const task2 = taskFactory('task2', 'details2', 'dueDate2', 'priority2');
-// const task3 = taskFactory('task3', 'details3', 'dueDate3', 'priority3');
-
-// project1.addTask(task1);
-// project1.addTask(task2);
-// project2.addTask(task3);
-
-// console.log(project1.getTitle());
-// console.log(project2.getTitle());
-
-// let projectOneTasks = []
-// for (let i = 0; i < project1.getTasks().length; i++) {
-//   projectOneTasks.push(project1.getTasks()[i]);
-// }
-// console.log(projectOneTasks);
-
-// // console.log(project2.getTasks());
-
 export { projectFactory, taskFactory };

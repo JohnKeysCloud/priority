@@ -1,10 +1,21 @@
+// * COMPONENTS
+import { createProjectItem } from "./create-project-item";
+
+// * DATA
 import { projectArray } from "./data";
+
+// * EMITTERS
+import { toggleProjectFormVisibility } from "./handle-new-project-button";
+
+// * EVENT NAMES
+import { ADD_NEW_PROJECT } from "./eventNames";
+
+// * LOGIC
 import { projectFactory } from "./logic";
 
 // * UTILITIES
-import { checkTargetElementExistence } from "../utilities/check-target-element-existence";
 import { events } from "../utilities/pubsub";
-import { createProjectItem } from "./create-project-item";
+import { checkTargetElementExistence } from "../utilities/check-target-element-existence";
 
 function updateProjectList(projectArray, projectList) {
   const reversedProjectArray = projectArray.slice().reverse();
@@ -22,34 +33,48 @@ function updateProjectList(projectArray, projectList) {
   });
 }
 
-function publishAddProjectListener(targetElement) {
-  events.on('addProject', () => {
-    const projectNameInput = document.querySelector('#project-name-input');
-    const projectName = projectNameInput.value.trim();
-    const projectList = targetElement;
+function AddNewProject() {
+  const projectNameInput = document.querySelector('#project-name-input');
+  const projectName = projectNameInput.value.trim();
+  projectNameInput.value = '';
+  
+  if (!projectName) return alert('Enter Project Name');
 
-    if (!projectName) return alert('Enter Project Name');
+  const projectObject = projectFactory(projectName);
+  projectArray.push(projectObject); // ? imported from data.js
 
-    const newProject = projectFactory(projectName);
+  const projectList = checkTargetElementExistence('#project-nav-list');
+  updateProjectList(projectArray, projectList);
 
-    projectArray.push(newProject);
+  toggleProjectFormVisibility(); // ? emits TOGGLE_ADD_PROJECT_FORM
+}
 
-    updateProjectList(projectArray, projectList);
-
-    projectNameInput.value = '';
-  });
+function toggleAddNewProjectEvent(formState) {
+  if (formState === 'visible') {
+    events.on(ADD_NEW_PROJECT, AddNewProject);
+  } else if (formState === 'hidden') {
+    events.off(ADD_NEW_PROJECT, AddNewProject);
+  }
 }
 
 function emitInitializeProject() {
-  events.emit('addProject');
+  events.emit(ADD_NEW_PROJECT);
 }
 
-function handleNewProjectAddButton() {
+function updateAddNewProjectListener(formState) {
   const projectAddButton = document.querySelector('#add-project-button');
-  projectAddButton.addEventListener('click', emitInitializeProject);
 
-  const projectList = checkTargetElementExistence('#project-nav-list');
-  publishAddProjectListener(projectList);
+  if (formState === 'visible') {
+    projectAddButton.addEventListener('click', emitInitializeProject);
+  } else if (formState === 'hidden') {
+    projectAddButton.removeEventListener('click', emitInitializeProject);
+  }
+
+  toggleAddNewProjectEvent(formState);
 }
 
-export { handleNewProjectAddButton };
+function handleProjectAddButton(formState) {
+  updateAddNewProjectListener(formState);
+}
+
+export { handleProjectAddButton };

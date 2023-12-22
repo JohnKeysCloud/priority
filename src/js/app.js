@@ -1,19 +1,20 @@
-import '../css/styles.css';
-import '../components/zig-zag-nav/zig-zag-nav.scss';
+// * HANDLER FUNCTIONS
+import { handleNewProjectButton } from '../js/handle-new-project-button.js';
 
 // * LAYOUT
-import { createZigZagNav } from '../components/zig-zag-nav/zip-zag-nav-markup.js';
-import { createHeader } from './header-markup.js';
 import { createAddProjectContainer } from './create-add-project-form.js';
+import { createHeader } from './header-markup.js';
 import { createMain } from './main-markup.js';
+import { createZigZagNav } from '../components/zig-zag-nav/zip-zag-nav-markup.js';
 
-// * HANDLER FUNCTIONS
-import { handleNewProjectButton } from '../js/handleNewProjectButton.js';
+// * STYLESHEETS
+import '../components/zig-zag-nav/zig-zag-nav.scss';
+import '../css/styles.css';
 
 // * UTILITIES
+import { createProjectItem } from './create-project-item.js';
 import { createScrollAnimation } from '../utilities/scroll-element-content.js';
 import { createTaskItem } from './create-task-item.js';
-import { createProjectItem } from './create-project-item.js';
 
 const content = document.getElementById('content');
 

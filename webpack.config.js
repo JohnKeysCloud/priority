@@ -4,7 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = (env, argv) => {
   const isProduction = argv.mode === 'production';
-  console.log(isProduction);
+  console.log(`Mode: ${isProduction === true ? 'Production' : 'Development'}`);
 
   return {
     mode: isProduction ? 'production' : 'development',

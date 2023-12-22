@@ -1,18 +1,17 @@
-import { events } from "../utilities/pubsub";
-import { checkTargetElementExistence } from "../utilities/check-target-element-existence";
+// * EMITTERS
+import { toggleProjectFormVisibility } from "./handle-new-project-button";
 
-function emitPublishProjectButtonListener() {
-  events.emit('toggleDisplayFormContainerVisibility');
-}
+// * UTILITIES
+import { checkTargetElementExistence } from "../utilities/check-target-element-existence";
 
 function toggleCancelButtonListener(isHidden) {
   const cancelAddProjectButton = document.getElementById('cancel-add-project-button');
 
   if (cancelAddProjectButton) {
     if (!isHidden) {
-      cancelAddProjectButton.addEventListener('click', emitPublishProjectButtonListener);
+      cancelAddProjectButton.addEventListener('click', toggleProjectFormVisibility);
     } else {
-      cancelAddProjectButton.removeEventListener('click', emitPublishProjectButtonListener);
+      cancelAddProjectButton.removeEventListener('click', toggleProjectFormVisibility);
     }
   }
 }
@@ -22,9 +21,9 @@ function checkTargetElementVisibility(targetElement) {
   toggleCancelButtonListener(isHidden);
 }
 
-function handleNewProjectCancelButton() {
+function handleProjectCancelButton() {
   const projectFormContainer = checkTargetElementExistence('#project-form-container');
   checkTargetElementVisibility(projectFormContainer);
 }
 
-export { handleNewProjectCancelButton };
+export { handleProjectCancelButton };

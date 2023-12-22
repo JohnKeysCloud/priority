@@ -40,7 +40,12 @@ function createMain() {
   placeholderContainer.appendChild(placeholderText);
 
   taskList.appendChild(placeholderContainer);
-
+  
+  // ? Remove the placeholder, add the initial task item, and add the add task button
+  // * taskList.appendChild(createTaskItem());
+  // * taskList.appendChild(createAddTaskButton());
+  // * taskList.appendChild(createAddTaskForm());
+  
   mainContainer.appendChild(mainContent);
 
   main.appendChild(mainContainer);
