@@ -364,38 +364,115 @@ body #content .zig-zag-nav #project-nav-list-container #add-project-container {
   flex-direction: column;
 }
 body #content .zig-zag-nav #project-nav-list-container #add-project-container #project-form-container {
-  display: flex;
+  display: grid;
   gap: 1.25rem;
+  grid-template-areas: "input-container button-container";
+  grid-template-rows: 0fr;
   padding-top: 1rem;
+  transform-origin: top left;
 }
 body #content .zig-zag-nav #project-nav-list-container #add-project-container #project-form-container[data-hidden=true] {
   display: none;
 }
 body #content .zig-zag-nav #project-nav-list-container #add-project-container #project-form-container[data-hidden=closing] {
-  animation: fade-out 333ms ease-in-out;
+  animation: fade-out 380ms ease-in-out forwards;
   pointer-events: none;
 }
 @keyframes fade-out {
   0% {
+    grid-template-rows: 1fr;
     opacity: 1;
+    transform: scale(1);
+    visibility: visible;
   }
   100% {
+    grid-template-rows: 0fr;
     opacity: 0;
+    transform: scale(0);
+    visibility: hidden;
   }
 }
 body #content .zig-zag-nav #project-nav-list-container #add-project-container #project-form-container[data-hidden=false] {
-  animation: fade-in 333ms ease-in-out;
+  animation: fade-in 380ms ease-in-out forwards;
   pointer-events: all;
 }
 @keyframes fade-in {
   0% {
+    grid-template-rows: 0fr;
     opacity: 0;
+    transform: scale(0);
     visibility: hidden;
   }
   100% {
+    grid-template-rows: 1fr;
     opacity: 1;
+    transform: scale(1);
     visibility: visible;
   }
+}
+body #content .zig-zag-nav #project-nav-list-container #add-project-container #project-form-container #project-input-container,
+body #content .zig-zag-nav #project-nav-list-container #add-project-container #project-form-container #project-buttons-container {
+  overflow: hidden;
+}
+body #content .zig-zag-nav #project-nav-list-container #add-project-container #project-form-container #project-input-container {
+  align-items: center;
+  display: flex;
+  gap: 1.25rem;
+  grid-area: input-container;
+}
+body #content .zig-zag-nav #project-nav-list-container #add-project-container #project-form-container #project-input-container .list-icon-container {
+  width: 0.75rem;
+}
+body #content .zig-zag-nav #project-nav-list-container #add-project-container #project-form-container #project-input-container #project-name-input {
+  appearance: none;
+  background-color: rgba(0, 0, 0, 0.388);
+  border: none;
+  border-radius: 100vw;
+  color: white;
+  box-shadow: inset 0 0 3px silver;
+  padding: 1rem;
+}
+body #content .zig-zag-nav #project-nav-list-container #add-project-container #project-form-container #project-input-container #project-name-input::placeholder {
+  color: rgba(255, 255, 255, 0.555);
+}
+body #content .zig-zag-nav #project-nav-list-container #add-project-container #project-form-container #project-input-container #project-name-input:focus, body #content .zig-zag-nav #project-nav-list-container #add-project-container #project-form-container #project-input-container #project-name-input:focus-visible {
+  outline: none;
+  box-shadow: inset 0 0 5px rgb(245, 157, 63);
+}
+body #content .zig-zag-nav #project-nav-list-container #add-project-container #project-form-container #project-buttons-container {
+  display: flex;
+  gap: 1.25rem;
+  grid-area: button-container;
+}
+body #content .zig-zag-nav #project-nav-list-container #add-project-container #project-form-container #project-buttons-container #add-project-button,
+body #content .zig-zag-nav #project-nav-list-container #add-project-container #project-form-container #project-buttons-container #cancel-add-project-button {
+  border: 2px solid hsla(0, 0%, 100%, 0.25);
+  border-radius: 100vw;
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+  padding: 15px;
+  position: relative;
+}
+body #content .zig-zag-nav #project-nav-list-container #add-project-container #project-form-container #project-buttons-container #add-project-button::before,
+body #content .zig-zag-nav #project-nav-list-container #add-project-container #project-form-container #project-buttons-container #cancel-add-project-button::before {
+  background: linear-gradient(to bottom, silver, silver, transparent);
+  border-radius: inherit;
+  content: "";
+  display: inline-block;
+  height: 100%;
+  inset: 0;
+  opacity: 0.3;
+  position: absolute;
+  transform: scale(0);
+  transform-origin: bottom center;
+  transition: transform 100ms ease-in-out;
+  width: 100%;
+  z-index: -1;
+}
+body #content .zig-zag-nav #project-nav-list-container #add-project-container #project-form-container #project-buttons-container #add-project-button:hover::before,
+body #content .zig-zag-nav #project-nav-list-container #add-project-container #project-form-container #project-buttons-container #cancel-add-project-button:hover::before {
+  transform: scale(1);
 }
 body #content .zig-zag-nav #project-nav-list-container #add-project-container #new-project-button {
   cursor: pointer;
@@ -426,64 +503,6 @@ body #content .zig-zag-nav #project-nav-list-container #add-project-container #n
 }
 body #content .zig-zag-nav #project-nav-list-container #add-project-container #new-project-button:active::after {
   transform: translate(-0.25rem) scale(1.01) rotate(360deg);
-}
-body #content .zig-zag-nav #project-nav-list-container #add-project-container #project-input-container {
-  align-items: center;
-  gap: 1.25rem;
-  display: flex;
-}
-body #content .zig-zag-nav #project-nav-list-container #add-project-container #project-input-container .list-icon-container {
-  width: 0.75rem;
-}
-body #content .zig-zag-nav #project-nav-list-container #add-project-container #project-input-container #project-name-input {
-  appearance: none;
-  background-color: rgba(0, 0, 0, 0.388);
-  border: none;
-  border-radius: 100vw;
-  color: white;
-  box-shadow: inset 0 0 3px silver;
-  padding: 1rem;
-}
-body #content .zig-zag-nav #project-nav-list-container #add-project-container #project-input-container #project-name-input::placeholder {
-  color: rgba(255, 255, 255, 0.555);
-}
-body #content .zig-zag-nav #project-nav-list-container #add-project-container #project-input-container #project-name-input:focus, body #content .zig-zag-nav #project-nav-list-container #add-project-container #project-input-container #project-name-input:focus-visible {
-  outline: none;
-  box-shadow: inset 0 0 5px rgb(245, 157, 63);
-}
-body #content .zig-zag-nav #project-nav-list-container #add-project-container #project-buttons-container {
-  display: flex;
-  gap: 1.25rem;
-  align-self: start;
-}
-body #content .zig-zag-nav #project-nav-list-container #add-project-container #project-buttons-container #add-project-button,
-body #content .zig-zag-nav #project-nav-list-container #add-project-container #project-buttons-container #cancel-add-project-button {
-  border: 2px solid hsla(0, 0%, 100%, 0.25);
-  border-radius: 100vw;
-  color: white;
-  cursor: pointer;
-  padding: 15px;
-  position: relative;
-}
-body #content .zig-zag-nav #project-nav-list-container #add-project-container #project-buttons-container #add-project-button::before,
-body #content .zig-zag-nav #project-nav-list-container #add-project-container #project-buttons-container #cancel-add-project-button::before {
-  background: linear-gradient(to bottom, silver, silver, transparent);
-  border-radius: inherit;
-  content: "";
-  display: inline-block;
-  height: 100%;
-  inset: 0;
-  opacity: 0.3;
-  position: absolute;
-  transform: scale(0);
-  transform-origin: bottom center;
-  transition: transform 100ms ease-in-out;
-  width: 100%;
-  z-index: -1;
-}
-body #content .zig-zag-nav #project-nav-list-container #add-project-container #project-buttons-container #add-project-button:hover::before,
-body #content .zig-zag-nav #project-nav-list-container #add-project-container #project-buttons-container #cancel-add-project-button:hover::before {
-  transform: scale(1);
 }
 body #content .zig-zag-nav #project-nav-list-container #project-nav-list {
   background: linear-gradient(to bottom, hsla(0, 0%, 100%, 0.25), transparent);
@@ -816,7 +835,8 @@ body #content footer {
     padding: 0;
   }
   body #content .zig-zag-nav #project-nav-list-container #add-project-container #project-form-container {
-    flex-direction: column;
+    grid-template-areas: "input-container" "button-container";
+    grid-template-rows: 0fr 0fr;
   }
   body #content .zig-zag-nav #project-nav-list-container #add-project-container #project-form-container #project-input-container .list-icon-container {
     display: none;
@@ -840,7 +860,8 @@ body #content footer {
     max-height: 433px;
   }
   body #content .zig-zag-nav #project-nav-list-container #add-project-container #project-form-container {
-    flex-direction: column;
+    grid-template-areas: "input-container" "button-container";
+    grid-template-rows: 0fr 0fr;
   }
   body #content .zig-zag-nav #project-nav-list-container #project-nav-list::-webkit-scrollbar {
     height: 3px;
@@ -862,7 +883,8 @@ body #content footer {
     max-height: 356px;
   }
   body #content .zig-zag-nav #project-nav-list-container #add-project-container #project-form-container {
-    flex-direction: row;
+    grid-template-areas: "input-container button-container";
+    grid-template-rows: 0fr;
   }
 }
 
