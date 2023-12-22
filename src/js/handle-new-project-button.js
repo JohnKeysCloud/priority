@@ -10,6 +10,16 @@ import { events } from "../utilities/pubsub";
 import { checkTargetElementExistence } from "../utilities/check-target-element-existence";
 import { setAttributes } from "../utilities/set-attributes";
 
+function setDisplayNone(event) {
+  const targetElement = event.target;
+  targetElement.setAttribute('data-hidden', 'true');
+  targetElement.removeEventListener('animationend', setDisplayNone);
+}
+
+function animatePreDisplayNone(targetElement) {
+  targetElement.addEventListener('animationend', setDisplayNone); 
+}
+
 function publishProjectButtonListener(targetElement) {
   events.on(TOGGLE_ADD_PROJECT_FORM, () => {
     const isFormHidden = targetElement.getAttribute('data-hidden');
@@ -23,9 +33,12 @@ function publishProjectButtonListener(targetElement) {
       formState = 'visible';
     } else if (formState === 'visible') {
       setAttributes(targetElement, {
-        'data-hidden': 'true',
+        'data-hidden': 'closing',
         'aria-label': 'hidden',
       });  
+
+      animatePreDisplayNone(targetElement);
+      
       formState = 'hidden';
     }
     

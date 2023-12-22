@@ -135,52 +135,51 @@ body {
         position: relative;
         width: 100%;
 
-        .nav-list-header {
-        }
-
         #add-project-container {
           $gap: 1.25rem;  
           
           align-items: start;
-          // border: 2px solid chartreuse;
           display: flex;
           flex-direction: column;
 
-          #project-form-container[data-hidden=true] {
-            @keyframes fade-out {
-              0% {
-                opacity: 1;
-                visibility: visible;
-              }
-              100% {
-                opacity: 0;
-                visibility: hidden;
-              }
-            }
-
-            animation: fade-out 333ms ease-in-out;
-            opacity: 0;
-            pointer-events: none;
-            visibility: hidden; 
-          }
-          
           #project-form-container {
-            @keyframes fade-in {
-              0% {
-                opacity: 0;
-                visibility: hidden;
-              }
-              100% {
-                opacity: 1;
-                visibility: visible;
-              }
-            }
-
-            animation: fade-in 333ms ease-in-out;
             display: flex;
             gap: $gap;
             padding-top: 1rem;
-            pointer-events: all;
+
+            &[data-hidden=true] {
+              display: none;
+            }
+
+            &[data-hidden=closing] {
+              @keyframes fade-out {
+                0% {
+                  opacity: 1;
+                }
+                100% {
+                  opacity: 0;
+                }
+              }
+
+              animation: fade-out 333ms ease-in-out;
+              pointer-events: none;
+            }
+
+            &[data-hidden=false] {
+              @keyframes fade-in {
+                0% {
+                  opacity: 0;
+                  visibility: hidden;
+                }
+                100% {
+                  opacity: 1;
+                  visibility: visible;
+                }
+              }
+
+              animation: fade-in 333ms ease-in-out;
+              pointer-events: all;
+            }
           }
 
           #new-project-button {
