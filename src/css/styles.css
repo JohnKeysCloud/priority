@@ -820,6 +820,7 @@ body #content footer {
     border-radius: unset;
     bottom: 0;
     flex-direction: column;
+    min-width: 16.625rem;
     padding: min(30vh, 10rem) 2rem;
     right: 0;
     top: 0;
