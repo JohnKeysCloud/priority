@@ -510,7 +510,8 @@ body #content .zig-zag-nav #project-nav-list-container #project-nav-list {
   column-gap: 2rem;
   flex-wrap: wrap;
   flex-direction: column;
-  overflow: scroll;
+  min-height: 7.438rem;
+  overflow: hidden;
   padding: 1rem 1.5rem;
   row-gap: 0.75rem;
 }
@@ -871,10 +872,11 @@ body #content footer {
     width: 0;
   }
   body #content .zig-zag-nav #project-nav-list-container #project-nav-list::-webkit-scrollbar-track {
-    box-shadow: inset 0 0rem 6px rgba(0, 0, 0, 0.3);
+    border-radius: 100vw;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   }
   body #content .zig-zag-nav #project-nav-list-container #project-nav-list::-webkit-scrollbar-thumb {
-    background: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(177, 177, 177, 0.25));
+    background: linear-gradient(to bottom, white, silver);
     border-radius: 100vw;
     transition: background 380ms ease-in-out;
   }

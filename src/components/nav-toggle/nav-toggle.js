@@ -1,13 +1,18 @@
-// * UTILITES
-import { events } from '../../utilities/pubsub.js';
-
 // * EVENT NAMES
 import { HIDE_NAV_EVENT, SHOW_NAV_EVENT } from '../../js/eventNames.js';
+
+// * STATES
+import { navState } from '../zig-zag-nav/zig-zag-nav.js';
+
+// * UTILITES
+import { events } from '../../utilities/pubsub.js';
 
 function toggleNavButton() {
   let toggleButtonActivated = this.classList.contains('active');
 
   if (!toggleButtonActivated) {
+    if (navState.animating === true) return;
+
     this.classList.add('active');
 
     this.setAttribute('aria-label', 'Close Navigation Menu');

@@ -1,4 +1,4 @@
-function createTaskItem() {
+function createTaskItem(task) {
   const taskCheckBoxContainer = document.createElement('div');
   taskCheckBoxContainer.classList.add('task-checkbox-container');
 
@@ -10,14 +10,17 @@ function createTaskItem() {
   const taskItemTitle = document.createElement('h4');
   taskItemTitle.classList.add('task-item-title');
   taskItemTitle.textContent = `Task Item`;
+  taskItemTitle.textContent = task.getTitle();
 
   const taskItemDetails = document.createElement('p');
   taskItemDetails.classList.add('task-item-details');
   taskItemDetails.textContent = 'Lorem ipsum dolor sit amet consectetur.';
+  taskItemDetails.textContent = task.getDetails();
 
   const taskItemDate = document.createElement('p');
   taskItemDate.classList.add('task-item-date');
   taskItemDate.textContent = '2021-01-01';
+  taskItemDate.textContent = task.getDueDate();
 
   const taskPriorityCheckbox = document.createElement('input');
   taskPriorityCheckbox.classList.add('task-priority-checkbox');
@@ -50,6 +53,7 @@ function createTaskItem() {
   taskItem.appendChild(taskItemDetails);
   taskItem.appendChild(taskRightSideContainer);
 
+  // TODO:
   const taskEditModal = document.createElement('dialog');
   taskEditModal.classList.add('task-edit-modal');
   // taskItem.appendChild(taskEditModal);

@@ -6,6 +6,7 @@ function createProjectItem(projectName) {
   projectButton.classList.add('nav-link');
   projectButton.setAttribute('type', 'button');
   projectButton.setAttribute('aria-label', `Project ${projectName}`);
+  projectButton.setAttribute('data-project-name', projectName);
   projectButton.textContent = projectName;
 
   const listIcon = createListIcon();

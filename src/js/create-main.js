@@ -1,6 +1,5 @@
-import { createAddTaskForm } from "./create-task-form";
-import { createAddTaskButton } from "./create-add-task-button";
-import { createTaskItem } from "./create-task-item";
+import { createTaskList } from "./create-task-list";
+
 /* 
   ┌─────────────────────────────────────────────────────────────────────────┐
   │ // ? Classes:                                                           │
@@ -26,25 +25,7 @@ function createMain() {
   const mainContent = document.createElement('div');
   mainContent.classList.add('main-content');
 
-  const taskList = document.createElement('ul');
-  taskList.classList.add('task-list');
-  mainContent.appendChild(taskList);
-
-  const placeholderText = document.createElement('p');
-  placeholderText.setAttribute('id', 'placeholder-text');
-  placeholderText.classList.add('hvr-wobble-vertical');
-  placeholderText.textContent = 'Set your priorities in menu above.';
-
-  const placeholderContainer = document.createElement('div');
-  placeholderContainer.setAttribute('id', 'placeholder-container');
-  placeholderContainer.appendChild(placeholderText);
-
-  taskList.appendChild(placeholderContainer);
-  
-  // ? Remove the placeholder, add the initial task item, and add the add task button
-  // * taskList.appendChild(createTaskItem());
-  // * taskList.appendChild(createAddTaskButton());
-  // * taskList.appendChild(createAddTaskForm());
+  mainContent.appendChild(createTaskList());
   
   mainContainer.appendChild(mainContent);
 

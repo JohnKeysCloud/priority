@@ -12,7 +12,7 @@ function projectFactory(name) {
       task.setProject(this);
       state.tasks.push(task);
     },
-    getTasks: () => {
+    getTaskArray: () => {
       return state.tasks;
     },
     getName: () => {
@@ -24,25 +24,24 @@ function projectFactory(name) {
   }
 }
 
-function taskFactory(title, details, dueDate, priority) {
+function taskFactory(project, title, details, dueDate) {
   if (
     typeof title !== 'string' ||
     typeof details !== 'string' ||
-    typeof dueDate !== 'string' ||
-    typeof priority !== 'string'
+    typeof dueDate !== 'string'
   ) {
     throw new Error(
-      'Title, details, dueDate, and priority must all be strings'
+      '⚠️ Title, details & due-date, must all be strings'
     );
   }
 
   let state = {
+    project: project,
     title: title,
     details: details,
     dueDate: dueDate,
-    priority: priority,
+    priority: false,
     completed: false,
-    project: null,
   }
   return {
     getTitle: () => {

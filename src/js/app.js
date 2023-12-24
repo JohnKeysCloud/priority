@@ -1,10 +1,13 @@
-// * HANDLER FUNCTIONS
+// * DATA
+import { projectArray } from './data';
+
+// * HANDLERS
 import { handleNewProjectButton } from '../js/handle-new-project-button.js';
 
 // * LAYOUT
 import { createAddProjectContainer } from './create-add-project-form.js';
-import { createHeader } from './header-markup.js';
-import { createMain } from './main-markup.js';
+import { createHeader } from './create-header.js';
+import { createMain } from './create-main.js';
 import { createZigZagNav } from '../components/zig-zag-nav/zip-zag-nav-markup.js';
 
 // * STYLESHEETS
@@ -65,7 +68,7 @@ projectNavList.setAttribute('id', 'project-nav-list');
 // !
 // !
 
-content.appendChild(createMain());
+content.appendChild(createMain(projectArray));
 
 // * UPDATE task details scroll animation
 const taskDetailContainers = document.querySelectorAll('.task-item-details');
@@ -74,5 +77,3 @@ taskDetailContainers.forEach((container) => {
   createScrollAnimation(container, 'backward', 0.5);
 });
 
-// * HANDLER CALLS
-handleNewProjectButton();

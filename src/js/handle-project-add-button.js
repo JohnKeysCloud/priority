@@ -16,6 +16,7 @@ import { projectFactory } from "./logic";
 // * UTILITIES
 import { events } from "../utilities/pubsub";
 import { checkTargetElementExistence } from "../utilities/check-target-element-existence";
+import { toggleScrollBarVisibility } from '../utilities/toggle-scroll-visibility.js';
 
 function updateProjectList(projectArray, projectList) {
   const reversedProjectArray = projectArray.slice().reverse();
@@ -33,6 +34,10 @@ function updateProjectList(projectArray, projectList) {
   });
 }
 
+function checkListOverflow(projectList) {
+  toggleScrollBarVisibility(projectList);
+}
+
 function AddNewProject() {
   const projectNameInput = document.querySelector('#project-name-input');
   const projectName = projectNameInput.value.trim();
@@ -45,6 +50,8 @@ function AddNewProject() {
 
   const projectList = checkTargetElementExistence('#project-nav-list');
   updateProjectList(projectArray, projectList);
+
+  checkListOverflow(projectList);
 
   toggleProjectFormVisibility(); // ? emits TOGGLE_ADD_PROJECT_FORM
 }
