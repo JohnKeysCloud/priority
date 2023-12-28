@@ -297,6 +297,7 @@ body #content header .header-right {
   gap: 1.375rem;
 }
 body #content .zig-zag-nav {
+  -webkit-backdrop-filter: blur(1rem);
   backdrop-filter: blur(1rem);
   background: hsla(0, 0%, 100%, 0.1);
   border-bottom-left-radius: 3rem;
@@ -543,6 +544,7 @@ body #content main {
   padding-block: 3rem;
 }
 body #content main #main-container {
+  -webkit-backdrop-filter: blur(1rem);
   backdrop-filter: blur(1rem);
   background: linear-gradient(to bottom, hsla(0, 0%, 100%, 0.25), transparent);
   border-radius: 50px;
