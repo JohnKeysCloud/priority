@@ -65,6 +65,7 @@ body {
     }
 
     .zig-zag-nav {
+      -webkit-backdrop-filter: blur(1rem);
       backdrop-filter: blur(1rem);
       background: hsl(0 0% 100% / 0.1);
       border-bottom-left-radius: 3rem;
@@ -354,6 +355,7 @@ body {
       padding-block: 3rem;
 
       #main-container {
+        -webkit-backdrop-filter: blur(1rem);
         backdrop-filter: blur(1rem);
         background: linear-gradient(to bottom, hsl(0 0% 100% / 0.25), transparent);
         border-radius: 50px;
