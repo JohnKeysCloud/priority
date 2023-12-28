@@ -5,27 +5,24 @@ import { createAddTaskForm } from './create-task-form';
 import { createAddTaskButton } from './create-add-task-button';
 import { createTaskItem } from './create-task-item';
 
-function createTaskList() {
+function createTaskList(mainUpdateObject) {
   const taskList = document.createElement('ul');
   taskList.setAttribute('id', 'task-list');
+  const taskArray = mainUpdateObject.getTaskArray();
 
-  if (data.getProjectArrayLength() === 0) {
-    // taskList.appendChild(createTaskListPlaceholder());
+  if (taskArray.length === 0) {
+    taskList.appendChild(createTaskListPlaceholder());
   } else {
-    data.getProjectArray().forEach((project) => {
-      const projectTaskArray = project.getTaskArray();
-
-      projectTaskArray.forEach((task) => {
-        taskList.appendChild(createTaskItem(task));
-      });
+    taskArray.forEach((task) => {
+      taskList.appendChild(createTaskItem(task));
     });
   }
 
-  taskList.appendChild(createTaskItem());
-  taskList.appendChild(createTaskItem());
-  taskList.appendChild(createTaskItem());
-  taskList.appendChild(createTaskItem());
-  taskList.appendChild(createTaskItem());
+  // taskList.appendChild(createTaskItem());
+  // taskList.appendChild(createTaskItem());
+  // taskList.appendChild(createTaskItem());
+  // taskList.appendChild(createTaskItem());
+  // taskList.appendChild(createTaskItem());
   // taskList.appendChild(createAddTaskButton());
   // taskList.appendChild(createAddTaskForm());
   

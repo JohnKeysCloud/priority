@@ -1,3 +1,35 @@
+function linkObjectFactory(name, data) { // abstract out targetElement.. pass in name instead
+  let state = {
+    name: name,
+    tasks: data, // ? all tasks (array),
+    type: 'link',
+  };
+
+  return {
+    getName: () => {
+      return state.name;
+    },
+    getType: () => {
+      return state.type;
+    },
+    getShallowCopy: () => {
+      return { ...state };
+    },
+    arrangeTasks: (targetElement) => {
+      if (targetElement.getAttribute('data-arrange-method') === 'sort') {
+        console.log('sort me');
+      } else if (
+        targetElement.getAttribute('data-arrange-method') === 'filter'
+      ) {
+        console.log('filter me');
+      }
+    },
+    getTaskArray: () => {
+      return state.tasks;
+    },
+  };
+}
+
 function projectFactory(name) {
   if (typeof name !== 'string') {
     throw new Error('name must be a string');
@@ -6,7 +38,9 @@ function projectFactory(name) {
   let state = {
     name: name,
     tasks: [],
-  }
+    type: 'project',
+  };
+
   return {
     addTask: function (task) {
       task.setProject(this);
@@ -18,10 +52,13 @@ function projectFactory(name) {
     getName: () => {
       return state.name;
     },
+    getType: () => {
+      return state.type;
+    },
     setName: (name) => {
       state.name = name;
     },
-  }
+  };
 }
 
 function taskFactory(project, title, details, dueDate) {
@@ -30,9 +67,7 @@ function taskFactory(project, title, details, dueDate) {
     typeof details !== 'string' ||
     typeof dueDate !== 'string'
   ) {
-    throw new Error(
-      '⚠️ Title, details & due-date, must all be strings'
-    );
+    throw new Error('⚠️ Title, details & due-date, must all be strings');
   }
 
   let state = {
@@ -42,7 +77,7 @@ function taskFactory(project, title, details, dueDate) {
     dueDate: dueDate,
     priority: false,
     completed: false,
-  }
+  };
   return {
     getTitle: () => {
       return state.title;
@@ -79,28 +114,6 @@ function taskFactory(project, title, details, dueDate) {
     },
     getProject: function () {
       return state.project;
-    },
-  };
-}
-
-function linkObjectFactory(targetElement, data) {
-  const correspondingLinkObject = {
-    name: targetElement.getAttribute('data-page-name'),
-    tasks: data, // ? all tasks
-  };
-
-  return {
-    getShallowCopy: () => {
-      return { ...correspondingLinkObject };
-    },
-    arrangeTasks: (targetElement) => {
-      if (targetElement.getAttribute('data-arrange-method') === 'sort') {
-        console.log('sort me');
-      } else if (
-        targetElement.getAttribute('data-arrange-method') === 'filter'
-      ) {
-        console.log('filter me');
-      }
     },
   };
 }

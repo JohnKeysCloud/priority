@@ -12,6 +12,9 @@ import { createHeader } from './create-header.js';
 import { createMain } from './create-main.js';
 import { createZigZagNav } from '../components/zig-zag-nav/create-zig-zag-nav.js';
 
+// * LOGIC
+import { linkObjectFactory } from './logic.js';
+
 // * MODIFIERS
 import { modifyGenericNavLinks } from './modify-generic-nav-links.js';
 import { modifySecondNavContainer } from './modify-second-nav-container.js';
@@ -68,7 +71,7 @@ modifyGenericNavLinks();
 // !
 // !
 
-content.appendChild(createMain());
+content.appendChild(createMain(linkObjectFactory('All Tasks', data.getAllTasks())));
 
 // !
 // !

@@ -11,16 +11,15 @@ import { createTaskList } from "./create-task-list";
   └─────────────────────────────────────────────────────────────────────────┘
  */
 
-function createMain() { // TODO: accept param for project or link object
+function createMain(mainUpdateObject) { 
   const mainHeading = document.createElement('h2');
   mainHeading.setAttribute('id', 'main-heading');
-  // TODO: textcontent = object.name
-  mainHeading.textContent = 'all tasks';
+  mainHeading.textContent = mainUpdateObject.getName();
+  console.log('ass', mainUpdateObject.getName())
 
   const mainContent = document.createElement('div');
   mainContent.setAttribute('id', 'main-content');
-  // TODO: object.gettaskArray(); ?
-  mainContent.appendChild(createTaskList());
+  mainContent.appendChild(createTaskList(mainUpdateObject));
 
   const mainContainer = document.createElement('div');
   mainContainer.setAttribute('id', 'main-container');

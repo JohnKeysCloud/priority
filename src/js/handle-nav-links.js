@@ -4,6 +4,7 @@ import { checkTargetElementExistence } from '../utilities/check-target-element-e
 import { navState } from '../components/zig-zag-nav/zig-zag-nav.js';
 import { data } from './data.js';
 import { linkObjectFactory } from './logic.js';
+import { createMain } from './create-main.js';
 
 function resolveCreateMainObject(targetElement) {
   const isProjectLink = targetElement.hasAttribute('data-project-name'); 
@@ -16,7 +17,8 @@ function resolveCreateMainObject(targetElement) {
 
     return projectObject;
   } else if (isPageLink) {
-    const linkObject = linkObjectFactory(targetElement, data.getAllTasks());
+    const pageName = targetElement.getAttribute('data-page-name');
+    const linkObject = linkObjectFactory(pageName, data.getAllTasks());
     
     linkObject.arrangeTasks(targetElement);
     
@@ -52,12 +54,12 @@ function checkIfClickableNavLink(targetElement) {
   if (isTargetLinkClickable) return true;
 }
 
-function clearTaskList() {
-  const mainContainer = checkTargetElementExistence('#main-container');
-  const mainContent = mainContainer.querySelector('#main-content');
+function clearMain() {
+  const main = checkTargetElementExistence('main');
 
-  // TODO:
-  console.log('clearTaskList Called');
+  while (main.firstChild) {
+    main.removeChild(main.firstChild);
+  }
 }
 
 function updateMainContent(event) {
@@ -67,11 +69,14 @@ function updateMainContent(event) {
   if (!isTargetElementNavLink) return;
 
   const newCurrentNavLink = setAriaCurrent(targetElement);
+  
   const mainUpdateObject = resolveCreateMainObject(newCurrentNavLink);
+  
+  clearMain();
+  createMain(mainUpdateObject);
+
   // TODO:
   console.log(`mainUpdateObject: ${mainUpdateObject}`);
-
-  clearTaskList();
 
   // !update main here
   // createMain() with mainUpdateObject
