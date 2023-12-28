@@ -4,24 +4,39 @@ import { checkTargetElementExistence } from '../utilities/check-target-element-e
 import { navState } from '../components/zig-zag-nav/zig-zag-nav.js';
 import { data } from './data.js';
 import { linkObjectFactory } from './logic.js';
-import { createMain } from './create-main.js';
+import { updateMainContentContainer } from './update-main-content-container.js';
+import { toggleNavButton } from '../components/nav-toggle/nav-toggle.js';
 
-function resolveCreateMainObject(targetElement) {
-  const isProjectLink = targetElement.hasAttribute('data-project-name'); 
+function closeNavPostTransition(targetElement) {
+  targetElement.addEventListener('transitionend', toggleNavButton);
+}
+
+function clearMain() {
+  const main = checkTargetElementExistence('main');
+
+  while (main.firstChild) {
+    main.removeChild(main.firstChild);
+  }
+}
+
+function resolveMainUpdateObject(targetElement) {
+  const isProjectLink = targetElement.hasAttribute('data-project-name');
   const isPageLink = targetElement.hasAttribute('data-page-name');
 
   if (isProjectLink) {
     const projectArray = data.getProjectArray();
     const projectValue = targetElement.getAttribute('data-project-name');
-    const projectObject = projectArray.find(project => project.getName() === projectValue);
+    const projectObject = projectArray.find(
+      (project) => project.getName() === projectValue
+    );
 
     return projectObject;
   } else if (isPageLink) {
     const pageName = targetElement.getAttribute('data-page-name');
     const linkObject = linkObjectFactory(pageName, data.getAllTasks());
-    
+
     linkObject.arrangeTasks(targetElement);
-    
+
     return linkObject;
   }
 }
@@ -54,36 +69,21 @@ function checkIfClickableNavLink(targetElement) {
   if (isTargetLinkClickable) return true;
 }
 
-function clearMain() {
-  const main = checkTargetElementExistence('main');
-
-  while (main.firstChild) {
-    main.removeChild(main.firstChild);
-  }
-}
-
 function updateMainContent(event) {
+  const main = checkTargetElementExistence('main');
   const targetElement = event.target;
   const isTargetElementNavLink = checkIfClickableNavLink(targetElement);
 
   if (!isTargetElementNavLink) return;
 
   const newCurrentNavLink = setAriaCurrent(targetElement);
-  
-  const mainUpdateObject = resolveCreateMainObject(newCurrentNavLink);
+  const mainUpdateObject = resolveMainUpdateObject(newCurrentNavLink);
   
   clearMain();
-  createMain(mainUpdateObject);
 
-  // TODO:
-  console.log(`mainUpdateObject: ${mainUpdateObject}`);
+  main.appendChild(updateMainContentContainer(mainUpdateObject));
 
-  // !update main here
-  // createMain() with mainUpdateObject
-  // if it has "data-page-name"
-  // create object consisting of heading (Object.name) and all tasks
-  // (filtered or sorted depending on the value of the attr)
-  // pass this object to updateMain
+  closeNavPostTransition(targetElement);
 }
 
 function emitUpdateMainContent(event) {

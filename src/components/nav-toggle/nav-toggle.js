@@ -6,24 +6,26 @@ import { navState } from '../zig-zag-nav/zig-zag-nav.js';
 
 // * UTILITES
 import { events } from '../../utilities/pubsub.js';
+import { checkTargetElementExistence } from '../../utilities/check-target-element-existence.js';
 
 function toggleNavButton() {
-  let toggleButtonActivated = this.classList.contains('active');
+  const toggleButton = checkTargetElementExistence('.nav-toggle-button');
+  const toggleButtonActivated = toggleButton.classList.contains('active');
 
   if (!toggleButtonActivated) {
     if (navState.animating === true) return;
 
-    this.classList.add('active');
+    toggleButton.classList.add('active');
 
-    this.setAttribute('aria-label', 'Close Navigation Menu');
-    this.setAttribute('aria-expanded', true);
+    toggleButton.setAttribute('aria-label', 'Close Navigation Menu');
+    toggleButton.setAttribute('aria-expanded', true);
 
     events.emit(SHOW_NAV_EVENT);
   } else {
-    this.classList.remove('active');
+    toggleButton.classList.remove('active');
 
-    this.setAttribute('aria-label', 'Open Navigation Menu');
-    this.setAttribute('aria-expanded', false);
+    toggleButton.setAttribute('aria-label', 'Open Navigation Menu');
+    toggleButton.setAttribute('aria-expanded', false);
 
     events.emit(HIDE_NAV_EVENT);
   }

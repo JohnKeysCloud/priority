@@ -15,13 +15,14 @@ function linkObjectFactory(name, data) { // abstract out targetElement.. pass in
     getShallowCopy: () => {
       return { ...state };
     },
+    // TODO:
     arrangeTasks: (targetElement) => {
       if (targetElement.getAttribute('data-arrange-method') === 'sort') {
-        console.log('sort me');
+        // ! console.log('sort me');
       } else if (
         targetElement.getAttribute('data-arrange-method') === 'filter'
       ) {
-        console.log('filter me');
+        // ! console.log('filter me');
       }
     },
     getTaskArray: () => {

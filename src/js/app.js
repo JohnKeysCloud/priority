@@ -71,7 +71,7 @@ modifyGenericNavLinks();
 // !
 // !
 
-content.appendChild(createMain(linkObjectFactory('All Tasks', data.getAllTasks())));
+content.appendChild(createMain(linkObjectFactory('all tasks', data.getAllTasks())));
 
 // !
 // !

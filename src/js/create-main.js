@@ -1,33 +1,9 @@
-import { createTaskList } from "./create-task-list";
-
-/* 
-  ┌─────────────────────────────────────────────────────────────────────────┐
-  │ // ? Classes:                                                           │
-  │ // * #main-container                                                    │
-  │ // * #main-content                                                      │
-  │ // * #main-heading                                                      │
-  │ // * #task-list                                                         │
-  │ // * #initial-task-item                                                 │
-  └─────────────────────────────────────────────────────────────────────────┘
- */
+import { updateMainContentContainer } from "./update-main-content-container";
 
 function createMain(mainUpdateObject) { 
-  const mainHeading = document.createElement('h2');
-  mainHeading.setAttribute('id', 'main-heading');
-  mainHeading.textContent = mainUpdateObject.getName();
-  console.log('ass', mainUpdateObject.getName())
-
-  const mainContent = document.createElement('div');
-  mainContent.setAttribute('id', 'main-content');
-  mainContent.appendChild(createTaskList(mainUpdateObject));
-
-  const mainContainer = document.createElement('div');
-  mainContainer.setAttribute('id', 'main-container');
-  mainContainer.appendChild(mainHeading);
-  mainContainer.appendChild(mainContent);
-  
+  const mainContentContainer = updateMainContentContainer(mainUpdateObject);
   const main = document.createElement('main');
-  main.appendChild(mainContainer);
+  main.appendChild(mainContentContainer);
 
   return main;
 }
