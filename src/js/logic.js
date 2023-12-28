@@ -83,4 +83,26 @@ function taskFactory(project, title, details, dueDate) {
   };
 }
 
-export { projectFactory, taskFactory };
+function linkObjectFactory(targetElement, data) {
+  const correspondingLinkObject = {
+    name: targetElement.getAttribute('data-page-name'),
+    tasks: data, // ? all tasks
+  };
+
+  return {
+    getShallowCopy: () => {
+      return { ...correspondingLinkObject };
+    },
+    arrangeTasks: (targetElement) => {
+      if (targetElement.getAttribute('data-arrange-method') === 'sort') {
+        console.log('sort me');
+      } else if (
+        targetElement.getAttribute('data-arrange-method') === 'filter'
+      ) {
+        console.log('filter me');
+      }
+    },
+  };
+}
+
+export { projectFactory, taskFactory, linkObjectFactory };

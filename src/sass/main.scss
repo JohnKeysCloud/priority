@@ -106,6 +106,7 @@ body {
 
           .nav-link {
             white-space: nowrap;
+            transition: all 380ms ease-in-out;
 
             // ? .nav-link::before used in zigZagNav styling
             &::after {
@@ -121,6 +122,16 @@ body {
             &:hover::after {
               opacity: 1;
               transform: scale(1);
+            }
+
+            &:hover {
+              opacity: 0.70;
+            }
+
+            &:active {
+              opacity: 1;
+              transform: scale(1.1);
+              transition: opacity 33ms ease-in-out;
             }
           }
         }
@@ -309,9 +320,8 @@ body {
           background: linear-gradient(to bottom, hsl(0 0% 100% / 0.25), transparent);
           border-radius: 25px;
           column-gap: 2rem;
-          // display: none; // TODO: 
-          flex-wrap: wrap;
           flex-direction: column;
+          flex-wrap: wrap;
           min-height: 7.438rem; // ? practical height for 3 projects per column;
           overflow: hidden;
           padding: 1rem 1.5rem;
@@ -326,12 +336,6 @@ body {
               .list-icon-container {
                 opacity: 0;
                 transform: scale(0)
-              }
-            }
-
-            .nav-link {
-              &:hover {
-                transform: scale(1.1);
               }
             }
             
@@ -349,7 +353,7 @@ body {
       justify-items: center;
       padding-block: 3rem;
 
-      .main-container {
+      #main-container {
         backdrop-filter: blur(1rem);
         background: linear-gradient(to bottom, hsl(0 0% 100% / 0.25), transparent);
         border-radius: 50px;
@@ -363,7 +367,7 @@ body {
         position: relative;
         width: min(88vw, 888px);
 
-        .main-heading {
+        #main-heading {
           color: white;
           font-size: clamp(1.25rem, 3vw, 1.5rem);
           margin-bottom: 1rem;
@@ -372,11 +376,11 @@ body {
           top: 0;
         }
         
-        .main-content {
+        #main-content {
           display: grid;
           flex: 1;
 
-          .task-list {
+          #task-list {
             list-style: none;
             padding-inline: 3rem;
             width: 100%;
@@ -491,10 +495,11 @@ body {
 
                 .task-item-date {
                   color: silver;
-                  font-size: clamp(0.75rem, 5.5vw, 0.875rem);
-                  font-weight: bold;
+                  font-size: clamp(0.625rem, 2.4vw, 0.8313rem);
+                  text-transform: uppercase;
                   white-space: nowrap;
                 }
+
                 .task-button-container {
                   display: flex;
                   gap: 1rem;
@@ -545,7 +550,6 @@ body {
                   }
 
                   .modify-task-button {
-                    // border: 2px solid red;
                     cursor: pointer;
                     font-size: 1rem;
                   }
@@ -738,9 +742,9 @@ body {
         }
       }
       main {
-        .main-container {
-          .main-content { 
-            .task-list { 
+        #main-container {
+          #main-content { 
+            #task-list { 
               padding-inline: 1rem;  
               .task-item {
 
@@ -809,9 +813,9 @@ body {
         }
       }
       main {
-        .main-container {
-          .main-content { 
-            .task-list { 
+        #main-container {
+          #main-content { 
+            #task-list { 
               .task-item {
 
                 // .task-item-details {
@@ -862,9 +866,9 @@ body {
         }
       }
       main {
-        .main-container {
-          .main-content { 
-            .task-list { 
+        #main-container {
+          #main-content { 
+            #task-list { 
               .task-item {
 
                 // .task-item-details {

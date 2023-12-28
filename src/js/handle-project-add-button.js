@@ -2,7 +2,7 @@
 import { createProjectItem } from "./create-project-item";
 
 // * DATA
-import { projectArray } from "./data";
+import { data } from "./data.js";
 
 // * EMITTERS
 import { toggleProjectFormVisibility } from "./handle-new-project-button";
@@ -18,8 +18,8 @@ import { events } from "../utilities/pubsub";
 import { checkTargetElementExistence } from "../utilities/check-target-element-existence";
 import { toggleScrollBarVisibility } from '../utilities/toggle-scroll-visibility.js';
 
-function updateProjectList(projectArray, projectList) {
-  const reversedProjectArray = projectArray.slice().reverse();
+function updateProjectList(data, projectList) {
+  const reversedProjectArray = data.getProjectArray().slice().reverse();
   // ? to put the most recently added project at the top of the list
   // * slice() is used to create a copy of the array
   // * not entering a start and end index will return a copy of the entire array
@@ -46,10 +46,10 @@ function AddNewProject() {
   if (!projectName) return alert('Enter Project Name');
 
   const projectObject = projectFactory(projectName);
-  projectArray.push(projectObject); // ? imported from data.js
+  data.addProject(projectObject); // ? imported from data.js
 
   const projectList = checkTargetElementExistence('#project-nav-list');
-  updateProjectList(projectArray, projectList);
+  updateProjectList(data, projectList);
 
   checkListOverflow(projectList);
 

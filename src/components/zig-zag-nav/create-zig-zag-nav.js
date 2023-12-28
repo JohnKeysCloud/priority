@@ -47,7 +47,7 @@ function createZigZagNav(
       );
       navLink.classList.add('nav-link');
       if (anchorOrButton === 'a') {
-        navLink.setAttribute('href', pageHref); // ! UPDATE THIS TO USE THE PAGE NAME
+        navLink.setAttribute('href', pageHref);
       }
       if (pageName === initialPage) {
         navLink.setAttribute('aria-current', 'page');
@@ -64,6 +64,7 @@ function createZigZagNav(
       }
 
       navLink.textContent = pageName;
+      navLink.setAttribute('data-page-name', pageName.toLowerCase());
 
       navLI.appendChild(navLink);
       listFragment.appendChild(navLI);

@@ -1,14 +1,20 @@
 // * DATA
-import { projectArray } from './data';
+import { data } from './data.js';
+
+// * EVENTS
+import { events } from '../utilities/pubsub.js';
 
 // * HANDLERS
 import { handleNewProjectButton } from '../js/handle-new-project-button.js';
 
 // * LAYOUT
-import { createAddProjectContainer } from './create-add-project-form.js';
 import { createHeader } from './create-header.js';
 import { createMain } from './create-main.js';
-import { createZigZagNav } from '../components/zig-zag-nav/zip-zag-nav-markup.js';
+import { createZigZagNav } from '../components/zig-zag-nav/create-zig-zag-nav.js';
+
+// * MODIFIERS
+import { modifyGenericNavLinks } from './modify-generic-nav-links.js';
+import { modifySecondNavContainer } from './modify-second-nav-container.js';
 
 // * STYLESHEETS
 import '../components/zig-zag-nav/zig-zag-nav.scss';
@@ -43,7 +49,7 @@ const listObjects = {
       ['All Tasks', '#'],
       ['Today', '#'],
       ['Next 7 Days', '#'],
-      ['Important', '#'],
+      ['Priorities', '#'],
     ],
   },
   Projects: {
@@ -54,21 +60,19 @@ content.appendChild(
   createZigZagNav(listObjects, 'All Tasks', 'button', 'nav-primary-aria')
 );
 
-// * UPDATE zigZagNav List Element to create Add Project Button and classify Project List
-const projectNavListContainer = document.querySelector('.nav-list-container:nth-child(2)');
-projectNavListContainer.setAttribute('id', 'project-nav-list-container');
-projectNavListContainer.insertBefore(
-  createAddProjectContainer(),
-  projectNavListContainer.lastChild
-);
-const projectNavList = projectNavListContainer.querySelector('.nav-ul');
-projectNavList.setAttribute('id', 'project-nav-list');
+// * MODIFIER CALLS (order matters)
+modifySecondNavContainer();
+modifyGenericNavLinks();
 
 // !
 // !
 // !
 
-content.appendChild(createMain(projectArray));
+content.appendChild(createMain());
+
+// !
+// !
+// !
 
 // * UPDATE task details scroll animation
 const taskDetailContainers = document.querySelectorAll('.task-item-details');
@@ -76,4 +80,3 @@ const taskDetailContainers = document.querySelectorAll('.task-item-details');
 taskDetailContainers.forEach((container) => {
   createScrollAnimation(container, 'backward', 0.5);
 });
-
