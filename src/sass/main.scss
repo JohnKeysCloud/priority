@@ -314,7 +314,7 @@ body {
       display: grid;
       place-items: center;
       justify-items: center;
-      padding-block: 3rem;
+      padding-block: 5rem;
       
       #main-container {
         -webkit-backdrop-filter: blur(1rem);
@@ -324,7 +324,7 @@ body {
         box-shadow: 0px 0px 10px whitesmoke;
         display: flex;
         flex-direction: column;
-        height: min(500px, 75vw);
+        height: min(500px, 75vh);
         justify-content: space-between;
         // max-height: 100vh;
         overflow-y: scroll;
