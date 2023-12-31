@@ -553,7 +553,7 @@ body #content main {
   display: grid;
   place-items: center;
   justify-items: center;
-  padding-block: 5rem;
+  padding-block: 3rem;
 }
 body #content main #main-container {
   -webkit-backdrop-filter: blur(1rem);
@@ -563,7 +563,7 @@ body #content main #main-container {
   box-shadow: 0px 0px 10px whitesmoke;
   display: flex;
   flex-direction: column;
-  height: min(500px, 75vh);
+  height: min(700px, 60vh);
   justify-content: space-between;
   overflow-y: scroll;
   padding-block: 1rem;
