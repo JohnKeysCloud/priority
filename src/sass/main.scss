@@ -3,7 +3,7 @@
 @import './keyframes.scss';
 
 body {
-  background: url('../assets/images/space-background.webp') center / cover no-repeat;
+  background: black;
   font-size: clamp(0.75rem, 5vw, 0.8313rem);
 
   #content {
