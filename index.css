@@ -307,7 +307,7 @@ input[type=checkbox] {
   }
 }
 body {
-  background: url(3e4d2dc13ad649dff692.webp) center/cover no-repeat;
+  background: black;
   font-size: clamp(0.75rem, 5vw, 0.8313rem);
 }
 body #content {
