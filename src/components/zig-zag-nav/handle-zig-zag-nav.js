@@ -8,6 +8,8 @@ import { handleNewProjectButton } from '../../js/handle-new-project-button.js';
 // * UTILITIES
 import { events } from '../../utilities/pubsub.js';
 
+// > ---------------------------------------------------
+
 let navState = {
   open: false,
   animating: false,
@@ -41,7 +43,6 @@ function showNav() {
   navState.animating = false;
 
   const zigZagNav = document.querySelector('.zig-zag-nav');
-  
   zigZagNav.setAttribute('aria-hidden', false);
   zigZagNav.setAttribute('data-visibility', true);
 
@@ -49,9 +50,9 @@ function showNav() {
   handleNewProjectButton();
 }
 
-function publishNavEvents() {
+function handleNav() {
   events.on(SHOW_NAV_EVENT, showNav);
   events.on(HIDE_NAV_EVENT, initiateHideNav);
 }
 
-export { publishNavEvents, navState };
+export { handleNav, navState };

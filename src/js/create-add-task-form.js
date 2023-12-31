@@ -81,7 +81,13 @@ function createAddTaskForm() {
   addTaskForm.appendChild(dueDateContainer);
   addTaskForm.appendChild(addTaskButtonContainer);
 
-  return addTaskForm;
+  const addTaskFormContainer = document.createElement('div');
+  addTaskFormContainer.setAttribute('id', 'add-task-form-container');
+  addTaskFormContainer.setAttribute('aria-label', 'hidden');
+  addTaskFormContainer.setAttribute('data-hidden', true);
+  addTaskFormContainer.appendChild(addTaskForm);
+
+  return addTaskFormContainer;
 }
 
 export { createAddTaskForm };

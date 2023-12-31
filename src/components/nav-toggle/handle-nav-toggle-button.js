@@ -2,13 +2,15 @@
 import { HIDE_NAV_EVENT, SHOW_NAV_EVENT } from '../../js/eventNames.js';
 
 // * STATES
-import { navState } from '../zig-zag-nav/zig-zag-nav.js';
+import { navState } from '../zig-zag-nav/handle-zig-zag-nav.js';
 
 // * UTILITES
 import { events } from '../../utilities/pubsub.js';
 import { checkTargetElementExistence } from '../../utilities/check-target-element-existence.js';
 
-function toggleNavButton() {
+// > ---------------------------------------------------
+
+function handleNavToggleButton() {
   const toggleButton = checkTargetElementExistence('.nav-toggle-button');
   const toggleButtonActivated = toggleButton.classList.contains('active');
 
@@ -31,4 +33,4 @@ function toggleNavButton() {
   }
 }
 
-export { toggleNavButton };
+export { handleNavToggleButton };

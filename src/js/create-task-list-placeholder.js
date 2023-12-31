@@ -2,7 +2,7 @@ function createTaskListPlaceholder() {
   const placeholderText = document.createElement('p');
   placeholderText.setAttribute('id', 'placeholder-text');
   placeholderText.classList.add('hvr-wobble-vertical');
-  placeholderText.textContent = 'Set your priorities in menu above.';
+  placeholderText.textContent = 'create a project in the above menu';
 
   const placeholderContainer = document.createElement('div');
   placeholderContainer.setAttribute('id', 'placeholder-container');

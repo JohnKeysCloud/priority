@@ -4,9 +4,6 @@ import { data } from './data.js';
 // * EVENTS
 import { events } from '../utilities/pubsub.js';
 
-// * HANDLERS
-import { handleNewProjectButton } from '../js/handle-new-project-button.js';
-
 // * LAYOUT
 import { createHeader } from './create-header.js';
 import { createMain } from './create-main.js';
@@ -24,9 +21,7 @@ import '../components/zig-zag-nav/zig-zag-nav.scss';
 import '../css/styles.css';
 
 // * UTILITIES
-import { createProjectItem } from './create-project-item.js';
 import { createScrollAnimation } from '../utilities/scroll-element-content.js';
-import { createTaskItem } from './create-task-item.js';
 
 const content = document.getElementById('content');
 

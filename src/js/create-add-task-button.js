@@ -1,19 +1,19 @@
 function createAddTaskButton() {
-  const openAddTaskFormButton = document.createElement('button');
-  openAddTaskFormButton.setAttribute('id', 'open-add-task-form-button');
-  openAddTaskFormButton.setAttribute('type', 'button');
-  openAddTaskFormButton.setAttribute('aria-label', 'Add Task');
-  openAddTaskFormButton.textContent = 'Add Task';
+  const addTaskFormButton = document.createElement('button');
+  addTaskFormButton.setAttribute('id', 'add-task-form-opener-button');
+  addTaskFormButton.setAttribute('type', 'button');
+  addTaskFormButton.setAttribute('aria-label', 'Add Task');
+  addTaskFormButton.textContent = 'Add Task';
 
-  const openAddTaskButtonContainer = document.createElement('div');
-  openAddTaskButtonContainer.setAttribute(
+  const addTaskButtonContainer = document.createElement('div');
+  addTaskButtonContainer.setAttribute(
     'id',
-    'open-add-task-button-container'
+    'add-task-form-opener-button-container'
   );
-  openAddTaskButtonContainer.appendChild(openAddTaskFormButton);
-  openAddTaskButtonContainer.appendChild(openAddTaskFormButton);
 
-  return openAddTaskButtonContainer;
+  addTaskButtonContainer.appendChild(addTaskFormButton);
+
+  return addTaskButtonContainer;
 }
 
 export { createAddTaskButton };

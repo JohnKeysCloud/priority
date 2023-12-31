@@ -1,5 +1,10 @@
+// * HANDLERS
+import { handleNavToggleButton } from './handle-nav-toggle-button';
+
+// ** STYLES
 import './nav-toggle.scss';
-import { toggleNavButton } from './nav-toggle';
+
+// > ---------------------------------------------------
 
 function createNavToggleButton(ariaControlsID) {
   const navToggleButton = document.createElement('button');
@@ -13,7 +18,7 @@ function createNavToggleButton(ariaControlsID) {
 
   navToggleButton.appendChild(navToggleBars);
 
-  navToggleButton.addEventListener('click', toggleNavButton);
+  navToggleButton.addEventListener('click', handleNavToggleButton);
 
   return navToggleButton;
 }

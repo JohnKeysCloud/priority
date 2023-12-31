@@ -1,11 +1,13 @@
-// * COMPONENTS
-import { createListIcon } from "../components/listIcon/listIcon";
-
 // * EVENT NAMES
 import { ADD_NEW_PROJECT } from "./eventNames";
 
+// * MARKUP
+import { createListIcon } from "../components/listIcon/create-list-icon";
+
 // * UTILITIES
 import { events } from "../utilities/pubsub";
+
+// > ---------------------------------------------------
 
 function createAddProjectContainer() {
   const projectNameInput = document.createElement('input');

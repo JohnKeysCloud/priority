@@ -1,5 +1,10 @@
+// * HANDLERS
+import { handleNav } from './handle-zig-zag-nav.js';
+
+// * STYLES
 import './zig-zag-nav.scss';
-import { publishNavEvents } from './zig-zag-nav.js';
+
+// > ---------------------------------------------------
 
 // * initialPage is a string that will be used to set the aria-current attribute (use the index of the page name)
 // * anchorOrButton is a string that will be used to determine if the nav links are buttons or anchors options are 'button' or 'a'
@@ -78,7 +83,7 @@ function createZigZagNav(
     zigZagNav.appendChild(listContainer);
   }
 
-  publishNavEvents();
+  handleNav();
 
   return zigZagNav;
 }

@@ -1,17 +1,19 @@
 // * EVENT NAMES
-import { TOGGLE_ADD_PROJECT_FORM } from "../js/eventNames";
+import { TOGGLE_ADD_PROJECT_FORM } from "./eventNames";
 
 // * HANDLERS
 import { handleProjectAddButton } from "./handle-project-add-button";
 import { handleProjectCancelButton } from "./handle-project-cancel-button";
 
 // * STATES
-import { navState } from "../components/zig-zag-nav/zig-zag-nav";
+import { navState } from "../components/zig-zag-nav/handle-zig-zag-nav";
 
 // * UTILITIES
 import { events } from "../utilities/pubsub";
 import { checkTargetElementExistence } from "../utilities/check-target-element-existence";
 import { setAttributes } from "../utilities/set-attributes";
+
+// > ---------------------------------------------------
 
 function setDisplayNone(event) {
   const targetElement = event.target;
@@ -60,7 +62,7 @@ function toggleNewProjectButtonEventPublishing(navState) {
   }
 }
 
-function toggleProjectFormVisibility() {
+function emitProjectFormVisibilityToggle() {
   events.emit(TOGGLE_ADD_PROJECT_FORM);
 }
 
@@ -68,12 +70,12 @@ function handleNewProjectButton() {
   const newProjectButton = document.getElementById('new-project-button');
 
   if (navState.open === true) {
-    newProjectButton.addEventListener('click', toggleProjectFormVisibility);
+    newProjectButton.addEventListener('click', emitProjectFormVisibilityToggle);
   } else if (navState.open === false) {
-    newProjectButton.removeEventListener('click', toggleProjectFormVisibility);
+    newProjectButton.removeEventListener('click', emitProjectFormVisibilityToggle);
   }
 
   toggleNewProjectButtonEventPublishing(navState);
 }
 
-export { toggleProjectFormVisibility, handleNewProjectButton };
+export { emitProjectFormVisibilityToggle, handleNewProjectButton };

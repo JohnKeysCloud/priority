@@ -1,4 +1,4 @@
-// * LAYOUT
+// * MARKUP
 import { createAddProjectContainer } from './create-add-project-form.js';
 
 function modifySecondNavContainer() {

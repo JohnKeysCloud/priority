@@ -1,11 +1,8 @@
-// * COMPONENTS
-import { createProjectItem } from "./create-project-item";
-
 // * DATA
 import { data } from "./data.js";
 
 // * EMITTERS
-import { toggleProjectFormVisibility } from "./handle-new-project-button";
+import { emitProjectFormVisibilityToggle } from "./handle-new-project-button";
 
 // * EVENT NAMES
 import { ADD_NEW_PROJECT } from "./eventNames";
@@ -13,10 +10,15 @@ import { ADD_NEW_PROJECT } from "./eventNames";
 // * LOGIC
 import { projectFactory } from "./logic";
 
+// * MARKUP
+import { createProjectItem } from "./create-project-item";
+
 // * UTILITIES
 import { events } from "../utilities/pubsub";
 import { checkTargetElementExistence } from "../utilities/check-target-element-existence";
 import { toggleScrollBarVisibility } from '../utilities/toggle-scroll-visibility.js';
+
+// > ---------------------------------------------------
 
 function updateProjectList(data, projectList) {
   const reversedProjectArray = data.getProjectArray().slice().reverse();
@@ -53,7 +55,7 @@ function AddNewProject() {
 
   checkListOverflow(projectList);
 
-  toggleProjectFormVisibility(); // ? emits TOGGLE_ADD_PROJECT_FORM
+  emitProjectFormVisibilityToggle(); // ? emits TOGGLE_ADD_PROJECT_FORM
 }
 
 function toggleAddNewProjectEvent(formState) {

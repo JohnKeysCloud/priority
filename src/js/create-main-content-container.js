@@ -1,14 +1,23 @@
+// * MARKUP
 import { createTaskList } from "./create-task-list";
+import { createAddTaskContainer } from "./create-add-task-container";
 
-function updateMainContentContainer(mainUpdateObject) {
+// > ---------------------------------------------------
+
+function createMainContentContainer(mainUpdateObject) {
   const mainHeading = document.createElement('h2');
+  const headingTextContent = mainUpdateObject.getName();
   mainHeading.setAttribute('id', 'main-heading');
-  mainHeading.textContent = mainUpdateObject.getName();
+  mainHeading.textContent = headingTextContent;
   
-  console.log(2, mainUpdateObject.getName());
   const mainContent = document.createElement('div');
   mainContent.setAttribute('id', 'main-content');
   mainContent.appendChild(createTaskList(mainUpdateObject));
+  
+  const objectType = mainUpdateObject.getType();
+  if (objectType === 'project') {
+    mainContent.appendChild(createAddTaskContainer());
+  } 
 
   const mainContentContainer = document.createElement('div');
   mainContentContainer.setAttribute('id', 'main-container');
@@ -18,4 +27,4 @@ function updateMainContentContainer(mainUpdateObject) {
   return mainContentContainer
 }
 
-export { updateMainContentContainer } 
+export { createMainContentContainer } 

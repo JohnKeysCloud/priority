@@ -1,5 +1,7 @@
-// * COMPONENTS
-import { createListIcon } from "../components/listIcon/listIcon";
+// * MARKUP
+import { createListIcon } from "../components/listIcon/create-list-icon"; // ?  IN COMPONENTS FOLDER
+
+// > ---------------------------------------------------
 
 function createProjectItem(projectName) {
   const projectButton = document.createElement('button');

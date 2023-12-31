@@ -1,44 +1,20 @@
-import { events } from '../utilities/pubsub.js';
-import { UPDATE_MAIN_CONTENT } from './eventNames.js';
+// * HANDLERS
+import { handleMain } from './handle-main.js';
+
+// * EVENT NAMES
+import { UPDATE_MAIN } from './eventNames.js';
+
+// *  STATES
+import { navState } from '../components/zig-zag-nav/handle-zig-zag-nav.js';
+
+// * UTILITIES
 import { checkTargetElementExistence } from '../utilities/check-target-element-existence.js';
-import { navState } from '../components/zig-zag-nav/zig-zag-nav.js';
-import { data } from './data.js';
-import { linkObjectFactory } from './logic.js';
-import { updateMainContentContainer } from './update-main-content-container.js';
-import { toggleNavButton } from '../components/nav-toggle/nav-toggle.js';
+import { events } from '../utilities/pubsub.js';
 
-function closeNavPostTransition(targetElement) {
-  targetElement.addEventListener('transitionend', toggleNavButton);
-}
+// > ---------------------------------------------------
 
-function clearMain() {
-  const main = checkTargetElementExistence('main');
-
-  while (main.firstChild) {
-    main.removeChild(main.firstChild);
-  }
-}
-
-function resolveMainUpdateObject(targetElement) {
-  const isProjectLink = targetElement.hasAttribute('data-project-name');
-  const isPageLink = targetElement.hasAttribute('data-page-name');
-
-  if (isProjectLink) {
-    const projectArray = data.getProjectArray();
-    const projectValue = targetElement.getAttribute('data-project-name');
-    const projectObject = projectArray.find(
-      (project) => project.getName() === projectValue
-    );
-
-    return projectObject;
-  } else if (isPageLink) {
-    const pageName = targetElement.getAttribute('data-page-name');
-    const linkObject = linkObjectFactory(pageName, data.getAllTasks());
-
-    linkObject.arrangeTasks(targetElement);
-
-    return linkObject;
-  }
+function emitUpdateMain(event) {
+  events.emit(UPDATE_MAIN, event);
 }
 
 function removeOldAriaCurrent(nodelist) {
@@ -57,8 +33,6 @@ function setAriaCurrent(targetElement) {
   removeOldAriaCurrent(navLinks);
 
   targetElement.setAttribute('aria-current', 'page');
-
-  return targetElement;
 }
 
 function checkIfClickableNavLink(targetElement) {
@@ -69,42 +43,30 @@ function checkIfClickableNavLink(targetElement) {
   if (isTargetLinkClickable) return true;
 }
 
-function updateMainContent(event) {
-  const main = checkTargetElementExistence('main');
+function setActiveLink(event) {
   const targetElement = event.target;
   const isTargetElementNavLink = checkIfClickableNavLink(targetElement);
-
   if (!isTargetElementNavLink) return;
 
-  const newCurrentNavLink = setAriaCurrent(targetElement);
-  const mainUpdateObject = resolveMainUpdateObject(newCurrentNavLink);
-  
-  clearMain();
-
-  main.appendChild(updateMainContentContainer(mainUpdateObject));
-
-  closeNavPostTransition(targetElement);
-}
-
-function emitUpdateMainContent(event) {
-  events.emit(UPDATE_MAIN_CONTENT, event);
+  setAriaCurrent(targetElement);
+  emitUpdateMain(targetElement);
 }
 
 function toggleNavLinkListeners() {
   const zigZagNav = checkTargetElementExistence('.zig-zag-nav');
 
   if (navState.open === true) {
-    zigZagNav.addEventListener('click', emitUpdateMainContent);
+    zigZagNav.addEventListener('click', setActiveLink);
   } else if (navState.open === false) {
-    zigZagNav.removeEventListener('click', emitUpdateMainContent);
+    zigZagNav.removeEventListener('click', setActiveLink);
   }
 }
 
 function handleNavLinks() {
   if (navState.open === true) {
-    events.on(UPDATE_MAIN_CONTENT, updateMainContent);
+    events.on(UPDATE_MAIN, handleMain);
   } else if (navState.open === false) {
-    events.off(UPDATE_MAIN_CONTENT, updateMainContent);
+    events.off(UPDATE_MAIN, handleMain);
   }
   toggleNavLinkListeners();
 }

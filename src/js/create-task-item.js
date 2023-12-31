@@ -38,7 +38,7 @@ function createTaskItem(task) {
   modifyTaskButton.appendChild(modifyTaskButtonIcon);
 
   const taskButtonContainer = document.createElement('div');
-  taskButtonContainer.classList.add('task-button-container');
+  taskButtonContainer.classList.add('add-task-button-container');
   taskButtonContainer.appendChild(taskPriorityCheckbox);
   taskButtonContainer.appendChild(modifyTaskButton);
 

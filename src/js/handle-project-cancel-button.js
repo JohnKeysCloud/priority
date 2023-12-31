@@ -1,17 +1,19 @@
 // * EMITTERS
-import { toggleProjectFormVisibility } from "./handle-new-project-button";
+import { emitProjectFormVisibilityToggle } from "./handle-new-project-button";
 
 // * UTILITIES
 import { checkTargetElementExistence } from "../utilities/check-target-element-existence";
+
+// > ---------------------------------------------------
 
 function toggleCancelButtonListener(isHidden) {
   const cancelAddProjectButton = document.getElementById('cancel-add-project-button');
 
   if (cancelAddProjectButton) {
     if (!isHidden) {
-      cancelAddProjectButton.addEventListener('click', toggleProjectFormVisibility);
+      cancelAddProjectButton.addEventListener('click', emitProjectFormVisibilityToggle);
     } else {
-      cancelAddProjectButton.removeEventListener('click', toggleProjectFormVisibility);
+      cancelAddProjectButton.removeEventListener('click', emitProjectFormVisibilityToggle);
     }
   }
 }

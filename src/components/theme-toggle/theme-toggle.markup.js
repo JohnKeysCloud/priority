@@ -7,15 +7,10 @@
 // ? const themeToggleContainer = createThemeToggleButton();
 // ? document.body.appendChild(themeToggleContainer);
 
-import { addScriptToHead } from "../../utilities/html-script-injection";
+// * STYLES
 import './theme-toggle.scss';
 
-const iconScriptSource = 'https://kit.fontawesome.com/24176ab973.js';
-const attributes = {
-  crossorigin: 'anonymous',
-}
-
-addScriptToHead(iconScriptSource, attributes);
+// > ---------------------------------------------------
 
 function createThemeToggleButton() {
   const themeToggleContainer = document.createElement('div');

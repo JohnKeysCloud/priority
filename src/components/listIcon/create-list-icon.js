@@ -1,4 +1,7 @@
+// * STYLES
 import './listIcon.scss';
+
+// > ---------------------------------------------------
 
 function createListIcon() {
   const listIconContainer = document.createElement('div');
