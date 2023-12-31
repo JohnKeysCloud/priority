@@ -2,6 +2,7 @@
 import { TOGGLE_ADD_TASK_FORM } from "./eventNames";
 
 // * HANDLERS
+import { handleTaskAddButton } from "./handle-task-add-button";
 import { handleTaskCancelButton } from "./handle-task-cancel-button";
 
 // * UTITLIIES
@@ -44,7 +45,7 @@ function toggleAddTaskForm() {
   }
 
   // TODO:
-  // handleTaskAddButton(formState);
+  handleTaskAddButton(formState);
   handleTaskCancelButton(formState); 
 }
 
