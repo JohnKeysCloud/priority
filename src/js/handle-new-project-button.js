@@ -11,6 +11,7 @@ import { navState } from "../components/zig-zag-nav/handle-zig-zag-nav";
 // * UTILITIES
 import { events } from "../utilities/pubsub";
 import { checkTargetElementExistence } from "../utilities/check-target-element-existence";
+import { clearTextInput } from "../utilities/clear-text-input";
 import { setAttributes } from "../utilities/set-attributes";
 
 // > ---------------------------------------------------
@@ -46,6 +47,9 @@ function toggleAddProjectForm() {
     });
 
     animatePreDisplayNone(projectFormContainer);
+
+    const projectNameInput = checkTargetElementExistence('#project-name-input');
+    clearTextInput(projectNameInput);
 
     formState = 'hidden';
   }

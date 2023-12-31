@@ -246,6 +246,54 @@ input[type=checkbox] {
   margin: 0;
 }
 
+@keyframes fade-in {
+  0% {
+    grid-template-rows: 0fr;
+    opacity: 0;
+    transform: scale(0);
+    visibility: hidden;
+  }
+  90% {
+    grid-template-rows: 1fr;
+    opacity: 0.5;
+    transform: scale(1);
+    visibility: visible;
+  }
+  100% {
+    grid-template-rows: 1fr;
+    opacity: 1;
+    transform: scale(1);
+    visibility: visible;
+  }
+}
+@keyframes fade-out {
+  0% {
+    grid-template-rows: 1fr;
+    opacity: 1;
+    transform: scale(1);
+    visibility: visible;
+  }
+  10% {
+    grid-template-rows: 1fr;
+    opacity: 0.5;
+    transform: scale(1);
+    visibility: visible;
+  }
+  100% {
+    grid-template-rows: 0fr;
+    opacity: 0;
+    transform: scale(0);
+    visibility: hidden;
+  }
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 body {
   background: url("../assets/images/space-background.webp") center/cover no-repeat;
   font-size: clamp(0.75rem, 5vw, 0.8313rem);
@@ -274,14 +322,6 @@ body #content header .header-left .header-logo {
   height: clamp(50px, 8vw, 55px);
   opacity: 0.5;
   transition: all 0.38ms ease-in-out;
-}
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
 }
 body #content header .header-left .header-logo:hover {
   animation-play-state: paused;
@@ -388,37 +428,9 @@ body #content .zig-zag-nav #project-nav-list-container #add-project-container #p
   animation: fade-out 380ms ease-in-out forwards;
   pointer-events: none;
 }
-@keyframes fade-out {
-  0% {
-    grid-template-rows: 1fr;
-    opacity: 1;
-    transform: scale(1);
-    visibility: visible;
-  }
-  100% {
-    grid-template-rows: 0fr;
-    opacity: 0;
-    transform: scale(0);
-    visibility: hidden;
-  }
-}
 body #content .zig-zag-nav #project-nav-list-container #add-project-container #project-form-container[data-hidden=false] {
   animation: fade-in 380ms ease-in-out forwards;
   pointer-events: all;
-}
-@keyframes fade-in {
-  0% {
-    grid-template-rows: 0fr;
-    opacity: 0;
-    transform: scale(0);
-    visibility: hidden;
-  }
-  100% {
-    grid-template-rows: 1fr;
-    opacity: 1;
-    transform: scale(1);
-    visibility: visible;
-  }
 }
 body #content .zig-zag-nav #project-nav-list-container #add-project-container #project-form-container #project-input-container,
 body #content .zig-zag-nav #project-nav-list-container #add-project-container #project-form-container #project-buttons-container {
@@ -762,37 +774,9 @@ body #content main #main-container #main-content #add-task-container #add-task-f
   animation: fade-out 380ms ease-in-out forwards;
   pointer-events: none;
 }
-@keyframes fade-out {
-  0% {
-    grid-template-rows: 1fr;
-    opacity: 1;
-    transform: scale(1);
-    visibility: visible;
-  }
-  100% {
-    grid-template-rows: 0fr;
-    opacity: 0;
-    transform: scale(0);
-    visibility: hidden;
-  }
-}
 body #content main #main-container #main-content #add-task-container #add-task-form-container[data-hidden=false] {
   animation: fade-in 380ms ease-in-out forwards;
   pointer-events: all;
-}
-@keyframes fade-in {
-  0% {
-    grid-template-rows: 0fr;
-    opacity: 0;
-    transform: scale(0);
-    visibility: hidden;
-  }
-  100% {
-    grid-template-rows: 1fr;
-    opacity: 1;
-    transform: scale(1);
-    visibility: visible;
-  }
 }
 body #content main #main-container #main-content #add-task-container #add-task-form-container #add-task-form {
   display: flex;
