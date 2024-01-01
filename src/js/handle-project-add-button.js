@@ -49,9 +49,8 @@ function AddNewProject() {
   const projectNameInput = projectForm.querySelector('#project-name-input');
   const projectName = projectNameInput.value.trim();
 
-  projectForm.reset()
-
   if (!projectName) return alert('Enter Project Name');
+  projectForm.reset()
 
   const projectObject = projectFactory(projectName);
   data.addProject(projectObject); // ? imported from data.js
@@ -72,7 +71,7 @@ function toggleProjectAddEvent(formState) {
   } else if (formState === 'closing') {
     events.off(ADD_NEW_PROJECT, AddNewProject);
   }
-}
+} 
 
 function emitInitializeProject() {
   events.emit(ADD_NEW_PROJECT);

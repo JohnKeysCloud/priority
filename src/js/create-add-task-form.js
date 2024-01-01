@@ -1,3 +1,11 @@
+// * EVENT NAMES
+import { ADD_NEW_TASK } from "./eventNames";
+
+// * UTILITIES
+import { events } from "../utilities/pubsub";
+
+// > ---------------------------------------------------
+
 function createAddTaskForm() {
   const titleLabel = document.createElement('label');
   titleLabel.classList.add('add-task-label');
@@ -11,6 +19,12 @@ function createAddTaskForm() {
   titleInput.setAttribute('name', 'title');
   titleInput.setAttribute('required', 'true');
   titleInput.setAttribute('placeholder', 'what are the vibes?');
+  titleInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      events.emit(ADD_NEW_TASK);
+    }
+  });
 
   const titleContainer = document.createElement('div');
   titleContainer.setAttribute('id', 'title-container');
@@ -29,6 +43,12 @@ function createAddTaskForm() {
   detailsInput.setAttribute('id', 'details');
   detailsInput.setAttribute('name', 'details');
   detailsInput.setAttribute('placeholder', 'tell me more');
+  detailsInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      events.emit(ADD_NEW_TASK);
+    }
+  });
 
   const detailsContainer = document.createElement('div');
   detailsContainer.setAttribute('id', 'details-container');
@@ -48,6 +68,12 @@ function createAddTaskForm() {
   dueDateInput.setAttribute('name', 'due-date');
   dueDateInput.setAttribute('required', true);
   dueDateInput.setAttribute('placeholder', 'yyyy-mm-dd');
+  dueDateInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      events.emit(ADD_NEW_TASK);
+    }
+  });
 
   const dueDateContainer = document.createElement('div');
   dueDateContainer.setAttribute('id', 'due-date-container');

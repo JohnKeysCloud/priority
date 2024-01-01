@@ -57,11 +57,10 @@ function addNewTask() {
   const taskName = taskNameInput.value.trim();
   const taskDetails = taskDetailsInput.value.trim();
   const taskDueDate = taskDueDateInput.value;
-
-  taskForm.reset();
-
+  
   if (!taskName) return alert('Enter Task Name');
   if (!taskDueDate) return alert('Enter Task Due Date');
+  taskForm.reset();
 
   const projectName = mainState.projectName;
 
