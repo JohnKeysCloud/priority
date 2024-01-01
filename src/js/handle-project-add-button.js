@@ -1,24 +1,24 @@
 // * DATA
-import { data } from "./data.js";
+import { data } from './data.js';
 
 // * EMITTERS
-import { emitProjectFormVisibilityToggle } from "./handle-new-project-button";
+import { emitProjectFormVisibilityToggle } from './handle-new-project-button';
 
 // * EVENT NAMES
-import { ADD_NEW_PROJECT } from "./eventNames";
+import { ADD_NEW_PROJECT } from './eventNames';
 
 // * LOGIC
-import { projectFactory } from "./logic";
+import { projectFactory } from './logic';
 
 // * MARKUP
-import { createProjectItem } from "./create-project-item";
+import { createProjectItem } from './create-project-item';
 
 // * STATES
-import { formComponentState } from "./handle-new-project-button";
+import { formComponentState } from './handle-new-project-button';
 
 // * UTILITIES
-import { events } from "../utilities/pubsub";
-import { checkTargetElementExistence } from "../utilities/check-target-element-existence";
+import { events } from '../utilities/pubsub';
+import { checkTargetElementExistence } from '../utilities/check-target-element-existence';
 import { toggleScrollBarVisibility } from '../utilities/toggle-scroll-visibility.js';
 
 // > ---------------------------------------------------
@@ -44,7 +44,7 @@ function checkListOverflow(projectList) {
 }
 
 function AddNewProject() {
-  const projectNameInput = document.querySelector('#project-name-input');
+  const projectNameInput = checkTargetElementExistence('#project-name-input');
   const projectName = projectNameInput.value.trim();
   projectNameInput.value = '';
   
@@ -63,7 +63,7 @@ function AddNewProject() {
   formComponentState.projectFormState = 'hidden';
 }
 
-function toggleAddNewProjectEvent(formState) {
+function toggleProjectAddEvent(formState) {
   if (formState === 'visible') {
     events.on(ADD_NEW_PROJECT, AddNewProject);
   } else if (formState === 'closing') {
@@ -75,7 +75,7 @@ function emitInitializeProject() {
   events.emit(ADD_NEW_PROJECT);
 }
 
-function updateAddNewProjectListener(formState) {
+function toggleProjectAddButtonListener(formState) {
   const projectAddButton = checkTargetElementExistence('#add-project-button');
 
   if (formState === 'visible') {
@@ -87,8 +87,8 @@ function updateAddNewProjectListener(formState) {
 }
 
 function handleProjectAddButton(formState) {
-  updateAddNewProjectListener(formState);
-  toggleAddNewProjectEvent(formState);
+  toggleProjectAddButtonListener(formState);
+  toggleProjectAddEvent(formState);
 }
 
 export { handleProjectAddButton };
