@@ -36,7 +36,7 @@ function animatePreDisplayNone(targetElement) {
 
 function toggleAddProjectForm() {
   const projectFormContainer = checkTargetElementExistence(
-    '#project-form-container'
+    '#add-project-form'
   );
   const projectFormState = formComponentState.projectFormState;
 

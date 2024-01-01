@@ -9,7 +9,7 @@ function createAddTaskForm() {
   titleInput.setAttribute('type', 'text');
   titleInput.setAttribute('id', 'title');
   titleInput.setAttribute('name', 'title');
-  titleInput.setAttribute('required', '');
+  titleInput.setAttribute('required', 'true');
   titleInput.setAttribute('placeholder', 'what are the vibes?');
 
   const titleContainer = document.createElement('div');
@@ -28,7 +28,6 @@ function createAddTaskForm() {
   detailsInput.setAttribute('type', 'text');
   detailsInput.setAttribute('id', 'details');
   detailsInput.setAttribute('name', 'details');
-  detailsInput.setAttribute('required', false);
   detailsInput.setAttribute('placeholder', 'tell me more');
 
   const detailsContainer = document.createElement('div');
@@ -47,7 +46,8 @@ function createAddTaskForm() {
   dueDateInput.setAttribute('type', 'date');
   dueDateInput.setAttribute('id', 'due-date');
   dueDateInput.setAttribute('name', 'due-date');
-  dueDateInput.setAttribute('required', false);
+  dueDateInput.setAttribute('required', true);
+  dueDateInput.setAttribute('placeholder', 'yyyy-mm-dd');
 
   const dueDateContainer = document.createElement('div');
   dueDateContainer.setAttribute('id', 'due-date-container');
@@ -60,6 +60,8 @@ function createAddTaskForm() {
   addTaskButton.setAttribute('id', 'add-task-button');
   addTaskButton.setAttribute('type', 'button');
   addTaskButton.setAttribute('aria-label', 'Add Task');
+  addTaskButton.setAttribute('name', 'add-task-button');
+  addTaskButton.setAttribute('form', 'add-task-form');
   addTaskButton.textContent = 'Add Task';
 
   const cancelAddTaskButton = document.createElement('button');

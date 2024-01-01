@@ -1,21 +1,13 @@
-
-// TODO:
-// export const projectArray = [];
-
-// function getTodaysDate() {
-//   const date = new Date();
-//   const year = date.getFullYear();
-//   const month = date.getMonth();
-//   const day = date.getDate();
-
-//   return new Date(year, month, day);
-// }
-
-
 function projectsEncapsulation() {
   const encapsulatedProjectArray = [];
   
   return {    
+    addTaskToProject: (projectName, task) => {
+      const project = encapsulatedProjectArray.find(
+        (project) => project.getName() === projectName
+      );
+      project.addTask(task);
+    },
     getProjectArray: () => {
       return [...encapsulatedProjectArray];
     },
@@ -33,6 +25,11 @@ function projectsEncapsulation() {
     },
     getAllTasks: () => {
       return encapsulatedProjectArray.flatMap((project) => project.getTaskArray());
+    },
+    getProjectObject: (projectName) => {
+      return encapsulatedProjectArray.find(
+        (project) => project.getName() === projectName
+      );
     },
     arrangeTasks: () => {
       // if complete, move to bottom

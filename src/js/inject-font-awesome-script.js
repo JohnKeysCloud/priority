@@ -1,5 +1,5 @@
 // * UTILITIES
-import { addScriptToHead } from "../utilities/html-script-injection";
+import { addScriptToHead } from "../utilities/add-script-to-head";
 
 // > ---------------------------------------------------
 

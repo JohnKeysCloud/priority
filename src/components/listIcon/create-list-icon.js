@@ -1,4 +1,4 @@
-// * STYLES
+// * STYLESHEETS
 import './listIcon.scss';
 
 // > ---------------------------------------------------

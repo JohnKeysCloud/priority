@@ -1,4 +1,4 @@
-function createTaskItem(task) {
+function createTaskItem(taskObject) {
   const taskCheckBoxContainer = document.createElement('div');
   taskCheckBoxContainer.classList.add('task-checkbox-container');
 
@@ -9,19 +9,15 @@ function createTaskItem(task) {
 
   const taskItemTitle = document.createElement('h4');
   taskItemTitle.classList.add('task-item-title');
-  taskItemTitle.textContent = `Task Item`;
-  // taskItemTitle.textContent = task.getTitle();
+  taskItemTitle.textContent = taskObject.getName();
 
   const taskItemDetails = document.createElement('p');
   taskItemDetails.classList.add('task-item-details');
-  taskItemDetails.textContent = 'Lorem ipsum dolor sit amet consectetur.';
-  // taskItemDetails.textContent = task.getDetails();
+  taskItemDetails.textContent = taskObject.getDetails();
 
   const taskItemDate = document.createElement('p');
   taskItemDate.classList.add('task-item-date');
-  // taskItemDate.textContent = 'YYYY-MM-DD';
-    taskItemDate.textContent = 'Due in 3 days';
-  // taskItemDate.textContent = task.getDueDate(); // ? Formatted
+  taskItemDate.textContent = taskObject.getDueDate(); // TODO: FORMAT DATE
 
   const taskPriorityCheckbox = document.createElement('input');
   taskPriorityCheckbox.classList.add('task-priority-checkbox');
@@ -38,7 +34,7 @@ function createTaskItem(task) {
   modifyTaskButton.appendChild(modifyTaskButtonIcon);
 
   const taskButtonContainer = document.createElement('div');
-  taskButtonContainer.classList.add('add-task-button-container');
+  taskButtonContainer.classList.add('task-item-button-container');
   taskButtonContainer.appendChild(taskPriorityCheckbox);
   taskButtonContainer.appendChild(modifyTaskButton);
 

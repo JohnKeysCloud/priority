@@ -25,6 +25,9 @@ function createAddProjectContainer() {
   const addProjectButton = document.createElement('button');
   addProjectButton.setAttribute('id', 'add-project-button');
   addProjectButton.setAttribute('type', 'button');
+  addProjectButton.setAttribute('required', true);
+  addProjectButton.setAttribute('name', 'add-project');
+  addProjectButton.setAttribute('form', 'add-project-form');
   addProjectButton.setAttribute('aria-label', 'Add Project');
   addProjectButton.textContent = 'add';
 
@@ -45,7 +48,7 @@ function createAddProjectContainer() {
   projectButtonsContainer.appendChild(cancelAddProjectButton);
 
   const projectFormContainer = document.createElement('form');
-  projectFormContainer.setAttribute('id', 'project-form-container');
+  projectFormContainer.setAttribute('id', 'add-project-form');
   projectFormContainer.setAttribute('aria-label', 'hidden');
   projectFormContainer.setAttribute('data-hidden', true);
 

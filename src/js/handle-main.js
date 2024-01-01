@@ -17,6 +17,11 @@ import { checkTargetElementExistence } from '../utilities/check-target-element-e
 
 // > ---------------------------------------------------
 
+const mainState = {
+  updateObjectType: null,
+  projectName: null,
+}
+
 function closeNavPostTransition(targetElement) {
   targetElement.addEventListener('transitionend', handleNavToggleButton, {
     once: true,
@@ -34,21 +39,24 @@ function resolveMainUpdateObject(newCurrentNavLink) {
   const isProjectLink = newCurrentNavLink.hasAttribute('data-project-name');
   const isPageLink = newCurrentNavLink.hasAttribute('data-page-name');
 
-  
   if (isProjectLink) {    
     const projectArray = data.getProjectArray();
     const projectValue = newCurrentNavLink.getAttribute('data-project-name');
     const projectObject = projectArray.find(
       (project) => project.getName() === projectValue
       );
-      
-      return projectObject;
+    
+    mainState.updateObjectType = 'project';
+    
+    return projectObject;
       
     } else if (isPageLink) {
     const pageName = newCurrentNavLink.getAttribute('data-page-name');
     const linkObject = linkObjectFactory(pageName, data.getAllTasks());
 
     linkObject.arrangeTasks(newCurrentNavLink);
+
+    mainState.updateObjectType = 'link';
 
     return linkObject;
 
@@ -58,6 +66,7 @@ function resolveMainUpdateObject(newCurrentNavLink) {
 function handleMain(targetElement) {
   const newCurrentNavLink = targetElement;
   const mainUpdateObject = resolveMainUpdateObject(newCurrentNavLink);
+  const mainUpdateObjectName = mainUpdateObject.getName();
   const mainUpdateObjectType = mainUpdateObject.getType();
   const newMainContainer = createMainContentContainer(mainUpdateObject);
   
@@ -72,10 +81,11 @@ function handleMain(targetElement) {
   mainElement.appendChild(newMainContainer);
   
   if (mainUpdateObjectType === 'project') {
+    mainState.projectName = mainUpdateObjectName;
     addTaskFormOpenerButtonListener(mainUpdateObjectType);
   }
 
   closeNavPostTransition(targetElement);
 }
 
-export { handleMain };
+export { handleMain, mainState };

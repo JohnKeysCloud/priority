@@ -4,17 +4,18 @@ import { data } from './data.js';
 // * EVENTS
 import { events } from '../utilities/pubsub.js';
 
-// * LAYOUT
+// * LOGIC
+import { linkObjectFactory } from './logic.js';
+
+// * MARKUP
 import { createHeader } from './create-header.js';
 import { createMain } from './create-main.js';
 import { createZigZagNav } from '../components/zig-zag-nav/create-zig-zag-nav.js';
 
-// * LOGIC
-import { linkObjectFactory } from './logic.js';
-
 // * MODIFIERS
 import { modifyGenericNavLinks } from './modify-generic-nav-links.js';
 import { modifySecondNavContainer } from './modify-second-nav-container.js';
+import { injectFontAwesomeScript } from './inject-font-awesome-script.js';
 
 // * STYLESHEETS
 import '../components/zig-zag-nav/zig-zag-nav.scss';
@@ -24,6 +25,9 @@ import '../css/styles.css';
 import { createScrollAnimation } from '../utilities/scroll-element-content.js';
 
 const content = document.getElementById('content');
+
+// * INJECT font awesome script
+injectFontAwesomeScript();
 
 // * CREATE header
 content.appendChild(createHeader());  

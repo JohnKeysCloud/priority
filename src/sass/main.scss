@@ -3,7 +3,7 @@
 @import './keyframes.scss';
 
 body {
-  background: black;
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
   font-size: clamp(0.75rem, 5vw, 0.8313rem);
 
   #content {
@@ -146,7 +146,7 @@ body {
           display: flex;
           flex-direction: column;
 
-          #project-form-container {
+          #add-project-form {
             display: grid;
             gap: $gap;
             grid-template-areas: 'input-container button-container';
@@ -324,7 +324,7 @@ body {
         box-shadow: 0px 0px 10px whitesmoke;
         display: flex;
         flex-direction: column;
-        height: min(700px, 60vh);
+        min-height: 60vh;
         justify-content: space-between;
         overflow-y: scroll;
         padding-block: 1rem;
@@ -371,9 +371,9 @@ body {
 
               // TODO:
               &:has(.task-item-checkbox:checked) {
-                opacity: 0.75;
+                opacity: 0.7;
                 text-decoration: line-through;
-                text-decoration-color: chartreuse;
+                text-decoration-color: silver;
                 transform: scale(0.99);
               }
 
@@ -430,11 +430,11 @@ body {
               }
 
               .task-item-details {
+                color: silver;
                 grid-area: details;
                 overflow-x: auto;
                 padding-bottom: 0.5rem;
                 white-space: nowrap;
-                text-shadow: 0 0 0.5em silver;
 
                 &::-webkit-scrollbar {
                   height: 3px;
@@ -464,7 +464,7 @@ body {
                   white-space: nowrap;
                 }
 
-                .task-button-container {
+                .task-item-button-container {
                   display: flex;
                   gap: 1rem;
                   overflow-y: hidden; // ? to fix stars line-height issue
@@ -491,7 +491,6 @@ body {
                       transition: all 250ms ease-in-out;
                       visibility: visible;
                       vertical-align: 5px;
-                      text-shadow: 0 0 10px silver;
                     }
 
                     &::after {
@@ -521,7 +520,7 @@ body {
               }
             }
 
-            li:last-of-type {
+            li:last-of-type:not(#placeholder-container) {
               margin-bottom: 3rem;
             }
           }
@@ -706,7 +705,7 @@ body {
           padding: 0;
 
           #add-project-container {
-            #project-form-container {
+            #add-project-form {
               grid-template-areas: 'input-container' 'button-container';
               grid-template-rows: 0fr 0fr;
 
@@ -761,7 +760,7 @@ body {
           max-height: 433px;
 
           #add-project-container {
-            #project-form-container {
+            #add-project-form {
               grid-template-areas: 
                 'input-container' 
                 'button-container';
@@ -834,7 +833,7 @@ body {
           max-height: 356px;
 
           #add-project-container {
-            #project-form-container {
+            #add-project-form {
               grid-template-areas: 'input-container button-container';
               grid-template-rows: 0fr;
 

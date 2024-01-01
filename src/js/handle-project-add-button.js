@@ -44,10 +44,13 @@ function checkListOverflow(projectList) {
 }
 
 function AddNewProject() {
-  const projectNameInput = checkTargetElementExistence('#project-name-input');
+  const projectForm = checkTargetElementExistence('#add-project-form');
+
+  const projectNameInput = projectForm.querySelector('#project-name-input');
   const projectName = projectNameInput.value.trim();
-  projectNameInput.value = '';
-  
+
+  projectForm.reset()
+
   if (!projectName) return alert('Enter Project Name');
 
   const projectObject = projectFactory(projectName);

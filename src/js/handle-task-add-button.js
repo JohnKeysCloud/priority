@@ -7,8 +7,14 @@ import { ADD_NEW_TASK } from './eventNames';
 // * LOGIC
 import { taskFactory } from './logic';
 
+// * MARKUP
+import { createTaskItem } from './create-task-item';
+
 // * EMITTERS
 import { emitToggleTaskFormVisibility } from './add-task-form-opener-button-listener';
+
+// * STATES
+import { mainState } from './handle-main';
 
 // * UTILITIES
 import { checkTargetElementExistence } from '../utilities/check-target-element-existence';
@@ -16,8 +22,34 @@ import { events } from '../utilities/pubsub';
 
 // > ---------------------------------------------------
 
+function createTaskListFragment(projectObject) {
+  const taskListFragment = document.createDocumentFragment();
+
+  projectObject.getTaskArray().forEach((task) => {
+    taskListFragment.appendChild(createTaskItem(task));
+  });
+
+  return taskListFragment;
+}
+
+function clearTaskList(taskList) {
+  while (taskList.firstChild) {
+    taskList.removeChild(taskList.firstChild);
+  }
+}
+
+function updateTaskList(projectName) {
+  const taskList = checkTargetElementExistence('#task-list');
+  const projectObject = data.getProjectObject(projectName);
+  const taskListFragment = createTaskListFragment(projectObject);
+  
+  clearTaskList(taskList);
+  taskList.appendChild(taskListFragment);
+}
+
 function addNewTask() {
   const taskForm = checkTargetElementExistence('#add-task-form');
+
   const taskNameInput = taskForm.querySelector('#title');
   const taskDetailsInput = taskForm.querySelector('#details');
   const taskDueDateInput = taskForm.querySelector('#due-date');
@@ -26,10 +58,22 @@ function addNewTask() {
   const taskDetails = taskDetailsInput.value.trim();
   const taskDueDate = taskDueDateInput.value;
 
-  // TODO: 
-  console.table([taskName, taskDetails, taskDueDate]);
-  // ! add required to name and date inputs
-  // ! add validation maybe?
+  taskForm.reset();
+
+  if (!taskName) return alert('Enter Task Name');
+  if (!taskDueDate) return alert('Enter Task Due Date');
+
+  const projectName = mainState.projectName;
+
+  const taskObject = taskFactory(taskName, projectName, taskDetails, taskDueDate);
+
+  taskObject.setProjectName(projectName);
+
+  data.addTaskToProject(projectName, taskObject);
+
+  emitToggleTaskFormVisibility();
+
+  updateTaskList(projectName);
 }
 
 function toggleTaskAddEvent(formState) {
@@ -41,7 +85,7 @@ function toggleTaskAddEvent(formState) {
   }
 }
 
-function emitInitializeTask() {
+function emitInitializeTask() {  
   events.emit(ADD_NEW_TASK);
 }
 

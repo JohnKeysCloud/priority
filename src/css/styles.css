@@ -295,7 +295,7 @@ input[type=checkbox] {
   }
 }
 body {
-  background: black;
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
   font-size: clamp(0.75rem, 5vw, 0.8313rem);
 }
 body #content {
@@ -413,7 +413,7 @@ body #content .zig-zag-nav #project-nav-list-container #add-project-container {
   display: flex;
   flex-direction: column;
 }
-body #content .zig-zag-nav #project-nav-list-container #add-project-container #project-form-container {
+body #content .zig-zag-nav #project-nav-list-container #add-project-container #add-project-form {
   display: grid;
   gap: 1.25rem;
   grid-template-areas: "input-container button-container";
@@ -421,31 +421,31 @@ body #content .zig-zag-nav #project-nav-list-container #add-project-container #p
   padding-top: 1rem;
   transform-origin: top left;
 }
-body #content .zig-zag-nav #project-nav-list-container #add-project-container #project-form-container[data-hidden=true] {
+body #content .zig-zag-nav #project-nav-list-container #add-project-container #add-project-form[data-hidden=true] {
   display: none;
 }
-body #content .zig-zag-nav #project-nav-list-container #add-project-container #project-form-container[data-hidden=closing] {
+body #content .zig-zag-nav #project-nav-list-container #add-project-container #add-project-form[data-hidden=closing] {
   animation: fade-out 380ms ease-in-out forwards;
   pointer-events: none;
 }
-body #content .zig-zag-nav #project-nav-list-container #add-project-container #project-form-container[data-hidden=false] {
+body #content .zig-zag-nav #project-nav-list-container #add-project-container #add-project-form[data-hidden=false] {
   animation: fade-in 380ms ease-in-out forwards;
   pointer-events: all;
 }
-body #content .zig-zag-nav #project-nav-list-container #add-project-container #project-form-container #project-input-container,
-body #content .zig-zag-nav #project-nav-list-container #add-project-container #project-form-container #project-buttons-container {
+body #content .zig-zag-nav #project-nav-list-container #add-project-container #add-project-form #project-input-container,
+body #content .zig-zag-nav #project-nav-list-container #add-project-container #add-project-form #project-buttons-container {
   overflow: hidden;
 }
-body #content .zig-zag-nav #project-nav-list-container #add-project-container #project-form-container #project-input-container {
+body #content .zig-zag-nav #project-nav-list-container #add-project-container #add-project-form #project-input-container {
   align-items: center;
   display: flex;
   gap: 1.25rem;
   grid-area: input-container;
 }
-body #content .zig-zag-nav #project-nav-list-container #add-project-container #project-form-container #project-input-container .list-icon-container {
+body #content .zig-zag-nav #project-nav-list-container #add-project-container #add-project-form #project-input-container .list-icon-container {
   width: 0.75rem;
 }
-body #content .zig-zag-nav #project-nav-list-container #add-project-container #project-form-container #project-input-container #project-name-input {
+body #content .zig-zag-nav #project-nav-list-container #add-project-container #add-project-form #project-input-container #project-name-input {
   appearance: none;
   background-color: rgba(0, 0, 0, 0.388);
   border: none;
@@ -454,20 +454,20 @@ body #content .zig-zag-nav #project-nav-list-container #add-project-container #p
   box-shadow: inset 0 0 3px silver;
   padding: 1rem;
 }
-body #content .zig-zag-nav #project-nav-list-container #add-project-container #project-form-container #project-input-container #project-name-input::placeholder {
+body #content .zig-zag-nav #project-nav-list-container #add-project-container #add-project-form #project-input-container #project-name-input::placeholder {
   color: rgba(255, 255, 255, 0.555);
 }
-body #content .zig-zag-nav #project-nav-list-container #add-project-container #project-form-container #project-input-container #project-name-input:focus, body #content .zig-zag-nav #project-nav-list-container #add-project-container #project-form-container #project-input-container #project-name-input:focus-visible {
+body #content .zig-zag-nav #project-nav-list-container #add-project-container #add-project-form #project-input-container #project-name-input:focus, body #content .zig-zag-nav #project-nav-list-container #add-project-container #add-project-form #project-input-container #project-name-input:focus-visible {
   outline: none;
   box-shadow: inset 0 0 5px rgb(245, 157, 63);
 }
-body #content .zig-zag-nav #project-nav-list-container #add-project-container #project-form-container #project-buttons-container {
+body #content .zig-zag-nav #project-nav-list-container #add-project-container #add-project-form #project-buttons-container {
   display: flex;
   gap: 1.25rem;
   grid-area: button-container;
 }
-body #content .zig-zag-nav #project-nav-list-container #add-project-container #project-form-container #project-buttons-container #add-project-button,
-body #content .zig-zag-nav #project-nav-list-container #add-project-container #project-form-container #project-buttons-container #cancel-add-project-button {
+body #content .zig-zag-nav #project-nav-list-container #add-project-container #add-project-form #project-buttons-container #add-project-button,
+body #content .zig-zag-nav #project-nav-list-container #add-project-container #add-project-form #project-buttons-container #cancel-add-project-button {
   border: 2px solid hsla(0, 0%, 100%, 0.25);
   border-radius: 100vw;
   color: white;
@@ -476,8 +476,8 @@ body #content .zig-zag-nav #project-nav-list-container #add-project-container #p
   padding: 15px;
   position: relative;
 }
-body #content .zig-zag-nav #project-nav-list-container #add-project-container #project-form-container #project-buttons-container #add-project-button::before,
-body #content .zig-zag-nav #project-nav-list-container #add-project-container #project-form-container #project-buttons-container #cancel-add-project-button::before {
+body #content .zig-zag-nav #project-nav-list-container #add-project-container #add-project-form #project-buttons-container #add-project-button::before,
+body #content .zig-zag-nav #project-nav-list-container #add-project-container #add-project-form #project-buttons-container #cancel-add-project-button::before {
   background: linear-gradient(to bottom, silver, silver, transparent);
   border-radius: inherit;
   content: "";
@@ -492,8 +492,8 @@ body #content .zig-zag-nav #project-nav-list-container #add-project-container #p
   width: 100%;
   z-index: -1;
 }
-body #content .zig-zag-nav #project-nav-list-container #add-project-container #project-form-container #project-buttons-container #add-project-button:hover::before,
-body #content .zig-zag-nav #project-nav-list-container #add-project-container #project-form-container #project-buttons-container #cancel-add-project-button:hover::before {
+body #content .zig-zag-nav #project-nav-list-container #add-project-container #add-project-form #project-buttons-container #add-project-button:hover::before,
+body #content .zig-zag-nav #project-nav-list-container #add-project-container #add-project-form #project-buttons-container #cancel-add-project-button:hover::before {
   transform: scale(1);
 }
 body #content .zig-zag-nav #project-nav-list-container #add-project-container #new-project-button {
@@ -563,7 +563,7 @@ body #content main #main-container {
   box-shadow: 0px 0px 10px whitesmoke;
   display: flex;
   flex-direction: column;
-  height: min(700px, 60vh);
+  min-height: 60vh;
   justify-content: space-between;
   overflow-y: scroll;
   padding-block: 1rem;
@@ -605,9 +605,9 @@ body #content main #main-container #main-content #task-list .task-item {
   transition: transform 33ms ease-in-out;
 }
 body #content main #main-container #main-content #task-list .task-item:has(.task-item-checkbox:checked) {
-  opacity: 0.75;
+  opacity: 0.7;
   text-decoration: line-through;
-  text-decoration-color: chartreuse;
+  text-decoration-color: silver;
   transform: scale(0.99);
 }
 body #content main #main-container #main-content #task-list .task-item:hover .task-item-details::-webkit-scrollbar-thumb {
@@ -655,11 +655,11 @@ body #content main #main-container #main-content #task-list .task-item .task-ite
   text-transform: uppercase;
 }
 body #content main #main-container #main-content #task-list .task-item .task-item-details {
+  color: silver;
   grid-area: details;
   overflow-x: auto;
   padding-bottom: 0.5rem;
   white-space: nowrap;
-  text-shadow: 0 0 0.5em silver;
 }
 body #content main #main-container #main-content #task-list .task-item .task-item-details::-webkit-scrollbar {
   height: 3px;
@@ -684,24 +684,24 @@ body #content main #main-container #main-content #task-list .task-item .task-rig
   text-transform: uppercase;
   white-space: nowrap;
 }
-body #content main #main-container #main-content #task-list .task-item .task-right-side-container .task-button-container {
+body #content main #main-container #main-content #task-list .task-item .task-right-side-container .task-item-button-container {
   display: flex;
   gap: 1rem;
   overflow-y: hidden;
   justify-content: center;
 }
-body #content main #main-container #main-content #task-list .task-item .task-right-side-container .task-button-container .task-priority-checkbox {
+body #content main #main-container #main-content #task-list .task-item .task-right-side-container .task-item-button-container .task-priority-checkbox {
   appearance: none;
   cursor: pointer;
   line-height: 0.5;
   position: relative;
 }
-body #content main #main-container #main-content #task-list .task-item .task-right-side-container .task-button-container .task-priority-checkbox::before, body #content main #main-container #main-content #task-list .task-item .task-right-side-container .task-button-container .task-priority-checkbox::after {
+body #content main #main-container #main-content #task-list .task-item .task-right-side-container .task-item-button-container .task-priority-checkbox::before, body #content main #main-container #main-content #task-list .task-item .task-right-side-container .task-item-button-container .task-priority-checkbox::after {
   font-size: 2rem;
   inset: 0;
   line-height: 0.5;
 }
-body #content main #main-container #main-content #task-list .task-item .task-right-side-container .task-button-container .task-priority-checkbox::before {
+body #content main #main-container #main-content #task-list .task-item .task-right-side-container .task-item-button-container .task-priority-checkbox::before {
   content: "☆";
   color: silver;
   opacity: 1;
@@ -709,9 +709,8 @@ body #content main #main-container #main-content #task-list .task-item .task-rig
   transition: all 250ms ease-in-out;
   visibility: visible;
   vertical-align: 5px;
-  text-shadow: 0 0 10px silver;
 }
-body #content main #main-container #main-content #task-list .task-item .task-right-side-container .task-button-container .task-priority-checkbox::after {
+body #content main #main-container #main-content #task-list .task-item .task-right-side-container .task-item-button-container .task-priority-checkbox::after {
   content: "★";
   color: yellow;
   opacity: 0;
@@ -720,16 +719,16 @@ body #content main #main-container #main-content #task-list .task-item .task-rig
   transition: transform 250ms ease-in-out, opacity 125ms ease-in-out;
   visibility: hidden;
 }
-body #content main #main-container #main-content #task-list .task-item .task-right-side-container .task-button-container .task-priority-checkbox:checked::after {
+body #content main #main-container #main-content #task-list .task-item .task-right-side-container .task-item-button-container .task-priority-checkbox:checked::after {
   opacity: 1;
   transform: scale(0.7);
   visibility: visible;
 }
-body #content main #main-container #main-content #task-list .task-item .task-right-side-container .task-button-container .modify-task-button {
+body #content main #main-container #main-content #task-list .task-item .task-right-side-container .task-item-button-container .modify-task-button {
   cursor: pointer;
   font-size: 1rem;
 }
-body #content main #main-container #main-content #task-list li:last-of-type {
+body #content main #main-container #main-content #task-list li:last-of-type:not(#placeholder-container) {
   margin-bottom: 3rem;
 }
 body #content main #main-container #main-content #add-task-container #add-task-form-opener-button-container {
@@ -873,11 +872,11 @@ body #content footer {
     max-height: unset;
     padding: 0;
   }
-  body #content .zig-zag-nav #project-nav-list-container #add-project-container #project-form-container {
+  body #content .zig-zag-nav #project-nav-list-container #add-project-container #add-project-form {
     grid-template-areas: "input-container" "button-container";
     grid-template-rows: 0fr 0fr;
   }
-  body #content .zig-zag-nav #project-nav-list-container #add-project-container #project-form-container #project-input-container .list-icon-container {
+  body #content .zig-zag-nav #project-nav-list-container #add-project-container #add-project-form #project-input-container .list-icon-container {
     display: none;
   }
   body #content .zig-zag-nav #project-nav-list-container #project-nav-list {
@@ -898,7 +897,7 @@ body #content footer {
   body #content .zig-zag-nav #project-nav-list-container {
     max-height: 433px;
   }
-  body #content .zig-zag-nav #project-nav-list-container #add-project-container #project-form-container {
+  body #content .zig-zag-nav #project-nav-list-container #add-project-container #add-project-form {
     grid-template-areas: "input-container" "button-container";
     grid-template-rows: 0fr 0fr;
   }
@@ -922,7 +921,7 @@ body #content footer {
   body #content .zig-zag-nav #project-nav-list-container {
     max-height: 356px;
   }
-  body #content .zig-zag-nav #project-nav-list-container #add-project-container #project-form-container {
+  body #content .zig-zag-nav #project-nav-list-container #add-project-container #add-project-form {
     grid-template-areas: "input-container button-container";
     grid-template-rows: 0fr;
   }

@@ -1,4 +1,4 @@
-function linkObjectFactory(name, data) { // abstract out targetElement.. pass in name instead
+function linkObjectFactory(name, data) {
   let state = {
     name: name,
     tasks: data, // ? all tasks (array),
@@ -44,7 +44,6 @@ function projectFactory(name) {
 
   return {
     addTask: function (task) {
-      task.setProject(this);
       state.tasks.push(task);
     },
     getTaskArray: () => {
@@ -62,29 +61,29 @@ function projectFactory(name) {
   };
 }
 
-function taskFactory(project, title, details, dueDate) {
+function taskFactory(name, projectName, details, dueDate) {
   if (
-    typeof title !== 'string' ||
-    typeof details !== 'string' ||
+    typeof name !== 'string' &&
+    typeof details !== 'string' &&
     typeof dueDate !== 'string'
   ) {
-    throw new Error('⚠️ Title, details & due-date, must all be strings');
+    throw new Error('⚠️ name, details & due-date, must all be strings');
   }
 
   let state = {
-    project: project,
-    title: title,
+    name: name,
+    projectName: projectName,
     details: details,
     dueDate: dueDate,
     priority: false,
     completed: false,
   };
   return {
-    getTitle: () => {
-      return state.title;
+    getName: () => {
+      return state.name;
     },
-    setTitle: (title) => {
-      state.title = title;
+    setName: (name) => {
+      state.name = name;
     },
     getDetails: () => {
       return state.details;
@@ -110,11 +109,11 @@ function taskFactory(project, title, details, dueDate) {
     setCompleted: (completed) => {
       state.completed = completed;
     },
-    setProject: function (project) {
-      state.project = project;
+    setProjectName: function (projectName) {
+      state.project = projectName;
     },
-    getProject: function () {
-      return state.project;
+    getProjectName: function () {
+      return state.projectName;
     },
   };
 }

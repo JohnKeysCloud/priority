@@ -7,7 +7,7 @@
 // ? const themeToggleContainer = createThemeToggleButton();
 // ? document.body.appendChild(themeToggleContainer);
 
-// * STYLES
+// * STYLESHEETS
 import './theme-toggle.scss';
 
 // > ---------------------------------------------------

@@ -33,13 +33,13 @@ function animatePreDisplayNone(targetElement) {
 
 function toggleAddTaskForm() {
   const addTaskFormContainer = checkTargetElementExistence('#add-task-form-container');
-  const taskFormState = taskComponentState.formState;
+  const currentTaskFormState = taskComponentState.formState;
 
-  if (taskFormState === 'hidden') {
+  if (currentTaskFormState === 'hidden') {
     addTaskFormContainer.setAttribute('data-hidden', false);
 
     taskComponentState.formState = 'visible';
-  } else if (taskFormState === 'visible') {
+  } else if (currentTaskFormState === 'visible') {
     setAttributes(addTaskFormContainer, {
       'data-hidden': 'closing',
       'aria-label': 'hidden',
@@ -48,7 +48,6 @@ function toggleAddTaskForm() {
     animatePreDisplayNone(addTaskFormContainer);
   }
 
-  // TODO:
   handleTaskAddButton(taskComponentState.formState);
   handleTaskCancelButton(taskComponentState.formState); 
 }
