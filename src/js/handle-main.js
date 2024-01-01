@@ -2,7 +2,7 @@
 import { data } from './data.js';
 
 // * HANDLERS
-import { addTaskFormOpenerButtonListener, addTaskFormOpenerButtonState } from './add-task-form-opener-button-listener.js';
+import { addTaskFormOpenerButtonListener, taskComponentState } from './add-task-form-opener-button-listener.js';
 import { handleNavToggleButton } from '../components/nav-toggle/handle-nav-toggle-button.js';
 import { removeAddTaskFormOpenerButtonListener } from './remove-add-task-form-opener-button-listener.js';
 
@@ -61,7 +61,7 @@ function handleMain(targetElement) {
   const mainUpdateObjectType = mainUpdateObject.getType();
   const newMainContainer = createMainContentContainer(mainUpdateObject);
   
-  const isAddTaskFormOpenerButtonAttached = addTaskFormOpenerButtonState.isListenerAttached;
+  const isAddTaskFormOpenerButtonAttached = taskComponentState.isAddTaskButtonListenerAttached;
   if (isAddTaskFormOpenerButtonAttached) {
     removeAddTaskFormOpenerButtonListener();
   }

@@ -13,6 +13,9 @@ import { projectFactory } from "./logic";
 // * MARKUP
 import { createProjectItem } from "./create-project-item";
 
+// * STATES
+import { formComponentState } from "./handle-new-project-button";
+
 // * UTILITIES
 import { events } from "../utilities/pubsub";
 import { checkTargetElementExistence } from "../utilities/check-target-element-existence";
@@ -56,12 +59,14 @@ function AddNewProject() {
   checkListOverflow(projectList);
 
   emitProjectFormVisibilityToggle(); // ? emits TOGGLE_ADD_PROJECT_FORM
+
+  formComponentState.projectFormState = 'hidden';
 }
 
 function toggleAddNewProjectEvent(formState) {
   if (formState === 'visible') {
     events.on(ADD_NEW_PROJECT, AddNewProject);
-  } else if (formState === 'hidden') {
+  } else if (formState === 'closing') {
     events.off(ADD_NEW_PROJECT, AddNewProject);
   }
 }
@@ -71,19 +76,19 @@ function emitInitializeProject() {
 }
 
 function updateAddNewProjectListener(formState) {
-  const projectAddButton = document.querySelector('#add-project-button');
+  const projectAddButton = checkTargetElementExistence('#add-project-button');
 
   if (formState === 'visible') {
     projectAddButton.addEventListener('click', emitInitializeProject);
-  } else if (formState === 'hidden') {
+  } else if (formState === 'closing') {
     projectAddButton.removeEventListener('click', emitInitializeProject);
   }
 
-  toggleAddNewProjectEvent(formState);
 }
 
 function handleProjectAddButton(formState) {
   updateAddNewProjectListener(formState);
+  toggleAddNewProjectEvent(formState);
 }
 
 export { handleProjectAddButton };

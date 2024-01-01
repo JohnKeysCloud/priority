@@ -16,13 +16,21 @@ import { setAttributes } from "../utilities/set-attributes";
 
 // > ---------------------------------------------------
 
+let formComponentState = {
+  projectFormState: 'hidden',
+}
+
 function setDisplayNone(event) {
+  formComponentState.projectFormState = 'hidden';
+
   const targetElement = event.target;
   targetElement.setAttribute('data-hidden', 'true');
   targetElement.removeEventListener('animationend', setDisplayNone);
 }
 
 function animatePreDisplayNone(targetElement) {
+  formComponentState.projectFormState = 'closing';
+
   targetElement.addEventListener('animationend', setDisplayNone); 
 }
 
@@ -30,17 +38,16 @@ function toggleAddProjectForm() {
   const projectFormContainer = checkTargetElementExistence(
     '#project-form-container'
   );
+  const projectFormState = formComponentState.projectFormState;
 
-  const isFormHidden = projectFormContainer.getAttribute('data-hidden');
-  let formState = isFormHidden === 'true' ? 'hidden' : 'visible';
-
-  if (formState === 'hidden') {
+  if (projectFormState === 'hidden') {
     setAttributes(projectFormContainer, {
       'data-hidden': 'false',
       'aria-label': 'visible',
     });
-    formState = 'visible';
-  } else if (formState === 'visible') {
+
+    formComponentState.projectFormState = 'visible';
+  } else if (projectFormState === 'visible') {
     setAttributes(projectFormContainer, {
       'data-hidden': 'closing',
       'aria-label': 'hidden',
@@ -50,12 +57,10 @@ function toggleAddProjectForm() {
 
     const projectNameInput = checkTargetElementExistence('#project-name-input');
     clearTextInput(projectNameInput);
-
-    formState = 'hidden';
   }
 
-  handleProjectAddButton(formState);
-  handleProjectCancelButton(formState);
+  handleProjectAddButton(formComponentState.projectFormState);
+  handleProjectCancelButton(formComponentState.projectFormState);
 }
 
 function toggleNewProjectButtonEventPublishing(navState) {
@@ -82,4 +87,4 @@ function handleNewProjectButton() {
   toggleNewProjectButtonEventPublishing(navState);
 }
 
-export { emitProjectFormVisibilityToggle, handleNewProjectButton };
+export { emitProjectFormVisibilityToggle, handleNewProjectButton, formComponentState };

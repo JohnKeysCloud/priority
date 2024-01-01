@@ -1,31 +1,20 @@
 // * EMITTERS
 import { emitProjectFormVisibilityToggle } from "./handle-new-project-button";
 
-// * UTILITIES
-import { checkTargetElementExistence } from "../utilities/check-target-element-existence";
-
 // > ---------------------------------------------------
 
-function toggleCancelButtonListener(isHidden) {
+function toggleCancelButtonListener(formState) {
   const cancelAddProjectButton = document.getElementById('cancel-add-project-button');
 
-  if (cancelAddProjectButton) {
-    if (!isHidden) {
+    if (formState === 'visible') { 
       cancelAddProjectButton.addEventListener('click', emitProjectFormVisibilityToggle);
-    } else {
+    } else if (formState === 'closing') {
       cancelAddProjectButton.removeEventListener('click', emitProjectFormVisibilityToggle);
-    }
   }
 }
 
-function checkTargetElementVisibility(targetElement) {
-  const isHidden = targetElement.getAttribute('data-hidden') === 'true';
-  toggleCancelButtonListener(isHidden);
-}
-
-function handleProjectCancelButton() {
-  const projectFormContainer = checkTargetElementExistence('#project-form-container');
-  checkTargetElementVisibility(projectFormContainer);
+function handleProjectCancelButton(formState) {
+  toggleCancelButtonListener(formState);
 }
 
 export { handleProjectCancelButton };

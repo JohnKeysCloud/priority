@@ -12,41 +12,45 @@ import { setAttributes } from "../utilities/set-attributes";
 
 // > ---------------------------------------------------
 
-let addTaskFormOpenerButtonState = {
-  isListenerAttached: false,
+let taskComponentState = {
+  formState: 'hidden',
+  isAddTaskButtonListenerAttached: false,
 }
 
 function setDisplayNone(event) {
+  taskComponentState.formState = 'hidden';
+
   const targetElement = event.target;
   targetElement.setAttribute('data-hidden', 'true');
   targetElement.removeEventListener('animationend', setDisplayNone);
 }
 
 function animatePreDisplayNone(targetElement) {
+  taskComponentState.formState = 'closing';
+  
   targetElement.addEventListener('animationend', setDisplayNone);
 }
 
 function toggleAddTaskForm() {
   const addTaskFormContainer = checkTargetElementExistence('#add-task-form-container');
-  const isAddTaskFormContainerHidden = addTaskFormContainer.getAttribute('data-hidden');
-  let formState = isAddTaskFormContainerHidden === 'true' ? 'hidden' : 'visible';
+  const taskFormState = taskComponentState.formState;
 
-  if (formState === 'hidden') {
+  if (taskFormState === 'hidden') {
     addTaskFormContainer.setAttribute('data-hidden', false);
-  } else if (formState === 'visible') {
+
+    taskComponentState.formState = 'visible';
+  } else if (taskFormState === 'visible') {
     setAttributes(addTaskFormContainer, {
       'data-hidden': 'closing',
       'aria-label': 'hidden',
     });
 
     animatePreDisplayNone(addTaskFormContainer);
-
-    formState = 'hidden';
   }
 
   // TODO:
-  handleTaskAddButton(formState);
-  handleTaskCancelButton(formState); 
+  handleTaskAddButton(taskComponentState.formState);
+  handleTaskCancelButton(taskComponentState.formState); 
 }
 
 function toggleAddTaskButtonEventPublishing(objectType) {
@@ -66,7 +70,7 @@ function toggleAddTaskButtonClickListener(objectType) {
 
   if (objectType === 'project') {
     addTaskFormOpenerButton.addEventListener('click', emitToggleTaskFormVisibility);
-    addTaskFormOpenerButtonState.isListenerAttached = true;
+    taskComponentState.isAddTaskButtonListenerAttached = true;
   }
 }
 
@@ -75,4 +79,4 @@ function addTaskFormOpenerButtonListener(objectType) {
   toggleAddTaskButtonEventPublishing(objectType);
 }
 
-export { addTaskFormOpenerButtonListener, emitToggleTaskFormVisibility, addTaskFormOpenerButtonState, toggleAddTaskForm };
+export { addTaskFormOpenerButtonListener, emitToggleTaskFormVisibility, taskComponentState, toggleAddTaskForm };
