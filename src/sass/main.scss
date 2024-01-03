@@ -4,13 +4,13 @@
 
 :root {
   // * FONT SIZES
-  --body-font-size: clamp(0.75rem, 1.5vw, 0.813rem);
   --h1-fs: clamp(1rem, 2.25vw, 1.25rem);
-  --h2-fs: clamp(0.875rem, 2vw, 1rem); 
-  --h3-fs: clamp(0.813rem, 2.125vw, 0.938rem);
+  --h2-fs: clamp(0.938rem, 2vw, 1.125rem); 
+  --open-form-buttons: clamp(0.813rem, 2.125vw, 0.938rem);
+  --body-font-size: clamp(0.75rem, 1.5vw, 0.813rem);
+  --task-item-date-font-size: clamp(0.625rem, 2.3vw, 0.75rem); 
   --modify-task-button-font-size: 1rem;
-  --task-item-date-font-size: clamp(0.625rem, 2.3vw, 0.75rem); // smaller than body
-  
+
   // * MAIN TEXT COLORS
   --color-text-primary: whitesmoke;
   --color-text-secondary: silver;
@@ -97,7 +97,6 @@ body {
 
         .header-title {
           font-size: var(--h1-fs);
-          font-weight: bold;
         }
       }
 
@@ -125,11 +124,11 @@ body {
       .nav-list-container {
         padding: 2rem;
 
-        &:has(.nav-link:hover) .nav-list-header::before {
+        &:has(.nav-link:hover) .nav-list-heading::before {
           opacity: 0;
         }
 
-        .nav-list-header {
+        .nav-list-heading {
           font-size: var(--h2-fs);
           text-transform: uppercase;
 
@@ -296,7 +295,7 @@ body {
           #new-project-button {
             cursor: pointer;
             color: var(--color-text-primary);
-            font-size: var(--h3-fs);
+            font-size: var(--open-form-buttons);
             position: relative;
             text-decoration: underline;
             text-transform: uppercase;
@@ -412,13 +411,16 @@ body {
               column-gap: 1.25rem;
               display: grid;
               grid-template-areas: 
-              'checkbox title right-side right-side'
-              'checkbox details right-side right-side';
+                'checkbox title right-side right-side'
+                'checkbox details right-side right-side';
+              grid-template-columns: 50px 2fr 1fr 1fr;
+              height: 4.5rem;
               margin-bottom: 1rem; 
               margin-inline: auto;
               max-width: 555px;
-              padding-block: 0.5rem;
-              padding-inline: 1.5rem;
+              padding-bottom: 0.5rem;
+              padding-top: 0.75rem;
+              padding-inline: 1.75rem;
               transition: transform 33ms ease-in-out;
 
               // TODO:
@@ -440,6 +442,7 @@ body {
               .task-checkbox-container {
                 display: grid;
                 grid-area: checkbox;
+                justify-self: start;
                 place-items: center;
 
                 .task-item-checkbox {
@@ -589,7 +592,7 @@ body {
               #add-task-form-opener-button {
                 color: var(--color-text-primary);
                 cursor: pointer;
-                font-size: var(--h3-fs);
+                font-size: var(--open-form-buttons);
                 opacity: 0.8;
                 position: relative;
                 text-decoration: underline;
@@ -865,6 +868,10 @@ body {
                 // .task-item-details {
                 // }
                 .task-right-side-container {
+                  
+                  .task-item-button-container {
+                    padding-bottom: 0.25rem;
+                  }
 
                 }
               }
@@ -919,6 +926,10 @@ body {
                 // }
                 .task-right-side-container {
                   grid-template-columns: 2fr 1fr;
+
+                  .task-item-button-container {
+                    padding-bottom: 0;
+                  }
                 }
               }
             }

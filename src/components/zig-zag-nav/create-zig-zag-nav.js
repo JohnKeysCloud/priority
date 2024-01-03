@@ -29,7 +29,7 @@ function createZigZagNav(
     listContainer.classList.add('nav-list-container');
 
     const listHeader = document.createElement('h2');
-    listHeader.classList.add('nav-list-header');
+    listHeader.classList.add('nav-list-heading');
     listHeader.textContent = list;
     zigZagNav.appendChild(listHeader);
 

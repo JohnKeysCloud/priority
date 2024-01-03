@@ -4,6 +4,8 @@ A variation of a todo list, built for <a href="https://www.theodinproject.com/le
 
 I designed and authored this project using JavaScript, CSS, SCSS and EJS for templating. 
 
+Note: I started this project during a semester of school hence why it took a little longer than usual to complete.
+
 ### - ツkc💭
 
 ## Tools

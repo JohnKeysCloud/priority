@@ -295,12 +295,12 @@ input[type=checkbox] {
   }
 }
 :root {
-  --body-font-size: clamp(0.75rem, 1.5vw, 0.813rem);
   --h1-fs: clamp(1rem, 2.25vw, 1.25rem);
-  --h2-fs: clamp(0.875rem, 2vw, 1rem);
-  --h3-fs: clamp(0.813rem, 2.125vw, 0.938rem);
-  --modify-task-button-font-size: 1rem;
+  --h2-fs: clamp(0.938rem, 2vw, 1.125rem);
+  --open-form-buttons: clamp(0.813rem, 2.125vw, 0.938rem);
+  --body-font-size: clamp(0.75rem, 1.5vw, 0.813rem);
   --task-item-date-font-size: clamp(0.625rem, 2.3vw, 0.75rem);
+  --modify-task-button-font-size: 1rem;
   --color-text-primary: whitesmoke;
   --color-text-secondary: silver;
   --container-background: linear-gradient(to bottom, hsl(0 0% 100% / 0.25), transparent);
@@ -364,7 +364,6 @@ body #content header .header-left .header-logo:hover {
 }
 body #content header .header-left .header-title {
   font-size: var(--h1-fs);
-  font-weight: bold;
 }
 body #content header .header-right {
   align-items: center;
@@ -388,14 +387,14 @@ body #content .zig-zag-nav {
 body #content .zig-zag-nav .nav-list-container {
   padding: 2rem;
 }
-body #content .zig-zag-nav .nav-list-container:has(.nav-link:hover) .nav-list-header::before {
+body #content .zig-zag-nav .nav-list-container:has(.nav-link:hover) .nav-list-heading::before {
   opacity: 0;
 }
-body #content .zig-zag-nav .nav-list-container .nav-list-header {
+body #content .zig-zag-nav .nav-list-container .nav-list-heading {
   font-size: var(--h2-fs);
   text-transform: uppercase;
 }
-body #content .zig-zag-nav .nav-list-container .nav-list-header::before {
+body #content .zig-zag-nav .nav-list-container .nav-list-heading::before {
   content: ">";
   margin-inline-end: 0.5rem;
   left: -1rem;
@@ -533,7 +532,7 @@ body #content .zig-zag-nav #project-nav-list-container #add-project-container #a
 body #content .zig-zag-nav #project-nav-list-container #add-project-container #new-project-button {
   cursor: pointer;
   color: var(--color-text-primary);
-  font-size: var(--h3-fs);
+  font-size: var(--open-form-buttons);
   position: relative;
   text-decoration: underline;
   text-transform: uppercase;
@@ -632,11 +631,14 @@ body #content main #main-container #main-content #task-list .task-item {
   column-gap: 1.25rem;
   display: grid;
   grid-template-areas: "checkbox title right-side right-side" "checkbox details right-side right-side";
+  grid-template-columns: 50px 2fr 1fr 1fr;
+  height: 4.5rem;
   margin-bottom: 1rem;
   margin-inline: auto;
   max-width: 555px;
-  padding-block: 0.5rem;
-  padding-inline: 1.5rem;
+  padding-bottom: 0.5rem;
+  padding-top: 0.75rem;
+  padding-inline: 1.75rem;
   transition: transform 33ms ease-in-out;
 }
 body #content main #main-container #main-content #task-list .task-item:has(.task-item-checkbox:checked) {
@@ -654,6 +656,7 @@ body #content main #main-container #main-content #task-list .task-item:active {
 body #content main #main-container #main-content #task-list .task-item .task-checkbox-container {
   display: grid;
   grid-area: checkbox;
+  justify-self: start;
   place-items: center;
 }
 body #content main #main-container #main-content #task-list .task-item .task-checkbox-container .task-item-checkbox {
@@ -777,7 +780,7 @@ body #content main #main-container #main-content #add-task-container #add-task-f
 body #content main #main-container #main-content #add-task-container #add-task-form-opener-button-container #add-task-form-opener-button {
   color: var(--color-text-primary);
   cursor: pointer;
-  font-size: var(--h3-fs);
+  font-size: var(--open-form-buttons);
   opacity: 0.8;
   position: relative;
   text-decoration: underline;
@@ -958,6 +961,9 @@ body #content footer {
   body #content .zig-zag-nav #project-nav-list-container #project-nav-list:hover::-webkit-scrollbar-thumb {
     background: var(--scrollbar-thumb-hover-background);
   }
+  body #content main #main-container #main-content #task-list .task-item .task-right-side-container .task-item-button-container {
+    padding-bottom: 0.25rem;
+  }
 }
 @media (min-width: 768px) {
   body #content .zig-zag-nav #project-nav-list-container {
@@ -969,6 +975,9 @@ body #content footer {
   }
   body #content main #main-container #main-content #task-list .task-item .task-right-side-container {
     grid-template-columns: 2fr 1fr;
+  }
+  body #content main #main-container #main-content #task-list .task-item .task-right-side-container .task-item-button-container {
+    padding-bottom: 0;
   }
 }
 
