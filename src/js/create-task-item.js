@@ -1,3 +1,5 @@
+import { formatDistanceToNow } from "date-fns";
+
 function createTaskItem(taskObject) {
   const taskCheckBoxContainer = document.createElement('div');
   taskCheckBoxContainer.classList.add('task-checkbox-container');
@@ -17,7 +19,8 @@ function createTaskItem(taskObject) {
 
   const taskItemDate = document.createElement('p');
   taskItemDate.classList.add('task-item-date');
-  taskItemDate.textContent = taskObject.getDueDate(); // TODO: FORMAT DATE
+  const taskItemDateDistance = formatDistanceToNow(taskObject.getDueDate(), { addSuffix: true });
+  taskItemDate.textContent = `Due ${taskItemDateDistance}`;
 
   const taskPriorityCheckbox = document.createElement('input');
   taskPriorityCheckbox.classList.add('task-priority-checkbox');
@@ -47,7 +50,10 @@ function createTaskItem(taskObject) {
   taskItem.classList.add('task-item');
   taskItem.appendChild(taskCheckBoxContainer);
   taskItem.appendChild(taskItemTitle);
-  taskItem.appendChild(taskItemDetails);
+  console.log(taskObject.getDetails());
+  if (taskObject.getDetails() !== '') {
+    taskItem.appendChild(taskItemDetails);
+  }
   taskItem.appendChild(taskRightSideContainer);
 
   // TODO:

@@ -294,9 +294,44 @@ input[type=checkbox] {
     transform: rotate(360deg);
   }
 }
+:root {
+  --body-font-size: clamp(0.75rem, 1.5vw, 0.813rem);
+  --h1-fs: clamp(1rem, 2.25vw, 1.25rem);
+  --h2-fs: clamp(0.875rem, 2vw, 1rem);
+  --h3-fs: clamp(0.813rem, 2.125vw, 0.938rem);
+  --modify-task-button-font-size: 1rem;
+  --task-item-date-font-size: clamp(0.625rem, 2.3vw, 0.75rem);
+  --color-text-primary: whitesmoke;
+  --color-text-secondary: silver;
+  --container-background: linear-gradient(to bottom, hsl(0 0% 100% / 0.25), transparent);
+  --page-background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+  --zig-zag-nav-background: hsl(0 0% 100% / 0.1);
+  --input-background: rgba(0, 0, 0, 0.388);
+  --input-box-shadow: inset 0 0 3px silver;
+  --input-placeholder-text-color: rgba(255, 255, 255, 0.555);
+  --input-focus-box-shadow: inset 0 0 5px rgb(245, 157, 63);
+  --task-item-checkbox-border: 2px ridge silver;
+  --task-item-checkbox-box-shadow: inset 0 0 3px whitesmoke;
+  --task-item-checkbox-box-shadow-checked: inset 0 0 5px chartreuse;
+  --task-item-checkbox-check-color: chartreuse;
+  --task-item-checkbox-check-text-shadow: 0 0 1px chartreuse;
+  --task-item-line-through-color: silver;
+  --add-cancel-button-border: 2px solid hsl(0, 0%, 100%, 0.25);
+  --add-cancel-button-pseudo-background: linear-gradient(to bottom, silver, silver, transparent);
+  --scrollbar-thumb-background: linear-gradient(to right, rgba(192, 192, 192, 0.35), rgba(177, 177, 177, 0.25));
+  --scrollbar-thumb-hover-background: linear-gradient(to right, silver, rgb(177, 177, 177));
+  --scrollbar-track-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  --priority-star-border-color: silver;
+  --priority-star-fill-color: yellow;
+  --priority-star-font-size: 2rem;
+  --modify-task-button-font-size: 1rem;
+  --component-border: 3px solid hsl(0 0% 100% / 0.1);
+}
+
 body {
-  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
-  font-size: clamp(0.75rem, 5vw, 0.8313rem);
+  background: var(--page-background);
+  color: var(--color-text-primary);
+  font-size: var(--body-font-size);
 }
 body #content {
   display: flex;
@@ -328,8 +363,8 @@ body #content header .header-left .header-logo:hover {
   opacity: 1;
 }
 body #content header .header-left .header-title {
-  color: white;
-  font-size: 1.5rem;
+  font-size: var(--h1-fs);
+  font-weight: bold;
 }
 body #content header .header-right {
   align-items: center;
@@ -339,7 +374,7 @@ body #content header .header-right {
 body #content .zig-zag-nav {
   -webkit-backdrop-filter: blur(1rem);
   backdrop-filter: blur(1rem);
-  background: hsla(0, 0%, 100%, 0.1);
+  background: var(--zig-zag-nav-background);
   border-bottom-left-radius: 3rem;
   border-bottom-right-radius: 3rem;
   overflow: scroll;
@@ -357,8 +392,7 @@ body #content .zig-zag-nav .nav-list-container:has(.nav-link:hover) .nav-list-he
   opacity: 0;
 }
 body #content .zig-zag-nav .nav-list-container .nav-list-header {
-  color: white;
-  font-size: 1rem;
+  font-size: var(--h2-fs);
   text-transform: uppercase;
 }
 body #content .zig-zag-nav .nav-list-container .nav-list-header::before {
@@ -372,11 +406,11 @@ body #content .zig-zag-nav .nav-list-container .nav-list-header::before {
 body #content .zig-zag-nav .nav-list-container .nav-ul {
   display: flex;
   flex-direction: column;
-  row-gap: 1.5rem;
+  row-gap: 1.25rem;
 }
 body #content .zig-zag-nav .nav-list-container .nav-ul .nav-link {
-  white-space: nowrap;
   transition: all 380ms ease-in-out;
+  white-space: nowrap;
 }
 body #content .zig-zag-nav .nav-list-container .nav-ul .nav-link::after {
   content: ">";
@@ -400,7 +434,7 @@ body #content .zig-zag-nav .nav-list-container .nav-ul .nav-link:active {
   transition: opacity 33ms ease-in-out;
 }
 body #content .zig-zag-nav #project-nav-list-container {
-  border: 3px solid hsla(0, 0%, 100%, 0.1);
+  border: var(--component-border);
   border-radius: 55px;
   display: flex;
   flex-direction: column;
@@ -447,19 +481,19 @@ body #content .zig-zag-nav #project-nav-list-container #add-project-container #a
 }
 body #content .zig-zag-nav #project-nav-list-container #add-project-container #add-project-form #project-input-container #project-name-input {
   appearance: none;
-  background-color: rgba(0, 0, 0, 0.388);
+  background: var(--input-background);
   border: none;
   border-radius: 100vw;
-  color: white;
-  box-shadow: inset 0 0 3px silver;
+  color: var(--color-text-primary);
+  box-shadow: var(--input-box-shadow);
   padding: 1rem;
 }
 body #content .zig-zag-nav #project-nav-list-container #add-project-container #add-project-form #project-input-container #project-name-input::placeholder {
-  color: rgba(255, 255, 255, 0.555);
+  color: var(--input-placeholder-text-color);
 }
 body #content .zig-zag-nav #project-nav-list-container #add-project-container #add-project-form #project-input-container #project-name-input:focus, body #content .zig-zag-nav #project-nav-list-container #add-project-container #add-project-form #project-input-container #project-name-input:focus-visible {
   outline: none;
-  box-shadow: inset 0 0 5px rgb(245, 157, 63);
+  box-shadow: var(--input-focus-box-shadow);
 }
 body #content .zig-zag-nav #project-nav-list-container #add-project-container #add-project-form #project-buttons-container {
   display: flex;
@@ -468,9 +502,9 @@ body #content .zig-zag-nav #project-nav-list-container #add-project-container #a
 }
 body #content .zig-zag-nav #project-nav-list-container #add-project-container #add-project-form #project-buttons-container #add-project-button,
 body #content .zig-zag-nav #project-nav-list-container #add-project-container #add-project-form #project-buttons-container #cancel-add-project-button {
-  border: 2px solid hsla(0, 0%, 100%, 0.25);
+  border: var(--add-cancel-button-border);
   border-radius: 100vw;
-  color: white;
+  color: var(--color-text-primary);
   cursor: pointer;
   display: inline-block;
   padding: 15px;
@@ -478,7 +512,7 @@ body #content .zig-zag-nav #project-nav-list-container #add-project-container #a
 }
 body #content .zig-zag-nav #project-nav-list-container #add-project-container #add-project-form #project-buttons-container #add-project-button::before,
 body #content .zig-zag-nav #project-nav-list-container #add-project-container #add-project-form #project-buttons-container #cancel-add-project-button::before {
-  background: linear-gradient(to bottom, silver, silver, transparent);
+  background: var(--add-cancel-button-pseudo-background);
   border-radius: inherit;
   content: "";
   display: inline-block;
@@ -498,8 +532,8 @@ body #content .zig-zag-nav #project-nav-list-container #add-project-container #a
 }
 body #content .zig-zag-nav #project-nav-list-container #add-project-container #new-project-button {
   cursor: pointer;
-  color: white;
-  font-size: 1rem;
+  color: var(--color-text-primary);
+  font-size: var(--h3-fs);
   position: relative;
   text-decoration: underline;
   text-transform: uppercase;
@@ -527,8 +561,9 @@ body #content .zig-zag-nav #project-nav-list-container #add-project-container #n
   transform: translate(-0.25rem) scale(1.01) rotate(360deg);
 }
 body #content .zig-zag-nav #project-nav-list-container #project-nav-list {
-  background: linear-gradient(to bottom, hsla(0, 0%, 100%, 0.25), transparent);
-  border-radius: 25px;
+  background: var(--container-background);
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
   column-gap: 2rem;
   flex-direction: column;
   flex-wrap: wrap;
@@ -558,9 +593,9 @@ body #content main {
 body #content main #main-container {
   -webkit-backdrop-filter: blur(1rem);
   backdrop-filter: blur(1rem);
-  background: linear-gradient(to bottom, hsla(0, 0%, 100%, 0.25), transparent);
-  border-radius: 50px;
-  box-shadow: 0px 0px 10px whitesmoke;
+  background: var(--container-background);
+  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
   display: flex;
   flex-direction: column;
   min-height: 60vh;
@@ -571,9 +606,8 @@ body #content main #main-container {
   width: min(88vw, 888px);
 }
 body #content main #main-container #main-heading {
-  color: white;
-  font-size: clamp(1.25rem, 3vw, 1.5rem);
-  margin-bottom: 1rem;
+  font-size: var(--h2-fs);
+  margin-bottom: 1.5rem;
   position: sticky;
   text-align: center;
   top: 0;
@@ -588,18 +622,19 @@ body #content main #main-container #main-content #task-list {
   width: 100%;
 }
 body #content main #main-container #main-content #task-list #placeholder-container {
-  color: white;
   display: grid;
   height: 100%;
   place-items: center;
 }
 body #content main #main-container #main-content #task-list .task-item {
-  border: 3px ridge hsla(0, 0%, 100%, 0.1);
+  border: var(--component-border);
   border-radius: 100vw;
-  gap: 0.5rem;
+  column-gap: 1.25rem;
   display: grid;
-  grid-template-areas: "checkbox title title right-side" "checkbox details details right-side";
+  grid-template-areas: "checkbox title right-side right-side" "checkbox details right-side right-side";
   margin-bottom: 1rem;
+  margin-inline: auto;
+  max-width: 555px;
   padding-block: 0.5rem;
   padding-inline: 1.5rem;
   transition: transform 33ms ease-in-out;
@@ -607,11 +642,11 @@ body #content main #main-container #main-content #task-list .task-item {
 body #content main #main-container #main-content #task-list .task-item:has(.task-item-checkbox:checked) {
   opacity: 0.7;
   text-decoration: line-through;
-  text-decoration-color: silver;
+  text-decoration-color: var(--task-item-line-through-color);
   transform: scale(0.99);
 }
 body #content main #main-container #main-content #task-list .task-item:hover .task-item-details::-webkit-scrollbar-thumb {
-  background: linear-gradient(to right, black, rgb(177, 177, 177));
+  background: var(--scrollbar-thumb-hover-background);
 }
 body #content main #main-container #main-content #task-list .task-item:active {
   transform: scale(0.99);
@@ -624,10 +659,10 @@ body #content main #main-container #main-content #task-list .task-item .task-che
 body #content main #main-container #main-content #task-list .task-item .task-checkbox-container .task-item-checkbox {
   appearance: none;
   aspect-ratio: 1/1;
-  box-shadow: inset 0 0 3px whitesmoke;
-  border: 2px ridge silver;
+  box-shadow: var(--task-item-checkbox-box-shadow);
+  border: var(--task-item-checkbox-border);
   border-radius: 50%;
-  color: chartreuse;
+  color: var(--task-item-checkbox-check-color);
   position: relative;
   width: 1rem;
 }
@@ -636,59 +671,63 @@ body #content main #main-container #main-content #task-list .task-item .task-che
   position: absolute;
   font-size: 1.75em;
   opacity: 0;
-  text-shadow: 0 0 1px chartreuse;
+  text-shadow: var(--task-item-checkbox-check-text-shadow);
   top: -0.6em;
   visibility: hidden;
   transition: all 250ms ease-in-out;
 }
 body #content main #main-container #main-content #task-list .task-item .task-checkbox-container .task-item-checkbox:checked {
-  box-shadow: inset 0 0 5px chartreuse;
+  box-shadow: var(--task-item-checkbox-box-shadow-checked);
 }
 body #content main #main-container #main-content #task-list .task-item .task-checkbox-container .task-item-checkbox:checked::before {
   opacity: 1;
   visibility: visible;
 }
 body #content main #main-container #main-content #task-list .task-item .task-item-title {
-  color: white;
-  font-size: clamp(0.75rem, 5.5vw, 0.875rem);
+  font-size: var(--body-font-size);
   grid-area: title;
   text-transform: uppercase;
 }
 body #content main #main-container #main-content #task-list .task-item .task-item-details {
-  color: silver;
+  color: var(--color-text-secondary);
   grid-area: details;
   overflow-x: auto;
-  padding-bottom: 0.5rem;
+  padding-bottom: 0.25rem;
   white-space: nowrap;
 }
 body #content main #main-container #main-content #task-list .task-item .task-item-details::-webkit-scrollbar {
   height: 3px;
 }
 body #content main #main-container #main-content #task-list .task-item .task-item-details::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 100vw;
+  box-shadow: var(--scrollbar-track-box-shadow);
 }
 body #content main #main-container #main-content #task-list .task-item .task-item-details::-webkit-scrollbar-thumb {
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(177, 177, 177, 0.25));
+  background: var(--scrollbar-thumb-background);
   border-radius: 100vw;
   transition: background 380ms ease-in-out;
 }
 body #content main #main-container #main-content #task-list .task-item .task-right-side-container {
+  align-items: center;
   align-self: center;
   display: grid;
   grid-area: right-side;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
 }
 body #content main #main-container #main-content #task-list .task-item .task-right-side-container .task-item-date {
-  color: silver;
-  font-size: clamp(0.625rem, 2.4vw, 0.8313rem);
+  color: var(--color-text-secondary);
+  font-size: var(--task-item-date-font-size);
+  justify-self: end;
+  text-align: center;
   text-transform: uppercase;
   white-space: nowrap;
 }
 body #content main #main-container #main-content #task-list .task-item .task-right-side-container .task-item-button-container {
+  align-items: center;
   display: flex;
   gap: 1rem;
   overflow-y: hidden;
-  justify-content: center;
+  justify-content: end;
 }
 body #content main #main-container #main-content #task-list .task-item .task-right-side-container .task-item-button-container .task-priority-checkbox {
   appearance: none;
@@ -697,13 +736,13 @@ body #content main #main-container #main-content #task-list .task-item .task-rig
   position: relative;
 }
 body #content main #main-container #main-content #task-list .task-item .task-right-side-container .task-item-button-container .task-priority-checkbox::before, body #content main #main-container #main-content #task-list .task-item .task-right-side-container .task-item-button-container .task-priority-checkbox::after {
-  font-size: 2rem;
+  font-size: var(--priority-star-font-size);
   inset: 0;
   line-height: 0.5;
 }
 body #content main #main-container #main-content #task-list .task-item .task-right-side-container .task-item-button-container .task-priority-checkbox::before {
   content: "☆";
-  color: silver;
+  color: var(--priority-star-border-color);
   opacity: 1;
   position: relative;
   transition: all 250ms ease-in-out;
@@ -712,7 +751,7 @@ body #content main #main-container #main-content #task-list .task-item .task-rig
 }
 body #content main #main-container #main-content #task-list .task-item .task-right-side-container .task-item-button-container .task-priority-checkbox::after {
   content: "★";
-  color: yellow;
+  color: var(--priority-star-fill-color);
   opacity: 0;
   position: absolute;
   transform: scale(0);
@@ -726,7 +765,7 @@ body #content main #main-container #main-content #task-list .task-item .task-rig
 }
 body #content main #main-container #main-content #task-list .task-item .task-right-side-container .task-item-button-container .modify-task-button {
   cursor: pointer;
-  font-size: 1rem;
+  font-size: var(--modify-task-button-font-size);
 }
 body #content main #main-container #main-content #task-list li:last-of-type:not(#placeholder-container) {
   margin-bottom: 3rem;
@@ -736,9 +775,9 @@ body #content main #main-container #main-content #add-task-container #add-task-f
   text-align: center;
 }
 body #content main #main-container #main-content #add-task-container #add-task-form-opener-button-container #add-task-form-opener-button {
-  color: white;
+  color: var(--color-text-primary);
   cursor: pointer;
-  font-size: 1rem;
+  font-size: var(--h3-fs);
   opacity: 0.8;
   position: relative;
   text-decoration: underline;
@@ -788,22 +827,21 @@ body #content main #main-container #main-content #add-task-container #add-task-f
   width: min(500px, 100%);
 }
 body #content main #main-container #main-content #add-task-container #add-task-form-container #add-task-form #add-task-button-container {
-  color: white;
   display: flex;
   gap: 1rem;
   justify-content: center;
 }
 body #content main #main-container #main-content #add-task-container #add-task-form-container #add-task-form #add-task-button-container .add-task-button {
-  border: 2px solid hsla(0, 0%, 100%, 0.25);
+  border: var(--add-cancel-button-border);
   border-radius: 100vw;
-  color: white;
+  color: var(--color-text-primary);
   cursor: pointer;
   padding: 15px;
   position: relative;
   text-transform: uppercase;
 }
 body #content main #main-container #main-content #add-task-container #add-task-form-container #add-task-form #add-task-button-container .add-task-button::before {
-  background: linear-gradient(to bottom, silver, silver, transparent);
+  background: var(--add-cancel-button-pseudo-background);
   border-radius: inherit;
   content: "";
   display: inline-block;
@@ -826,26 +864,25 @@ body #content main #main-container #main-content #add-task-container #add-task-f
   gap: 0.5rem;
 }
 body #content main #main-container #main-content #add-task-container #add-task-form-container #add-task-form .input-container .add-task-label {
-  color: white;
-  font-size: clamp(0.75rem, 5.5vw, 0.875rem);
+  font-size: var(--body-font-size);
   text-transform: uppercase;
 }
 body #content main #main-container #main-content #add-task-container #add-task-form-container #add-task-form .input-container .add-task-input {
   appearance: none;
-  background-color: rgba(0, 0, 0, 0.388);
+  background: var(--input-background);
   border: none;
-  box-shadow: inset 0 0 3px silver;
-  color: white;
+  box-shadow: var(--input-box-shadow);
+  color: var(--color-text-primary);
   border-radius: 100vw;
   padding-block: 0.25rem;
   padding-inline: 1rem;
 }
 body #content main #main-container #main-content #add-task-container #add-task-form-container #add-task-form .input-container .add-task-input:focus, body #content main #main-container #main-content #add-task-container #add-task-form-container #add-task-form .input-container .add-task-input:focus-visible {
   outline: none;
-  box-shadow: inset 0 0 5px rgb(245, 157, 63);
+  box-shadow: var(--input-focus-box-shadow);
 }
 body #content main #main-container #main-content #add-task-container #add-task-form-container #add-task-form .input-container .add-task-input::placeholder, body #content main #main-container #main-content #add-task-container #add-task-form-container #add-task-form .input-container .add-task-input[type=date]:invalid {
-  color: rgba(255, 255, 255, 0.555);
+  color: var(--input-placeholder-text-color);
 }
 body #content footer {
   background-color: green;
@@ -888,8 +925,10 @@ body #content footer {
   body #content main #main-container #main-content #task-list {
     padding-inline: 1rem;
   }
+  body #content main #main-container #main-content #task-list .task-item {
+    grid-template-areas: "checkbox title title right-side" "checkbox details details right-side";
+  }
   body #content main #main-container #main-content #task-list .task-item .task-right-side-container {
-    align-self: start;
     grid-template-columns: 1fr;
   }
 }
@@ -909,12 +948,15 @@ body #content footer {
   }
   body #content .zig-zag-nav #project-nav-list-container #project-nav-list::-webkit-scrollbar-track {
     border-radius: 100vw;
-    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    box-shadow: var(--scrollbar-track-box-shadow);
   }
   body #content .zig-zag-nav #project-nav-list-container #project-nav-list::-webkit-scrollbar-thumb {
-    background: linear-gradient(to bottom, white, silver);
+    background: var(--scrollbar-thumb-background);
     border-radius: 100vw;
     transition: background 380ms ease-in-out;
+  }
+  body #content .zig-zag-nav #project-nav-list-container #project-nav-list:hover::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb-hover-background);
   }
 }
 @media (min-width: 768px) {
@@ -924,6 +966,9 @@ body #content footer {
   body #content .zig-zag-nav #project-nav-list-container #add-project-container #add-project-form {
     grid-template-areas: "input-container button-container";
     grid-template-rows: 0fr;
+  }
+  body #content main #main-container #main-content #task-list .task-item .task-right-side-container {
+    grid-template-columns: 2fr 1fr;
   }
 }
 

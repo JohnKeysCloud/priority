@@ -2,9 +2,63 @@
 @import './cyclone-reset.scss';
 @import './keyframes.scss';
 
+:root {
+  // * FONT SIZES
+  --body-font-size: clamp(0.75rem, 1.5vw, 0.813rem);
+  --h1-fs: clamp(1rem, 2.25vw, 1.25rem);
+  --h2-fs: clamp(0.875rem, 2vw, 1rem); 
+  --h3-fs: clamp(0.813rem, 2.125vw, 0.938rem);
+  --modify-task-button-font-size: 1rem;
+  --task-item-date-font-size: clamp(0.625rem, 2.3vw, 0.75rem); // smaller than body
+  
+  // * MAIN TEXT COLORS
+  --color-text-primary: whitesmoke;
+  --color-text-secondary: silver;
+  
+  // * BACKGROUND COLORS
+  --container-background: linear-gradient(to bottom, hsl(0 0% 100% / 0.25), transparent);
+  --page-background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+  --zig-zag-nav-background: hsl(0 0% 100% / 0.1);
+  
+  // * INPUT
+  --input-background: rgba(0, 0, 0, 0.388);
+  --input-box-shadow: inset 0 0 3px silver;
+  --input-placeholder-text-color: rgba(255, 255, 255, 0.555);
+  --input-focus-box-shadow: inset 0 0 5px rgb(245, 157, 63);
+  
+  // * TASK ITEM
+  --task-item-checkbox-border: 2px ridge silver;
+  --task-item-checkbox-box-shadow: inset 0 0 3px whitesmoke;
+  --task-item-checkbox-box-shadow-checked: inset 0 0 5px chartreuse;
+  --task-item-checkbox-check-color: chartreuse;
+  --task-item-checkbox-check-text-shadow: 0 0 1px chartreuse;
+  --task-item-line-through-color: silver;
+  
+  // * ADD/CANCEL BUTTON
+  --add-cancel-button-border: 2px solid hsl(0, 0%, 100%, 0.25);
+  --add-cancel-button-pseudo-background: linear-gradient(to bottom, silver, silver, transparent);
+  
+  // * SCROLLBAR
+  --scrollbar-thumb-background: linear-gradient(to right, rgba(192, 192, 192, 0.35), rgba(177, 177, 177, 0.25));
+  --scrollbar-thumb-hover-background: linear-gradient(to right, silver, rgb(177, 177, 177));
+  --scrollbar-track-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+
+  // * PRIORITY STAR
+  --priority-star-border-color: silver;
+  --priority-star-fill-color: yellow;
+  --priority-star-font-size: 2rem;
+  
+  // * MODIFY TASK BUTTON (3 dots)
+  --modify-task-button-font-size: 1rem;
+
+  // * COMPONENT BORDER
+  --component-border: 3px solid hsl(0 0% 100% / 0.1);
+}
+
 body {
-  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
-  font-size: clamp(0.75rem, 5vw, 0.8313rem);
+  background: var(--page-background);
+  color: var(--color-text-primary);
+  font-size: var(--body-font-size);
 
   #content {
     display: flex;
@@ -12,7 +66,6 @@ body {
     font-family: 'Space Mono', 'Courier New', Courier, monospace;
 
     $content-inline-padding: 1rem;
-
     $logo-height: clamp(50px, 8vw, 55px);
     $header-left-gap: 0.5rem;
 
@@ -43,9 +96,8 @@ body {
         }
 
         .header-title {
-          color: white;
-          // font-size: clamp(1rem, 5vw, 2rem);
-          font-size: 1.5rem
+          font-size: var(--h1-fs);
+          font-weight: bold;
         }
       }
 
@@ -59,7 +111,7 @@ body {
     .zig-zag-nav {
       -webkit-backdrop-filter: blur(1rem);
       backdrop-filter: blur(1rem);
-      background: hsl(0 0% 100% / 0.1);
+      background: var(--zig-zag-nav-background);
       border-bottom-left-radius: 3rem;
       border-bottom-right-radius: 3rem;
       overflow: scroll;
@@ -78,8 +130,7 @@ body {
         }
 
         .nav-list-header {
-          color: white;
-          font-size: 1rem;
+          font-size: var(--h2-fs);
           text-transform: uppercase;
 
           &::before {
@@ -95,11 +146,11 @@ body {
         .nav-ul {
           display: flex;
           flex-direction: column;
-          row-gap: 1.5rem;
+          row-gap: 1.25rem;
 
           .nav-link {
-            white-space: nowrap;
             transition: all 380ms ease-in-out;
+            white-space: nowrap;
 
             // ? .nav-link::before used in zigZagNav styling
             &::after {
@@ -131,7 +182,7 @@ body {
       }
       
       #project-nav-list-container {
-        border: 3px solid hsl(0 0% 100% / 0.1);
+        border: var(--component-border);
         border-radius: 55px;
         display: flex;
         flex-direction: column;
@@ -185,21 +236,21 @@ body {
 
               #project-name-input {
                 appearance: none;
-                background-color: rgba(0, 0, 0, 0.388);
+                background: var(--input-background);
                 border: none;
                 border-radius: 100vw;
-                color: white;
-                box-shadow: inset 0 0 3px silver;
+                color: var(--color-text-primary);
+                box-shadow: var(--input-box-shadow);
                 padding: 1rem;
 
                 &::placeholder {
-                  color: rgba(255, 255, 255, 0.555);
+                  color: var(--input-placeholder-text-color);
                 }
 
                 &:focus,
                 &:focus-visible {
                   outline: none;
-                  box-shadow: inset 0 0 5px rgb(245, 157, 63);
+                  box-shadow: var(--input-focus-box-shadow);
                 }
               } 
             }
@@ -211,16 +262,16 @@ body {
 
               #add-project-button,
               #cancel-add-project-button {
-                border: 2px solid hsl(0 0% 100% / 0.25);
+                border: var(--add-cancel-button-border);
                 border-radius: 100vw;
-                color: white;
+                color: var(--color-text-primary);
                 cursor: pointer;
                 display:inline-block;
                 padding: 15px;
                 position: relative;
 
                 &::before {
-                  background: linear-gradient(to bottom, silver, silver, transparent);
+                  background: var(--add-cancel-button-pseudo-background);
                   border-radius: inherit;
                   content: '';
                   display: inline-block;
@@ -244,8 +295,8 @@ body {
 
           #new-project-button {
             cursor: pointer;
-            color: white;
-            font-size: 1rem;
+            color: var(--color-text-primary);
+            font-size: var(--h3-fs);
             position: relative;
             text-decoration: underline;
             text-transform: uppercase;
@@ -280,8 +331,9 @@ body {
         }
         
         #project-nav-list {
-          background: linear-gradient(to bottom, hsl(0 0% 100% / 0.25), transparent);
-          border-radius: 25px;
+          background: var(--container-background);
+          border-top-left-radius: 25px;
+          border-top-right-radius: 25px;
           column-gap: 2rem;
           flex-direction: column;
           flex-wrap: wrap;
@@ -319,9 +371,9 @@ body {
       #main-container {
         -webkit-backdrop-filter: blur(1rem);
         backdrop-filter: blur(1rem);
-        background: linear-gradient(to bottom, hsl(0 0% 100% / 0.25), transparent);
-        border-radius: 50px;
-        box-shadow: 0px 0px 10px whitesmoke;
+        background: var(--container-background);
+        border-top-left-radius: 50px;
+        border-top-right-radius: 50px;
         display: flex;
         flex-direction: column;
         min-height: 60vh;
@@ -332,9 +384,8 @@ body {
         width: min(88vw, 888px);
 
         #main-heading {
-          color: white;
-          font-size: clamp(1.25rem, 3vw, 1.5rem);
-          margin-bottom: 1rem;
+          font-size: var(--h2-fs);
+          margin-bottom: 1.5rem;
           position: sticky;
           text-align: center;
           top: 0;
@@ -350,21 +401,22 @@ body {
             width: 100%;
 
             #placeholder-container {
-              color: white;
               display: grid;
               height: 100%;
               place-items: center;
             } 
             
             .task-item {
-              border: 3px ridge hsl(0 0% 100% / 0.1);
+              border: var(--component-border);
               border-radius: 100vw;
-              gap: 0.5rem;
+              column-gap: 1.25rem;
               display: grid;
               grid-template-areas: 
-              'checkbox title title right-side'
-              'checkbox details details right-side';
+              'checkbox title right-side right-side'
+              'checkbox details right-side right-side';
               margin-bottom: 1rem; 
+              margin-inline: auto;
+              max-width: 555px;
               padding-block: 0.5rem;
               padding-inline: 1.5rem;
               transition: transform 33ms ease-in-out;
@@ -373,12 +425,12 @@ body {
               &:has(.task-item-checkbox:checked) {
                 opacity: 0.7;
                 text-decoration: line-through;
-                text-decoration-color: silver;
+                text-decoration-color: var(--task-item-line-through-color);
                 transform: scale(0.99);
               }
 
               &:hover .task-item-details::-webkit-scrollbar-thumb {
-                background: linear-gradient(to right, black, rgb(177, 177, 177));
+                background: var(--scrollbar-thumb-hover-background);
               }
 
               &:active {
@@ -393,10 +445,10 @@ body {
                 .task-item-checkbox {
                   appearance: none;
                   aspect-ratio: 1 / 1;
-                  box-shadow: inset 0 0 3px whitesmoke;
-                  border: 2px ridge silver;
+                  box-shadow: var(--task-item-checkbox-box-shadow);
+                  border: var(--task-item-checkbox-border);
                   border-radius: 50%;
-                  color: chartreuse;
+                  color: var(--task-item-checkbox-check-color);
                   // ? color set here so that Windows' High-Contrast Mode can override
                   position: relative;
                   width: 1rem;
@@ -406,14 +458,14 @@ body {
                     position: absolute;
                     font-size: 1.75em;
                     opacity: 0;
-                    text-shadow: 0 0 1px chartreuse;
+                    text-shadow: var(--task-item-checkbox-check-text-shadow);
                     top: -0.6em;
                     visibility: hidden;
                     transition: all 250ms ease-in-out;
                   }
                   
                   &:checked {
-                    box-shadow: inset 0 0 5px chartreuse;
+                    box-shadow: var(--task-item-checkbox-box-shadow-checked);
                     &::before {
                       opacity: 1;
                       visibility: visible;
@@ -423,17 +475,16 @@ body {
               }
 
               .task-item-title {
-                color: white;
-                font-size: clamp(0.75rem, 5.5vw, 0.875rem);
+                font-size: var(--body-font-size);
                 grid-area: title;
                 text-transform: uppercase;
               }
 
               .task-item-details {
-                color: silver;
+                color: var(--color-text-secondary);
                 grid-area: details;
                 overflow-x: auto;
-                padding-bottom: 0.5rem;
+                padding-bottom: 0.25rem;
                 white-space: nowrap;
 
                 &::-webkit-scrollbar {
@@ -441,34 +492,39 @@ body {
                 }
                 
                 &::-webkit-scrollbar-track {
-                  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);              
+                  border-radius: 100vw;
+                  box-shadow: var(--scrollbar-track-box-shadow);              
                 }
                 
                 &::-webkit-scrollbar-thumb {
-                  background: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(177, 177, 177, 0.25));
+                  background: var(--scrollbar-thumb-background);
                   border-radius: 100vw;
                   transition: background 380ms ease-in-out;
                 }
               }
 
               .task-right-side-container {
+                align-items: center;
                 align-self: center;
                 display: grid;
                 grid-area: right-side;
-                grid-template-columns: 1fr 1fr;
+                grid-template-columns: 1fr;
 
                 .task-item-date {
-                  color: silver;
-                  font-size: clamp(0.625rem, 2.4vw, 0.8313rem);
+                  color: var(--color-text-secondary);
+                  font-size: var(--task-item-date-font-size);
+                  justify-self: end;
+                  text-align: center;
                   text-transform: uppercase;
                   white-space: nowrap;
                 }
 
                 .task-item-button-container {
+                  align-items: center;
                   display: flex;
                   gap: 1rem;
                   overflow-y: hidden; // ? to fix stars line-height issue
-                  justify-content: center;
+                  justify-content: end;
 
                   .task-priority-checkbox {
                     appearance: none;
@@ -478,14 +534,14 @@ body {
 
                     &::before,
                     &::after  {
-                      font-size: 2rem;
+                      font-size: var(--priority-star-font-size);
                       inset: 0;
                       line-height: 0.50;
                     }
 
                     &::before {
                       content: "☆";
-                      color: silver;
+                      color: var(--priority-star-border-color);
                       opacity: 1;
                       position: relative;
                       transition: all 250ms ease-in-out;
@@ -495,7 +551,7 @@ body {
 
                     &::after {
                       content : "★";
-                      color: yellow;
+                      color: var(--priority-star-fill-color);
                       opacity: 0;
                       position: absolute;
                       transform: scale(0);
@@ -514,7 +570,7 @@ body {
 
                   .modify-task-button {
                     cursor: pointer;
-                    font-size: 1rem;
+                    font-size: var(--modify-task-button-font-size);
                   }
                 }
               }
@@ -531,9 +587,9 @@ body {
               text-align: center;
 
               #add-task-form-opener-button {
-                color: white;
+                color: var(--color-text-primary);
                 cursor: pointer;
-                font-size: 1rem;
+                font-size: var(--h3-fs);
                 opacity: 0.8;
                 position: relative;
                 text-decoration: underline;
@@ -592,22 +648,21 @@ body {
                 width: min(500px, 100%);
 
                 #add-task-button-container {
-                  color: white;
                   display: flex;
                   gap: 1rem;
                   justify-content: center;
 
                   .add-task-button {
-                    border: 2px solid hsl(0, 0%, 100%, 0.25);
+                    border: var(--add-cancel-button-border);
                     border-radius: 100vw;
-                    color: white;
+                    color: var(--color-text-primary);
                     cursor: pointer;
                     padding: 15px;
                     position: relative;
                     text-transform: uppercase;
 
                     &::before {
-                      background: linear-gradient(to bottom, silver, silver, transparent);
+                      background: var(--add-cancel-button-pseudo-background);
                       border-radius: inherit;
                       content: '';
                       display: inline-block;
@@ -629,39 +684,35 @@ body {
                 }
 
                 .input-container {
-                display: flex;
-                flex-direction: column;
-                gap: 0.5rem;
+                  display: flex;
+                  flex-direction: column;
+                  gap: 0.5rem;
               
-                .add-task-label {
-                  color: white;
-                  font-size: clamp(0.75rem, 5.5vw, 0.875rem);
-                  // font-weight: bold;
-                  text-transform: uppercase;
-                }
+                  .add-task-label {
+                    font-size: var(--body-font-size);
+                    text-transform: uppercase;
+                  }
               
-                .add-task-input {
-                  appearance: none;
-                  background-color: rgba(0, 0, 0, 0.388);
-                  border: none;
-                  box-shadow: inset 0 0 3px silver;
-                  color: white;
-                  border-radius: 100vw;
-                  padding-block: 0.25rem;
-                  padding-inline: 1rem;
+                  .add-task-input {
+                    appearance: none;
+                    background: var(--input-background);
+                    border: none;
+                    box-shadow: var(--input-box-shadow);
+                    color: var(--color-text-primary);
+                    border-radius: 100vw;
+                    padding-block: 0.25rem;
+                    padding-inline: 1rem;
 
-                  &:focus,
-                  &:focus-visible {
-                    outline: none;
-                    box-shadow: inset 0 0 5px rgb(245, 157, 63);
+                    &:focus,
+                    &:focus-visible {
+                      outline: none;
+                      box-shadow: var(--input-focus-box-shadow);
+                    }
+                    &::placeholder,
+                    &[type='date']:invalid {
+                      color: var(--input-placeholder-text-color);
+                    }
                   }
-
-
-                  &::placeholder,
-                  &[type='date']:invalid {
-                    color:  rgba(255, 255, 255, 0.555);
-                  }
-                }
                 }     
               }
             }
@@ -698,9 +749,9 @@ body {
         #project-nav-list-container {
           border: none;
           grid-template-areas: 
-          'heading'
-          'add-project'
-          'project-list';
+            'heading'
+            'add-project'
+            'project-list';
           max-height: unset;
           padding: 0;
 
@@ -724,7 +775,6 @@ body {
             flex-direction: column;
             padding: 1.125rem;
             flex-wrap: nowrap;
-            // width: fit-content;
           }
         }
       }
@@ -735,10 +785,13 @@ body {
               padding-inline: 1rem;  
               .task-item {
 
+                grid-template-areas: 
+                  'checkbox title title right-side'
+                  'checkbox details details right-side';
+
                 // .task-item-details {
                 // }
                 .task-right-side-container {
-                  align-self: start;
                   // border: 2px solid red;
                   grid-template-columns: 1fr;
                 }
@@ -788,13 +841,17 @@ body {
           
             &::-webkit-scrollbar-track {
               border-radius: 100vw;
-              box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);              
+              box-shadow: var(--scrollbar-track-box-shadow);              
             }
 
             &::-webkit-scrollbar-thumb {
-              background: linear-gradient(to bottom, white, silver);
+              background: var(--scrollbar-thumb-background);
               border-radius: 100vw;
               transition: background 380ms ease-in-out;
+            }
+
+            &:hover::-webkit-scrollbar-thumb {
+                background: var(--scrollbar-thumb-hover-background);
             }
           }
         }
@@ -861,7 +918,7 @@ body {
                 // .task-item-details {
                 // }
                 .task-right-side-container {
-
+                  grid-template-columns: 2fr 1fr;
                 }
               }
             }
