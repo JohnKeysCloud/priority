@@ -1,9 +1,6 @@
 // * DATA
 import { data } from './data.js';
 
-// * EVENTS
-import { events } from '../utilities/pubsub.js';
-
 // * LOGIC
 import { linkObjectFactory } from './logic.js';
 
