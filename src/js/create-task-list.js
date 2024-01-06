@@ -1,35 +1,30 @@
-// * DATA
-import { data } from './data.js';
-
 // * MARKUP
 import { createTaskItem } from './create-task-item';
 import { createTaskListPlaceholder } from './create-task-list-placeholder.js'
 
-// * STATES
-import { mainState } from './handle-main.js';
-
-// * UTILITIES
-import { checkTargetElementExistence } from '../utilities/check-target-element-existence.js';
-
 // > ---------------------------------------------------
 
 function getTaskListContent(mainUpdateObject) {
-  const taskArray = mainUpdateObject.getTaskArray();
-  const mainUpdateObjectType = mainUpdateObject.getType();
+const taskArray = mainUpdateObject.getTaskArray();
+  const mainUpdateObjectType = mainUpdateObject.getType(); 
   
   if (taskArray.length === 0 && mainUpdateObjectType === 'link') {
     const taskListPlaceholder = createTaskListPlaceholder();
 
     return taskListPlaceholder
 
-  } else {
+  } else if (taskArray.length > 0) {
     const taskListFragment = document.createDocumentFragment();
+
+    if (taskArray.length > 1) mainUpdateObject.sortTaskArray();
     
     taskArray.forEach((task) => {
       taskListFragment.appendChild(createTaskItem(task));
     });
 
     return taskListFragment;
+  } else {
+    return
   }
 }
 
@@ -39,7 +34,9 @@ function createTaskList(mainUpdateObject) {
 
   const taskListContent = getTaskListContent(mainUpdateObject);
 
-  taskList.appendChild(taskListContent);
+  if (taskListContent) {
+    taskList.appendChild(taskListContent);
+  }
 
   return taskList;
 }

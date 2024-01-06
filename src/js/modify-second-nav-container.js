@@ -1,6 +1,8 @@
 // * MARKUP
 import { createAddProjectContainer } from './create-add-project-form.js';
 
+// > --------------------------------------------------------------
+
 function modifySecondNavContainer() {
   const projectNavListContainer = document.querySelector(
     '.nav-list-container:nth-child(2)'

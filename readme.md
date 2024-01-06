@@ -1,6 +1,6 @@
 # priority ⏳
 
-A variation of a todo list, built for <a href="https://www.theodinproject.com/lessons/todo-list" target="_blank">The Odin Project</a>. The purpose of this project was to demonstrate data wrangling while implementing SOLID principles, incorporate **Webpack** to bundle JavaScript modules, handle asset management, compile SASS styles to CSS & various other **NPM** packages into the workflow.
+A variation of a todo list, built for <a href="https://www.theodinproject.com/lessons/todo-list" target="_blank">The Odin Project</a>. The purpose of this project was to demonstrate data wrangling while implementing SOLID principles, incorporate **Webpack** to bundle JavaScript modules, handle asset management, compile SASS styles to CSS & various other **NPM** packages into the workflow. I applied the pub/sub design pattern to create the **SPA** (single page application) in order to create a separation of concerns between the data and the DOM thorughly to avoid any possible memory leaks. I also used **localStorage** to persist data on the client-side.
 
 I designed and authored this project using JavaScript, CSS, SCSS and EJS for templating. 
 

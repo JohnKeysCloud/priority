@@ -2,6 +2,8 @@
 import { createTaskList } from "./create-task-list";
 import { createAddTaskContainer } from "./create-add-task-container";
 
+// * UTILITIES
+
 // > ---------------------------------------------------
 
 function createMainContentContainer(mainUpdateObject) {
@@ -12,6 +14,7 @@ function createMainContentContainer(mainUpdateObject) {
   
   const mainContent = document.createElement('div');
   mainContent.setAttribute('id', 'main-content');
+
   mainContent.appendChild(createTaskList(mainUpdateObject));
   
   const objectType = mainUpdateObject.getType();

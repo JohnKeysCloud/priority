@@ -1,3 +1,8 @@
+// * DEPENDENCIES
+import { parseISO, compareAsc } from 'date-fns';
+
+// > --------------------------------------------------------------
+
 function linkObjectFactory(name, data) {
   let state = {
     name: name,
@@ -15,15 +20,22 @@ function linkObjectFactory(name, data) {
     getShallowCopy: () => {
       return { ...state };
     },
-    // TODO:
-    arrangeTasks: (targetElement) => {
-      if (targetElement.getAttribute('data-arrange-method') === 'sort') {
-        // ! console.log('sort me');
-      } else if (
-        targetElement.getAttribute('data-arrange-method') === 'filter'
-      ) {
-        // ! console.log('filter me');
-      }
+    sortTaskArray: () => {
+      const taskArray = state.tasks;
+
+      taskArray.sort((a, b) => {
+        // * callback is a function that returns a date string
+
+        const dateStringA = a.getDueDate();
+        const dateStringB = b.getDueDate();
+
+        // * parseISO converts the date string into a Date object
+        const dateA = parseISO(dateStringA);
+        const dateB = parseISO(dateStringB);
+
+        // * compareAsc compares the two dates and returns a number
+        return compareAsc(dateA, dateB);
+      });
     },
     getTaskArray: () => {
       return state.tasks;
@@ -43,23 +55,42 @@ function projectFactory(name) {
   };
 
   return {
-    addTask: function (task) {
-      state.tasks.push(task);
-    },
-    getTaskArray: () => {
-      return state.tasks;
-    },
     getName: () => {
       return state.name;
-    },
-    getType: () => {
-      return state.type;
     },
     setName: (name) => {
       state.name = name;
     },
+    getType: () => {
+      return state.type;
+    },
+    addTask: function (task) {
+      state.tasks.push(task);
+    },
+    sortTaskArray: () => {
+      const taskArray = state.tasks;
+
+      taskArray.sort((a, b) => {
+        // * callback is a function that returns a date string
+
+        const dateStringA = a.getDueDate();
+        const dateStringB = b.getDueDate();
+
+        // * parseISO converts the date string into a Date object
+        const dateA = parseISO(dateStringA);
+        const dateB = parseISO(dateStringB);
+
+        // * compareAsc compares the two dates and returns a number
+        return compareAsc(dateA, dateB);
+      });
+    },
+    getTaskArray: () => {
+      return state.tasks;
+    },
   };
 }
+
+// TODO:: combine link object factory and project factory
 
 function taskFactory(name, projectName, details, dueDate) {
   if (

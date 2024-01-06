@@ -1,7 +1,7 @@
 function projectsEncapsulation() {
   const encapsulatedProjectArray = [];
-  
-  return {    
+
+  return {
     addTaskToProject: (projectName, task) => {
       const project = encapsulatedProjectArray.find(
         (project) => project.getName() === projectName
@@ -21,23 +21,22 @@ function projectsEncapsulation() {
       encapsulatedProjectArray.push(project);
     },
     deleteProject: (project) => {
-      encapsulatedProjectArray.splice(encapsulatedProjectArray.indexOf(project), 1);
+      encapsulatedProjectArray.splice(
+        encapsulatedProjectArray.indexOf(project),
+        1
+      );
     },
     getAllTasks: () => {
-      return encapsulatedProjectArray.flatMap((project) => project.getTaskArray());
+      return encapsulatedProjectArray.flatMap((project) =>
+        project.getTaskArray()
+      );
     },
     getProjectObject: (projectName) => {
       return encapsulatedProjectArray.find(
         (project) => project.getName() === projectName
       );
     },
-    arrangeTasks: () => {
-      // if complete, move to bottom
-      // if priority, move to top
-      // else sort by due date
-    }
   };
 }
-
 
 export const data = projectsEncapsulation();

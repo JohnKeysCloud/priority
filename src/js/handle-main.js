@@ -54,8 +54,6 @@ function resolveMainUpdateObject(newCurrentNavLink) {
     const pageName = newCurrentNavLink.getAttribute('data-page-name');
     const linkObject = linkObjectFactory(pageName, data.getAllTasks());
 
-    linkObject.arrangeTasks(newCurrentNavLink);
-
     mainState.updateObjectType = 'link';
 
     return linkObject;

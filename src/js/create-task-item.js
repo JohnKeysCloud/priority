@@ -1,4 +1,7 @@
+// * DEPENDENCIES
 import { formatDistanceToNow } from "date-fns";
+
+// > --------------------------------------------------------------
 
 function createTaskItem(taskObject) {
   const taskCheckBoxContainer = document.createElement('div');
@@ -56,10 +59,9 @@ function createTaskItem(taskObject) {
   }
   taskItem.appendChild(taskRightSideContainer);
 
-  // TODO:
   const taskEditModal = document.createElement('dialog');
   taskEditModal.classList.add('task-edit-modal');
-  // taskItem.appendChild(taskEditModal);
+  // TODO: taskItem.appendChild(taskEditModal); 
 
   const taskEditButton = document.createElement('button');
   taskEditButton.classList.add('task-edit-button');

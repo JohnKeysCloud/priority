@@ -9,6 +9,7 @@ import { taskFactory } from './logic';
 
 // * MARKUP
 import { createTaskItem } from './create-task-item';
+import { createTaskList } from './create-task-list';
 
 // * EMITTERS
 import { emitToggleTaskFormVisibility } from './add-task-form-opener-button-listener';
@@ -40,11 +41,14 @@ function clearTaskList(taskList) {
 
 function updateTaskList(projectName) {
   const taskList = checkTargetElementExistence('#task-list');
+  const mainContent = taskList.parentNode;
+  const addTaskContainer = checkTargetElementExistence('#add-task-container');
   const projectObject = data.getProjectObject(projectName);
   const taskListFragment = createTaskListFragment(projectObject);
   
-  clearTaskList(taskList);
-  taskList.appendChild(taskListFragment);
+  taskList.remove();
+
+  mainContent.appendChild(createTaskList(projectObject));
 }
 
 function addNewTask() {
@@ -60,6 +64,7 @@ function addNewTask() {
   
   if (!taskName) return alert('Enter Task Name');
   if (!taskDueDate) return alert('Enter Task Due Date');
+
   taskForm.reset();
 
   const projectName = mainState.projectName;
