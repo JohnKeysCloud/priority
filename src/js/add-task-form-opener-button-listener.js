@@ -36,7 +36,10 @@ function toggleAddTaskForm() {
   const currentTaskFormState = taskComponentState.formState;
 
   if (currentTaskFormState === 'hidden') {
-    addTaskFormContainer.setAttribute('data-hidden', false);
+    setAttributes(addTaskFormContainer, {
+      'data-hidden': 'false',
+      'aria-label': 'visible',
+    });
 
     taskComponentState.formState = 'visible';
   } else if (currentTaskFormState === 'visible') {
