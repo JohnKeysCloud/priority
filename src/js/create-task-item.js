@@ -1,5 +1,5 @@
-// * DEPENDENCIES
-import { formatDistanceToNow } from "date-fns";
+// * UTILITIES
+import { formatDate } from "../utilities/format-date";
 
 // > --------------------------------------------------------------
 
@@ -22,8 +22,8 @@ function createTaskItem(taskObject) {
 
   const taskItemDate = document.createElement('p');
   taskItemDate.classList.add('task-item-date');
-  const taskItemDateDistance = formatDistanceToNow(taskObject.getDueDate(), { addSuffix: true });
-  taskItemDate.textContent = `Due ${taskItemDateDistance}`;
+
+  taskItemDate.textContent = `Due ${formatDate(taskObject.getDueDate())}`;
 
   const taskPriorityCheckbox = document.createElement('input');
   taskPriorityCheckbox.classList.add('task-priority-checkbox');

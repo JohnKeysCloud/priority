@@ -1,5 +1,5 @@
 
-function createScrollAnimation(containerElement, direction, speed) {
+function scrollElementContent(containerElement, direction, speed) {
   let elementMinimumWidth = containerElement.scrollWidth;
   // ? equal to the minimum width the element requires in order to fit all
   // ? the content in the viewport without using a horizontal scrollbar in pixels
@@ -57,4 +57,4 @@ function createScrollAnimation(containerElement, direction, speed) {
   scrollElementContent(); // Start the scrolling
 }
 
-export { createScrollAnimation };
+export { scrollElementContent };

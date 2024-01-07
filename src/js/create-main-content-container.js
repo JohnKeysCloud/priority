@@ -3,6 +3,7 @@ import { createTaskList } from "./create-task-list";
 import { createAddTaskContainer } from "./create-add-task-container";
 
 // * UTILITIES
+import { enableScrollAnimation } from "./enable-scroll-animation";
 
 // > ---------------------------------------------------
 
@@ -16,6 +17,7 @@ function createMainContentContainer(mainUpdateObject) {
   mainContent.setAttribute('id', 'main-content');
 
   mainContent.appendChild(createTaskList(mainUpdateObject));
+  enableScrollAnimation();
   
   const objectType = mainUpdateObject.getType();
   if (objectType === 'project') {

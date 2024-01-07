@@ -20,6 +20,8 @@ import { mainState } from './handle-main';
 import { checkTargetElementExistence } from '../utilities/check-target-element-existence';
 import { events } from '../utilities/pubsub';
 
+import { enableScrollAnimation } from './enable-scroll-animation';
+
 // > ---------------------------------------------------
 
 function updateTaskList(projectName) {
@@ -30,6 +32,7 @@ function updateTaskList(projectName) {
   taskList.remove();
 
   mainContent.appendChild(createTaskList(projectObject));
+  enableScrollAnimation();
 }
 
 function addNewTask() {
@@ -45,6 +48,13 @@ function addNewTask() {
   
   if (!taskName) return alert('Enter Task Name');
   if (!taskDueDate) return alert('Enter Task Due Date');
+  console.log(new Date());
+  console.log(new Date().toString());
+  console.log(new Date().toLocaleDateString());
+  console.log(new Date().toISOString());
+  console.log(new Date().toISOString().slice(0, 10));
+  console.log(taskDueDate);
+  if (taskDueDate < new Date().toISOString().slice(0, 10)) return alert('Enter Valid Due Date');
 
   taskForm.reset();
 

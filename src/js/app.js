@@ -72,10 +72,3 @@ content.appendChild(createMain(linkObjectFactory('all tasks', data.getAllTasks()
 // !
 // !
 // !
-
-// * UPDATE task details scroll animation
-const taskDetailContainers = document.querySelectorAll('.task-item-details');
-
-taskDetailContainers.forEach((container) => {
-  createScrollAnimation(container, 'backward', 0.5);
-});

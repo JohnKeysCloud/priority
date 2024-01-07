@@ -70,7 +70,7 @@
   --priority-star-font-size: 2rem;
 
   // * MODIFY TASK BUTTON (3 dots)
-  --modify-task-button-font-size: 1rem;
+  --modify-task-button-font-size: 0.813rem;
 
   // * COMPONENT BORDER
   --component-border: 3px solid hsl(0 0% 100% / 0.1);
@@ -471,7 +471,7 @@ main {
 .task-item {
   border: var(--component-border);
   border-radius: 100vw;
-  column-gap: 1.25rem;
+  column-gap: 1rem;
   display: grid;
   grid-template-areas:
     'checkbox title right-side right-side'
@@ -484,6 +484,7 @@ main {
   padding-bottom: 0.5rem;
   padding-top: 0.75rem;
   padding-inline: 1.75rem;
+  row-gap: 0.25rem;
   transition: transform 33ms ease-in-out;
 
   .task-checkbox-container {
@@ -561,6 +562,7 @@ main {
     display: grid;
     grid-area: right-side;
     grid-template-columns: 1fr;
+    row-gap: 0.25rem;
 
     .task-item-date {
       color: var(--color-text-secondary);
@@ -622,6 +624,7 @@ main {
 
       .modify-task-button {
         cursor: pointer;
+        color: white;
         font-size: var(--modify-task-button-font-size);
       }
     }
