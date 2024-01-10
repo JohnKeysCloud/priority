@@ -90,7 +90,7 @@ function projectFactory(name) {
   };
 }
 
-// TODO:: combine link object factory and project factory
+// TODO:: combine link object factory and project factory maybe?
 
 function taskFactory(name, projectName, details, dueDate) {
   if (
@@ -137,8 +137,8 @@ function taskFactory(name, projectName, details, dueDate) {
     getCompleted: () => {
       return state.completed;
     },
-    setCompleted: (completed) => {
-      state.completed = completed;
+    setCompleted: (boolean) => {
+      state.completed = boolean;
     },
     setProjectName: function (projectName) {
       state.project = projectName;

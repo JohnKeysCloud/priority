@@ -22,6 +22,9 @@ import { events } from '../utilities/pubsub';
 
 import { enableScrollAnimation } from './enable-scroll-animation';
 
+import { handleTaskItems } from './handle-task-items';
+
+
 // > ---------------------------------------------------
 
 function updateTaskList(projectName) {
@@ -31,34 +34,42 @@ function updateTaskList(projectName) {
   
   taskList.remove();
 
-  mainContent.appendChild(createTaskList(projectObject));
+  const taskListElement = createTaskList(projectObject);
+  mainContent.appendChild(taskListElement);
   enableScrollAnimation();
+
+  const projectObjectTaskAeray = projectObject.getTaskArray();
+  if (projectObjectTaskAeray.length > 0) {
+    enableScrollAnimation();
+    handleTaskItems(taskListElement);
+  }
 }
 
 function addNewTask() {
   const taskForm = checkTargetElementExistence('#add-task-form');
 
-  const taskNameInput = taskForm.querySelector('#title');
-  const taskDetailsInput = taskForm.querySelector('#details');
-  const taskDueDateInput = taskForm.querySelector('#due-date');
+  const taskNameInput = taskForm.querySelector('#task-add-title');
+  const taskDetailsInput = taskForm.querySelector('#task-add-details');
+  const taskDueDateInput = taskForm.querySelector('#task-add-due-date');
 
-  const taskName = taskNameInput.value.trim();
+  const taskName = taskNameInput.value.trim().toLowerCase();
   const taskDetails = taskDetailsInput.value.trim();
   const taskDueDate = taskDueDateInput.value;
   
   if (!taskName) return alert('Enter Task Name');
   if (!taskDueDate) return alert('Enter Task Due Date');
-  console.log(new Date());
-  console.log(new Date().toString());
-  console.log(new Date().toLocaleDateString());
-  console.log(new Date().toISOString());
-  console.log(new Date().toISOString().slice(0, 10));
-  console.log(taskDueDate);
+  // TODO: study date object
+  // console.log(new Date());
+  // console.log(new Date().toString());
+  // console.log(new Date().toLocaleDateString());
+  // console.log(new Date().toISOString());
+  // console.log(new Date().toISOString().slice(0, 10));
+  // console.log(taskDueDate);
   if (taskDueDate < new Date().toISOString().slice(0, 10)) return alert('Enter Valid Due Date');
 
   taskForm.reset();
 
-  const projectName = mainState.projectName;
+  const projectName = (mainState.projectName).toLowerCase();
 
   const taskObject = taskFactory(taskName, projectName, taskDetails, taskDueDate);
 

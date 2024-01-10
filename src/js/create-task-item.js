@@ -1,34 +1,52 @@
 // * UTILITIES
 import { formatDate } from "../utilities/format-date";
 
+import { setAttributes } from "../utilities/set-attributes";
+
 // > --------------------------------------------------------------
 
 function createTaskItem(taskObject) {
+  const taskTitle = (taskObject.getName()).toLowerCase();
+  const taskDetails = taskObject.getDetails();
+  const taskDueDate = taskObject.getDueDate();
+  const isTaskComplete = taskObject.getCompleted();
+  const isTaskPriority = taskObject.getPriority();
+
   const taskCheckBoxContainer = document.createElement('div');
   taskCheckBoxContainer.classList.add('task-checkbox-container');
 
   const taskItemCheckbox = document.createElement('input');
   taskItemCheckbox.setAttribute('type', 'checkbox');
+  taskItemCheckbox.setAttribute('data-checked', isTaskComplete ? 'true' : 'false');
+  isTaskComplete ? taskItemCheckbox.checked = true : taskItemCheckbox.checked = false;
+
   taskItemCheckbox.classList.add('task-item-checkbox');
   taskCheckBoxContainer.appendChild(taskItemCheckbox);
 
   const taskItemTitle = document.createElement('h4');
   taskItemTitle.classList.add('task-item-title');
-  taskItemTitle.textContent = taskObject.getName();
+  taskItemTitle.textContent = taskTitle;
 
   const taskItemDetails = document.createElement('p');
   taskItemDetails.classList.add('task-item-details');
-  taskItemDetails.textContent = taskObject.getDetails();
+  taskItemDetails.textContent = taskDetails;
 
   const taskItemDate = document.createElement('p');
   taskItemDate.classList.add('task-item-date');
+  taskItemDate.textContent = `Due ${formatDate(taskDueDate)}`;
 
-  taskItemDate.textContent = `Due ${formatDate(taskObject.getDueDate())}`;
+  const taskPriorityStarIcon = document.createElement('span');
+  taskPriorityStarIcon.classList.add('task-priority-star-icon', 'material-symbols-outlined');
+  taskPriorityStarIcon.textContent = 'star';
 
-  const taskPriorityCheckbox = document.createElement('input');
-  taskPriorityCheckbox.classList.add('task-priority-checkbox');
-  taskPriorityCheckbox.setAttribute('type', 'checkbox');
-  taskPriorityCheckbox.setAttribute('aria-label', 'Prioritize Task');
+  const taskPriorityStarButton = document.createElement('button');
+  taskPriorityStarButton.classList.add('task-priority-star-button'); 
+  setAttributes(taskPriorityStarButton, {
+    'aria-label': 'Prioritize Task',
+    'type': 'button',
+    'data-checked': isTaskPriority ? 'true' : 'false',
+  });
+  taskPriorityStarButton.appendChild(taskPriorityStarIcon);
 
   const modifyTaskButton = document.createElement('button');
   modifyTaskButton.classList.add('modify-task-button');
@@ -41,7 +59,7 @@ function createTaskItem(taskObject) {
 
   const taskButtonContainer = document.createElement('div');
   taskButtonContainer.classList.add('task-item-button-container');
-  taskButtonContainer.appendChild(taskPriorityCheckbox);
+  taskButtonContainer.appendChild(taskPriorityStarButton);
   taskButtonContainer.appendChild(modifyTaskButton);
 
   const taskRightSideContainer = document.createElement('div');
@@ -53,27 +71,10 @@ function createTaskItem(taskObject) {
   taskItem.classList.add('task-item');
   taskItem.appendChild(taskCheckBoxContainer);
   taskItem.appendChild(taskItemTitle);
-  console.log(taskObject.getDetails());
-  if (taskObject.getDetails() !== '') {
+  if (taskDetails.trim() !== '') {
     taskItem.appendChild(taskItemDetails);
   }
   taskItem.appendChild(taskRightSideContainer);
-
-  const taskEditModal = document.createElement('dialog');
-  taskEditModal.classList.add('task-edit-modal');
-  // TODO: taskItem.appendChild(taskEditModal); 
-
-  const taskEditButton = document.createElement('button');
-  taskEditButton.classList.add('task-edit-button');
-  taskEditButton.setAttribute('type', 'button');
-  taskEditButton.setAttribute('aria-label', 'Edit Task');
-  taskEditModal.appendChild(taskEditButton);
-
-  const taskDeleteButton = document.createElement('button');
-  taskDeleteButton.classList.add('task-delete-button');
-  taskDeleteButton.setAttribute('type', 'button');
-  taskDeleteButton.setAttribute('aria-label', 'Delete Task');
-  taskEditModal.appendChild(taskDeleteButton);
 
   return taskItem;
 }

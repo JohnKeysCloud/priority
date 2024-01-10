@@ -1,9 +1,12 @@
 // * MARKUP
 import { createTaskList } from "./create-task-list";
 import { createAddTaskContainer } from "./create-add-task-container";
+import { createEditTaskModal } from "./create-edit-task-modal";
 
 // * UTILITIES
 import { enableScrollAnimation } from "./enable-scroll-animation";
+
+import { handleTaskItems } from "./handle-task-items";
 
 // > ---------------------------------------------------
 
@@ -16,8 +19,15 @@ function createMainContentContainer(mainUpdateObject) {
   const mainContent = document.createElement('div');
   mainContent.setAttribute('id', 'main-content');
 
-  mainContent.appendChild(createTaskList(mainUpdateObject));
-  enableScrollAnimation();
+  const taskListElement = createTaskList(mainUpdateObject);
+  mainContent.appendChild(taskListElement);
+
+  const updateObjectTaskArray = mainUpdateObject.getTaskArray();
+  if (updateObjectTaskArray.length > 0) {
+    enableScrollAnimation();
+    console.log(mainUpdateObject.getTaskArray());
+    handleTaskItems(taskListElement);
+  }
   
   const objectType = mainUpdateObject.getType();
   if (objectType === 'project') {

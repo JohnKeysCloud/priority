@@ -300,7 +300,6 @@ input[type=checkbox] {
   --open-form-buttons: clamp(0.813rem, 2.125vw, 0.938rem);
   --body-font-size: clamp(0.75rem, 1.5vw, 0.813rem);
   --task-item-date-font-size: clamp(0.625rem, 2.3vw, 0.75rem);
-  --modify-task-button-font-size: 1rem;
   --color-text-primary: whitesmoke;
   --color-text-secondary: silver;
   --container-background: linear-gradient(
@@ -344,7 +343,7 @@ input[type=checkbox] {
   --scrollbar-track-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   --priority-star-border-color: silver;
   --priority-star-fill-color: yellow;
-  --priority-star-font-size: 2rem;
+  --priority-star-font-size: 1.5rem;
   --modify-task-button-font-size: 0.813rem;
   --component-border: 3px solid hsl(0 0% 100% / 0.1);
   --logo-height: clamp(50px, 8vw, 55px);
@@ -362,6 +361,7 @@ body {
   display: flex;
   flex-direction: column;
   font-family: "Space Mono", "Courier New", Courier, monospace;
+  position: relative;
 }
 
 header {
@@ -657,6 +657,7 @@ main {
   margin-bottom: 1.5rem;
   position: sticky;
   text-align: center;
+  text-transform: uppercase;
   top: 0;
 }
 
@@ -778,44 +779,36 @@ main {
   overflow-y: hidden;
   justify-content: end;
 }
-.task-item .task-right-side-container .task-item-button-container .task-priority-checkbox {
-  appearance: none;
+.task-item .task-right-side-container .task-item-button-container .task-priority-star-button {
   cursor: pointer;
-  line-height: 0.5;
-  position: relative;
 }
-.task-item .task-right-side-container .task-item-button-container .task-priority-checkbox::before, .task-item .task-right-side-container .task-item-button-container .task-priority-checkbox::after {
+.task-item .task-right-side-container .task-item-button-container .task-priority-star-button .task-priority-star-icon {
+  color: white;
   font-size: var(--priority-star-font-size);
-  inset: 0;
-  line-height: 0.5;
+  pointer-events: none;
+  vertical-align: -2px;
 }
-.task-item .task-right-side-container .task-item-button-container .task-priority-checkbox::before {
-  content: "☆";
-  color: var(--priority-star-border-color);
-  opacity: 1;
-  position: relative;
-  transition: all 250ms ease-in-out;
-  visibility: visible;
-  vertical-align: 5px;
+.task-item .task-right-side-container .task-item-button-container .task-priority-star-button .material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 100, "GRAD" 0, "opsz" 24;
 }
-.task-item .task-right-side-container .task-item-button-container .task-priority-checkbox::after {
-  content: "★";
+.task-item .task-right-side-container .task-item-button-container .task-priority-star-button[data-checked=true] .task-priority-star-icon {
   color: var(--priority-star-fill-color);
-  opacity: 0;
-  position: absolute;
-  transform: scale(0);
-  transition: transform 250ms ease-in-out, opacity 125ms ease-in-out;
-  visibility: hidden;
+  fill: var(--priority-star-fill-color);
 }
-.task-item .task-right-side-container .task-item-button-container .task-priority-checkbox:checked::after {
-  opacity: 1;
-  transform: scale(0.7);
-  visibility: visible;
+.task-item .task-right-side-container .task-item-button-container .task-priority-star-button[data-checked=true] .material-symbols-outlined {
+  font-variation-settings: "FILL" 100, "wght" 100, "GRAD" 0, "opsz" 24;
 }
 .task-item .task-right-side-container .task-item-button-container .modify-task-button {
+  aspect-ratio: 1/1;
   cursor: pointer;
   color: white;
+  display: grid;
   font-size: var(--modify-task-button-font-size);
+  place-items: center;
+  width: 1rem;
+}
+.task-item .task-right-side-container .task-item-button-container .modify-task-button svg {
+  pointer-events: none;
 }
 .task-item:has(.task-item-checkbox:checked) {
   opacity: 0.7;
@@ -830,11 +823,13 @@ main {
   transform: scale(0.99);
 }
 
-#add-task-container #add-task-form-opener-button-container {
+#add-task-container #add-task-form-opener-button-container,
+#edit-task-container #add-task-form-opener-button-container {
   margin-bottom: 1.5rem;
   text-align: center;
 }
-#add-task-container #add-task-form-opener-button-container #add-task-form-opener-button {
+#add-task-container #add-task-form-opener-button-container #add-task-form-opener-button,
+#edit-task-container #add-task-form-opener-button-container #add-task-form-opener-button {
   color: var(--color-text-primary);
   cursor: pointer;
   font-size: var(--open-form-buttons);
@@ -844,65 +839,97 @@ main {
   text-transform: uppercase;
   transition: all 190ms ease-in-out;
 }
-#add-task-container #add-task-form-opener-button-container #add-task-form-opener-button::before {
+#add-task-container #add-task-form-opener-button-container #add-task-form-opener-button::before,
+#edit-task-container #add-task-form-opener-button-container #add-task-form-opener-button::before {
   content: "+";
   left: -1rem;
   position: absolute;
   transition: transform 380ms ease-in-out;
 }
-#add-task-container #add-task-form-opener-button-container #add-task-form-opener-button:hover {
+#add-task-container #add-task-form-opener-button-container #add-task-form-opener-button:hover,
+#edit-task-container #add-task-form-opener-button-container #add-task-form-opener-button:hover {
   opacity: 1;
   transform: scale(1.1);
 }
-#add-task-container #add-task-form-opener-button-container #add-task-form-opener-button:hover::before {
+#add-task-container #add-task-form-opener-button-container #add-task-form-opener-button:hover::before,
+#edit-task-container #add-task-form-opener-button-container #add-task-form-opener-button:hover::before {
   transform: rotate(360deg) scale(1.5);
 }
-#add-task-container #add-task-form-opener-button-container #add-task-form-opener-button:active {
+#add-task-container #add-task-form-opener-button-container #add-task-form-opener-button:active,
+#edit-task-container #add-task-form-opener-button-container #add-task-form-opener-button:active {
   opacity: 0.8;
   transform: scale(1);
 }
-#add-task-container #add-task-form-container {
+#add-task-container .add-task-form-container,
+#add-task-container .edit-task-form-container,
+#edit-task-container .add-task-form-container,
+#edit-task-container .edit-task-form-container {
   display: grid;
   transition: grid-template-rows 500ms;
   transform-origin: top;
 }
-#add-task-container #add-task-form-container[data-hidden=true] {
+#add-task-container .add-task-form-container[data-hidden=true],
+#add-task-container .edit-task-form-container[data-hidden=true],
+#edit-task-container .add-task-form-container[data-hidden=true],
+#edit-task-container .edit-task-form-container[data-hidden=true] {
   display: none;
 }
-#add-task-container #add-task-form-container[data-hidden=closing] {
+#add-task-container .add-task-form-container[data-hidden=closing],
+#add-task-container .edit-task-form-container[data-hidden=closing],
+#edit-task-container .add-task-form-container[data-hidden=closing],
+#edit-task-container .edit-task-form-container[data-hidden=closing] {
   animation: fade-out 380ms ease-in-out forwards;
   pointer-events: none;
 }
-#add-task-container #add-task-form-container[data-hidden=false] {
+#add-task-container .add-task-form-container[data-hidden=false],
+#add-task-container .edit-task-form-container[data-hidden=false],
+#edit-task-container .add-task-form-container[data-hidden=false],
+#edit-task-container .edit-task-form-container[data-hidden=false] {
   animation: fade-in 380ms ease-in-out forwards;
   pointer-events: all;
 }
 
-#add-task-form {
+#add-task-form,
+#edit-task-form {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  margin-bottom: 3rem;
   margin-inline: auto;
   overflow: hidden;
   padding-inline: 1.5rem;
   width: min(500px, 100%);
 }
-#add-task-form #add-task-button-container {
+#add-task-form .add-task-button-container,
+#add-task-form .edit-task-button-container,
+#edit-task-form .add-task-button-container,
+#edit-task-form .edit-task-button-container {
   display: flex;
   gap: 1rem;
   justify-content: center;
 }
-#add-task-form #add-task-button-container .add-task-button {
+#add-task-form .add-task-button-container .add-task-button,
+#add-task-form .add-task-button-container .edit-task-button,
+#add-task-form .edit-task-button-container .add-task-button,
+#add-task-form .edit-task-button-container .edit-task-button,
+#edit-task-form .add-task-button-container .add-task-button,
+#edit-task-form .add-task-button-container .edit-task-button,
+#edit-task-form .edit-task-button-container .add-task-button,
+#edit-task-form .edit-task-button-container .edit-task-button {
   border: var(--add-cancel-button-border);
   border-radius: 100vw;
   color: var(--color-text-primary);
   cursor: pointer;
   padding: 15px;
   position: relative;
-  text-transform: uppercase;
 }
-#add-task-form #add-task-button-container .add-task-button::before {
+#add-task-form .add-task-button-container .add-task-button::before,
+#add-task-form .add-task-button-container .edit-task-button::before,
+#add-task-form .edit-task-button-container .add-task-button::before,
+#add-task-form .edit-task-button-container .edit-task-button::before,
+#edit-task-form .add-task-button-container .add-task-button::before,
+#edit-task-form .add-task-button-container .edit-task-button::before,
+#edit-task-form .edit-task-button-container .add-task-button::before,
+#edit-task-form .edit-task-button-container .edit-task-button::before {
   background: var(--add-cancel-button-pseudo-background);
   border-radius: inherit;
   content: "";
@@ -917,19 +944,33 @@ main {
   width: 100%;
   z-index: -1;
 }
-#add-task-form #add-task-button-container .add-task-button:hover::before {
+#add-task-form .add-task-button-container .add-task-button:hover::before,
+#add-task-form .add-task-button-container .edit-task-button:hover::before,
+#add-task-form .edit-task-button-container .add-task-button:hover::before,
+#add-task-form .edit-task-button-container .edit-task-button:hover::before,
+#edit-task-form .add-task-button-container .add-task-button:hover::before,
+#edit-task-form .add-task-button-container .edit-task-button:hover::before,
+#edit-task-form .edit-task-button-container .add-task-button:hover::before,
+#edit-task-form .edit-task-button-container .edit-task-button:hover::before {
   transform: scale(1);
 }
-#add-task-form .input-container {
+#add-task-form .input-container,
+#edit-task-form .input-container {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
-#add-task-form .input-container .add-task-label {
+#add-task-form .input-container .add-task-label,
+#add-task-form .input-container .edit-task-label,
+#edit-task-form .input-container .add-task-label,
+#edit-task-form .input-container .edit-task-label {
   font-size: var(--body-font-size);
   text-transform: uppercase;
 }
-#add-task-form .input-container .add-task-input {
+#add-task-form .input-container .add-task-input,
+#add-task-form .input-container .edit-task-input,
+#edit-task-form .input-container .add-task-input,
+#edit-task-form .input-container .edit-task-input {
   appearance: none;
   background: var(--input-background);
   border: none;
@@ -939,12 +980,62 @@ main {
   padding-block: 0.25rem;
   padding-inline: 1rem;
 }
-#add-task-form .input-container .add-task-input:focus, #add-task-form .input-container .add-task-input:focus-visible {
+#add-task-form .input-container .add-task-input:focus, #add-task-form .input-container .add-task-input:focus-visible,
+#add-task-form .input-container .edit-task-input:focus,
+#add-task-form .input-container .edit-task-input:focus-visible,
+#edit-task-form .input-container .add-task-input:focus,
+#edit-task-form .input-container .add-task-input:focus-visible,
+#edit-task-form .input-container .edit-task-input:focus,
+#edit-task-form .input-container .edit-task-input:focus-visible {
   outline: none;
   box-shadow: var(--input-focus-box-shadow);
 }
-#add-task-form .input-container .add-task-input::placeholder, #add-task-form .input-container .add-task-input[type=date]:invalid {
+#add-task-form .input-container .add-task-input::placeholder, #add-task-form .input-container .add-task-input[type=date]:invalid,
+#add-task-form .input-container .edit-task-input::placeholder,
+#add-task-form .input-container .edit-task-input[type=date]:invalid,
+#edit-task-form .input-container .add-task-input::placeholder,
+#edit-task-form .input-container .add-task-input[type=date]:invalid,
+#edit-task-form .input-container .edit-task-input::placeholder,
+#edit-task-form .input-container .edit-task-input[type=date]:invalid {
   color: var(--input-placeholder-text-color);
+}
+
+#add-task-form {
+  margin-bottom: 3rem;
+}
+
+#edit-task-form {
+  width: min(75vw, 555px);
+}
+
+#edit-task-modal {
+  -webkit-backdrop-filter: blur(1rem);
+  backdrop-filter: blur(1rem);
+  background: var(--container-background);
+  border: none;
+  border-radius: 55px;
+  color: white;
+}
+#edit-task-modal[data-hidden=hidden] {
+  display: none;
+}
+#edit-task-modal[data-hidden=closing] {
+  animation: fade-out 380ms ease-in-out forwards;
+  pointer-events: none;
+}
+#edit-task-modal[data-hidden=visible] {
+  animation: fade-in 380ms ease-in-out forwards;
+  pointer-events: all;
+}
+#edit-task-modal #edit-task-heading {
+  font-size: var(--h2-fs);
+  margin-bottom: 1.5rem;
+  text-align: center;
+  text-transform: uppercase;
+}
+#edit-task-modal::backdrop {
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
 }
 
 @media (max-width: 35em) {

@@ -9,7 +9,6 @@
   --open-form-buttons: clamp(0.813rem, 2.125vw, 0.938rem);
   --body-font-size: clamp(0.75rem, 1.5vw, 0.813rem);
   --task-item-date-font-size: clamp(0.625rem, 2.3vw, 0.75rem);
-  --modify-task-button-font-size: 1rem;
 
   // * MAIN TEXT COLORS
   --color-text-primary: whitesmoke;
@@ -67,7 +66,7 @@
   // * PRIORITY STAR
   --priority-star-border-color: silver;
   --priority-star-fill-color: yellow;
-  --priority-star-font-size: 2rem;
+  --priority-star-font-size: 1.5rem;
 
   // * MODIFY TASK BUTTON (3 dots)
   --modify-task-button-font-size: 0.813rem;
@@ -93,6 +92,7 @@ body {
   display: flex;
   flex-direction: column;
   font-family: 'Space Mono', 'Courier New', Courier, monospace;
+  position: relative;
 }
 
 header {
@@ -442,6 +442,7 @@ main {
   margin-bottom: 1.5rem;
   position: sticky;
   text-align: center;
+  text-transform: uppercase;
   top: 0;
 }
 
@@ -580,52 +581,52 @@ main {
       overflow-y: hidden; // ? to fix stars line-height issue
       justify-content: end;
 
-      .task-priority-checkbox {
-        appearance: none;
+      .task-priority-star-button {
         cursor: pointer;
-        line-height: 0.5;
-        position: relative;
 
-        &::before,
-        &::after {
+        .task-priority-star-icon {
+          color: white;
           font-size: var(--priority-star-font-size);
-          inset: 0;
-          line-height: 0.5;
+          pointer-events: none;
+          vertical-align: -2px;
         }
 
-        &::before {
-          content: '☆';
-          color: var(--priority-star-border-color);
-          opacity: 1;
-          position: relative;
-          transition: all 250ms ease-in-out;
-          visibility: visible;
-          vertical-align: 5px;
+        .material-symbols-outlined {
+          font-variation-settings:
+          'FILL' 0,
+          'wght' 100,
+          'GRAD' 0,
+          'opsz' 24
         }
 
-        &::after {
-          content: '★';
-          color: var(--priority-star-fill-color);
-          opacity: 0;
-          position: absolute;
-          transform: scale(0);
-          transition: transform 250ms ease-in-out, opacity 125ms ease-in-out;
-          visibility: hidden;
-        }
+        &[data-checked=true] {
+          .task-priority-star-icon {
+            color: var(--priority-star-fill-color);
+            fill: var(--priority-star-fill-color);
+          }
 
-        &:checked {
-          &::after {
-            opacity: 1;
-            transform: scale(0.7);
-            visibility: visible;
+          .material-symbols-outlined {
+            font-variation-settings:
+            'FILL' 100,
+            'wght' 100,
+            'GRAD' 0,
+            'opsz' 24
           }
         }
       }
 
       .modify-task-button {
+        aspect-ratio: 1 / 1;
         cursor: pointer;
         color: white;
+        display: grid;
         font-size: var(--modify-task-button-font-size);
+        place-items: center;
+        width: 1rem;
+
+        svg {
+          pointer-events: none;
+        }
       }
     }
   }
@@ -648,7 +649,8 @@ main {
   }
 }
 
-#add-task-container {
+#add-task-container,
+#edit-task-container {
   #add-task-form-opener-button-container {
     margin-bottom: 1.5rem;
     text-align: center;
@@ -686,7 +688,8 @@ main {
     }
   }
 
-  #add-task-form-container {
+  .add-task-form-container,
+  .edit-task-form-container {
     display: grid;
     transition: grid-template-rows 500ms;
     transform-origin: top;
@@ -707,29 +710,30 @@ main {
   }
 }
 
-#add-task-form {
+#add-task-form,
+#edit-task-form {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  margin-bottom: 3rem;
   margin-inline: auto;
   overflow: hidden;
   padding-inline: 1.5rem;
   width: min(500px, 100%);
 
-  #add-task-button-container {
+  .add-task-button-container,
+  .edit-task-button-container {
     display: flex;
     gap: 1rem;
     justify-content: center;
 
-    .add-task-button {
+    .add-task-button,
+    .edit-task-button {
       border: var(--add-cancel-button-border);
       border-radius: 100vw;
       color: var(--color-text-primary);
       cursor: pointer;
       padding: 15px;
       position: relative;
-      text-transform: uppercase;
 
       &::before {
         background: var(--add-cancel-button-pseudo-background);
@@ -758,12 +762,14 @@ main {
     flex-direction: column;
     gap: 0.5rem;
 
-    .add-task-label {
+    .add-task-label,
+    .edit-task-label {
       font-size: var(--body-font-size);
       text-transform: uppercase;
     }
 
-    .add-task-input {
+    .add-task-input,
+    .edit-task-input {
       appearance: none;
       background: var(--input-background);
       border: none;
@@ -783,6 +789,49 @@ main {
         color: var(--input-placeholder-text-color);
       }
     }
+  }
+}
+
+#add-task-form {
+  margin-bottom: 3rem;
+}
+
+#edit-task-form {
+  width: min(75vw, 555px);
+}
+
+#edit-task-modal {
+  -webkit-backdrop-filter: blur(1rem);
+  backdrop-filter: blur(1rem);
+  background: var(--container-background);
+  border: none;
+  border-radius: 55px;
+  color: white;
+
+  &[data-hidden=hidden] {
+    display: none;
+  }
+
+  &[data-hidden=closing] {
+    animation: fade-out 380ms ease-in-out forwards;
+    pointer-events: none;
+  }
+
+  &[data-hidden=visible] {
+    animation: fade-in 380ms ease-in-out forwards;
+    pointer-events: all;
+  }
+
+  #edit-task-heading {
+    font-size: var(--h2-fs);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  &::backdrop {
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
   }
 }
 

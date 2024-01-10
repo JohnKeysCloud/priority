@@ -3,7 +3,7 @@ function createAddTaskButton() {
   addTaskFormButton.setAttribute('id', 'add-task-form-opener-button');
   addTaskFormButton.setAttribute('type', 'button');
   addTaskFormButton.setAttribute('aria-label', 'Add Task');
-  addTaskFormButton.textContent = 'Add Task';
+  addTaskFormButton.textContent = 'add task';
 
   const addTaskButtonContainer = document.createElement('div');
   addTaskButtonContainer.setAttribute(

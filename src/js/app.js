@@ -13,6 +13,7 @@ import { createZigZagNav } from '../components/zig-zag-nav/create-zig-zag-nav.js
 import { modifyGenericNavLinks } from './modify-generic-nav-links.js';
 import { modifySecondNavContainer } from './modify-second-nav-container.js';
 import { injectFontAwesomeScript } from './inject-font-awesome-script.js';
+import { injectStarMaterialIcon } from './inject-star-material-icon.js';
 
 // * STYLESHEETS
 import '../components/zig-zag-nav/zig-zag-nav.scss';
@@ -25,6 +26,7 @@ const content = document.getElementById('content');
 
 // * INJECT font awesome script
 injectFontAwesomeScript();
+injectStarMaterialIcon();
 
 // * CREATE header
 content.appendChild(createHeader());  
@@ -68,6 +70,7 @@ modifyGenericNavLinks();
 // !
 
 content.appendChild(createMain(linkObjectFactory('all tasks', data.getAllTasks())));
+
 
 // !
 // !

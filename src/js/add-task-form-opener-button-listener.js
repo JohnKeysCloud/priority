@@ -32,7 +32,7 @@ function animatePreDisplayNone(targetElement) {
 }
 
 function toggleAddTaskForm() {
-  const addTaskFormContainer = checkTargetElementExistence('#add-task-form-container');
+  const addTaskFormContainer = checkTargetElementExistence('.add-task-form-container');
   const currentTaskFormState = taskComponentState.formState;
 
   if (currentTaskFormState === 'hidden') {
