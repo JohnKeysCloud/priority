@@ -1,0 +1,42 @@
+.nav-toggle-button {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  height: 20px;
+  justify-content: center;
+  width: 20px;
+}
+.nav-toggle-button .nav-toggle-bars, .nav-toggle-button .nav-toggle-bars::before, .nav-toggle-button .nav-toggle-bars::after {
+  transition: all 150ms ease-in-out;
+}
+.nav-toggle-button.active .nav-toggle-bars {
+  background: transparent;
+}
+.nav-toggle-button.active .nav-toggle-bars::before {
+  transform: translateY(0) rotate(-45deg);
+}
+.nav-toggle-button.active .nav-toggle-bars::after {
+  transform: translateY(0) rotate(45deg);
+}
+.nav-toggle-button .nav-toggle-bars {
+  background: white;
+  border-radius: 100vw;
+  height: 1.5px;
+  position: relative;
+  width: 100%;
+}
+.nav-toggle-button .nav-toggle-bars::before, .nav-toggle-button .nav-toggle-bars::after {
+  background-color: white;
+  border-radius: 100vw;
+  content: "";
+  position: absolute;
+  inset: 0;
+  height: 1.5px;
+  width: 100%;
+}
+.nav-toggle-button .nav-toggle-bars::before {
+  transform: translateY(-7.75px);
+}
+.nav-toggle-button .nav-toggle-bars::after {
+  transform: translateY(7.75px);
+}/*# sourceMappingURL=nav-toggle.css.map */

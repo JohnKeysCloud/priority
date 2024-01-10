@@ -47,7 +47,7 @@ function AddNewProject() {
   const projectForm = checkTargetElementExistence('#add-project-form');
 
   const projectNameInput = projectForm.querySelector('#project-name-input');
-  const projectName = projectNameInput.value.trim();
+  const projectName = projectNameInput.value.trim().toLowerCase();
 
   if (!projectName) return alert('Enter Project Name');
   projectForm.reset()

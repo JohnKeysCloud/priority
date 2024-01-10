@@ -77,7 +77,7 @@ function handleMain(targetElement) {
   clearMain(mainElement);
 
   mainElement.appendChild(newMainContainer);
-  
+
   if (mainUpdateObjectType === 'project') {
     mainState.projectName = mainUpdateObjectName;
     addTaskFormOpenerButtonListener(mainUpdateObjectType);

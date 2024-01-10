@@ -143,43 +143,58 @@ function emitEditTaskFormVisibilityToggle(data) {
 
 import { createEditTaskModal } from './create-edit-task-modal';
 
-function handleTaskItems(taskListElement) {
-  const taskItem = checkTargetElementExistence('.task-item');
 
-  if (!taskItem) return events.off(TOGGLE_EDIT_TASK_FORM);
-  
-  events.on(TOGGLE_EDIT_TASK_FORM, toggleEditTaskFormVisibility);
+let isEditTaskFormEventPublished = false;
 
+function appendTaskEditModalToDOM() {
   const contentElement = checkTargetElementExistence('#content');
   const editTaskModal = createEditTaskModal();
   contentElement.appendChild(editTaskModal);
-
-  const taskItems = taskListElement.querySelectorAll('.task-item');
-  taskItems.forEach(taskItem => {
-    taskItem.addEventListener('click', (e) => {
-      const target = e.target;
-      const targetTagName = target.tagName.toLowerCase();
-
-      if ( targetTagName !== 'button' && targetTagName !== 'input') return;
-      
-      const taskName = (taskItem.querySelector('.task-item-title').textContent).toLowerCase();
-      const checkbox = taskItem.querySelector('.task-item-checkbox');
-      const priorityButton = taskItem.querySelector('.task-priority-star-button');
-      const taskModifyButton = taskItem.querySelector('.modify-task-button');
-      const emitToggleTaskFormData = [e, taskName];
-
-      if (target === checkbox) {
-        toggleTaskCompletion(checkbox, taskName);
-      } else if (target === priorityButton) {
-        toggleTaskPriority(priorityButton, taskName);
-      } else if (target === taskModifyButton) {
-        emitEditTaskFormVisibilityToggle(emitToggleTaskFormData);
-      }
-    });
-  });
 }
 
-export { handleTaskItems };
+function handleTaskItemInteractables(event) {
+  const target = event.target;
+  const targetTagName = target.tagName.toLowerCase();
+
+  if (targetTagName !== 'button' && targetTagName !== 'input') return;
+
+  const taskItem = target.closest('.task-item');
+  if (!taskItem) return;
+
+  const taskName = taskItem
+    .querySelector('.task-item-title')
+    .textContent.toLowerCase();
+  const handlers = {
+    'task-item-checkbox': () => toggleTaskCompletion(target, taskName),
+    'task-priority-star-button': () => toggleTaskPriority(target, taskName),
+    'modify-task-button': () =>
+      emitEditTaskFormVisibilityToggle([e, taskName]),
+  };
+
+  const handler = handlers[target.className];
+  if (handler) handler();
+}
+
+function addTaskListEventListener(taskListElement) {
+  taskListElement.addEventListener('click', handleTaskItemInteractables);
+}
+
+function publishEditTaskEvent() {
+  events.on(TOGGLE_EDIT_TASK_FORM, toggleEditTaskFormVisibility);
+  isEditTaskFormEventPublished = true;
+
+  return isEditTaskFormEventPublished
+}
+
+function handleTaskItems(taskListElement) {
+  appendTaskEditModalToDOM();
+  addTaskListEventListener(taskListElement);
+
+  if (isEditTaskFormEventPublished) return;
+  publishEditTaskEvent();
+}
+
+export { handleTaskItems, isEditTaskFormEventPublished };
 
 // remove and createTaskList putting the priority tasks first date sorted
 // followed by the non-priority tasks date sorted

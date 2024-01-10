@@ -36,10 +36,9 @@ function updateTaskList(projectName) {
 
   const taskListElement = createTaskList(projectObject);
   mainContent.appendChild(taskListElement);
-  enableScrollAnimation();
 
-  const projectObjectTaskAeray = projectObject.getTaskArray();
-  if (projectObjectTaskAeray.length > 0) {
+  const numberOfTaskItems = taskListElement.children.length;
+  if (numberOfTaskItems > 0) {
     enableScrollAnimation();
     handleTaskItems(taskListElement);
   }
@@ -54,10 +53,13 @@ function addNewTask() {
 
   const taskName = taskNameInput.value.trim().toLowerCase();
   const taskDetails = taskDetailsInput.value.trim();
+
+  console.log(taskDetails);
   const taskDueDate = taskDueDateInput.value;
   
   if (!taskName) return alert('Enter Task Name');
   if (!taskDueDate) return alert('Enter Task Due Date');
+  if (taskDueDate < new Date().toISOString().slice(0, 10)) return alert('Enter Valid Due Date');
   // TODO: study date object
   // console.log(new Date());
   // console.log(new Date().toString());
@@ -65,16 +67,13 @@ function addNewTask() {
   // console.log(new Date().toISOString());
   // console.log(new Date().toISOString().slice(0, 10));
   // console.log(taskDueDate);
-  if (taskDueDate < new Date().toISOString().slice(0, 10)) return alert('Enter Valid Due Date');
 
   taskForm.reset();
 
-  const projectName = (mainState.projectName).toLowerCase();
-
-  const taskObject = taskFactory(taskName, projectName, taskDetails, taskDueDate);
-
+  const taskObject = taskFactory(taskName, projectName, taskDueDate, taskDetails);
   taskObject.setProjectName(projectName);
-
+  
+  const projectName = (mainState.projectName).toLowerCase();
   data.addTaskToProject(projectName, taskObject);
 
   emitToggleTaskFormVisibility();

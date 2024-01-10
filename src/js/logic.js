@@ -92,7 +92,7 @@ function projectFactory(name) {
 
 // TODO:: combine link object factory and project factory maybe?
 
-function taskFactory(name, projectName, details, dueDate) {
+function taskFactory(name, projectName, dueDate, details) {
   if (
     typeof name !== 'string' &&
     typeof details !== 'string' &&
@@ -104,8 +104,8 @@ function taskFactory(name, projectName, details, dueDate) {
   let state = {
     name: name,
     projectName: projectName,
-    details: details,
     dueDate: dueDate,
+    details: details,
     priority: false,
     completed: false,
   };

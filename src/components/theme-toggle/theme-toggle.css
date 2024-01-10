@@ -1,0 +1,64 @@
+#theme-toggle-container {
+  border-radius: 100vw;
+  background-color: transparent;
+  box-shadow: none;
+  padding: 0;
+  position: relative;
+  transition: opacity 380ms ease-in-out;
+}
+
+#theme-toggle-checkbox {
+  display: none;
+}
+
+#theme-toggle-label {
+  align-items: center;
+  background: black;
+  border-radius: inherit;
+  box-shadow: inset 0 0 12px silver;
+  cursor: pointer;
+  display: flex;
+  gap: 0rem;
+  padding: 5px 8px;
+  min-height: 25px;
+  min-width: 25px;
+  -moz-user-select: none; /* Firefox */ /* IE10+/Edge */
+  -webkit-user-select: none; /* Safari */
+  user-select: none; /* Standard */
+}
+
+#sun,
+#moon {
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  color: black;
+  font-size: 0.675rem;
+  padding: 3.5px;
+  width: 10px;
+}
+
+#sun {
+  background-color: #E99A43;
+  box-shadow: inset 3px -3px 8px black;
+  opacity: 0;
+  transform: translateX(calc(20px + 0rem)) rotate(0);
+  transition: all 0.25s ease-in-out;
+}
+
+#moon {
+  background-color: #F6F1D5;
+  box-shadow: inset -3px -3px 8px black;
+  opacity: 1;
+  transform: translateX(0px) rotate(0);
+  transition: all 0.25s ease-in-out;
+}
+
+#theme-toggle-checkbox:checked ~ #theme-toggle-label > #sun {
+  opacity: 1;
+  transform: translateX(0px) rotate(360deg);
+}
+
+#theme-toggle-checkbox:checked ~ #theme-toggle-label > #moon {
+  opacity: 0;
+  transform: translateX(calc((20px + 0rem) * -1)) rotate(360deg);
+}/*# sourceMappingURL=theme-toggle.css.map */

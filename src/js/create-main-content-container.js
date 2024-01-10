@@ -22,21 +22,19 @@ function createMainContentContainer(mainUpdateObject) {
   const taskListElement = createTaskList(mainUpdateObject);
   mainContent.appendChild(taskListElement);
 
-  const updateObjectTaskArray = mainUpdateObject.getTaskArray();
-  if (updateObjectTaskArray.length > 0) {
+  const numberOfTaskItems = taskListElement.children.length;
+  if (numberOfTaskItems > 0) {
     enableScrollAnimation();
-    console.log(mainUpdateObject.getTaskArray());
     handleTaskItems(taskListElement);
   }
   
-  const objectType = mainUpdateObject.getType();
-  if (objectType === 'project') {
-    mainContent.appendChild(createAddTaskContainer());
-  } 
-
   const mainContentContainer = document.createElement('div');
-  mainContentContainer.setAttribute('id', 'main-container');
+  const objectType = mainUpdateObject.getType();
   mainContentContainer.appendChild(mainHeading);
+  if (objectType === 'project') {
+    mainContentContainer.appendChild(createAddTaskContainer());
+  } 
+  mainContentContainer.setAttribute('id', 'main-container');
   mainContentContainer.appendChild(mainContent);
   
   return mainContentContainer

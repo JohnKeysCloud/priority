@@ -1,0 +1,26 @@
+.list-icon-container {
+  aspect-ratio: 1/1;
+  position: relative;
+  width: 0.5rem;
+}
+.list-icon-container .list-icon-bars {
+  background-color: white;
+  height: 1px;
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.list-icon-container::before, .list-icon-container::after {
+  content: "";
+  width: 100%;
+  height: 1px;
+  background-color: white;
+  position: absolute;
+}
+.list-icon-container::before {
+  top: 0;
+}
+.list-icon-container::after {
+  bottom: 0;
+}/*# sourceMappingURL=listIcon.css.map */
