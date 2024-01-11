@@ -20,9 +20,10 @@ import { mainState } from './handle-main';
 import { checkTargetElementExistence } from '../utilities/check-target-element-existence';
 import { events } from '../utilities/pubsub';
 
-import { enableScrollAnimation } from './enable-scroll-animation';
+import { enableScrollAnimations } from './enable-scroll-animation';
 
 import { handleTaskItems } from './handle-task-items';
+import { handleTaskList } from './handle-task-list';
 
 
 // > ---------------------------------------------------
@@ -37,11 +38,7 @@ function updateTaskList(projectName) {
   const taskListElement = createTaskList(projectObject);
   mainContent.appendChild(taskListElement);
 
-  const numberOfTaskItems = taskListElement.children.length;
-  if (numberOfTaskItems > 0) {
-    enableScrollAnimation();
-    handleTaskItems(taskListElement);
-  }
+  handleTaskList(taskListElement);
 }
 
 function addNewTask() {

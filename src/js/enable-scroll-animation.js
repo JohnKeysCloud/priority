@@ -18,7 +18,7 @@ function getContainersWithOverflow(containers) {
   return containersWithOverflow;
 }
 
-function enableScrollAnimation() {
+function enableScrollAnimations() {
   const taskDetailContainers = document.querySelectorAll('.task-item-details');
 
   const containersWithOverflow = getContainersWithOverflow(taskDetailContainers);
@@ -28,4 +28,4 @@ function enableScrollAnimation() {
   });
 }
 
-export { enableScrollAnimation };
+export { enableScrollAnimations };
