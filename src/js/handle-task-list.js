@@ -1,24 +1,44 @@
-import { enableScrollAnimations } from './enable-scroll-animation';
+// * DATA
+import { data } from './data.js';
+
+// * HANDLERS
 import { handleTaskItems } from './handle-task-items';
+
+// * MARKUP
+import { createTaskList } from './create-task-list';
+
+// * UTILITIES
+import { checkTargetElementExistence } from '../utilities/check-target-element-existence';
 
 // > --------------------------------------------------------------
 
-function handleTaskList(taskListElement) {
-  const taskListChildren = taskListElement.children;
-  const taskListFirstChild = taskListChildren[0];
-
-  // TODO: get state of taskList events... if events from either of the functions enableScrollAnimations or handleTaskItems are published and or have listeners, then remove them all if the taskListChildren.length is 0
-
-  if (
+function checkTaskListPopulation(taskListElement) {
+  const taskListFirstChild = taskListElement.firstChild; // ? taskListChildren[0] || null
+  const placeholderExists =
     taskListFirstChild &&
-    taskListFirstChild.hasAttribute('id', 'placeholder-container')
-  )
-    return;
+    taskListFirstChild.hasAttribute('id', 'placeholder-container');
 
-  if (taskListChildren.length > 0) {
-    enableScrollAnimations();
+  if (placeholderExists || !taskListFirstChild) {
+    return false;
+  } else {
+    return true;
+  }
+}
+
+function handleTaskList(projectName) {
+  const taskList = checkTargetElementExistence('#task-list');
+  const mainContent = taskList.parentNode;
+  const projectObject = data.getProjectObject(projectName);
+
+  taskList.remove();
+
+  const taskListElement = createTaskList(projectObject);
+  mainContent.appendChild(taskListElement);
+
+  const taskListHasTaskItems = checkTaskListPopulation(taskListElement);
+  if (taskListHasTaskItems) {
     handleTaskItems(taskListElement);
   }
 }
 
-export { handleTaskList };
+export { handleTaskList, checkTaskListPopulation };

@@ -6,6 +6,8 @@ import { events } from '../utilities/pubsub';
 
 // > ---------------------------------------------------
 
+// TODO: remove the event listeners from this markup module
+
 function createEditTaskForm() {
   const titleLabel = document.createElement('label');
   titleLabel.classList.add('add-task-label');

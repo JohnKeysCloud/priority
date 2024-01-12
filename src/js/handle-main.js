@@ -4,8 +4,8 @@ import { data } from './data.js';
 // * HANDLERS
 import { addTaskFormOpenerButtonListener, taskComponentState } from './add-task-form-opener-button-listener.js';
 import { handleNavToggleButton } from '../components/nav-toggle/handle-nav-toggle-button.js';
+import { handleTaskItems } from './handle-task-items';
 import { removeAddTaskFormOpenerButtonListener } from './remove-add-task-form-opener-button-listener.js';
-import { handleTaskList } from './handle-task-list.js';
 
 // * LAYOUT
 import { createMainContentContainer } from './create-main-content-container.js';
@@ -15,6 +15,7 @@ import { linkObjectFactory } from './logic.js';
 
 // * UTILITIES
 import { checkTargetElementExistence } from '../utilities/check-target-element-existence.js';
+import { checkTaskListPopulation } from './handle-task-list.js';
 
 // > ---------------------------------------------------
 
@@ -62,7 +63,9 @@ function resolveMainUpdateObject(newCurrentNavLink) {
   }
 }
 
-function handleMain(targetElement) {
+function handleMain(targetElement) { // ? this should accept 
+  console.log(targetElement);
+
   const newCurrentNavLink = targetElement;
   const mainUpdateObject = resolveMainUpdateObject(newCurrentNavLink);
   const mainUpdateObjectName = mainUpdateObject.getName();
@@ -85,8 +88,12 @@ function handleMain(targetElement) {
     addTaskFormOpenerButtonListener(mainUpdateObjectType);
   }
 
+  const taskListHasTaskItems = checkTaskListPopulation(newTaskList); // ? boolean
+  if (taskListHasTaskItems) {
+    handleTaskItems(newTaskList);
+  }
+
   closeNavPostTransition(targetElement);
-  handleTaskList(newTaskList);
 }
 
 export { handleMain, mainState };

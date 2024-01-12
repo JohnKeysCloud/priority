@@ -1,17 +1,17 @@
 // * DATA
 import { data } from './data';
 
+// * EMITTERS
+import { emitToggleTaskFormVisibility } from './add-task-form-opener-button-listener';
+
 // * EVENT NAMES
 import { ADD_NEW_TASK } from './eventNames';
 
 // * LOGIC
 import { taskFactory } from './logic';
 
-// * MARKUP
-import { createTaskList } from './create-task-list';
-
-// * EMITTERS
-import { emitToggleTaskFormVisibility } from './add-task-form-opener-button-listener';
+// * HANDLERS
+import { handleTaskList } from './handle-task-list';
 
 // * STATES
 import { mainState } from './handle-main';
@@ -20,26 +20,7 @@ import { mainState } from './handle-main';
 import { checkTargetElementExistence } from '../utilities/check-target-element-existence';
 import { events } from '../utilities/pubsub';
 
-import { enableScrollAnimations } from './enable-scroll-animation';
-
-import { handleTaskItems } from './handle-task-items';
-import { handleTaskList } from './handle-task-list';
-
-
 // > ---------------------------------------------------
-
-function updateTaskList(projectName) {
-  const taskList = checkTargetElementExistence('#task-list');
-  const mainContent = taskList.parentNode;
-  const projectObject = data.getProjectObject(projectName);
-  
-  taskList.remove();
-
-  const taskListElement = createTaskList(projectObject);
-  mainContent.appendChild(taskListElement);
-
-  handleTaskList(taskListElement);
-}
 
 function addNewTask() {
   const taskForm = checkTargetElementExistence('#add-task-form');
@@ -57,14 +38,7 @@ function addNewTask() {
   if (!taskName) return alert('Enter Task Name');
   if (!taskDueDate) return alert('Enter Task Due Date');
   if (taskDueDate < new Date().toISOString().slice(0, 10)) return alert('Enter Valid Due Date');
-  // TODO: study date object
-  // console.log(new Date());
-  // console.log(new Date().toString());
-  // console.log(new Date().toLocaleDateString());
-  // console.log(new Date().toISOString());
-  // console.log(new Date().toISOString().slice(0, 10));
-  // console.log(taskDueDate);
-
+  
   taskForm.reset();
 
   const taskObject = taskFactory(taskName, projectName, taskDueDate, taskDetails);
@@ -75,7 +49,7 @@ function addNewTask() {
 
   emitToggleTaskFormVisibility();
 
-  updateTaskList(projectName);
+  handleTaskList(projectName);
 }
 
 function toggleTaskAddEvent(formState) {
@@ -107,4 +81,4 @@ function handleTaskAddButton(formState) {
   toggleTaskAddEvent(formState);
 }
 
-export { handleTaskAddButton };
+export { handleTaskAddButton};
