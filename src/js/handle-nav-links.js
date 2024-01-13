@@ -2,7 +2,7 @@
 import { handleMain } from './handle-main.js';
 
 // * EVENT NAMES
-import { UPDATE_MAIN } from './eventNames.js';
+import { HANDLE_MAIN } from './eventNames.js';
 
 // *  STATES
 import { navState } from '../components/zig-zag-nav/handle-zig-zag-nav.js';
@@ -14,7 +14,7 @@ import { events } from '../utilities/pubsub.js';
 // > ---------------------------------------------------
 
 function emitUpdateMain(event) {
-  events.emit(UPDATE_MAIN, event);
+  events.emit(HANDLE_MAIN, event);
 }
 
 function removeOldAriaCurrent(nodelist) {
@@ -64,9 +64,9 @@ function toggleNavLinkListeners() {
 
 function handleNavLinks() {
   if (navState.open === true) {
-    events.on(UPDATE_MAIN, handleMain);
+    events.on(HANDLE_MAIN, handleMain);
   } else if (navState.open === false) {
-    events.off(UPDATE_MAIN, handleMain);
+    events.off(HANDLE_MAIN, handleMain);
   }
   toggleNavLinkListeners();
 }

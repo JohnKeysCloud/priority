@@ -9,14 +9,14 @@ import { handleTaskItemInteractables } from './handle-task-item-interactables';
 import { createEditTaskModal } from './create-edit-task-modal';
 
 // * UTILITIES
-import { events } from "../utilities/pubsub";
 import { checkTargetElementExistence } from "../utilities/check-target-element-existence";
-import { showModalEnhanced, closeModalEnhanced } from "../utilities/enhanced-modal-handling";
-
-import { getTaskObject } from "./handle-task-item-interactables";
+import { closeModalEnhanced, showModalEnhanced } from '../utilities/enhanced-modal-handling';
+import { events } from "../utilities/pubsub";
+import { scrollElementContent } from "../utilities/scroll-element-content";
 
 // > --------------------------------------------------------------
 
+// TODO: create state object for this module using:
 let modalState;
 let isEditTaskFormEventPublished = false;
 let taskToEditObject;
@@ -46,6 +46,22 @@ function animatePreDisplayNone(element, callback) {
   element.addEventListener('animationend', onAnimationEnd);
 }
 
+function setModalPlaceholders(correspondingTaskObject) {
+  const editTaskModal = checkTargetElementExistence('#edit-task-modal');
+
+  const taskNameInput = editTaskModal.querySelector('#edit-task-title');
+  const taskDetailsInput = editTaskModal.querySelector('#edit-task-details');
+  const taskDueDateInput = editTaskModal.querySelector('#edit-task-due-date');
+
+  const taskName = correspondingTaskObject.getName();
+  const taskDetails = correspondingTaskObject.getDetails();
+  const taskDueDate = correspondingTaskObject.getDueDate();
+
+  taskNameInput.value = taskName;
+  taskDetailsInput.value = taskDetails;
+  taskDueDateInput.value = taskDueDate;
+}
+
 function toggleEditTaskFormVisibility(correspondingTaskObject) {
   const editTaskModal = checkTargetElementExistence('#edit-task-modal');
   const taskModalVisibilityOnCall = editTaskModal.getAttribute('data-hidden');
@@ -53,6 +69,7 @@ function toggleEditTaskFormVisibility(correspondingTaskObject) {
   if (taskModalVisibilityOnCall === 'hidden') {
     modalState = 'visible';
 
+    setModalPlaceholders(correspondingTaskObject);
     showModalEnhanced(editTaskModal);
     toggleModalButtonContainerEventListeners(modalState);
   } else if (taskModalVisibilityOnCall === 'visible') {

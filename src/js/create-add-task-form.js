@@ -1,10 +1,9 @@
-// * EVENT NAMES
+import { events } from "../utilities/pubsub";
 import { ADD_NEW_TASK } from "./eventNames";
 
-// * UTILITIES
-import { events } from "../utilities/pubsub";
-
 // > ---------------------------------------------------
+
+// TODO: remove the event listeners from this markup module
 
 function createAddTaskForm() {
   const titleLabel = document.createElement('label');

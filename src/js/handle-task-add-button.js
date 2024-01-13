@@ -31,8 +31,6 @@ function addNewTask() {
 
   const taskName = taskNameInput.value.trim().toLowerCase();
   const taskDetails = taskDetailsInput.value.trim();
-
-  console.log(taskDetails);
   const taskDueDate = taskDueDateInput.value;
   
   if (!taskName) return alert('Enter Task Name');

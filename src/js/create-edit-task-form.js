@@ -1,8 +1,4 @@
-// * EVENT NAMES
-import { TOGGLE_EDIT_TASK_FORM } from './eventNames';
-
-// * UTILITIES
-import { events } from '../utilities/pubsub';
+import { handleSaveEditTaskButton } from './handle-edit-task-modal-buttons';
 
 // > ---------------------------------------------------
 
@@ -10,12 +6,12 @@ import { events } from '../utilities/pubsub';
 
 function createEditTaskForm() {
   const titleLabel = document.createElement('label');
-  titleLabel.classList.add('add-task-label');
+  titleLabel.classList.add('edit-task-label');
   titleLabel.setAttribute('for', 'edit-task-title');
   titleLabel.textContent = 'Title';
 
   const titleInput = document.createElement('input');
-  titleInput.classList.add('add-task-input');
+  titleInput.classList.add('edit-task-input');
   titleInput.setAttribute('type', 'text');
   titleInput.setAttribute('id', 'edit-task-title');
   titleInput.setAttribute('required', 'true');
@@ -23,7 +19,7 @@ function createEditTaskForm() {
   titleInput.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
       e.preventDefault();
-      events.emit(TOGGLE_EDIT_TASK_FORM);
+      handleSaveEditTaskButton();
     }
   });
 
@@ -46,7 +42,7 @@ function createEditTaskForm() {
   detailsInput.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
       e.preventDefault();
-      events.emit(TOGGLE_EDIT_TASK_FORM);
+      handleSaveEditTaskButton();
     }
   });
 
@@ -70,7 +66,7 @@ function createEditTaskForm() {
   dueDateInput.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
       e.preventDefault();
-      events.emit(TOGGLE_EDIT_TASK_FORM);
+      handleSaveEditTaskButton();
     }
   });
 
@@ -92,7 +88,7 @@ function createEditTaskForm() {
   cancelEditTaskButton.classList.add('edit-task-button');
   cancelEditTaskButton.setAttribute('id', 'cancel-edit-task-button');
   cancelEditTaskButton.setAttribute('type', 'button');
-  cancelEditTaskButton.setAttribute('aria-label', 'Cancel Add Task');
+  cancelEditTaskButton.setAttribute('aria-label', 'Cancel Edit Task');
   cancelEditTaskButton.textContent = 'cancel';
 
   const editTaskButtonContainer = document.createElement('div');

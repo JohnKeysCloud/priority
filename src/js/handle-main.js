@@ -20,7 +20,7 @@ import { checkTaskListPopulation } from './handle-task-list.js';
 // > ---------------------------------------------------
 
 const mainState = {
-  updateObjectType: null,
+  linkType: null,
   projectName: null,
 }
 
@@ -48,7 +48,7 @@ function resolveMainUpdateObject(newCurrentNavLink) {
       (project) => project.getName() === projectValue
       );
     
-    mainState.updateObjectType = 'project';
+    mainState.linkType = 'project';
     
     return projectObject;
       
@@ -56,16 +56,14 @@ function resolveMainUpdateObject(newCurrentNavLink) {
     const pageName = newCurrentNavLink.getAttribute('data-page-name');
     const linkObject = linkObjectFactory(pageName, data.getAllTasks());
 
-    mainState.updateObjectType = 'link';
+    mainState.linkType = 'link';
 
     return linkObject;
 
   }
 }
 
-function handleMain(targetElement) { // ? this should accept 
-  console.log(targetElement);
-
+function handleMain(targetElement) {
   const newCurrentNavLink = targetElement;
   const mainUpdateObject = resolveMainUpdateObject(newCurrentNavLink);
   const mainUpdateObjectName = mainUpdateObject.getName();
