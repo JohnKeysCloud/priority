@@ -14,9 +14,8 @@ function toggleStarIcon(priorityButton, isPriority) {
   }
 }
 
-function toggleTaskPriority(priorityButton, taskName) {
+function toggleTaskPriority(priorityButton, taskObject) {
   const isPriority = priorityButton.getAttribute('data-checked');
-  const taskObject = getTaskObject(taskName);
 
   toggleStarIcon(priorityButton, isPriority);
 
@@ -36,9 +35,8 @@ function getTaskObject(taskName) {
   return taskObject;
 }
 
-function toggleTaskCompletion(checkbox, taskName) {
+function toggleTaskCompletion(checkbox, taskObject) {
   const isChecked = checkbox.checked;
-  const taskObject = getTaskObject(taskName);
 
   if (isChecked === true) {
     taskObject.setCompleted(true);
@@ -50,7 +48,6 @@ function toggleTaskCompletion(checkbox, taskName) {
 }
 
 // > --------------------------------------------------------------
-
 
 function handleTaskItemInteractables(event) {
   const target = event.target;
@@ -64,10 +61,13 @@ function handleTaskItemInteractables(event) {
   const taskName = taskItem
     .querySelector('.task-item-title')
     .textContent.toLowerCase();
+  
+  const correspondingTaskObject = getTaskObject(taskName);
+
   const handlers = {
-    'task-item-checkbox': () => toggleTaskCompletion(target, taskName),
-    'task-priority-star-button': () => toggleTaskPriority(target, taskName),
-    'modify-task-button': () => emitEditTaskFormVisibilityToggle([e, taskName]),
+    'task-item-checkbox': () => toggleTaskCompletion(target, correspondingTaskObject),
+    'task-priority-star-button': () => toggleTaskPriority(target, correspondingTaskObject),
+    'modify-task-button': () => emitEditTaskFormVisibilityToggle(correspondingTaskObject),
   };
 
   const handler = handlers[target.className];

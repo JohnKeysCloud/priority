@@ -1,7 +1,16 @@
 // * EVENT NAMES 
 import { emitEditTaskFormVisibilityToggle } from "./handle-task-item-interactables";
 
+import { taskToEditObject } from "./handle-task-items";
+
 // > --------------------------------------------------------------
+
+function handleSaveEditTaskButton(saveButton) {
+  // TODO:
+  // ? get inputs, check format, trim, lowercase... return if invalid
+  // ? use taskToEditObject setter methods to update the task
+  // ? reload taskList
+}
 
 function handleEditTaskModalButtons(event) {
   if (!event.target.classList.contains('edit-task-button')) return;
@@ -11,8 +20,7 @@ function handleEditTaskModalButtons(event) {
   const isCancelButton = targetId === 'cancel-edit-task-button';
 
   if (isSaveButton) {
-    console.log('add functionality to save edit task button');
-    // handleSaveEditTaskButton(event.target);
+    handleSaveEditTaskButton(event.target);
   } else if (isCancelButton) {
     emitEditTaskFormVisibilityToggle();
   }

@@ -13,10 +13,13 @@ import { events } from "../utilities/pubsub";
 import { checkTargetElementExistence } from "../utilities/check-target-element-existence";
 import { showModalEnhanced, closeModalEnhanced } from "../utilities/enhanced-modal-handling";
 
+import { getTaskObject } from "./handle-task-item-interactables";
+
 // > --------------------------------------------------------------
 
 let modalState;
 let isEditTaskFormEventPublished = false;
+let taskToEditObject;
 
 function toggleModalButtonContainerEventListeners(modalState) {
   const editTaskButtonContainer = checkTargetElementExistence(
@@ -43,7 +46,7 @@ function animatePreDisplayNone(element, callback) {
   element.addEventListener('animationend', onAnimationEnd);
 }
 
-function toggleEditTaskFormVisibility(data) {
+function toggleEditTaskFormVisibility(correspondingTaskObject) {
   const editTaskModal = checkTargetElementExistence('#edit-task-modal');
   const taskModalVisibilityOnCall = editTaskModal.getAttribute('data-hidden');
 
@@ -60,11 +63,7 @@ function toggleEditTaskFormVisibility(data) {
     toggleModalButtonContainerEventListeners(modalState);
   }
 
-  // TODO:
-  console.log(`Data: ${data}`);
-  // let [event, taskName] = [...data];
-  // console.log(taskName);
-  // console.log(event.target);
+  taskToEditObject = correspondingTaskObject;
 }
 
 function emitEditTaskFormVisibilityToggle(data) {
@@ -125,4 +124,4 @@ function handleTaskItems(taskListElement) {
   publishEditTaskEvent();
 }
 
-export { handleTaskItems, isEditTaskFormEventPublished,  emitEditTaskFormVisibilityToggle };
+export { handleTaskItems, isEditTaskFormEventPublished,  emitEditTaskFormVisibilityToggle, taskToEditObject };
