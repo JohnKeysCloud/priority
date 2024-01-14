@@ -1,18 +1,18 @@
 // * EVENT NAMES
-import { TOGGLE_ADD_PROJECT_FORM } from "./eventNames";
+import { TOGGLE_ADD_PROJECT_FORM } from "../eventNames";
 
 // * HANDLERS
 import { handleProjectAddButton } from "./handle-project-add-button";
 import { handleProjectCancelButton } from "./handle-project-cancel-button";
 
 // * STATES
-import { navState } from "../components/zig-zag-nav/handle-zig-zag-nav";
+import { navState } from "../../components/zig-zag-nav/handle-zig-zag-nav";
 
 // * UTILITIES
-import { events } from "../utilities/pubsub";
-import { checkTargetElementExistence } from "../utilities/check-target-element-existence";
-import { clearTextInput } from "../utilities/clear-text-input";
-import { setAttributes } from "../utilities/set-attributes";
+import { events } from "../../utilities/pubsub";
+import { checkTargetElementExistence } from "../../utilities/check-target-element-existence";
+import { clearTextInput } from "../../utilities/clear-text-input";
+import { setAttributes } from "../../utilities/set-attributes";
 
 // > ---------------------------------------------------
 

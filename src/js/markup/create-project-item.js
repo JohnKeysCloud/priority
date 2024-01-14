@@ -1,5 +1,5 @@
 // * MARKUP
-import { createListIcon } from "../components/listIcon/create-list-icon"; // ?  IN COMPONENTS FOLDER
+import { createListIcon } from "../../components/listIcon/create-list-icon"; // ?  IN COMPONENTS FOLDER
 
 // > ---------------------------------------------------
 

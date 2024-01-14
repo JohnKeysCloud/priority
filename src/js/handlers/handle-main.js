@@ -1,21 +1,23 @@
 // * DATA
-import { data } from './data.js';
+import { data } from '../data.js';
 
 // * HANDLERS
 import { addTaskFormOpenerButtonListener, taskComponentState } from './add-task-form-opener-button-listener.js';
-import { handleNavToggleButton } from '../components/nav-toggle/handle-nav-toggle-button.js';
-import { handleTaskItems } from './handle-task-items';
+import { handleNavToggleButton } from '../../components/nav-toggle/handle-nav-toggle-button.js';
+import { handleTaskItems } from './handle-task-items.js';
 import { removeAddTaskFormOpenerButtonListener } from './remove-add-task-form-opener-button-listener.js';
 
 // * LAYOUT
-import { createMainContentContainer } from './create-main-content-container.js';
+import { createMainContentContainer } from '../markup/create-main-content-container.js';
 
 // * LOGIC
-import { linkObjectFactory } from './logic.js';
+import { linkObjectFactory } from '../logic.js';
+
+// * PROJECT DEPENDENT UTILITIES
+import { checkTaskListPopulation } from './handle-task-list.js';
 
 // * UTILITIES
-import { checkTargetElementExistence } from '../utilities/check-target-element-existence.js';
-import { checkTaskListPopulation } from './handle-task-list.js';
+import { checkTargetElementExistence } from '../../utilities/check-target-element-existence.js';
 
 // > ---------------------------------------------------
 

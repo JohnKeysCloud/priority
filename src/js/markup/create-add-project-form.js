@@ -1,11 +1,11 @@
 // * EVENT NAMES
-import { ADD_NEW_PROJECT } from "./eventNames";
+import { ADD_NEW_PROJECT } from "../eventNames";
 
 // * MARKUP
-import { createListIcon } from "../components/listIcon/create-list-icon";
+import { createListIcon } from "../../components/listIcon/create-list-icon";
 
 // * UTILITIES
-import { events } from "../utilities/pubsub";
+import { events } from "../../utilities/pubsub";
 
 // > ---------------------------------------------------
 

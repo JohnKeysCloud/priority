@@ -1,5 +1,5 @@
-import { events } from "../utilities/pubsub";
-import { ADD_NEW_TASK } from "./eventNames";
+import { events } from "../../utilities/pubsub";
+import { ADD_NEW_TASK } from "../eventNames";
 
 // > ---------------------------------------------------
 

@@ -2,7 +2,7 @@
 import { emitToggleTaskFormVisibility } from "./add-task-form-opener-button-listener";
 
 // * UTILITIES
-import { checkTargetElementExistence } from "../utilities/check-target-element-existence";
+import { checkTargetElementExistence } from "../../utilities/check-target-element-existence";
 
 // > ---------------------------------------------------
 

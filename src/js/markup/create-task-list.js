@@ -1,5 +1,5 @@
 // * MARKUP
-import { createTaskItem } from './create-task-item';
+import { createTaskItem } from './create-task-item.js';
 import { createTaskListPlaceholder } from './create-task-list-placeholder.js'
 
 // > ---------------------------------------------------

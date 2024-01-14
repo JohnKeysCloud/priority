@@ -1,18 +1,18 @@
 // * EVENT NAMES
-import { TOGGLE_EDIT_TASK_FORM } from "./eventNames";
+import { TOGGLE_EDIT_TASK_FORM } from "../eventNames";
 
 // * HANDLERS
 import { handleEditTaskModalButtons } from './handle-edit-task-modal-buttons';
 import { handleTaskItemInteractables } from './handle-task-item-interactables';
 
 // * MARKUP
-import { createEditTaskModal } from './create-edit-task-modal';
+import { createEditTaskModal } from '../markup/create-edit-task-modal';
 
 // * UTILITIES
-import { checkTargetElementExistence } from "../utilities/check-target-element-existence";
-import { closeModalEnhanced, showModalEnhanced } from '../utilities/enhanced-modal-handling';
-import { events } from "../utilities/pubsub";
-import { scrollElementContent } from "../utilities/scroll-element-content";
+import { checkTargetElementExistence } from "../../utilities/check-target-element-existence";
+import { closeModalEnhanced, showModalEnhanced } from '../../utilities/enhanced-modal-handling';
+import { events } from "../../utilities/pubsub";
+import { scrollElementContent } from "../../utilities/scroll-element-content";
 
 // > --------------------------------------------------------------
 

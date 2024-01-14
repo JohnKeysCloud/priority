@@ -1,5 +1,5 @@
 // * UTILITIES
-import { addLinkToHead } from "../utilities/add-link-to-head";
+import { addLinkToHead } from "../../utilities/add-link-to-head";
 
 // > ---------------------------------------------------
 

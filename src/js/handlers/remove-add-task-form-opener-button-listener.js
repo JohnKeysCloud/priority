@@ -2,7 +2,7 @@
 import { emitToggleTaskFormVisibility } from "./add-task-form-opener-button-listener";
 
 // * EVENT NAMES
-import { TOGGLE_ADD_TASK_FORM } from "./eventNames";
+import { TOGGLE_ADD_TASK_FORM } from "../eventNames";
 
 // * EVENTS
 import { toggleAddTaskForm } from "./add-task-form-opener-button-listener";
@@ -11,8 +11,8 @@ import { toggleAddTaskForm } from "./add-task-form-opener-button-listener";
 import { taskComponentState } from "./add-task-form-opener-button-listener";
 
 // * UTILITIES
-import { events } from "../utilities/pubsub";
-import { checkTargetElementExistence } from "../utilities/check-target-element-existence";
+import { events } from "../../utilities/pubsub";
+import { checkTargetElementExistence } from "../../utilities/check-target-element-existence";
 
 // > ---------------------------------------------------
 

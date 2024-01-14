@@ -1,25 +1,25 @@
 // * DATA
-import { data } from './data.js';
+import { data } from '../data.js';
 
 // * EMITTERS
-import { emitProjectFormVisibilityToggle } from './handle-new-project-button';
+import { emitProjectFormVisibilityToggle } from './handle-new-project-button.js';
 
 // * EVENT NAMES
-import { ADD_NEW_PROJECT } from './eventNames';
+import { ADD_NEW_PROJECT } from '../eventNames.js';
 
 // * LOGIC
-import { projectFactory } from './logic';
+import { projectFactory } from '../logic.js';
 
 // * MARKUP
-import { createProjectItem } from './create-project-item';
+import { createProjectItem } from '../markup/create-project-item.js';
 
 // * STATES
-import { formComponentState } from './handle-new-project-button';
+import { formComponentState } from './handle-new-project-button.js';
 
 // * UTILITIES
-import { events } from '../utilities/pubsub';
-import { checkTargetElementExistence } from '../utilities/check-target-element-existence';
-import { toggleScrollBarVisibility } from '../utilities/toggle-scroll-visibility.js';
+import { events } from '../../utilities/pubsub.js';
+import { checkTargetElementExistence } from '../../utilities/check-target-element-existence.js';
+import { toggleScrollBarVisibility } from '../../utilities/toggle-scroll-visibility.js';
 
 // > ---------------------------------------------------
 

@@ -2,8 +2,8 @@
 import { HIDE_NAV_EVENT, SHOW_NAV_EVENT } from '../../js/eventNames.js';
 
 // * HANLDERS
-import { handleNavLinks } from '../../js/handle-nav-links.js';
-import { handleNewProjectButton } from '../../js/handle-new-project-button.js';
+import { handleNavLinks } from '../../js/handlers/handle-nav-links.js';
+import { handleNewProjectButton } from '../../js/handlers/handle-new-project-button.js';
 
 // * UTILITIES
 import { events } from '../../utilities/pubsub.js';

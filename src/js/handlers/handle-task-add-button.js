@@ -1,14 +1,14 @@
 // * DATA
-import { data } from './data';
+import { data } from '../data';
 
 // * EMITTERS
 import { emitToggleTaskFormVisibility } from './add-task-form-opener-button-listener';
 
 // * EVENT NAMES
-import { ADD_NEW_TASK } from './eventNames';
+import { ADD_NEW_TASK } from '../eventNames';
 
 // * LOGIC
-import { taskFactory } from './logic';
+import { taskFactory } from '../logic';
 
 // * HANDLERS
 import { handleTaskList } from './handle-task-list';
@@ -17,8 +17,8 @@ import { handleTaskList } from './handle-task-list';
 import { mainState } from './handle-main';
 
 // * UTILITIES
-import { checkTargetElementExistence } from '../utilities/check-target-element-existence';
-import { events } from '../utilities/pubsub';
+import { checkTargetElementExistence } from '../../utilities/check-target-element-existence';
+import { events } from '../../utilities/pubsub';
 
 // > ---------------------------------------------------
 

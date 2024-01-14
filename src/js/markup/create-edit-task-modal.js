@@ -2,7 +2,7 @@
 import { createEditTaskForm } from './create-edit-task-form.js';
 
 // * UTILITIES
-import { setAttributes } from '../utilities/set-attributes.js';
+import { setAttributes } from '../../utilities/set-attributes.js';
 
 // > --------------------------------------------------------------
 

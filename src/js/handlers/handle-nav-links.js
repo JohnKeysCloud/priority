@@ -2,16 +2,18 @@
 import { handleMain } from './handle-main.js';
 
 // * EVENT NAMES
-import { HANDLE_MAIN } from './eventNames.js';
+import { HANDLE_MAIN } from '../eventNames.js';
 
 // *  STATES
-import { navState } from '../components/zig-zag-nav/handle-zig-zag-nav.js';
+import { navState } from '../../components/zig-zag-nav/handle-zig-zag-nav.js';
 
 // * UTILITIES
-import { checkTargetElementExistence } from '../utilities/check-target-element-existence.js';
-import { events } from '../utilities/pubsub.js';
+import { checkTargetElementExistence } from '../../utilities/check-target-element-existence.js';
+import { events } from '../../utilities/pubsub.js';
 
 // > ---------------------------------------------------
+
+let activeLink;
 
 function emitUpdateMain(event) {
   events.emit(HANDLE_MAIN, event);
@@ -33,6 +35,8 @@ function setAriaCurrent(targetElement) {
   removeOldAriaCurrent(navLinks);
 
   targetElement.setAttribute('aria-current', 'page');
+
+  activeLink = targetElement.textContent.toLowerCase();
 }
 
 function checkIfClickableNavLink(targetElement) {
@@ -71,4 +75,4 @@ function handleNavLinks() {
   toggleNavLinkListeners();
 }
 
-export { handleNavLinks };
+export { handleNavLinks, activeLink };

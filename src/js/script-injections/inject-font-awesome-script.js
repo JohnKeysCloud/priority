@@ -1,5 +1,5 @@
 // * UTILITIES
-import { addScriptToHead } from "../utilities/add-script-to-head";
+import { addScriptToHead } from "../../utilities/add-script-to-head";
 
 // > ---------------------------------------------------
 

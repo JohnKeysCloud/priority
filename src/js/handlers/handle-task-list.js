@@ -1,14 +1,14 @@
 // * DATA
-import { data } from './data.js';
+import { data } from '../data.js';
 
 // * HANDLERS
-import { handleTaskItems } from './handle-task-items';
+import { handleTaskItems } from './handle-task-items.js';
 
 // * MARKUP
-import { createTaskList } from './create-task-list';
+import { createTaskList } from '../markup/create-task-list.js';
 
 // * UTILITIES
-import { checkTargetElementExistence } from '../utilities/check-target-element-existence';
+import { checkTargetElementExistence } from '../../utilities/check-target-element-existence.js';
 
 // > --------------------------------------------------------------
 

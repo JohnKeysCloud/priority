@@ -5,22 +5,19 @@ import { data } from './data.js';
 import { linkObjectFactory } from './logic.js';
 
 // * MARKUP
-import { createHeader } from './create-header.js';
-import { createMain } from './create-main.js';
+import { createHeader } from './markup/create-header.js';
+import { createMain } from './markup/create-main.js';
 import { createZigZagNav } from '../components/zig-zag-nav/create-zig-zag-nav.js';
 
 // * MODIFIERS
-import { modifyGenericNavLinks } from './modify-generic-nav-links.js';
-import { modifySecondNavContainer } from './modify-second-nav-container.js';
-import { injectFontAwesomeScript } from './inject-font-awesome-script.js';
-import { injectStarMaterialIcon } from './inject-star-material-icon.js';
+import { modifyGenericNavLinks } from './modifiers/modify-generic-nav-links.js';
+import { modifySecondNavContainer } from './modifiers/modify-second-nav-container.js';
+import { injectFontAwesomeScript } from './script-injections/inject-font-awesome-script.js';
+import { injectStarMaterialIcon } from './script-injections/inject-star-material-icon.js';
 
 // * STYLESHEETS
 import '../components/zig-zag-nav/zig-zag-nav.scss';
 import '../css/styles.css';
-
-// * UTILITIES
-import { createScrollAnimation } from '../utilities/scroll-element-content.js';
 
 const content = document.getElementById('content');
 

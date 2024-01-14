@@ -2,14 +2,20 @@
 import { emitEditTaskFormVisibilityToggle } from "./handle-task-item-interactables";
 
 // * STATES
-import { mainState } from "./handle-main";
-import { taskToEditObject } from "./handle-task-items";
+import { mainState } from './handle-main';
+import { taskToEditObject } from './handle-task-items';
 
 // * HANDLERS
-import { handleTaskList } from "./handle-task-list";
+import { handleTaskList } from './handle-task-list';
+
+// * PROJECT DEPEDENDENT UTILITIES
+import { refreshTaskListFromLink } from '../project-dependent-utilities/refresh-task-list-from-link';
+
+// * STATES
+import { activeLink } from './handle-nav-links';
 
 // * UTILITIES
-import { checkTargetElementExistence } from "../utilities/check-target-element-existence";
+import { checkTargetElementExistence } from '../../utilities/check-target-element-existence';
 
 // > --------------------------------------------------------------
 
@@ -38,8 +44,8 @@ function handleSaveEditTaskButton() {
 
   if (mainState.linkType === 'project') {
     handleTaskList(mainState.projectName);
-  } else if (mainState.linkType === 'page') {
-    console.log('page link');
+  } else if (mainState.linkType === 'link') {
+    refreshTaskListFromLink(activeLink);
   }
 }
 

@@ -1,14 +1,14 @@
 // * EVENT NAMES
-import { TOGGLE_ADD_TASK_FORM } from "./eventNames";
+import { TOGGLE_ADD_TASK_FORM } from "../eventNames";
 
 // * HANDLERS
 import { handleTaskAddButton } from "./handle-task-add-button";
 import { handleTaskCancelButton } from "./handle-task-cancel-button";
 
 // * UTITLIIES
-import { events } from "../utilities/pubsub";
-import { checkTargetElementExistence } from "../utilities/check-target-element-existence";
-import { setAttributes } from "../utilities/set-attributes";
+import { events } from "../../utilities/pubsub";
+import { checkTargetElementExistence } from "../../utilities/check-target-element-existence";
+import { setAttributes } from "../../utilities/set-attributes";
 
 // > ---------------------------------------------------
 

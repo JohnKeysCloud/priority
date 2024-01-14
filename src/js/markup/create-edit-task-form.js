@@ -1,4 +1,4 @@
-import { handleSaveEditTaskButton } from './handle-edit-task-modal-buttons';
+import { handleSaveEditTaskButton } from '../handlers/handle-edit-task-modal-buttons';
 
 // > ---------------------------------------------------
 
