@@ -32,17 +32,24 @@ function addNewTask() {
   const taskName = taskNameInput.value.trim().toLowerCase();
   const taskDetails = taskDetailsInput.value.trim();
   const taskDueDate = taskDueDateInput.value;
-  
+  const today = new Date().toISOString().slice(0, 10);
+
   if (!taskName) return alert('Enter Task Name');
   if (!taskDueDate) return alert('Enter Task Due Date');
-  if (taskDueDate < new Date().toISOString().slice(0, 10)) return alert('Enter Valid Due Date');
-  
+  if (taskDueDate < today)
+    return alert('Enter Valid Due Date');
+
   taskForm.reset();
 
-  const taskObject = taskFactory(taskName, projectName, taskDueDate, taskDetails);
+  const taskObject = taskFactory(
+    taskName,
+    projectName,
+    taskDueDate,
+    taskDetails
+  );
   taskObject.setProjectName(projectName);
-  
-  const projectName = (mainState.projectName).toLowerCase();
+
+  const projectName = mainState.projectName.toLowerCase();
   data.addTaskToProject(projectName, taskObject);
 
   emitToggleTaskFormVisibility();

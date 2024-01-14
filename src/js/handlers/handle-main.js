@@ -1,6 +1,9 @@
 // * DATA
 import { data } from '../data.js';
 
+// * DEPENDENCIES
+import { addDays, format } from 'date-fns';
+
 // * HANDLERS
 import { addTaskFormOpenerButtonListener, taskComponentState } from './add-task-form-opener-button-listener.js';
 import { handleNavToggleButton } from '../../components/nav-toggle/handle-nav-toggle-button.js';
@@ -39,6 +42,26 @@ function clearMain(mainElement) {
   }
 }
 
+function getLinkObjectData(pageName, allTasks) {
+  const today = new Date();
+
+  const actions = {
+    'all tasks': () => allTasks,
+    'priorities': () => allTasks.filter(task => task.getPriority() === true),
+    'today': () => {
+      const todayFormatted = format(today, 'yyyy-MM-dd');
+      return allTasks.filter(task => task.getDueDate() === todayFormatted);
+    },
+    'next 7 days': () => {
+      const nextWeek = addDays(today, 7);
+      const nextWeekFormatted = format(nextWeek, 'yyyy-MM-dd');
+      return allTasks.filter(task => task.getDueDate() <= nextWeekFormatted);
+    }
+  };
+
+  return (actions[pageName] || (() => allTasks))();
+}
+
 function resolveMainUpdateObject(newCurrentNavLink) {
   const isProjectLink = newCurrentNavLink.hasAttribute('data-project-name');
   const isPageLink = newCurrentNavLink.hasAttribute('data-page-name');
@@ -56,7 +79,10 @@ function resolveMainUpdateObject(newCurrentNavLink) {
       
     } else if (isPageLink) {
     const pageName = newCurrentNavLink.getAttribute('data-page-name');
-    const linkObject = linkObjectFactory(pageName, data.getAllTasks());
+    
+    const linkObjectData = getLinkObjectData(pageName, data.getAllTasks());
+
+    const linkObject = linkObjectFactory(pageName, linkObjectData);
 
     mainState.linkType = 'link';
 
@@ -65,8 +91,8 @@ function resolveMainUpdateObject(newCurrentNavLink) {
   }
 }
 
-function handleMain(targetElement) {
-  const newCurrentNavLink = targetElement;
+function handleMain(clickedLinkElement) {
+  const newCurrentNavLink = clickedLinkElement;
   const mainUpdateObject = resolveMainUpdateObject(newCurrentNavLink);
   const mainUpdateObjectName = mainUpdateObject.getName();
   const mainUpdateObjectType = mainUpdateObject.getType();
@@ -93,7 +119,7 @@ function handleMain(targetElement) {
     handleTaskItems(newTaskList);
   }
 
-  closeNavPostTransition(targetElement);
+  closeNavPostTransition(clickedLinkElement);
 }
 
 export { handleMain, mainState };

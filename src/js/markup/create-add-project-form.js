@@ -9,6 +9,8 @@ import { events } from "../../utilities/pubsub";
 
 // > ---------------------------------------------------
 
+// TODO: remove the event listeners from this markup module
+
 function createAddProjectContainer() {
   const projectNameInput = document.createElement('input');
   projectNameInput.setAttribute('id', 'project-name-input');

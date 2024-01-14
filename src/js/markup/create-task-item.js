@@ -11,15 +11,14 @@ function createTaskItem(taskObject) {
   const isTaskComplete = taskObject.getCompleted();
   const isTaskPriority = taskObject.getPriority();
 
-  const taskCheckBoxContainer = document.createElement('div');
-  taskCheckBoxContainer.classList.add('task-checkbox-container');
-
   const taskItemCheckbox = document.createElement('input');
   taskItemCheckbox.setAttribute('type', 'checkbox');
   taskItemCheckbox.setAttribute('data-checked', isTaskComplete ? 'true' : 'false');
-  isTaskComplete ? taskItemCheckbox.checked = true : taskItemCheckbox.checked = false;
-
   taskItemCheckbox.classList.add('task-item-checkbox');
+  isTaskComplete ? taskItemCheckbox.checked = true : taskItemCheckbox.checked = false;
+  
+  const taskCheckBoxContainer = document.createElement('div');
+  taskCheckBoxContainer.classList.add('task-checkbox-container');
   taskCheckBoxContainer.appendChild(taskItemCheckbox);
 
   const taskItemTitle = document.createElement('h4');

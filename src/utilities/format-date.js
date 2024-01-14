@@ -1,5 +1,10 @@
+// * DEPENDENCIES
+import { parse } from 'date-fns';
+
+// > --------------------------------------------------------------
+
 function formatDate(dateString, options) {
-  let date = new Date(dateString);
+  let date = parse(dateString, 'yyyy-MM-dd', new Date());
   let dateOptions;
 
   if (options) {
