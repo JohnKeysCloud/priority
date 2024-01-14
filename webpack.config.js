@@ -77,8 +77,8 @@ module.exports = (env, argv) => {
         template: './src/index.ejs',
       }),
       new MiniCssExtractPlugin({
-        filename: '[name].css',
-        chunkFilename: '[id].css',
+        filename: 'css/[name].css',
+        chunkFilename: 'css/[id].css',
       }),
     ],
     devServer: {

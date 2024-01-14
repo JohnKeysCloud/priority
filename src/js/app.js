@@ -12,18 +12,12 @@ import { createZigZagNav } from '../components/zig-zag-nav/create-zig-zag-nav.js
 // * MODIFIERS
 import { modifyGenericNavLinks } from './modifiers/modify-generic-nav-links.js';
 import { modifySecondNavContainer } from './modifiers/modify-second-nav-container.js';
-import { injectFontAwesomeScript } from './script-injections/inject-font-awesome-script.js';
-import { injectStarMaterialIcon } from './script-injections/inject-star-material-icon.js';
 
 // * STYLESHEETS
 import '../components/zig-zag-nav/zig-zag-nav.scss';
 import '../css/styles.css';
 
 const content = document.getElementById('content');
-
-// * INJECT font awesome script
-injectFontAwesomeScript();
-injectStarMaterialIcon();
 
 // * CREATE header
 content.appendChild(createHeader());  
