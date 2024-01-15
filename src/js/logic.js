@@ -90,8 +90,6 @@ function projectFactory(name) {
   };
 }
 
-// TODO:: combine link object factory and project factory maybe?
-
 function taskFactory(name, projectName, dueDate, details) {
   if (
     typeof name !== 'string' &&

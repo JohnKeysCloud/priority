@@ -3,6 +3,7 @@ import { data } from './data.js';
 
 // * LOGIC
 import { linkObjectFactory } from './logic.js';
+import { navListObjects } from '../components/zig-zag-nav/nav-list-objects.js';
 
 // * MARKUP
 import { createHeader } from './markup/create-header.js';
@@ -17,52 +18,21 @@ import { modifySecondNavContainer } from './modifiers/modify-second-nav-containe
 import '../components/zig-zag-nav/zig-zag-nav.scss';
 import '../css/styles.css';
 
-const content = document.getElementById('content');
+// * UTILITIES
+import { checkTargetElementExistence } from '../utilities/check-target-element-existence.js'; 
 
-// * CREATE header
-content.appendChild(createHeader());  
+// > --------------------------------------------------------------
 
-// * CREATE nav
-/* 
-  ┌─────────────────────────────────────────────────────────────────────────┐
-  │ // PARAM: createZigZagNav                                               │
-  │ // ? 1. objectOfLists                                                   │
-  │ // ? 2. initialPage (used to set the aria - current attribute)          │
-  │ // ? 3. navType (anchor for 'a' tags / button for 'button tags)         │
-  │ // ? 4. id (sets navigations id for aria in conjunction with a nav      │
-  │   // ? toggle button)                                                   │                                                               │
-  │ // ? 5. specialNavLinkArr is an array of page names with that will      │
-  │   // ? be used to create a special nav links via a unique css class     │
-  └─────────────────────────────────────────────────────────────────────────┘
- */
-const listObjects = {
-  Home: {
-    listElements: [
-      ['All Tasks', '#'],
-      ['Today', '#'],
-      ['Next 7 Days', '#'],
-      ['Priorities', '#'],
-    ],
-  },
-  Projects: {
-    listElements: [],
-  },
-};
-content.appendChild(
-  createZigZagNav(listObjects, 'All Tasks', 'button', 'nav-primary-aria')
-);
+function appInit() {
+  const content = checkTargetElementExistence('#content');
 
-// * MODIFIER CALLS (order matters)
-modifySecondNavContainer();
-modifyGenericNavLinks();
+  content.appendChild(createHeader());  
+  content.appendChild(
+    createZigZagNav(navListObjects, 'All Tasks', 'button', 'nav-primary-aria')
+  );
+  content.appendChild(createMain(linkObjectFactory('all tasks', data.getAllTasks())));
+  modifySecondNavContainer();
+  modifyGenericNavLinks();
+}
 
-// !
-// !
-// !
-
-content.appendChild(createMain(linkObjectFactory('all tasks', data.getAllTasks())));
-
-
-// !
-// !
-// !
+appInit();

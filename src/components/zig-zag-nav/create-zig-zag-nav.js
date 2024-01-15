@@ -11,7 +11,7 @@ import './zig-zag-nav.scss';
 // * id is a string that will be used to set the id attribute of the nav's nested UL element
 
 function createZigZagNav(
-  objectOfLists,
+  navListObjects,
   initialPage,
   anchorOrButton,
   ariaControlsID,
@@ -24,7 +24,7 @@ function createZigZagNav(
   zigZagNav.setAttribute('aria-hidden', true);
   zigZagNav.setAttribute('data-visibility', false);
 
-  for (const list in objectOfLists) {
+  for (const list in navListObjects) {
     const listContainer = document.createElement('div');
     listContainer.classList.add('nav-list-container');
 
@@ -36,7 +36,7 @@ function createZigZagNav(
     const listUL = document.createElement('ul');
     listUL.classList.add('nav-ul');
 
-    const groupedListElements = objectOfLists[list].listElements;
+    const groupedListElements = navListObjects[list].listElements;
 
     const listFragment = document.createDocumentFragment();
     groupedListElements.forEach((pageNameAndHref, index) => {
