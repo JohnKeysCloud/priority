@@ -13,46 +13,50 @@ import { events } from '../../utilities/pubsub.js';
 let navState = {
   open: false,
   animating: false,
+  zigZagNavReference: null
 }
 
 function hideNav() {
   navState.open = false;
   navState.animating = false;
-
-  const zigZagNav = document.querySelector('.zig-zag-nav');
   
-  zigZagNav.removeEventListener('animationend', hideNav);
+  navState.zigZagNavReference.removeEventListener('animationend', hideNav);
   
-  zigZagNav.setAttribute('aria-hidden', true);
-  zigZagNav.setAttribute('data-visibility', false);
+  navState.zigZagNavReference.setAttribute('aria-hidden', true);
+  navState.zigZagNavReference.setAttribute('data-visibility', false);
 
   handleNewProjectButton();
   handleNavLinks();
+
+  events.on(SHOW_NAV_EVENT, showNav);
+  events.off(HIDE_NAV_EVENT, showNav);
 }
 
 function initiateHideNav() {
   navState.animating = true;
 
-  const zigZagNav = document.querySelector('.zig-zag-nav');
-  zigZagNav.setAttribute('data-visibility', 'closing');
-  zigZagNav.addEventListener('animationend', hideNav);
+  navState.zigZagNavReference.setAttribute('data-visibility', 'closing');
+  navState.zigZagNavReference.addEventListener('animationend', hideNav);
 }
 
 function showNav() {
   navState.open = true;
   navState.animating = false;
 
-  const zigZagNav = document.querySelector('.zig-zag-nav');
-  zigZagNav.setAttribute('aria-hidden', false);
-  zigZagNav.setAttribute('data-visibility', true);
+  navState.zigZagNavReference.setAttribute('aria-hidden', false);
+  navState.zigZagNavReference.setAttribute('data-visibility', true);
 
   handleNavLinks();
   handleNewProjectButton();
-}
 
-function handleNav() {
-  events.on(SHOW_NAV_EVENT, showNav);
   events.on(HIDE_NAV_EVENT, initiateHideNav);
+  events.off(SHOW_NAV_EVENT, showNav);
 }
 
-export { handleNav, navState };
+function handleZigZagNav(zigZagNavElement) {
+  navState.zigZagNavReference = zigZagNavElement;
+
+  events.on(SHOW_NAV_EVENT, showNav);
+}
+
+export { handleZigZagNav, navState };

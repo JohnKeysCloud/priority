@@ -18,7 +18,6 @@ $theme-icon-space-between: calc($theme-toggle-icon-width * 2 + $theme-toggle-gap
 
 #theme-toggle-label {
   align-items: center;
-  background: black;
   border-radius: inherit;
   box-shadow: inset 0 0 12px silver;
   cursor: pointer;
@@ -45,8 +44,8 @@ $theme-icon-space-between: calc($theme-toggle-icon-width * 2 + $theme-toggle-gap
 }
 
 #sun {
-  background-color: #E99A43;
-  box-shadow: inset 3px -3px 8px black;
+  background-color: #ff9d4d;
+  box-shadow: inset 2px -2px 3px black;
   opacity: 0;
   -webkit-transform: translateX($theme-icon-space-between) rotate(0);
   transform: translateX($theme-icon-space-between) rotate(0);

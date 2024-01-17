@@ -1,9 +1,11 @@
+// ? Set color of nav toggle button bars
+// * --nav-toggle-button-bar-color: white;
+
 .nav-toggle-button {
   $button-height: 20px;
   $button-width: 20px;
   $button-bar-size: 1.5px;
   $button-bar-border-radius: 100vw;
-  $button-bar-color: white;
   $button-transition-time: 150ms; 
 
   align-items: center;
@@ -31,14 +33,14 @@
   }
 
   .nav-toggle-bars {
-    background: $button-bar-color;
+    background: var(--nav-toggle-button-bar-color);
     border-radius: $button-bar-border-radius;
     height: $button-bar-size;
     position: relative;
     width: 100%;
 
     &::before, &::after {
-      background-color: $button-bar-color;
+      background-color: var(--nav-toggle-button-bar-color);
       border-radius: $button-bar-border-radius;
       content: '';
       position: absolute;

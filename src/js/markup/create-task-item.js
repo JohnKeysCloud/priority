@@ -40,7 +40,7 @@ function createTaskItem(taskObject) {
   const taskPriorityStarButton = document.createElement('button');
   taskPriorityStarButton.classList.add('task-priority-star-button'); 
   setAttributes(taskPriorityStarButton, {
-    'aria-label': 'Prioritize Task',
+    'aria-label': 'Toggle priority',
     'type': 'button',
     'data-checked': isTaskPriority ? 'true' : 'false',
   });

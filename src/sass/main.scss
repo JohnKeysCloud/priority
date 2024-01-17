@@ -10,38 +10,59 @@
   --body-font-size: clamp(0.75rem, 1.5vw, 0.813rem);
   --task-item-date-font-size: clamp(0.625rem, 2.3vw, 0.75rem);
 
-  // * MAIN TEXT COLORS
+  // > ------------------------------------------------------------------------------
+
+  // * MAIN TEXT COLORS DARK 
   --color-text-primary: whitesmoke;
   --color-text-secondary: silver;
 
-  // * BACKGROUND COLORS
-  --container-background: linear-gradient(
-    to bottom,
-    hsl(0 0% 100% / 0.25),
-    transparent
-  );
-  --page-background: radial-gradient(
-    ellipse at bottom,
-    #1b2735 0%,
-    #090a0f 100%
-  );
+  // > ------------------------------------------------------------------------------
+
+  // * THEME BACKGROUND COLORS DARK 
+  --container-background: linear-gradient(to bottom, hsl(0 0% 100% / 0.25),transparent);
+  --page-background: radial-gradient(ellipse at bottom, #1b2735 0%,#090a0f 100%);
   --zig-zag-nav-background: hsl(0 0% 100% / 0.1);
 
-  // * INPUT
+  // > ------------------------------------------------------------------------------
+
+  // * THEME TOGGLE DARK 
+  --theme-toggle-background-color: black;
+  --theme-toggle-box-shadow: inset 0 0 12px silver;
+
+  // > ------------------------------------------------------------------------------
+
+  // * NAV TOGGLE DARK 
+  --nav-toggle-button-bar-color: white;
+
+  // > ------------------------------------------------------------------------------
+
+  // * INPUT DARK 
   --input-background: rgba(0, 0, 0, 0.388);
   --input-box-shadow: inset 0 0 3px silver;
   --input-placeholder-text-color: rgba(255, 255, 255, 0.555);
-  --input-focus-box-shadow: inset 0 0 5px rgb(245, 157, 63);
+  --input-focus-box-shadow: inset 0 0 0.5rem rgb(245, 157, 63);
 
-  // * TASK ITEM
+  // > ------------------------------------------------------------------------------
+
+  // * LIST ICON DARK 
+  --list-icon-bar-background-color: whitesmoke;
+  
+  // > ------------------------------------------------------------------------------
+
+  // * TASK ITEM DARK 
   --task-item-checkbox-border: 2px ridge silver;
-  --task-item-checkbox-box-shadow: inset 0 0 3px whitesmoke;
-  --task-item-checkbox-box-shadow-checked: inset 0 0 5px chartreuse;
+  --task-item-checkbox-box-shadow: inset 0 0 0.25rem whitesmoke;
+  --task-item-checkbox-box-shadow-checked: inset 0 0 0.25rem chartreuse;
   --task-item-checkbox-check-color: chartreuse;
   --task-item-checkbox-check-text-shadow: 0 0 1px chartreuse;
   --task-item-line-through-color: silver;
+  --task-item-checkbox-background: transparent;
 
-  // * ADD/CANCEL BUTTON
+  // > ------------------------------------------------------------------------------
+
+  // * ADD/CANCEL BUTTON DARK 
+  --add-cancel-button-background-color: transparent;
+  --add-cancel-button-box-shadow: none;
   --add-cancel-button-border: 2px solid hsl(0, 0%, 100%, 0.25);
   --add-cancel-button-pseudo-background: linear-gradient(
     to bottom,
@@ -50,7 +71,9 @@
     transparent
   );
 
-  // * SCROLLBAR
+  // > ------------------------------------------------------------------------------
+
+  // * SCROLLBAR DARK 
   --scrollbar-thumb-background: linear-gradient(
     to right,
     rgba(192, 192, 192, 0.35),
@@ -63,22 +86,114 @@
   );
   --scrollbar-track-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 
-  // * PRIORITY STAR
+  // > ------------------------------------------------------------------------------
+
+  // * PRIORITY STAR DARK 
   --priority-star-border-color: silver;
   --priority-star-fill-color: yellow;
   --priority-star-font-size: 1.5rem;
 
+  // > ------------------------------------------------------------------------------
+
   // * MODIFY TASK BUTTON (3 dots)
   --modify-task-button-font-size: 0.813rem;
 
-  // * COMPONENT BORDER
+  // > ------------------------------------------------------------------------------
+
+  // * COMPONENT BORDER DARK 
   --component-border: 3px solid hsl(0 0% 100% / 0.1);
+
+  // > ------------------------------------------------------------------------------
+
+  // * TASK ITEM BUTTONS DARK 
+  --task-item-buttons-color: whitesmoke;
+
+  // > ------------------------------------------------------------------------------
 
   // * LOGO HEIGHT 
   --logo-height: clamp(50px, 8vw, 55px);
 
+  // > ------------------------------------------------------------------------------
+
   // * CONTENT PADDING
   --content-inline-padding: 1rem;
+
+  // * HEADER LOGO OPACITY DARK
+  --header-logo-opacity: 0.5;
+}
+
+.light-mode {
+  // * MAIN TEXT COLORS LIGHT
+  --color-text-primary: black;
+  --color-text-secondary: rgb(33, 33, 33);
+
+  // * THEME BACKGROUND COLORS LIGHT
+  --container-background: linear-gradient(to bottom, hsl(0 0% 100% / 0.75),transparent);
+  --page-background: radial-gradient(ellipse at bottom, #93bef0 0%,#c7c7f8 100%);
+  --zig-zag-nav-background: hsl(0 0% 100% / 0.1);
+
+  // * THEME TOGGLELIGHT
+  --theme-toggle-background-color: lavender;
+  --theme-toggle-box-shadow: inset 0 -5px 0.25rem rgb(167, 167, 239);
+
+  // * NAV TOGGLE LIGHT
+  --nav-toggle-button-bar-color: black;
+
+  // * INPUT LIGHT
+  --input-background: whitesmoke;
+  --input-box-shadow: inset 0 -5px 0.25rem rgb(167, 167, 239);
+  --input-placeholder-text-color: rgb(77, 77, 77);
+  --input-focus-box-shadow: inset 0 0 0.5rem rgb(245, 157, 63), inset 0 -5px 0.25rem rgb(167, 167, 239);
+
+  // * LIST ICON LIGHT
+  --list-icon-bar-background-color: black;
+
+  // * TASK ITEM LIGHT
+  --task-item-checkbox-background: white;
+  --task-item-checkbox-border: 2px ridge black;
+  --task-item-checkbox-box-shadow: inset 0 0 0.25rem rgb(167, 167, 239);
+  --task-item-checkbox-box-shadow-checked: inset 0 0 0.125rem indianred;
+  --task-item-checkbox-check-color: indianred;
+  --task-item-line-through-color: black;
+  --task-item-checkbox-check-text-shadow: 0 0 1px black;
+
+  // * ADD/CANCEL BUTTON LIGHT
+  --add-cancel-button-background-color: whitesmoke;
+  --add-cancel-button-border: none;
+  --add-cancel-button-box-shadow: inset 0 -5px 0.25rem rgb(167, 167, 239);
+  --add-cancel-button-pseudo-background: linear-gradient(
+    to bottom,
+    rgb(163, 175, 253),
+    rgb(163, 175, 253),
+    transparent
+  );
+
+  // * SCROLLBAR LIGHT
+  --scrollbar-thumb-background: linear-gradient(
+    to right,
+    rgba(245, 245, 245, 0.65),
+    rgba(248, 248, 255, 0.65)
+  );
+  --scrollbar-thumb-hover-background: linear-gradient(
+    to right,
+    whitesmoke,
+    ghostwhite
+  );
+  --scrollbar-track-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.55);
+
+  // * PRIORITY STAR LIGHT
+  --priority-star-border-color: black;
+  --priority-star-fill-color: indianred; // ? an ode to my "shining" <3
+  --priority-star-font-size: 1.5rem;
+      
+  // * COMPONENT BORDER LIGHT
+  --component-border: 3px solid hsl(0 0% 100% / 0.5);
+
+  // * TASK ITEM BUTTONS LIGHT
+  --task-item-buttons-color: black;
+
+  // * HEADER LOGO OPACITY LIGHT
+  --header-logo-opacity: 1;
 }
 
 body {
@@ -132,6 +247,11 @@ header {
     align-items: center;
     display: flex;
     gap: 1.375rem;
+
+    #theme-toggle-label {
+      background-color: var(--theme-toggle-background-color);
+      box-shadow: var(--theme-toggle-box-shadow);
+    }
   }
 }
 
@@ -172,10 +292,15 @@ nav.zig-zag-nav {
       row-gap: 1.25rem;
 
       .nav-link {
+        color: var(--color-text-primary);
         transition: all 380ms ease-in-out;
         white-space: nowrap;
 
         // ? .nav-link::before used in zigZagNav styling
+        &::before {
+          border-bottom: 1px dashed var(--color-text-primary);
+        } 
+
         &::after {
           content: '>';
           opacity: 0;
@@ -290,13 +415,16 @@ nav.zig-zag-nav {
 
           #add-project-button,
           #cancel-add-project-button {
+            background: var(--add-cancel-button-background-color);
             border: var(--add-cancel-button-border);
             border-radius: 100vw;
+            box-shadow: var(--add-cancel-button-box-shadow);
             color: var(--color-text-primary);
             cursor: pointer;
             display: inline-block;
             padding: 15px;
             position: relative;
+            z-index: 0;
 
             &::before {
               background: var(--add-cancel-button-pseudo-background);
@@ -306,12 +434,13 @@ nav.zig-zag-nav {
               height: 100%;
               inset: 0;
               opacity: 0.3;
+              pointer-events: none;
               position: absolute;
               transform: scale(0);
               transform-origin: bottom center;
               transition: transform 100ms ease-in-out;
               width: 100%;
-              z-index: -1;
+              z-index: 1;
             }
 
             &:hover::before {
@@ -496,6 +625,7 @@ main {
 
     .task-item-checkbox {
       appearance: none;
+      background: var(--task-item-checkbox-background);
       aspect-ratio: 1 / 1;
       border: var(--task-item-checkbox-border);
       border-radius: 50%;
@@ -511,7 +641,7 @@ main {
         opacity: 0;
         position: absolute;
         text-shadow: var(--task-item-checkbox-check-text-shadow);
-        top: -0.6em;
+        top: -0.55em;
         transition: all 250ms ease-in-out;
         visibility: hidden;
       }
@@ -585,7 +715,7 @@ main {
         cursor: pointer;
 
         .task-priority-star-icon {
-          color: white;
+          color: var(--task-item-buttons-color);
           font-size: var(--priority-star-font-size);
           pointer-events: none;
           vertical-align: -2px;
@@ -618,7 +748,7 @@ main {
       .modify-task-button {
         aspect-ratio: 1 / 1;
         cursor: pointer;
-        color: white;
+        color: var(--task-item-buttons-color);
         display: grid;
         font-size: var(--modify-task-button-font-size);
         place-items: center;
@@ -728,12 +858,15 @@ main {
 
     .add-task-button,
     .edit-task-button {
+      background: var(--add-cancel-button-background-color);
       border: var(--add-cancel-button-border);
       border-radius: 100vw;
+      box-shadow: var(--add-cancel-button-box-shadow);
       color: var(--color-text-primary);
       cursor: pointer;
       padding: 15px;
       position: relative;
+      z-index: 0;
 
       &::before {
         background: var(--add-cancel-button-pseudo-background);
@@ -743,12 +876,13 @@ main {
         height: 100%;
         inset: 0;
         opacity: 0.3;
+        pointer-events: none;
         position: absolute;
         transform: scale(0);
         transform-origin: bottom center;
         transition: transform 100ms ease-in-out;
         width: 100%;
-        z-index: -1;
+        z-index: 1;
       }
 
       &:hover::before {
@@ -764,6 +898,7 @@ main {
 
     .add-task-label,
     .edit-task-label {
+      color: var(--color-text-primary);
       font-size: var(--body-font-size);
       text-transform: uppercase;
     }
@@ -823,6 +958,7 @@ main {
   }
 
   #edit-task-heading {
+    color: var(--color-text-primary);
     font-size: var(--h2-fs);
     margin-bottom: 1.5rem;
     text-align: center;

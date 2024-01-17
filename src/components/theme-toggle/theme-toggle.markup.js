@@ -20,6 +20,17 @@ function createThemeToggleButton() {
   themeToggleCheckbox.setAttribute('type', 'checkbox');
   themeToggleCheckbox.setAttribute('id', 'theme-toggle-checkbox');
 
+  // TODO:
+  if (localStorage.getItem('lightMode') === 'enabled') {
+    themeToggleCheckbox.checked = true;
+    themeToggleCheckbox.setAttribute('data-checked', 'true');
+    themeToggleCheckbox.setAttribute('aria-label', 'Toggle Dark Mode');
+  } else if (localStorage.getItem('lightMode') === null) {
+    themeToggleCheckbox.checked = false;
+    themeToggleCheckbox.setAttribute('data-checked', 'false');
+    themeToggleCheckbox.setAttribute('aria-label', 'Toggle Light Mode');
+  }
+
   const themeToggleLabel = document.createElement('label');
   themeToggleLabel.setAttribute('id', 'theme-toggle-label');
   themeToggleLabel.setAttribute('for', 'theme-toggle-checkbox');
