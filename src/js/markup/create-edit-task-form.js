@@ -1,8 +1,7 @@
-import { handleSaveEditTaskButton } from '../handlers/handle-edit-task-modal-buttons';
+// * UTILITIES
+import { setAttributes } from "../../utilities/set-attributes";
 
-// > ---------------------------------------------------
-
-// TODO: remove the event listeners from this markup module
+// > --------------------------------------------------------------
 
 function createEditTaskForm() {
   const titleLabel = document.createElement('label');
@@ -12,22 +11,16 @@ function createEditTaskForm() {
 
   const titleInput = document.createElement('input');
   titleInput.classList.add('edit-task-input');
-  titleInput.setAttribute('type', 'text');
-  titleInput.setAttribute('id', 'edit-task-title');
-  titleInput.setAttribute('required', 'true');
-  titleInput.setAttribute('placeholder', 'what are the vibes?');
-  titleInput.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      handleSaveEditTaskButton();
-    }
+  setAttributes(titleInput, {
+    'type': 'text',
+    'id': 'edit-task-title',
+    'required': true,
+    'placeholder': 'what are the vibes?',
   });
 
   const titleContainer = document.createElement('div');
-  titleContainer.classList.add('title-container');
-  titleContainer.classList.add('input-container');
-  titleContainer.appendChild(titleLabel);
-  titleContainer.appendChild(titleInput);
+  titleContainer.classList.add('title-container', 'input-container');
+  titleContainer.append(titleLabel, titleInput);
 
   const detailsLabel = document.createElement('label');
   detailsLabel.classList.add('edit-task-label');
@@ -36,21 +29,15 @@ function createEditTaskForm() {
 
   const detailsInput = document.createElement('input');
   detailsInput.classList.add('edit-task-input');
-  detailsInput.setAttribute('type', 'text');
-  detailsInput.setAttribute('id', 'edit-task-details');
-  detailsInput.setAttribute('placeholder', 'tell me more');
-  detailsInput.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      handleSaveEditTaskButton();
-    }
+  setAttributes(detailsInput, {
+    'type': 'text',
+    'id': 'edit-task-details',
+    'placeholder': 'tell me more',
   });
 
   const detailsContainer = document.createElement('div');
-  detailsContainer.classList.add('details-container');
-  detailsContainer.classList.add('input-container');
-  detailsContainer.appendChild(detailsLabel);
-  detailsContainer.appendChild(detailsInput);
+  detailsContainer.classList.add('details-container', 'input-container');
+  detailsContainer.append(detailsLabel, detailsInput);
 
   const dueDateLabel = document.createElement('label');
   dueDateLabel.classList.add('edit-task-label');
@@ -59,49 +46,48 @@ function createEditTaskForm() {
 
   const dueDateInput = document.createElement('input');
   dueDateInput.classList.add('edit-task-input');
-  dueDateInput.setAttribute('type', 'date');
-  dueDateInput.setAttribute('id', 'edit-task-due-date');
-  dueDateInput.setAttribute('required', true);
-  dueDateInput.setAttribute('placeholder', 'yyyy-mm-dd');
-  dueDateInput.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      handleSaveEditTaskButton();
-    }
+  setAttributes(dueDateInput, {
+    'type': 'date',
+    'id': 'edit-task-due-date',
+    'required': true,
+    'placeholder': 'yyyy-mm-dd',
   });
 
   const dueDateContainer = document.createElement('div');
-  dueDateContainer.classList.add('due-date-container');
-  dueDateContainer.classList.add('input-container');
-  dueDateContainer.appendChild(dueDateLabel);
-  dueDateContainer.appendChild(dueDateInput);
+  dueDateContainer.classList.add('due-date-container', 'input-container');
+  dueDateContainer.append(dueDateLabel, dueDateInput);
 
   const saveEditTaskButton = document.createElement('button');
   saveEditTaskButton.classList.add('edit-task-button');
-  saveEditTaskButton.setAttribute('id', 'save-edit-task-button');
-  saveEditTaskButton.setAttribute('type', 'button');
-  saveEditTaskButton.setAttribute('aria-label', 'Edit Task');
-  saveEditTaskButton.setAttribute('form', 'edit-task-form');
+  setAttributes(saveEditTaskButton, {
+    'id': 'save-edit-task-button',
+    'type': 'button',
+    'aria-label': 'Edit Task',
+    'form': 'edit-task-form',
+  });
   saveEditTaskButton.textContent = 'save';
 
   const cancelEditTaskButton = document.createElement('button');
   cancelEditTaskButton.classList.add('edit-task-button');
-  cancelEditTaskButton.setAttribute('id', 'cancel-edit-task-button');
-  cancelEditTaskButton.setAttribute('type', 'button');
-  cancelEditTaskButton.setAttribute('aria-label', 'Cancel Edit Task');
+  setAttributes(cancelEditTaskButton, {
+    'id': 'cancel-edit-task-button',
+    'type': 'button',
+    'aria-label': 'Cancel Edit Task',
+  });
   cancelEditTaskButton.textContent = 'cancel';
 
   const editTaskButtonContainer = document.createElement('div');
   editTaskButtonContainer.classList.add('edit-task-button-container');
-  editTaskButtonContainer.appendChild(saveEditTaskButton);
-  editTaskButtonContainer.appendChild(cancelEditTaskButton);
+  editTaskButtonContainer.append(saveEditTaskButton, cancelEditTaskButton);
 
   const editTaskForm = document.createElement('form');
   editTaskForm.setAttribute('id', 'edit-task-form');
-  editTaskForm.appendChild(titleContainer);
-  editTaskForm.appendChild(detailsContainer);
-  editTaskForm.appendChild(dueDateContainer);
-  editTaskForm.appendChild(editTaskButtonContainer);
+  editTaskForm.append(
+    titleContainer,
+    detailsContainer,
+    dueDateContainer,
+    editTaskButtonContainer
+  );
 
   const editTaskFormContainer = document.createElement('div');
   editTaskFormContainer.classList.add('edit-task-form-container');

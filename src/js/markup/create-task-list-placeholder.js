@@ -1,7 +1,7 @@
 function createTaskListPlaceholder() {
   const placeholderText = document.createElement('p');
-  placeholderText.setAttribute('id', 'placeholder-text');
   placeholderText.classList.add('hvr-wobble-vertical');
+  placeholderText.setAttribute('id', 'placeholder-text');
   placeholderText.textContent = 'nothing to see here...';
 
   const placeholderContainer = document.createElement('li');

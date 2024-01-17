@@ -12,8 +12,10 @@ function createTaskItem(taskObject) {
   const isTaskPriority = taskObject.getPriority();
 
   const taskItemCheckbox = document.createElement('input');
-  taskItemCheckbox.setAttribute('type', 'checkbox');
-  taskItemCheckbox.setAttribute('data-checked', isTaskComplete ? 'true' : 'false');
+  setAttributes(taskItemCheckbox, {
+    'data-checked': isTaskComplete ? 'true' : 'false',
+    'type': 'checkbox',
+  });
   taskItemCheckbox.classList.add('task-item-checkbox');
   isTaskComplete ? taskItemCheckbox.checked = true : taskItemCheckbox.checked = false;
   
@@ -41,15 +43,17 @@ function createTaskItem(taskObject) {
   taskPriorityStarButton.classList.add('task-priority-star-button'); 
   setAttributes(taskPriorityStarButton, {
     'aria-label': 'Toggle priority',
-    'type': 'button',
     'data-checked': isTaskPriority ? 'true' : 'false',
+    'type': 'button',
   });
   taskPriorityStarButton.appendChild(taskPriorityStarIcon);
 
   const modifyTaskButton = document.createElement('button');
   modifyTaskButton.classList.add('modify-task-button');
-  modifyTaskButton.setAttribute('type', 'button');
-  modifyTaskButton.setAttribute('aria-label', 'Edit Task');
+  setAttributes(modifyTaskButton, {
+    'aria-label': 'Edit Task',
+    'type': 'button',
+  });
 
   const modifyTaskButtonIcon = document.createElement('i');
   modifyTaskButtonIcon.classList.add('fa-solid', 'fa-ellipsis-vertical');
@@ -57,18 +61,15 @@ function createTaskItem(taskObject) {
 
   const taskButtonContainer = document.createElement('div');
   taskButtonContainer.classList.add('task-item-button-container');
-  taskButtonContainer.appendChild(taskPriorityStarButton);
-  taskButtonContainer.appendChild(modifyTaskButton);
+  taskButtonContainer.append(taskPriorityStarButton, modifyTaskButton);
 
   const taskRightSideContainer = document.createElement('div');
   taskRightSideContainer.classList.add('task-right-side-container');
-  taskRightSideContainer.appendChild(taskItemDate);
-  taskRightSideContainer.appendChild(taskButtonContainer);
+  taskRightSideContainer.append(taskItemDate, taskButtonContainer);
 
   const taskItem = document.createElement('li');
   taskItem.classList.add('task-item');
-  taskItem.appendChild(taskCheckBoxContainer);
-  taskItem.appendChild(taskItemTitle);
+  taskItem.append(taskCheckBoxContainer, taskItemTitle);
   if (taskDetails.trim() !== '') {
     taskItem.appendChild(taskItemDetails);
   }

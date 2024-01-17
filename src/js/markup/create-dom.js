@@ -22,12 +22,10 @@ import { checkTargetElementExistence } from '../../utilities/check-target-elemen
 function createDOM() {
   const content = checkTargetElementExistence('#content');
 
-  content.appendChild(createHeader());
-  content.appendChild(
-    createZigZagNav(navListObjects, 'All Tasks', 'button', 'nav-primary-aria')
-  );
-  content.appendChild(
-    createMain(linkObjectFactory('all tasks', data.getAllTasks()))
+  content.append(
+    createHeader(),
+    createZigZagNav(navListObjects, 'All Tasks', 'button', 'nav-primary-aria'),
+    createMain(linkObjectFactory('all tasks', data.getAllTasks())),
   );
 }
 

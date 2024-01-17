@@ -3,15 +3,16 @@ import { TOGGLE_ADD_PROJECT_FORM } from "../eventNames";
 
 // * HANDLERS
 import { handleProjectAddButton } from "./handle-project-add-button";
+import { handleProjectAddInput } from './handle-project-add-input';
 import { handleProjectCancelButton } from "./handle-project-cancel-button";
 
 // * STATES
 import { navState } from "../../components/zig-zag-nav/handle-zig-zag-nav";
 
 // * UTILITIES
-import { events } from "../../utilities/pubsub";
 import { checkTargetElementExistence } from "../../utilities/check-target-element-existence";
 import { clearTextInput } from "../../utilities/clear-text-input";
+import { events } from "../../utilities/pubsub";
 import { setAttributes } from "../../utilities/set-attributes";
 
 // > ---------------------------------------------------
@@ -39,6 +40,7 @@ function toggleAddProjectForm() {
     '#add-project-form'
   );
   const projectFormState = formComponentState.projectFormState;
+  const projectNameInput = checkTargetElementExistence('#project-name-input');
 
   if (projectFormState === 'hidden') {
     setAttributes(projectFormContainer, {
@@ -54,11 +56,10 @@ function toggleAddProjectForm() {
     });
 
     animatePreDisplayNone(projectFormContainer);
-
-    const projectNameInput = checkTargetElementExistence('#project-name-input');
     clearTextInput(projectNameInput);
   }
-
+  
+  handleProjectAddInput(projectNameInput, formComponentState.projectFormState);
   handleProjectAddButton(formComponentState.projectFormState);
   handleProjectCancelButton(formComponentState.projectFormState);
 }
@@ -76,7 +77,7 @@ function emitProjectFormVisibilityToggle() {
 }
 
 function handleNewProjectButton() {
-  const newProjectButton = document.getElementById('new-project-button');
+  const newProjectButton = checkTargetElementExistence('#new-project-button');
 
   if (navState.open === true) {
     newProjectButton.addEventListener('click', emitProjectFormVisibilityToggle);

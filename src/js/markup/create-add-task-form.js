@@ -1,9 +1,7 @@
-import { events } from "../../utilities/pubsub";
-import { ADD_NEW_TASK } from "../eventNames";
+// * UTILITIES
+import { setAttributes } from "../../utilities/set-attributes";
 
 // > ---------------------------------------------------
-
-// TODO: remove the event listeners from this markup module
 
 function createAddTaskForm() {
   const titleLabel = document.createElement('label');
@@ -13,22 +11,16 @@ function createAddTaskForm() {
 
   const titleInput = document.createElement('input');
   titleInput.classList.add('add-task-input');
-  titleInput.setAttribute('type', 'text');
-  titleInput.setAttribute('id', 'task-add-title');
-  titleInput.setAttribute('required', 'true');
-  titleInput.setAttribute('placeholder', 'what are the vibes?');
-  titleInput.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      events.emit(ADD_NEW_TASK);
-    }
+  setAttributes(titleInput, {
+    'type': 'text',
+    'id': 'task-add-title',
+    'required': true,
+    'placeholder': 'what are the vibes?',
   });
 
   const titleContainer = document.createElement('div');
-  titleContainer.classList.add('title-container');
-  titleContainer.classList.add('input-container');
-  titleContainer.appendChild(titleLabel);
-  titleContainer.appendChild(titleInput);
+  titleContainer.classList.add('title-container', 'input-container');
+  titleContainer.append(titleLabel, titleInput);
 
   const detailsLabel = document.createElement('label');
   detailsLabel.classList.add('add-task-label');
@@ -37,21 +29,15 @@ function createAddTaskForm() {
 
   const detailsInput = document.createElement('input');
   detailsInput.classList.add('add-task-input');
-  detailsInput.setAttribute('type', 'text');
-  detailsInput.setAttribute('id', 'task-add-details');
-  detailsInput.setAttribute('placeholder', 'tell me more');
-  detailsInput.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      events.emit(ADD_NEW_TASK);
-    }
+  setAttributes(detailsInput, {
+    'type': 'text',
+    'id': 'task-add-details',
+    'placeholder': 'tell me more',
   });
 
   const detailsContainer = document.createElement('div');
-  detailsContainer.classList.add('details-container');
-  detailsContainer.classList.add('input-container');
-  detailsContainer.appendChild(detailsLabel);
-  detailsContainer.appendChild(detailsInput);
+  detailsContainer.classList.add('details-container', 'input-container');
+  detailsContainer.append(detailsLabel, detailsInput);
 
   const dueDateLabel = document.createElement('label');
   dueDateLabel.classList.add('add-task-label');
@@ -60,55 +46,57 @@ function createAddTaskForm() {
 
   const dueDateInput = document.createElement('input');
   dueDateInput.classList.add('add-task-input');
-  dueDateInput.setAttribute('type', 'date');
-  dueDateInput.setAttribute('id', 'task-add-due-date');
-  dueDateInput.setAttribute('required', true);
-  dueDateInput.setAttribute('placeholder', 'yyyy-mm-dd');
-  dueDateInput.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      events.emit(ADD_NEW_TASK);
-    }
+  setAttributes(dueDateInput, {
+    'type': 'date',
+    'id': 'task-add-due-date',
+    'required': true,
+    'placeholder': 'yyyy-mm-dd',
   });
 
   const dueDateContainer = document.createElement('div');
-  dueDateContainer.classList.add('due-date-container');
-  dueDateContainer.classList.add('input-container');
-  dueDateContainer.appendChild(dueDateLabel);
-  dueDateContainer.appendChild(dueDateInput);
+  dueDateContainer.classList.add('due-date-container', 'input-container');
+  dueDateContainer.append(dueDateLabel, dueDateInput);
 
   const addTaskButton = document.createElement('button');
   addTaskButton.classList.add('add-task-button');
-  addTaskButton.setAttribute('id', 'add-task-button');
-  addTaskButton.setAttribute('type', 'button');
-  addTaskButton.setAttribute('aria-label', 'Add Task');
-  addTaskButton.setAttribute('name', 'add-task-button');
-  addTaskButton.setAttribute('form', 'add-task-form');
+  setAttributes(addTaskButton, {
+    'id': 'add-task-button',
+    'type': 'button',
+    'aria-label': 'Add Task',
+    'name': 'add-task-button',
+    'form': 'add-task-form',
+  });
   addTaskButton.textContent = 'add';
 
   const cancelAddTaskButton = document.createElement('button');
   cancelAddTaskButton.classList.add('add-task-button');
-  cancelAddTaskButton.setAttribute('id', 'cancel-add-task-button');
-  cancelAddTaskButton.setAttribute('type', 'button');
-  cancelAddTaskButton.setAttribute('aria-label', 'Cancel Add Task');
+  setAttributes(cancelAddTaskButton, {
+    'id': 'cancel-add-task-button',
+    'type': 'button',
+    'aria-label': 'Cancel Add Task',
+  });
   cancelAddTaskButton.textContent = 'cancel';
 
   const addTaskButtonContainer = document.createElement('div');
   addTaskButtonContainer.classList.add('add-task-button-container');
-  addTaskButtonContainer.appendChild(addTaskButton);
-  addTaskButtonContainer.appendChild(cancelAddTaskButton);
+  addTaskButtonContainer.append(addTaskButton, cancelAddTaskButton);
 
   const addTaskForm = document.createElement('form');
   addTaskForm.setAttribute('id', 'add-task-form');
-  addTaskForm.appendChild(titleContainer);
-  addTaskForm.appendChild(detailsContainer);
-  addTaskForm.appendChild(dueDateContainer);
-  addTaskForm.appendChild(addTaskButtonContainer);
+  addTaskForm.append(
+    titleContainer,
+    detailsContainer,
+    dueDateContainer,
+    addTaskButtonContainer
+  );
 
   const addTaskFormContainer = document.createElement('div');
   addTaskFormContainer.classList.add('add-task-form-container');
-  addTaskFormContainer.setAttribute('aria-label', 'hidden');
-  addTaskFormContainer.setAttribute('data-hidden', true);
+  setAttributes(addTaskFormContainer, {
+    'id': 'add-task-form-container',
+    'data-hidden': true,
+    'aria-label': 'hidden',
+  });
   addTaskFormContainer.appendChild(addTaskForm);
 
   return addTaskFormContainer;

@@ -33,7 +33,6 @@ function createTaskList(mainUpdateObject) {
   taskList.setAttribute('id', 'task-list');
 
   const taskListContent = getTaskListContent(mainUpdateObject);
-
   if (taskListContent) {
     taskList.appendChild(taskListContent);
   }

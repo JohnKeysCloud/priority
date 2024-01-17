@@ -3,11 +3,12 @@ import { TOGGLE_ADD_TASK_FORM } from "../eventNames";
 
 // * HANDLERS
 import { handleTaskAddButton } from "./handle-task-add-button";
+import { handleTaskAddInputs } from "./handle-task-add-inputs";
 import { handleTaskCancelButton } from "./handle-task-cancel-button";
 
 // * UTITLIIES
-import { events } from "../../utilities/pubsub";
 import { checkTargetElementExistence } from "../../utilities/check-target-element-existence";
+import { events } from "../../utilities/pubsub";
 import { setAttributes } from "../../utilities/set-attributes";
 
 // > ---------------------------------------------------
@@ -51,6 +52,7 @@ function toggleAddTaskForm() {
     animatePreDisplayNone(addTaskFormContainer);
   }
 
+  handleTaskAddInputs(addTaskFormContainer, taskComponentState.formState);
   handleTaskAddButton(taskComponentState.formState);
   handleTaskCancelButton(taskComponentState.formState); 
 }

@@ -1,8 +1,15 @@
+// * UTILITIES
+import { setAttributes } from "../../utilities/set-attributes";
+
+// > --------------------------------------------------------------
+
 function createAddTaskButton() {
   const addTaskFormButton = document.createElement('button');
-  addTaskFormButton.setAttribute('id', 'add-task-form-opener-button');
-  addTaskFormButton.setAttribute('type', 'button');
-  addTaskFormButton.setAttribute('aria-label', 'Add Task');
+  setAttributes(addTaskFormButton, {
+    'id': 'add-task-form-opener-button',
+    'type': 'button',
+    'aria-label': 'Add Task',
+  });
   addTaskFormButton.textContent = 'add task';
 
   const addTaskButtonContainer = document.createElement('div');

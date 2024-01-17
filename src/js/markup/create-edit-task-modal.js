@@ -17,8 +17,7 @@ function createEditTaskModal() {
     'aria-label': 'hidden',
     'data-hidden': 'hidden',
   });
-  editTaskModal.appendChild(editTaskHeading);
-  editTaskModal.appendChild(createEditTaskForm());
+  editTaskModal.append(editTaskHeading, createEditTaskForm());
 
   return editTaskModal;
 }

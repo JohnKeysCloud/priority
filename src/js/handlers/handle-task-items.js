@@ -12,10 +12,12 @@ import { createEditTaskModal } from '../markup/create-edit-task-modal';
 import { checkTargetElementExistence } from "../../utilities/check-target-element-existence";
 import { closeModalEnhanced, showModalEnhanced } from '../../utilities/enhanced-modal-handling';
 import { events } from "../../utilities/pubsub";
+import { handleTaskEditInputs } from "./handle-task-edit-inputs";
 import { scrollElementContent } from "../../utilities/scroll-element-content";
 
 // > --------------------------------------------------------------
 
+// TODO: refactor to turn edit task event off when task list has no children
 // TODO: create state object for this module using:
 let modalState;
 let isEditTaskFormEventPublished = false;
@@ -79,6 +81,8 @@ function toggleEditTaskFormVisibility(correspondingTaskObject) {
 
     toggleModalButtonContainerEventListeners(modalState);
   }
+  
+  handleTaskEditInputs(editTaskModal, modalState);
 
   taskToEditObject = correspondingTaskObject;
 }

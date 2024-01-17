@@ -1,6 +1,6 @@
 // * MARKUP
-import { createTaskList } from "./create-task-list";
 import { createAddTaskContainer } from "./create-add-task-container";
+import { createTaskList } from "./create-task-list";
 
 // > ---------------------------------------------------
 
@@ -18,11 +18,11 @@ function createMainContentContainer(mainUpdateObject) {
 
   const mainContentContainer = document.createElement('div');
   const objectType = mainUpdateObject.getType();
+  mainContentContainer.setAttribute('id', 'main-container');
   mainContentContainer.appendChild(mainHeading);
   if (objectType === 'project') {
     mainContentContainer.appendChild(createAddTaskContainer());
   } 
-  mainContentContainer.setAttribute('id', 'main-container');
   mainContentContainer.appendChild(mainContent);
   
   return mainContentContainer

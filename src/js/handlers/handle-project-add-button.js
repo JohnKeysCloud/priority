@@ -17,8 +17,8 @@ import { createProjectItem } from '../markup/create-project-item.js';
 import { formComponentState } from './handle-new-project-button.js';
 
 // * UTILITIES
-import { events } from '../../utilities/pubsub.js';
 import { checkTargetElementExistence } from '../../utilities/check-target-element-existence.js';
+import { events } from '../../utilities/pubsub.js';
 import { toggleScrollBarVisibility } from '../../utilities/toggle-scroll-visibility.js';
 
 // > ---------------------------------------------------
@@ -53,14 +53,14 @@ function AddNewProject() {
   projectForm.reset()
 
   const projectObject = projectFactory(projectName);
-  data.addProject(projectObject); // ? imported from data.js
+  data.addProject(projectObject); 
 
   const projectList = checkTargetElementExistence('#project-nav-list');
   updateProjectList(data, projectList);
 
   checkListOverflow(projectList);
 
-  emitProjectFormVisibilityToggle(); // ? emits TOGGLE_ADD_PROJECT_FORM
+  emitProjectFormVisibilityToggle(); 
 
   formComponentState.projectFormState = 'hidden';
 }
