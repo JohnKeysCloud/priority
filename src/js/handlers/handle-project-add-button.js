@@ -93,4 +93,4 @@ function handleProjectAddButton(formState) {
   toggleProjectAddEvent(formState);
 }
 
-export { handleProjectAddButton };
+export { handleProjectAddButton , updateProjectList };

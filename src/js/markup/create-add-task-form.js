@@ -58,7 +58,7 @@ function createAddTaskForm() {
   dueDateContainer.append(dueDateLabel, dueDateInput);
 
   const addTaskButton = document.createElement('button');
-  addTaskButton.classList.add('add-task-button');
+  addTaskButton.classList.add('add-task-button', 'bubble-button');
   setAttributes(addTaskButton, {
     'id': 'add-task-button',
     'type': 'button',
@@ -69,7 +69,7 @@ function createAddTaskForm() {
   addTaskButton.textContent = 'add';
 
   const cancelAddTaskButton = document.createElement('button');
-  cancelAddTaskButton.classList.add('add-task-button');
+  cancelAddTaskButton.classList.add('add-task-button', 'bubble-button');
   setAttributes(cancelAddTaskButton, {
     'id': 'cancel-add-task-button',
     'type': 'button',

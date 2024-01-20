@@ -11,3 +11,5 @@ export const TOGGLE_ADD_TASK_FORM = 'toggelAddTaskForm';
 export const TOGGLE_EDIT_TASK_FORM = 'toggleEditTaskForm';
 
 export const TOGGLE_THEME = 'toggleTheme';
+
+export const DELETE_PROJECT = 'deleteProject';

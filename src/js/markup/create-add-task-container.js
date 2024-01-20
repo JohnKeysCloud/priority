@@ -1,13 +1,13 @@
 // * MARKUP
-import { createAddTaskButton } from './create-add-task-button.js';
 import { createAddTaskForm } from './create-add-task-form.js';
+import { createProjectContainerButtons } from './create-add-task-button.js';
 
 // > ---------------------------------------------------
 
 function createAddTaskContainer() {
   const addTaskContainer = document.createElement('div');
-  addTaskContainer.setAttribute('id', 'add-task-container');
-  addTaskContainer.append(createAddTaskButton(), createAddTaskForm());
+  addTaskContainer.setAttribute('id', 'project-handling-container');
+  addTaskContainer.append(createProjectContainerButtons(), createAddTaskForm());
 
   return addTaskContainer;
 }

@@ -58,7 +58,7 @@ function createEditTaskForm() {
   dueDateContainer.append(dueDateLabel, dueDateInput);
 
   const saveEditTaskButton = document.createElement('button');
-  saveEditTaskButton.classList.add('edit-task-button');
+  saveEditTaskButton.classList.add('edit-task-button', 'bubble-button');
   setAttributes(saveEditTaskButton, {
     'id': 'save-edit-task-button',
     'type': 'button',
@@ -68,7 +68,7 @@ function createEditTaskForm() {
   saveEditTaskButton.textContent = 'save';
 
   const cancelEditTaskButton = document.createElement('button');
-  cancelEditTaskButton.classList.add('edit-task-button');
+  cancelEditTaskButton.classList.add('edit-task-button', 'bubble-button');
   setAttributes(cancelEditTaskButton, {
     'id': 'cancel-edit-task-button',
     'type': 'button',

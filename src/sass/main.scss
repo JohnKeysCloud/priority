@@ -7,6 +7,7 @@
   --h1-fs: clamp(1rem, 2.25vw, 1.25rem);
   --h2-fs: clamp(0.938rem, 2vw, 1.125rem);
   --open-form-buttons: clamp(0.813rem, 2.125vw, 0.938rem);
+  --delete-buttons: var(--task-item-date-font-size);
   --body-font-size: clamp(0.75rem, 1.5vw, 0.813rem);
   --task-item-date-font-size: clamp(0.625rem, 2.3vw, 0.75rem);
 
@@ -110,6 +111,11 @@
 
   // > ------------------------------------------------------------------------------
 
+  // * DELETE BUTTONS DARK
+  --delete-button-text-color: red; 
+
+  // > ------------------------------------------------------------------------------
+
   // * LOGO HEIGHT 
   --logo-height: clamp(50px, 8vw, 55px);
 
@@ -192,6 +198,9 @@
   // * TASK ITEM BUTTONS LIGHT
   --task-item-buttons-color: black;
 
+  // * DELETE BUTTONS DAY
+  --delete-button-text-color: purple; 
+
   // * HEADER LOGO OPACITY LIGHT
   --header-logo-opacity: 1;
 }
@@ -201,6 +210,40 @@ body {
   color: var(--color-text-primary);
   font-family: 'Space Mono', 'Courier New', Courier, monospace;
   font-size: var(--body-font-size);
+}
+
+.bubble-button {
+  background: var(--add-cancel-button-background-color);
+  border: var(--add-cancel-button-border);
+  border-radius: 100vw;
+  box-shadow: var(--add-cancel-button-box-shadow);
+  color: var(--color-text-primary);
+  cursor: pointer;
+  padding: 15px;
+  position: relative;
+  z-index: 0;
+
+  &::before {
+    background: var(--add-cancel-button-pseudo-background);
+    border-radius: inherit;
+    content: '';
+    display: inline-block;
+    height: 100%;
+    inset: 0;
+    opacity: 0.3;
+    pointer-events: none;
+    position: absolute;
+    transform: scale(0);
+    transform-origin: bottom center;
+    transition: transform 100ms ease-in-out;
+    width: 100%;
+    z-index: 1;
+  }
+
+  &:hover::before {
+    transform: scale(1);
+  }
+
 }
 
 #content {
@@ -412,41 +455,6 @@ nav.zig-zag-nav {
           display: flex;
           gap: $gap;
           grid-area: button-container;
-
-          #add-project-button,
-          #cancel-add-project-button {
-            background: var(--add-cancel-button-background-color);
-            border: var(--add-cancel-button-border);
-            border-radius: 100vw;
-            box-shadow: var(--add-cancel-button-box-shadow);
-            color: var(--color-text-primary);
-            cursor: pointer;
-            display: inline-block;
-            padding: 15px;
-            position: relative;
-            z-index: 0;
-
-            &::before {
-              background: var(--add-cancel-button-pseudo-background);
-              border-radius: inherit;
-              content: '';
-              display: inline-block;
-              height: 100%;
-              inset: 0;
-              opacity: 0.3;
-              pointer-events: none;
-              position: absolute;
-              transform: scale(0);
-              transform-origin: bottom center;
-              transition: transform 100ms ease-in-out;
-              width: 100%;
-              z-index: 1;
-            }
-
-            &:hover::before {
-              transform: scale(1);
-            }
-          }
         }
       }
 
@@ -564,11 +572,12 @@ main {
   padding-block: 1rem;
   position: relative;
   width: min(88vw, 888px);
+  z-index: 0;
 }
 
 #main-heading {
   font-size: var(--h2-fs);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   position: sticky;
   text-align: center;
   text-transform: uppercase;
@@ -779,24 +788,27 @@ main {
   }
 }
 
-#add-task-container,
+#project-handling-container,
 #edit-task-container {
-  #add-task-form-opener-button-container {
+  #project-button-container {
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
     margin-bottom: 1.5rem;
     text-align: center;
 
+    #delete-project-button,
     #add-task-form-opener-button {
-      color: var(--color-text-primary);
       cursor: pointer;
-      font-size: var(--open-form-buttons);
+      margin-inline: auto;
       opacity: 0.8;
       position: relative;
       text-decoration: underline;
       text-transform: uppercase;
       transition: all 190ms ease-in-out;
+      width: max-content;
 
       &::before {
-        content: '+';
         left: -1rem;
         position: absolute;
         transition: transform 380ms ease-in-out;
@@ -810,12 +822,31 @@ main {
           transform: rotate(360deg) scale(1.5);
         }
       }
-
+      
       &:active {
         opacity: 0.8;
         transform: scale(1);
       }
     }
+
+    #delete-project-button {
+      color: var(--delete-button-text-color);
+      font-size: var(--delete-buttons);
+
+      &::before {
+        content: '-';
+      }
+    }
+
+    #add-task-form-opener-button {
+      color: var(--color-text-primary);
+      font-size: var(--open-form-buttons);
+
+      &::before {
+        content: '+';
+      }
+    }
+
   }
 
   .add-task-form-container,
@@ -855,40 +886,6 @@ main {
     display: flex;
     gap: 1rem;
     justify-content: center;
-
-    .add-task-button,
-    .edit-task-button {
-      background: var(--add-cancel-button-background-color);
-      border: var(--add-cancel-button-border);
-      border-radius: 100vw;
-      box-shadow: var(--add-cancel-button-box-shadow);
-      color: var(--color-text-primary);
-      cursor: pointer;
-      padding: 15px;
-      position: relative;
-      z-index: 0;
-
-      &::before {
-        background: var(--add-cancel-button-pseudo-background);
-        border-radius: inherit;
-        content: '';
-        display: inline-block;
-        height: 100%;
-        inset: 0;
-        opacity: 0.3;
-        pointer-events: none;
-        position: absolute;
-        transform: scale(0);
-        transform-origin: bottom center;
-        transition: transform 100ms ease-in-out;
-        width: 100%;
-        z-index: 1;
-      }
-
-      &:hover::before {
-        transform: scale(1);
-      }
-    }
   }
 
   .input-container {
@@ -941,7 +938,11 @@ main {
   background: var(--container-background);
   border: none;
   border-radius: 55px;
-  color: white;
+
+  &::backdrop {
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+  }
 
   &[data-hidden=hidden] {
     display: none;
@@ -964,10 +965,39 @@ main {
     text-align: center;
     text-transform: uppercase;
   }
+}
+
+.delete-confirmation-dialog {
+  -webkit-backdrop-filter: blur(1rem);
+  backdrop-filter: blur(1rem);
+  background: var(--page-background);
+  border: var(--component-border);
+  border-radius: 55px;
 
   &::backdrop {
     -webkit-backdrop-filter: blur(2px);
     backdrop-filter: blur(2px);
+  }
+
+  .delete-confirmation-modal {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    height: 8rem;
+    justify-content: center;
+    width: min(55vw, 200px);
+
+    .delete-confirmation-heading {
+      color: var(--color-text-primary);
+      font-size: var(--h2-fs);
+      text-align: center;
+    }
+
+    .delete-confirmation-button-container {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+    }
   }
 }
 

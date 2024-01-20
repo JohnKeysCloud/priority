@@ -17,6 +17,7 @@ function createAddProjectContainer() {
   const addProjectButton = document.createElement('button');
   setAttributes(addProjectButton, {
     'id': 'add-project-button',
+    'class': 'bubble-button',
     'type': 'button',
     'required': true,
     'name': 'add-project',
@@ -28,6 +29,7 @@ function createAddProjectContainer() {
   const cancelAddProjectButton = document.createElement('button');
   setAttributes(cancelAddProjectButton, {
     'id': 'cancel-add-project-button',
+    'class': 'bubble-button',
     'type': 'button',
     'aria-label': 'Cancel Add Project',
   });

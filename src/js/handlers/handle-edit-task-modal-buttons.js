@@ -6,7 +6,7 @@ import { mainState } from './handle-main';
 import { taskToEditObject } from './handle-task-items';
 
 // * HANDLERS
-import { handleTaskList } from './handle-task-list';
+import { handleTaskListViaProject } from './handle-task-list-via-project';
 
 // * PROJECT DEPEDENDENT UTILITIES
 import { refreshTaskListFromLink } from '../project-dependent-utilities/refresh-task-list-from-link';
@@ -43,7 +43,7 @@ function handleSaveEditTaskButton() {
   emitEditTaskFormVisibilityToggle();
 
   if (mainState.linkType === 'project') {
-    handleTaskList(mainState.projectName);
+    handleTaskListViaProject(mainState.projectName);
   } else if (mainState.linkType === 'link') {
     refreshTaskListFromLink(activeLink);
   }

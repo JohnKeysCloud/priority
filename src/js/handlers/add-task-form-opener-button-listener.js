@@ -6,6 +6,9 @@ import { handleTaskAddButton } from "./handle-task-add-button";
 import { handleTaskAddInputs } from "./handle-task-add-inputs";
 import { handleTaskCancelButton } from "./handle-task-cancel-button";
 
+// * STATES
+import { mainState } from "./handle-main";
+
 // * UTITLIIES
 import { checkTargetElementExistence } from "../../utilities/check-target-element-existence";
 import { events } from "../../utilities/pubsub";
@@ -13,13 +16,8 @@ import { setAttributes } from "../../utilities/set-attributes";
 
 // > ---------------------------------------------------
 
-let taskComponentState = {
-  formState: 'hidden',
-  isAddTaskButtonListenerAttached: false,
-}
-
 function setDisplayNone(event) {
-  taskComponentState.formState = 'hidden';
+  mainState.addTaskFormState = 'hidden';
 
   const targetElement = event.target;
   targetElement.setAttribute('data-hidden', 'true');
@@ -27,23 +25,23 @@ function setDisplayNone(event) {
 }
 
 function animatePreDisplayNone(targetElement) {
-  taskComponentState.formState = 'closing';
+  mainState.addTaskFormState = 'closing';
   
   targetElement.addEventListener('animationend', setDisplayNone);
 }
 
 function toggleAddTaskForm() {
   const addTaskFormContainer = checkTargetElementExistence('.add-task-form-container');
-  const currentTaskFormState = taskComponentState.formState;
+  const currenAddTaskFormState = mainState.addTaskFormState;
 
-  if (currentTaskFormState === 'hidden') {
+  if (currenAddTaskFormState === 'hidden') {
     setAttributes(addTaskFormContainer, {
       'data-hidden': 'false',
       'aria-label': 'visible',
     });
 
-    taskComponentState.formState = 'visible';
-  } else if (currentTaskFormState === 'visible') {
+    mainState.addTaskFormState = 'visible';
+  } else if (currenAddTaskFormState === 'visible') {
     setAttributes(addTaskFormContainer, {
       'data-hidden': 'closing',
       'aria-label': 'hidden',
@@ -52,19 +50,19 @@ function toggleAddTaskForm() {
     animatePreDisplayNone(addTaskFormContainer);
   }
 
-  handleTaskAddInputs(addTaskFormContainer, taskComponentState.formState);
-  handleTaskAddButton(taskComponentState.formState);
-  handleTaskCancelButton(taskComponentState.formState); 
+  handleTaskAddInputs(addTaskFormContainer, mainState.addTaskFormState);
+  handleTaskAddButton(mainState.addTaskFormState);
+  handleTaskCancelButton(mainState.addTaskFormState); 
+}
+
+function emitToggleTaskFormVisibility() {
+  events.emit(TOGGLE_ADD_TASK_FORM);
 }
 
 function toggleAddTaskButtonEventPublishing(objectType) {
   if (objectType === 'project') {
     events.on(TOGGLE_ADD_TASK_FORM, toggleAddTaskForm);
   }
-}
-
-function emitToggleTaskFormVisibility() {
-  events.emit(TOGGLE_ADD_TASK_FORM);
 }
 
 function toggleAddTaskButtonClickListener(objectType) {
@@ -74,7 +72,7 @@ function toggleAddTaskButtonClickListener(objectType) {
 
   if (objectType === 'project') {
     addTaskFormOpenerButton.addEventListener('click', emitToggleTaskFormVisibility);
-    taskComponentState.isAddTaskButtonListenerAttached = true;
+    mainState.isAddTaskButtonListenerAttached = true;
   }
 }
 
@@ -83,4 +81,4 @@ function addTaskFormOpenerButtonListener(objectType) {
   toggleAddTaskButtonEventPublishing(objectType);
 }
 
-export { addTaskFormOpenerButtonListener, emitToggleTaskFormVisibility, taskComponentState, toggleAddTaskForm };
+export { addTaskFormOpenerButtonListener, emitToggleTaskFormVisibility, mainState, toggleAddTaskForm };

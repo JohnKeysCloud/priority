@@ -23,6 +23,12 @@ let modalState;
 let isEditTaskFormEventPublished = false;
 let taskToEditObject;
 
+function removeEditTaskEvent() {
+  console.log('called');
+  events.off(TOGGLE_EDIT_TASK_FORM, toggleEditTaskFormVisibility);
+  isEditTaskFormEventPublished = false;
+}
+
 function toggleModalButtonContainerEventListeners(modalState) {
   const editTaskButtonContainer = checkTargetElementExistence(
     '.edit-task-button-container'
@@ -129,15 +135,15 @@ function addTaskListEventListener(taskListElement) {
   taskListElement.addEventListener('click', handleTaskItemInteractables);
 }
 
-function appendTaskEditModalToDOM() {
-  const contentElement = checkTargetElementExistence('#content');
+function appendTaskEditModalToMainContentContainer() {
+  const contentElement = checkTargetElementExistence('#main-container');
   const editTaskModal = createEditTaskModal();
   contentElement.appendChild(editTaskModal);
 }
 
 function handleTaskItems(taskListElement) {
   // ? this function is called if taskListElement has taskItem children (from handle-task-list.js).
-  appendTaskEditModalToDOM();
+  appendTaskEditModalToMainContentContainer();
   addTaskListEventListener(taskListElement);
   enableTaskDetailOverFlowScrollAnimations(taskListElement);
 
@@ -145,4 +151,11 @@ function handleTaskItems(taskListElement) {
   publishEditTaskEvent();
 }
 
-export { handleTaskItems, isEditTaskFormEventPublished,  emitEditTaskFormVisibilityToggle, taskToEditObject };
+export {
+  handleTaskItems,
+  isEditTaskFormEventPublished,
+  removeEditTaskEvent,
+  emitEditTaskFormVisibilityToggle,
+  taskToEditObject,
+  toggleEditTaskFormVisibility,
+};

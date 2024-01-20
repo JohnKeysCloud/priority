@@ -11,7 +11,7 @@ import { linkObjectFactory } from '../logic';
 import { createTaskList } from '../markup/create-task-list';
 
 // * PROJECT DEPENDENT UTILITIES
-import { checkTaskListPopulation } from '../handlers/handle-task-list';
+import { checkTaskListPopulation } from './check-task-list-population';
 
 // * UTILITIES
 import { checkTargetElementExistence } from '../../utilities/check-target-element-existence';

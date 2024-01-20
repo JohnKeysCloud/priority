@@ -5,7 +5,8 @@ import { data } from '../data.js';
 import { addDays, format } from 'date-fns';
 
 // * HANDLERS
-import { addTaskFormOpenerButtonListener, taskComponentState } from './add-task-form-opener-button-listener.js';
+import { addTaskFormOpenerButtonListener } from './add-task-form-opener-button-listener.js';
+import { initiateProjectDeletionFunctionality } from './add-delete-project-button-listener.js';
 import { handleNavToggleButton } from '../../components/nav-toggle/handle-nav-toggle-button.js';
 import { handleTaskItems } from './handle-task-items.js';
 import { removeAddTaskFormOpenerButtonListener } from './remove-add-task-form-opener-button-listener.js';
@@ -17,7 +18,11 @@ import { createMainContentContainer } from '../markup/create-main-content-contai
 import { linkObjectFactory } from '../logic.js';
 
 // * PROJECT DEPENDENT UTILITIES
-import { checkTaskListPopulation } from './handle-task-list.js';
+import { checkTaskListPopulation } from '../project-dependent-utilities/check-task-list-population.js';
+import { updateProjectTaskListState } from '../project-dependent-utilities/update-project-task-list-state.js';
+
+// * STATES
+import { projectTaskListState } from './handle-task-list-via-project.js';
 
 // * UTILITIES
 import { checkTargetElementExistence } from '../../utilities/check-target-element-existence.js';
@@ -27,7 +32,10 @@ import { checkTargetElementExistence } from '../../utilities/check-target-elemen
 const mainState = {
   linkType: null,
   projectName: null,
-}
+  addTaskFormState: 'hidden',
+  isDeleteProjectButtonListenerAttached: false,
+  isAddTaskButtonListenerAttached: false,
+};
 
 function closeNavPostTransition(targetElement) {
   targetElement.addEventListener('transitionend', handleNavToggleButton, {
@@ -99,7 +107,7 @@ function handleMain(clickedLinkElement) {
   const newMainContainer = createMainContentContainer(mainUpdateObject);
   const newTaskList = newMainContainer.querySelector('#task-list');
   
-  const isAddTaskFormOpenerButtonAttached = taskComponentState.isAddTaskButtonListenerAttached;
+  const isAddTaskFormOpenerButtonAttached = mainState.isAddTaskButtonListenerAttached;
   if (isAddTaskFormOpenerButtonAttached) {
     removeAddTaskFormOpenerButtonListener();
   }
@@ -111,6 +119,8 @@ function handleMain(clickedLinkElement) {
 
   if (mainUpdateObjectType === 'project') {
     mainState.projectName = mainUpdateObjectName;
+    updateProjectTaskListState(mainUpdateObject);
+    initiateProjectDeletionFunctionality();
     addTaskFormOpenerButtonListener(mainUpdateObjectType);
   }
 

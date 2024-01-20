@@ -3,7 +3,7 @@ import { setAttributes } from "../../utilities/set-attributes";
 
 // > --------------------------------------------------------------
 
-function createAddTaskButton() {
+function createProjectContainerButtons() {
   const addTaskFormButton = document.createElement('button');
   setAttributes(addTaskFormButton, {
     'id': 'add-task-form-opener-button',
@@ -12,15 +12,24 @@ function createAddTaskButton() {
   });
   addTaskFormButton.textContent = 'add task';
 
+  const deleteProjectButton = document.createElement('button');
+  setAttributes(deleteProjectButton, {
+    'id': 'delete-project-button',
+    'type': 'button',
+    'aria-label': 'Delete Project',
+  });
+  deleteProjectButton.textContent = 'delete project';
+
   const addTaskButtonContainer = document.createElement('div');
   addTaskButtonContainer.setAttribute(
     'id',
-    'add-task-form-opener-button-container'
+    'project-button-container'
   );
 
-  addTaskButtonContainer.appendChild(addTaskFormButton);
+  addTaskButtonContainer.append(deleteProjectButton, addTaskFormButton);
+
 
   return addTaskButtonContainer;
 }
 
-export { createAddTaskButton };
+export { createProjectContainerButtons };

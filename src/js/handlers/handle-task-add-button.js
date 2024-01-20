@@ -11,7 +11,7 @@ import { ADD_NEW_TASK } from '../eventNames';
 import { taskFactory } from '../logic';
 
 // * HANDLERS
-import { handleTaskList } from './handle-task-list';
+import { handleTaskListViaProject } from './handle-task-list-via-project';
 
 // * STATES
 import { mainState } from './handle-main';
@@ -36,8 +36,7 @@ function addNewTask() {
 
   if (!taskName) return alert('Enter Task Name');
   if (!taskDueDate) return alert('Enter Task Due Date');
-  if (taskDueDate < today)
-    return alert('Enter Valid Due Date');
+  if (taskDueDate < today) return alert('Enter Valid Due Date');
 
   taskForm.reset();
 
@@ -54,7 +53,7 @@ function addNewTask() {
 
   emitToggleTaskFormVisibility();
 
-  handleTaskList(projectName);
+  handleTaskListViaProject(projectName);
 }
 
 function toggleTaskAddEvent(formState) {
@@ -86,4 +85,4 @@ function handleTaskAddButton(formState) {
   toggleTaskAddEvent(formState);
 }
 
-export { handleTaskAddButton};
+export { handleTaskAddButton };

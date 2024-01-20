@@ -8,7 +8,7 @@ import { TOGGLE_ADD_TASK_FORM } from "../eventNames";
 import { toggleAddTaskForm } from "./add-task-form-opener-button-listener";
 
 // * STATES
-import { taskComponentState } from "./add-task-form-opener-button-listener";
+import { mainState } from "./handle-main";
 
 // * UTILITIES
 import { checkTargetElementExistence } from "../../utilities/check-target-element-existence";
@@ -22,7 +22,7 @@ function removeAddTaskFormOpenerButtonListener() {
   );
   addTaskFormOpenerButton.removeEventListener('click', emitToggleTaskFormVisibility);
 
-  taskComponentState.isAddTaskButtonListenerAttached = false;
+  mainState.isAddTaskButtonListenerAttached = false;
   events.off(TOGGLE_ADD_TASK_FORM, toggleAddTaskForm);
 }
 

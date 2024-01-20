@@ -15,7 +15,7 @@ import { events } from '../../utilities/pubsub.js';
 
 let activeLink;
 
-function emitUpdateMain(event) {
+function emitHandleMain(event) {
   events.emit(HANDLE_MAIN, event);
 }
 
@@ -53,7 +53,7 @@ function setActiveLink(event) {
   if (!isTargetElementNavLink) return;
 
   setAriaCurrent(targetElement);
-  emitUpdateMain(targetElement);
+  emitHandleMain(targetElement);
 }
 
 function toggleNavLinkListeners() {
