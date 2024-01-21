@@ -20,7 +20,7 @@
 // * };
 
 const navListObjects = {
-  Home: {
+  menu: {
     listElements: [
       ['All Tasks', '#'],
       ['Today', '#'],
@@ -28,7 +28,7 @@ const navListObjects = {
       ['Priorities', '#'],
     ],
   },
-  Projects: {
+  projects: {
     listElements: [],
   },
 };

@@ -50,7 +50,6 @@ function createAddTaskForm() {
     'type': 'date',
     'id': 'task-add-due-date',
     'required': true,
-    'placeholder': 'yyyy-mm-dd',
   });
 
   const dueDateContainer = document.createElement('div');
