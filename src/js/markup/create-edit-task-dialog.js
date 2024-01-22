@@ -6,20 +6,20 @@ import { setAttributes } from '../../utilities/set-attributes.js';
 
 // > --------------------------------------------------------------
 
-function createEditTaskModal() {
+function createEditTaskDialog() {
   const editTaskHeading = document.createElement('h2');
   editTaskHeading.setAttribute('id', 'edit-task-heading');
   editTaskHeading.textContent = 'Edit Task';
 
-  const editTaskModal = document.createElement('dialog');
-  setAttributes(editTaskModal, {
-    'id': 'edit-task-modal',
+  const editTaskDialog = document.createElement('dialog');
+  setAttributes(editTaskDialog, {
+    'id': 'edit-task-dialog',
     'aria-label': 'hidden',
     'data-hidden': 'hidden',
   });
-  editTaskModal.append(editTaskHeading, createEditTaskForm());
+  editTaskDialog.append(editTaskHeading, createEditTaskForm());
 
-  return editTaskModal;
+  return editTaskDialog;
 }
 
-export { createEditTaskModal };
+export { createEditTaskDialog };

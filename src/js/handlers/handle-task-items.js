@@ -6,7 +6,7 @@ import { handleEditTaskModalButtons } from './handle-edit-task-modal-buttons';
 import { handleTaskItemInteractables } from './handle-task-item-interactables';
 
 // * MARKUP
-import { createEditTaskModal } from '../markup/create-edit-task-modal';
+import { createEditTaskDialog } from '../markup/create-edit-task-dialog';
 
 // * UTILITIES
 import { checkTargetElementExistence } from "../../utilities/check-target-element-existence";
@@ -21,10 +21,9 @@ import { scrollElementContent } from "../../utilities/scroll-element-content";
 // TODO: create state object for this module using:
 let modalState;
 let isEditTaskFormEventPublished = false;
-let taskToEditObject;
+let taskToEditObjectState;
 
 function removeEditTaskEvent() {
-  console.log('called');
   events.off(TOGGLE_EDIT_TASK_FORM, toggleEditTaskFormVisibility);
   isEditTaskFormEventPublished = false;
 }
@@ -55,11 +54,11 @@ function animatePreDisplayNone(element, callback) {
 }
 
 function setModalPlaceholders(correspondingTaskObject) {
-  const editTaskModal = checkTargetElementExistence('#edit-task-modal');
+  const editTaskDialog = checkTargetElementExistence('#edit-task-dialog');
 
-  const taskNameInput = editTaskModal.querySelector('#edit-task-title');
-  const taskDetailsInput = editTaskModal.querySelector('#edit-task-details');
-  const taskDueDateInput = editTaskModal.querySelector('#edit-task-due-date');
+  const taskNameInput = editTaskDialog.querySelector('#edit-task-title');
+  const taskDetailsInput = editTaskDialog.querySelector('#edit-task-details');
+  const taskDueDateInput = editTaskDialog.querySelector('#edit-task-due-date');
 
   const taskName = correspondingTaskObject.getName();
   const taskDetails = correspondingTaskObject.getDetails();
@@ -71,26 +70,26 @@ function setModalPlaceholders(correspondingTaskObject) {
 }
 
 function toggleEditTaskFormVisibility(correspondingTaskObject) {
-  const editTaskModal = checkTargetElementExistence('#edit-task-modal');
-  const taskModalVisibilityOnCall = editTaskModal.getAttribute('data-hidden');
+  const editTaskDialog = checkTargetElementExistence('#edit-task-dialog');
+  const taskModalVisibilityOnCall = editTaskDialog.getAttribute('data-hidden');
 
   if (taskModalVisibilityOnCall === 'hidden') {
     modalState = 'visible';
+    taskToEditObjectState = correspondingTaskObject;
 
     setModalPlaceholders(correspondingTaskObject);
-    showModalEnhanced(editTaskModal);
+    showModalEnhanced(editTaskDialog);
     toggleModalButtonContainerEventListeners(modalState);
   } else if (taskModalVisibilityOnCall === 'visible') {
     modalState = 'closing';
 
-    animatePreDisplayNone(editTaskModal, closeModalEnhanced);
+    animatePreDisplayNone(editTaskDialog, closeModalEnhanced);
 
     toggleModalButtonContainerEventListeners(modalState);
   }
   
-  handleTaskEditInputs(editTaskModal, modalState);
+  handleTaskEditInputs(editTaskDialog, modalState);
 
-  taskToEditObject = correspondingTaskObject;
 }
 
 function emitEditTaskFormVisibilityToggle(data) {
@@ -137,8 +136,8 @@ function addTaskListEventListener(taskListElement) {
 
 function appendTaskEditModalToMainContentContainer() {
   const contentElement = checkTargetElementExistence('#main-container');
-  const editTaskModal = createEditTaskModal();
-  contentElement.appendChild(editTaskModal);
+  const editTaskDialog = createEditTaskDialog();
+  contentElement.appendChild(editTaskDialog);
 }
 
 function handleTaskItems(taskListElement) {
@@ -156,6 +155,6 @@ export {
   isEditTaskFormEventPublished,
   removeEditTaskEvent,
   emitEditTaskFormVisibilityToggle,
-  taskToEditObject,
+  taskToEditObjectState,
   toggleEditTaskFormVisibility,
 };

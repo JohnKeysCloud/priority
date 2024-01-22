@@ -12,4 +12,5 @@ export const TOGGLE_EDIT_TASK_FORM = 'toggleEditTaskForm';
 
 export const TOGGLE_THEME = 'toggleTheme';
 
-export const DELETE_PROJECT = 'deleteProject';
+export const OPEN_PROJECT_DELETE_DIALOG = 'openProjectDeleteDialog';
+export const OPEN_TASK_DELETE_DIALOG = 'openTaskDeleteDialog';

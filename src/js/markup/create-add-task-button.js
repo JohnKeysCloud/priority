@@ -5,6 +5,7 @@ import { setAttributes } from "../../utilities/set-attributes";
 
 function createProjectContainerButtons() {
   const addTaskFormButton = document.createElement('button');
+  addTaskFormButton.classList.add('no-bubble-button', 'add-button');
   setAttributes(addTaskFormButton, {
     'id': 'add-task-form-opener-button',
     'type': 'button',
@@ -13,6 +14,7 @@ function createProjectContainerButtons() {
   addTaskFormButton.textContent = 'add task';
 
   const deleteProjectButton = document.createElement('button');
+  deleteProjectButton.classList.add('no-bubble-button', 'delete-button');
   setAttributes(deleteProjectButton, {
     'id': 'delete-project-button',
     'type': 'button',

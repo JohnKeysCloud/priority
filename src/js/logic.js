@@ -67,6 +67,9 @@ function projectFactory(name) {
     addTask: function (task) {
       state.tasks.push(task);
     },
+    deleteTask: function (task) {
+      state.tasks.splice(state.tasks.indexOf(task), 1);
+    },
     sortTaskArray: () => {
       const taskArray = state.tasks;
 

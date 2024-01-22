@@ -30,8 +30,9 @@ import { checkTargetElementExistence } from '../../utilities/check-target-elemen
 // > ---------------------------------------------------
 
 const mainState = {
+  linkOrProjectName: null,
   linkType: null,
-  projectName: null,
+  linkOrProjectName: null,
   addTaskFormState: 'hidden',
   isDeleteProjectButtonListenerAttached: false,
   isAddTaskButtonListenerAttached: false,
@@ -116,13 +117,13 @@ function handleMain(clickedLinkElement) {
   clearMain(mainElement);
 
   mainElement.appendChild(newMainContainer);
-
+  mainState.linkOrProjectName = mainUpdateObjectName;
+  
   if (mainUpdateObjectType === 'project') {
-    mainState.projectName = mainUpdateObjectName;
     updateProjectTaskListState(mainUpdateObject);
     initiateProjectDeletionFunctionality();
     addTaskFormOpenerButtonListener(mainUpdateObjectType);
-  }
+  } 
 
   const taskListHasTaskItems = checkTaskListPopulation(newTaskList); // ? boolean
   if (taskListHasTaskItems) {

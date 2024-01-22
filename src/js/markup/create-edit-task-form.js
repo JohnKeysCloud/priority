@@ -1,7 +1,11 @@
 // * UTILITIES
+import { set } from "date-fns";
 import { setAttributes } from "../../utilities/set-attributes";
 
 // > --------------------------------------------------------------
+
+// TODO: create edit task delete button and add it to the edit task form
+// ? function to delete task from data... reload tasklist with updated data 
 
 function createEditTaskForm() {
   const titleLabel = document.createElement('label');
@@ -76,9 +80,18 @@ function createEditTaskForm() {
   });
   cancelEditTaskButton.textContent = 'cancel';
 
+  const deleteTaskButton = document.createElement('button');
+  deleteTaskButton.classList.add('edit-task-button', 'no-bubble-button', 'delete-button');
+  setAttributes(deleteTaskButton, {
+    'id': 'delete-edit-task-button',
+    'type': 'button',
+    'aria-label': 'Delete Task',
+  });
+  deleteTaskButton.textContent = 'delete task';
+
   const editTaskButtonContainer = document.createElement('div');
   editTaskButtonContainer.classList.add('edit-task-button-container');
-  editTaskButtonContainer.append(saveEditTaskButton, cancelEditTaskButton);
+  editTaskButtonContainer.append(saveEditTaskButton, cancelEditTaskButton, deleteTaskButton);
 
   const editTaskForm = document.createElement('form');
   editTaskForm.setAttribute('id', 'edit-task-form');

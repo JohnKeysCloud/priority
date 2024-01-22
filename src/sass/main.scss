@@ -6,11 +6,11 @@
   // * FONT SIZES
   --h1-fs: clamp(1rem, 2.25vw, 1.25rem);
   --h2-fs: clamp(0.938rem, 2vw, 1.125rem);
-  --open-form-buttons: clamp(0.813rem, 2.125vw, 0.938rem);
-  --delete-buttons: var(--task-item-date-font-size);
-  --body-font-size: clamp(0.75rem, 1.5vw, 0.813rem);
-  --task-item-date-font-size: clamp(0.625rem, 2.3vw, 0.75rem);
-
+  --body-fs: clamp(0.75rem, 1.5vw, 0.813rem);
+  --open-form-buttons-fs: clamp(0.813rem, 2.125vw, 0.938rem);
+  --delete-buttons-fs: var(--task-item-date-fs);
+  --task-item-date-fs: clamp(0.625rem, 2.3vw, 0.75rem);
+  
   // > ------------------------------------------------------------------------------
 
   // * MAIN TEXT COLORS DARK 
@@ -199,17 +199,10 @@
   --task-item-buttons-color: black;
 
   // * DELETE BUTTONS DAY
-  --delete-button-text-color: purple; 
+  --delete-button-text-color: #004B44; 
 
   // * HEADER LOGO OPACITY LIGHT
   --header-logo-opacity: 1;
-}
-
-body {
-  background: var(--page-background);
-  color: var(--color-text-primary);
-  font-family: 'Space Mono', 'Courier New', Courier, monospace;
-  font-size: var(--body-font-size);
 }
 
 .bubble-button {
@@ -243,7 +236,66 @@ body {
   &:hover::before {
     transform: scale(1);
   }
+}
 
+.no-bubble-button {
+  color: var(--color-text-primary);
+  cursor: pointer;
+  font-size: var(--open-form-buttons-fs);
+  position: relative;
+  text-decoration: underline;
+  text-transform: uppercase;
+  transition: all 190ms ease-in-out;
+  white-space: nowrap;
+  width: max-content;
+
+  &::before {
+    left: -1rem;
+    position: absolute;
+    transition: transform 380ms ease-in-out;
+  }
+
+  &:hover {
+    transform: translateX(0.25rem) scale(1) rotate(0);
+
+    &::before {
+      transform: translate(-0.25rem) scale(2) rotate(360deg);
+    }
+  }
+
+  &:active {
+    opacity: 0.75;
+    transform: translateX(0.25rem) scale(0.99) rotate(0);
+
+    &::before {
+      transform: translate(-0.25rem) scale(1.01) rotate(360deg);
+    }
+  }
+}
+
+.add-button {
+  color: var(--color-text-primary);
+  font-size: var(--open-form-buttons-fs);
+
+  &::before {
+    content: '+';
+  }
+}
+
+.delete-button {
+  color: var(--delete-button-text-color);
+  font-size: var(--delete-buttons-fs);
+
+  &::before {
+    content: '-';
+  }
+}
+
+body {
+  background: var(--page-background);
+  color: var(--color-text-primary);
+  font-family: 'Space Mono', 'Courier New', Courier, monospace;
+  font-size: var(--body-fs);
 }
 
 #content {
@@ -461,7 +513,7 @@ nav.zig-zag-nav {
       #new-project-button {
         cursor: pointer;
         color: var(--color-text-primary);
-        font-size: var(--open-form-buttons);
+        font-size: var(--open-form-buttons-fs);
         position: relative;
         text-decoration: underline;
         text-transform: uppercase;
@@ -668,7 +720,7 @@ main {
   }
 
   .task-item-title {
-    font-size: var(--body-font-size);
+    font-size: var(--body-fs);
     grid-area: title;
     text-transform: uppercase;
   }
@@ -706,7 +758,7 @@ main {
 
     .task-item-date {
       color: var(--color-text-secondary);
-      font-size: var(--task-item-date-font-size);
+      font-size: var(--task-item-date-fs);
       justify-self: end;
       text-align: center;
       text-transform: uppercase;
@@ -797,56 +849,14 @@ main {
     margin-bottom: 1.5rem;
     text-align: center;
 
-    #delete-project-button,
-    #add-task-form-opener-button {
-      cursor: pointer;
+    > button {
       margin-inline: auto;
-      opacity: 0.8;
-      position: relative;
-      text-decoration: underline;
-      text-transform: uppercase;
-      transition: all 190ms ease-in-out;
-      width: max-content;
-
-      &::before {
-        left: -1rem;
-        position: absolute;
-        transition: transform 380ms ease-in-out;
-      }
+      opacity: 0.8; 
 
       &:hover {
         opacity: 1;
-        transform: scale(1.1);
-
-        &::before {
-          transform: rotate(360deg) scale(1.5);
-        }
-      }
-      
-      &:active {
-        opacity: 0.8;
-        transform: scale(1);
       }
     }
-
-    #delete-project-button {
-      color: var(--delete-button-text-color);
-      font-size: var(--delete-buttons);
-
-      &::before {
-        content: '-';
-      }
-    }
-
-    #add-task-form-opener-button {
-      color: var(--color-text-primary);
-      font-size: var(--open-form-buttons);
-
-      &::before {
-        content: '+';
-      }
-    }
-
   }
 
   .add-task-form-container,
@@ -888,6 +898,27 @@ main {
     justify-content: center;
   }
 
+  .edit-task-button-container {
+    display: grid;
+    grid-template-areas: 
+    'save cancel'
+    'delete delete';
+
+    #save-edit-task-button {
+      grid-area: save;
+    }
+
+    #cancel-edit-task-button {
+      grid-area: cancel;
+    }
+
+    #delete-edit-task-button {
+      grid-area: delete;
+      margin-bottom: 1rem;
+      margin-inline: auto;
+    }
+  }
+
   .input-container {
     display: flex;
     flex-direction: column;
@@ -896,7 +927,7 @@ main {
     .add-task-label,
     .edit-task-label {
       color: var(--color-text-primary);
-      font-size: var(--body-font-size);
+      font-size: var(--body-fs);
       text-transform: uppercase;
     }
 
@@ -932,7 +963,7 @@ main {
   width: min(75vw, 555px);
 }
 
-#edit-task-modal {
+#edit-task-dialog {
   -webkit-backdrop-filter: blur(1rem);
   backdrop-filter: blur(1rem);
   background: var(--container-background);
@@ -1002,7 +1033,12 @@ main {
 }
 
 footer {
-  // TODO:: add footer
+  background-color: black;
+  border: 2px solid red;
+  height: 200px;
+  inset: unset 0 0 0;
+  position: fixed;
+  width: 100vw;
 }
 
 @media (max-width: 35em) {

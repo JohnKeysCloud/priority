@@ -1,5 +1,5 @@
 // * EVENT NAMES
-import { DELETE_PROJECT, TOGGLE_ADD_TASK_FORM, TOGGLE_EDIT_TASK_FORM } from "../eventNames";
+import { OPEN_PROJECT_DELETE_DIALOG, TOGGLE_ADD_TASK_FORM, TOGGLE_EDIT_TASK_FORM } from "../eventNames";
 
 // * UTILITIES
 import { checkTargetElementExistence } from "../../utilities/check-target-element-existence";
@@ -21,8 +21,6 @@ import { updateProjectList } from "./handle-project-add-button";
 import { createMainContentContainer } from "../markup/create-main-content-container";
 import { linkObjectFactory } from "../logic";
 import { toggleAddTaskForm } from "./add-task-form-opener-button-listener";
-
-import { createDeleteConfirmationDialog } from "../markup/create-delete-confirmation-dialog";
 
 // > --------------------------------------------------------------
 
@@ -54,13 +52,9 @@ function reloadMainContentContainerWithAllTasks() {
   mainElement.appendChild(newMainContainer);
 }
 
-function removeCurrentProjectContainersListenersAndEventPublishing() {
+function unsubscribeEditTaskFormEvent() {
   const taskListHasTaskItems = projectTaskListState.taskListHasTaskItems();
   if (taskListHasTaskItems) removeEditTaskEvent();
-
-  events.off(TOGGLE_ADD_TASK_FORM, toggleAddTaskForm);
-  events.off(DELETE_PROJECT, openDeleteProjectForm);
-  isDeleteProjectEventPublished = false;
 }
 
 function deleteProject() {
@@ -68,7 +62,7 @@ function deleteProject() {
   const projectNavList = checkTargetElementExistence('#project-nav-list');
 
   data.deleteProject(projectToDeleteObject);
-  removeCurrentProjectContainersListenersAndEventPublishing();
+  unsubscribeEditTaskFormEvent();
   reloadMainContentContainerWithAllTasks();
   reloadNav();
   updateProjectList(data, projectNavList);
@@ -76,7 +70,7 @@ function deleteProject() {
   mainState.isAddTaskButtonListenerAttached = false;
 }
 
-function handleDeleteConfirmationModalButtons(event) {
+function handleDeleteProjectConfirmationModalButtons(event) {
   const deleteButton = event.target.textContent === 'delete';
   const cancelButton = event.target.textContent === 'cancel';
   
@@ -87,41 +81,40 @@ function handleDeleteConfirmationModalButtons(event) {
   if (deleteButton) {
     deleteProject();
     closeModalEnhanced(deleteConfirmationModal);
+
+    events.off(TOGGLE_ADD_TASK_FORM, toggleAddTaskForm);
+    events.off(OPEN_PROJECT_DELETE_DIALOG, openDeleteProjectDialog);
+    isDeleteProjectEventPublished = false;
   } else if (cancelButton) {
     closeModalEnhanced(deleteConfirmationModal);
+    
+    events.off(OPEN_PROJECT_DELETE_DIALOG, openDeleteProjectDialog);
+    isDeleteProjectEventPublished = false;
   }
 }
 
-function addEventListenersToModalButtons() {
+function addDeleteProjectEventListenersToModalButtons() {
   const deleteConfirmationButtonContainer = checkTargetElementExistence('.delete-confirmation-button-container');
 
-  deleteConfirmationButtonContainer.addEventListener('click', handleDeleteConfirmationModalButtons);
+  deleteConfirmationButtonContainer.addEventListener('click', handleDeleteProjectConfirmationModalButtons);
 }
 
-function openDeleteProjectForm() {
+function openDeleteProjectDialog() {
   const deleteConfirmationDialog = checkTargetElementExistence('.delete-confirmation-dialog');
   showModalEnhanced(deleteConfirmationDialog);
-  addEventListenersToModalButtons();
-}
-
-function emitDeleteProject() {
-  events.emit(DELETE_PROJECT);
-}
-
-function appendDeleteConfirmationDialogToProjectButtonContainer() {
-  const projectButtonContainer = checkTargetElementExistence(
-    '#project-button-container'
-  );
-  const deleteConfirmationDialog = createDeleteConfirmationDialog();
-
-  projectButtonContainer.appendChild(deleteConfirmationDialog);
+  addDeleteProjectEventListenersToModalButtons();
 }
 
 function addDeleteProjectEventPublishing() {
   if (isDeleteProjectEventPublished === true) return;
 
   isDeleteProjectEventPublished = true;
-  events.on(DELETE_PROJECT, openDeleteProjectForm);
+  events.on(OPEN_PROJECT_DELETE_DIALOG, openDeleteProjectDialog);
+}
+
+function publishAndEmitDeleteProjectDialog() {
+  addDeleteProjectEventPublishing();
+  events.emit(OPEN_PROJECT_DELETE_DIALOG);
 }
 
 function addDeleteProjectButtonClickListener() {
@@ -129,14 +122,12 @@ function addDeleteProjectButtonClickListener() {
     '#delete-project-button'
   );
   
-  deleteProjectButton.addEventListener('click', emitDeleteProject);
+  deleteProjectButton.addEventListener('click', publishAndEmitDeleteProjectDialog);
   mainState.isDeleteProjectButtonListenerAttached = true;
 }
 
 function initiateProjectDeletionFunctionality() {
   addDeleteProjectButtonClickListener();
-  addDeleteProjectEventPublishing();
-  appendDeleteConfirmationDialogToProjectButtonContainer();
 }
 
 export { initiateProjectDeletionFunctionality };

@@ -1,5 +1,6 @@
 // * MARKUP
 import { createAddTaskContainer } from "./create-add-task-container";
+import { createDeleteConfirmationDialog } from "./create-delete-confirmation-dialog";
 import { createTaskList } from "./create-task-list";
 
 // > ---------------------------------------------------
@@ -24,6 +25,8 @@ function createMainContentContainer(mainUpdateObject) {
     mainContentContainer.appendChild(createAddTaskContainer());
   } 
   mainContentContainer.appendChild(mainContent);
+
+  mainContentContainer.appendChild(createDeleteConfirmationDialog());
   
   return mainContentContainer
 }

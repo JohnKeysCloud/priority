@@ -297,10 +297,10 @@ input[type=checkbox] {
 :root {
   --h1-fs: clamp(1rem, 2.25vw, 1.25rem);
   --h2-fs: clamp(0.938rem, 2vw, 1.125rem);
-  --open-form-buttons: clamp(0.813rem, 2.125vw, 0.938rem);
-  --delete-buttons: var(--task-item-date-font-size);
-  --body-font-size: clamp(0.75rem, 1.5vw, 0.813rem);
-  --task-item-date-font-size: clamp(0.625rem, 2.3vw, 0.75rem);
+  --body-fs: clamp(0.75rem, 1.5vw, 0.813rem);
+  --open-form-buttons-fs: clamp(0.813rem, 2.125vw, 0.938rem);
+  --delete-buttons-fs: var(--task-item-date-fs);
+  --task-item-date-fs: clamp(0.625rem, 2.3vw, 0.75rem);
   --color-text-primary: whitesmoke;
   --color-text-secondary: silver;
   --container-background: linear-gradient(to bottom, hsl(0 0% 100% / 0.25),transparent);
@@ -399,15 +399,8 @@ input[type=checkbox] {
   --priority-star-font-size: 1.5rem;
   --component-border: 3px solid hsl(0 0% 100% / 0.5);
   --task-item-buttons-color: black;
-  --delete-button-text-color: purple;
+  --delete-button-text-color: #004B44;
   --header-logo-opacity: 1;
-}
-
-body {
-  background: var(--page-background);
-  color: var(--color-text-primary);
-  font-family: "Space Mono", "Courier New", Courier, monospace;
-  font-size: var(--body-font-size);
 }
 
 .bubble-button {
@@ -439,6 +432,59 @@ body {
 }
 .bubble-button:hover::before {
   transform: scale(1);
+}
+
+.no-bubble-button {
+  color: var(--color-text-primary);
+  cursor: pointer;
+  font-size: var(--open-form-buttons-fs);
+  position: relative;
+  text-decoration: underline;
+  text-transform: uppercase;
+  transition: all 190ms ease-in-out;
+  white-space: nowrap;
+  width: max-content;
+}
+.no-bubble-button::before {
+  left: -1rem;
+  position: absolute;
+  transition: transform 380ms ease-in-out;
+}
+.no-bubble-button:hover {
+  transform: translateX(0.25rem) scale(1) rotate(0);
+}
+.no-bubble-button:hover::before {
+  transform: translate(-0.25rem) scale(2) rotate(360deg);
+}
+.no-bubble-button:active {
+  opacity: 0.75;
+  transform: translateX(0.25rem) scale(0.99) rotate(0);
+}
+.no-bubble-button:active::before {
+  transform: translate(-0.25rem) scale(1.01) rotate(360deg);
+}
+
+.add-button {
+  color: var(--color-text-primary);
+  font-size: var(--open-form-buttons-fs);
+}
+.add-button::before {
+  content: "+";
+}
+
+.delete-button {
+  color: var(--delete-button-text-color);
+  font-size: var(--delete-buttons-fs);
+}
+.delete-button::before {
+  content: "-";
+}
+
+body {
+  background: var(--page-background);
+  color: var(--color-text-primary);
+  font-family: "Space Mono", "Courier New", Courier, monospace;
+  font-size: var(--body-fs);
 }
 
 #content {
@@ -621,7 +667,7 @@ nav.zig-zag-nav #project-nav-list-container #add-project-container #add-project-
 nav.zig-zag-nav #project-nav-list-container #add-project-container #new-project-button {
   cursor: pointer;
   color: var(--color-text-primary);
-  font-size: var(--open-form-buttons);
+  font-size: var(--open-form-buttons-fs);
   position: relative;
   text-decoration: underline;
   text-transform: uppercase;
@@ -797,7 +843,7 @@ main {
   visibility: visible;
 }
 .task-item .task-item-title {
-  font-size: var(--body-font-size);
+  font-size: var(--body-fs);
   grid-area: title;
   text-transform: uppercase;
 }
@@ -830,7 +876,7 @@ main {
 }
 .task-item .task-right-side-container .task-item-date {
   color: var(--color-text-secondary);
-  font-size: var(--task-item-date-font-size);
+  font-size: var(--task-item-date-fs);
   justify-self: end;
   text-align: center;
   text-transform: uppercase;
@@ -895,64 +941,14 @@ main {
   margin-bottom: 1.5rem;
   text-align: center;
 }
-#project-handling-container #project-button-container #delete-project-button,
-#project-handling-container #project-button-container #add-task-form-opener-button,
-#edit-task-container #project-button-container #delete-project-button,
-#edit-task-container #project-button-container #add-task-form-opener-button {
-  cursor: pointer;
+#project-handling-container #project-button-container > button,
+#edit-task-container #project-button-container > button {
   margin-inline: auto;
   opacity: 0.8;
-  position: relative;
-  text-decoration: underline;
-  text-transform: uppercase;
-  transition: all 190ms ease-in-out;
-  width: max-content;
 }
-#project-handling-container #project-button-container #delete-project-button::before,
-#project-handling-container #project-button-container #add-task-form-opener-button::before,
-#edit-task-container #project-button-container #delete-project-button::before,
-#edit-task-container #project-button-container #add-task-form-opener-button::before {
-  left: -1rem;
-  position: absolute;
-  transition: transform 380ms ease-in-out;
-}
-#project-handling-container #project-button-container #delete-project-button:hover,
-#project-handling-container #project-button-container #add-task-form-opener-button:hover,
-#edit-task-container #project-button-container #delete-project-button:hover,
-#edit-task-container #project-button-container #add-task-form-opener-button:hover {
+#project-handling-container #project-button-container > button:hover,
+#edit-task-container #project-button-container > button:hover {
   opacity: 1;
-  transform: scale(1.1);
-}
-#project-handling-container #project-button-container #delete-project-button:hover::before,
-#project-handling-container #project-button-container #add-task-form-opener-button:hover::before,
-#edit-task-container #project-button-container #delete-project-button:hover::before,
-#edit-task-container #project-button-container #add-task-form-opener-button:hover::before {
-  transform: rotate(360deg) scale(1.5);
-}
-#project-handling-container #project-button-container #delete-project-button:active,
-#project-handling-container #project-button-container #add-task-form-opener-button:active,
-#edit-task-container #project-button-container #delete-project-button:active,
-#edit-task-container #project-button-container #add-task-form-opener-button:active {
-  opacity: 0.8;
-  transform: scale(1);
-}
-#project-handling-container #project-button-container #delete-project-button,
-#edit-task-container #project-button-container #delete-project-button {
-  color: var(--delete-button-text-color);
-  font-size: var(--delete-buttons);
-}
-#project-handling-container #project-button-container #delete-project-button::before,
-#edit-task-container #project-button-container #delete-project-button::before {
-  content: "-";
-}
-#project-handling-container #project-button-container #add-task-form-opener-button,
-#edit-task-container #project-button-container #add-task-form-opener-button {
-  color: var(--color-text-primary);
-  font-size: var(--open-form-buttons);
-}
-#project-handling-container #project-button-container #add-task-form-opener-button::before,
-#edit-task-container #project-button-container #add-task-form-opener-button::before {
-  content: "+";
 }
 #project-handling-container .add-task-form-container,
 #project-handling-container .edit-task-form-container,
@@ -1001,6 +997,25 @@ main {
   gap: 1rem;
   justify-content: center;
 }
+#add-task-form .edit-task-button-container,
+#edit-task-form .edit-task-button-container {
+  display: grid;
+  grid-template-areas: "save cancel" "delete delete";
+}
+#add-task-form .edit-task-button-container #save-edit-task-button,
+#edit-task-form .edit-task-button-container #save-edit-task-button {
+  grid-area: save;
+}
+#add-task-form .edit-task-button-container #cancel-edit-task-button,
+#edit-task-form .edit-task-button-container #cancel-edit-task-button {
+  grid-area: cancel;
+}
+#add-task-form .edit-task-button-container #delete-edit-task-button,
+#edit-task-form .edit-task-button-container #delete-edit-task-button {
+  grid-area: delete;
+  margin-bottom: 1rem;
+  margin-inline: auto;
+}
 #add-task-form .input-container,
 #edit-task-form .input-container {
   display: flex;
@@ -1012,7 +1027,7 @@ main {
 #edit-task-form .input-container .add-task-label,
 #edit-task-form .input-container .edit-task-label {
   color: var(--color-text-primary);
-  font-size: var(--body-font-size);
+  font-size: var(--body-fs);
   text-transform: uppercase;
 }
 #add-task-form .input-container .add-task-input,
@@ -1056,29 +1071,29 @@ main {
   width: min(75vw, 555px);
 }
 
-#edit-task-modal {
+#edit-task-dialog {
   -webkit-backdrop-filter: blur(1rem);
   backdrop-filter: blur(1rem);
   background: var(--container-background);
   border: none;
   border-radius: 55px;
 }
-#edit-task-modal::backdrop {
+#edit-task-dialog::backdrop {
   -webkit-backdrop-filter: blur(2px);
   backdrop-filter: blur(2px);
 }
-#edit-task-modal[data-hidden=hidden] {
+#edit-task-dialog[data-hidden=hidden] {
   display: none;
 }
-#edit-task-modal[data-hidden=closing] {
+#edit-task-dialog[data-hidden=closing] {
   animation: fade-out 380ms ease-in-out forwards;
   pointer-events: none;
 }
-#edit-task-modal[data-hidden=visible] {
+#edit-task-dialog[data-hidden=visible] {
   animation: fade-in 380ms ease-in-out forwards;
   pointer-events: all;
 }
-#edit-task-modal #edit-task-heading {
+#edit-task-dialog #edit-task-heading {
   color: var(--color-text-primary);
   font-size: var(--h2-fs);
   margin-bottom: 1.5rem;
@@ -1114,6 +1129,15 @@ main {
   display: flex;
   gap: 1rem;
   justify-content: center;
+}
+
+footer {
+  background-color: black;
+  border: 2px solid red;
+  height: 200px;
+  inset: unset 0 0 0;
+  position: fixed;
+  width: 100vw;
 }
 
 @media (max-width: 35em) {

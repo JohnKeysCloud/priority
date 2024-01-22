@@ -4,7 +4,9 @@ import { handleMain } from './handle-main.js';
 // * EVENT NAMES
 import { HANDLE_MAIN } from '../eventNames.js';
 
+// TODO: use main state to set active link on nav link click
 // *  STATES
+import { mainState } from './handle-main.js';
 import { navState } from '../../components/zig-zag-nav/handle-zig-zag-nav.js';
 
 // * UTILITIES

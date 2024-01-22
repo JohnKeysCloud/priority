@@ -69,6 +69,7 @@ function createTaskItem(taskObject) {
 
   const taskItem = document.createElement('li');
   taskItem.classList.add('task-item');
+  taskItem.setAttribute('data-task-name', taskTitle);
   taskItem.append(taskCheckBoxContainer, taskItemTitle);
   if (taskDetails.trim() !== '') {
     taskItem.appendChild(taskItemDetails);

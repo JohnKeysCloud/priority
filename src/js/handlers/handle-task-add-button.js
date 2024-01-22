@@ -30,8 +30,10 @@ function addNewTask() {
   const taskDueDateInput = taskForm.querySelector('#task-add-due-date');
 
   const taskName = taskNameInput.value.trim().toLowerCase();
+  const projectName = mainState.linkOrProjectName;
   const taskDetails = taskDetailsInput.value.trim();
   const taskDueDate = taskDueDateInput.value;
+  
   const today = new Date().toISOString().slice(0, 10);
 
   if (!taskName) return alert('Enter Task Name');
@@ -46,9 +48,7 @@ function addNewTask() {
     taskDueDate,
     taskDetails
   );
-  taskObject.setProjectName(projectName);
 
-  const projectName = mainState.projectName.toLowerCase();
   data.addTaskToProject(projectName, taskObject);
 
   emitToggleTaskFormVisibility();

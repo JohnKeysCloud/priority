@@ -52,6 +52,7 @@ function createAddProjectContainer() {
   projectFormContainer.append(projectInputContainer, projectButtonsContainer);
 
   const newProjectButton = document.createElement('button');
+  newProjectButton.classList.add('no-bubble-button', 'add-button');
   setAttributes(newProjectButton, {
     'id': 'new-project-button',
     'type': 'button',

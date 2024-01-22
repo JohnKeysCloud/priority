@@ -1,5 +1,5 @@
 // * HANDLERS
-import { handleSaveEditTaskButton } from './handle-edit-task-modal-buttons';
+import { handleSaveEditTaskButton } from "./handle-save-edit-task-button";
 
 // > --------------------------------------------------------------
 
