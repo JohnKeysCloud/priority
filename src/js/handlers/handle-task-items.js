@@ -17,25 +17,25 @@ import { scrollElementContent } from "../../utilities/scroll-element-content";
 
 // > --------------------------------------------------------------
 
-// TODO: refactor to turn edit task event off when task list has no children
-// TODO: create state object for this module using:
-let modalState;
-let isEditTaskFormEventPublished = false;
-let taskToEditObjectState;
+let editTaskState = {
+  modalState: 'hidden',
+  isEditTaskFormEventPublished: false,
+  taskToEditObjectState: null,
+}
 
 function removeEditTaskEvent() {
   events.off(TOGGLE_EDIT_TASK_FORM, toggleEditTaskFormVisibility);
-  isEditTaskFormEventPublished = false;
+  editTaskState.isEditTaskFormEventPublished = false;
 }
 
-function toggleModalButtonContainerEventListeners(modalState) {
+function toggleModalButtonContainerEventListeners() {
   const editTaskButtonContainer = checkTargetElementExistence(
     '.edit-task-button-container'
   );
 
-  if (modalState === 'hidden') {
+  if (editTaskState.modalState === 'hidden') {
     editTaskButtonContainer.removeEventListener('click', handleEditTaskModalButtons);
-  } else if (modalState === 'visible') {
+  } else if (editTaskState.modalState === 'visible') {
     editTaskButtonContainer.addEventListener('click', handleEditTaskModalButtons);
   }
 }
@@ -46,7 +46,7 @@ function animatePreDisplayNone(element, callback) {
 
     element.removeEventListener('animationend', onAnimationEnd);
 
-    modalState = 'hidden';
+    editTaskState.modalState = 'hidden';
   };
 
   element.setAttribute('data-hidden', 'closing');
@@ -74,21 +74,21 @@ function toggleEditTaskFormVisibility(correspondingTaskObject) {
   const taskModalVisibilityOnCall = editTaskDialog.getAttribute('data-hidden');
 
   if (taskModalVisibilityOnCall === 'hidden') {
-    modalState = 'visible';
+    editTaskState.modalState = 'visible';
     taskToEditObjectState = correspondingTaskObject;
 
     setModalPlaceholders(correspondingTaskObject);
     showModalEnhanced(editTaskDialog);
-    toggleModalButtonContainerEventListeners(modalState);
+    toggleModalButtonContainerEventListeners(editTaskState.modalState);
   } else if (taskModalVisibilityOnCall === 'visible') {
-    modalState = 'closing';
+    editTaskState.modalState = 'closing';
 
     animatePreDisplayNone(editTaskDialog, closeModalEnhanced);
 
-    toggleModalButtonContainerEventListeners(modalState);
+    toggleModalButtonContainerEventListeners(editTaskState.modalState);
   }
   
-  handleTaskEditInputs(editTaskDialog, modalState);
+  handleTaskEditInputs(editTaskDialog, editTaskState.modalState);
 
 }
 
@@ -98,9 +98,9 @@ function emitEditTaskFormVisibilityToggle(data) {
 
 function publishEditTaskEvent() {
   events.on(TOGGLE_EDIT_TASK_FORM, toggleEditTaskFormVisibility);
-  isEditTaskFormEventPublished = true;
+  editTaskState.isEditTaskFormEventPublished = true;
 
-  return isEditTaskFormEventPublished
+  return editTaskState.isEditTaskFormEventPublished
 }
 
 function getContainersWithOverflow(containers) {
@@ -146,15 +146,14 @@ function handleTaskItems(taskListElement) {
   addTaskListEventListener(taskListElement);
   enableTaskDetailOverFlowScrollAnimations(taskListElement);
 
-  if (isEditTaskFormEventPublished) return;
+  if (editTaskState.isEditTaskFormEventPublished) return;
   publishEditTaskEvent();
 }
 
 export {
   handleTaskItems,
-  isEditTaskFormEventPublished,
   removeEditTaskEvent,
   emitEditTaskFormVisibilityToggle,
-  taskToEditObjectState,
+  editTaskState,
   toggleEditTaskFormVisibility,
 };

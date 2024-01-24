@@ -3,7 +3,7 @@ import { emitEditTaskFormVisibilityToggle } from './handle-task-item-interactabl
 
 // * STATES
 import { mainState } from './handle-main';
-import { taskToEditObjectState } from './handle-task-items';
+import { editTaskState } from './handle-task-items';
 
 // * HANDLERS
 import { handleTaskListViaProject } from './handle-task-list-via-project';
@@ -38,9 +38,9 @@ function handleSaveEditTaskButton() {
 
   editTaskForm.reset();
 
-  taskToEditObjectState.setName(taskName);
-  taskToEditObjectState.setDetails(taskDetails);
-  taskToEditObjectState.setDueDate(taskDueDate);
+  editTaskState.taskToEditObjectState.setName(taskName);
+  editTaskState.taskToEditObjectState.setDetails(taskDetails);
+  editTaskState.taskToEditObjectState.setDueDate(taskDueDate);
   updateUserDataLocalStorage();
 
   emitEditTaskFormVisibilityToggle();

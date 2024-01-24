@@ -16,7 +16,7 @@ import { updateUserDataLocalStorage } from '../project-dependent-utilities/updat
 
 // * STATES
 import { mainState } from './handle-main';
-import { taskToEditObjectState } from './handle-task-items';
+import { editTaskState } from './handle-task-items';
 
 // * UTILITIES
 import { checkTargetElementExistence } from '../../utilities/check-target-element-existence'; 
@@ -43,7 +43,7 @@ function removeTaskItemFromDOM(taskToDeleteObject) {
 }
 
 function deleteTask() {
-  const taskToDeleteObject = taskToEditObjectState;
+  const taskToDeleteObject = editTaskState.taskToEditObjectState;
   const taskToDeleteProjectName = taskToDeleteObject.getProjectName();
   const projectObjectToDeleteTaskFrom = data.getProjectObject(
     taskToDeleteProjectName
