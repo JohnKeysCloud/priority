@@ -10,6 +10,7 @@ import { handleTaskListViaProject } from './handle-task-list-via-project';
 
 // * PROJECT DEPEDENDENT UTILITIES
 import { refreshTaskListFromLink } from '../project-dependent-utilities/refresh-task-list-from-link';
+import { updateUserDataLocalStorage } from '../project-dependent-utilities/update-user-data-local-storage';
 
 // * STATES
 import { activeLink } from './handle-nav-links';
@@ -40,6 +41,7 @@ function handleSaveEditTaskButton() {
   taskToEditObjectState.setName(taskName);
   taskToEditObjectState.setDetails(taskDetails);
   taskToEditObjectState.setDueDate(taskDueDate);
+  updateUserDataLocalStorage();
 
   emitEditTaskFormVisibilityToggle();
 

@@ -17,7 +17,7 @@ import { createMainContentContainer } from '../markup/create-main-content-contai
 // * LOGIC
 import { linkObjectFactory } from '../logic.js';
 
-// * PROJECT DEPENDENT UTILITIES
+// * PROJECT_DEPENDENT_UTILITIES
 import { checkTaskListPopulation } from '../project-dependent-utilities/check-task-list-population.js';
 import { updateProjectTaskListState } from '../project-dependent-utilities/update-project-task-list-state.js';
 
@@ -30,8 +30,8 @@ import { checkTargetElementExistence } from '../../utilities/check-target-elemen
 // > ---------------------------------------------------
 
 const mainState = {
-  linkOrProjectName: null,
-  linkType: null,
+  linkOrProjectName: 'null',
+  linkType: 'link',
   linkOrProjectName: null,
   addTaskFormState: 'hidden',
   isDeleteProjectButtonListenerAttached: false,

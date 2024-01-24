@@ -20,7 +20,6 @@ function createThemeToggleButton() {
   themeToggleCheckbox.setAttribute('type', 'checkbox');
   themeToggleCheckbox.setAttribute('id', 'theme-toggle-checkbox');
 
-  // TODO:
   if (localStorage.getItem('lightMode') === 'enabled') {
     themeToggleCheckbox.checked = true;
     themeToggleCheckbox.setAttribute('data-checked', 'true');

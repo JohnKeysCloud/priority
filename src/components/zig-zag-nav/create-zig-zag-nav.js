@@ -1,6 +1,3 @@
-// * HANDLERS
-import { handleZigZagNav } from './handle-zig-zag-nav.js';
-
 // * STYLESHEETS
 import './zig-zag-nav.scss';
 

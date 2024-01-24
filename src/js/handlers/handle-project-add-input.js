@@ -1,4 +1,4 @@
-// * EVENT NAMES
+// * EVENT_NAMES
 import { ADD_NEW_PROJECT } from "../eventNames";
 
 // * UTILITIES

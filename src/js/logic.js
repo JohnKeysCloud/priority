@@ -93,7 +93,7 @@ function projectFactory(name) {
   };
 }
 
-function taskFactory(name, projectName, dueDate, details) {
+function taskFactory(name, projectName, dueDate, details, priority = false, completed = false) {
   if (
     typeof name !== 'string' &&
     typeof details !== 'string' &&
@@ -107,8 +107,8 @@ function taskFactory(name, projectName, dueDate, details) {
     projectName: projectName,
     dueDate: dueDate,
     details: details,
-    priority: false,
-    completed: false,
+    priority: priority,
+    completed: completed,
   };
   return {
     getName: () => {

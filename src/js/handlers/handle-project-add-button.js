@@ -4,7 +4,7 @@ import { data } from '../data.js';
 // * EMITTERS
 import { emitProjectFormVisibilityToggle } from './handle-new-project-button.js';
 
-// * EVENT NAMES
+// * EVENT_NAMES
 import { ADD_NEW_PROJECT } from '../eventNames.js';
 
 // * LOGIC
@@ -12,6 +12,9 @@ import { projectFactory } from '../logic.js';
 
 // * MARKUP
 import { createProjectItem } from '../markup/create-project-item.js';
+
+// * PROJECT_DEPENDENT_UTILITIES
+import { updateUserDataLocalStorage } from '../project-dependent-utilities/update-user-data-local-storage.js';
 
 // * STATES
 import { formComponentState } from './handle-new-project-button.js';
@@ -30,8 +33,10 @@ function updateProjectList(data, projectList) {
   // * not entering a start and end index will return a copy of the entire array
   // * reverse() is used to reverse the order of the array
 
-  while (projectList.firstChild) {
-    projectList.removeChild(projectList.firstChild);
+  if (projectList.firstChild) {
+    while (projectList.firstChild) {
+      projectList.removeChild(projectList.firstChild);
+    }
   }
 
   reversedProjectArray.forEach((project) => {
@@ -63,6 +68,8 @@ function AddNewProject() {
   emitProjectFormVisibilityToggle(); 
 
   formComponentState.projectFormState = 'hidden';
+
+  updateUserDataLocalStorage();
 }
 
 function toggleProjectAddEvent(formState) {

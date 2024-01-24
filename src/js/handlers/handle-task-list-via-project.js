@@ -12,7 +12,6 @@ import { checkTargetElementExistence } from '../../utilities/check-target-elemen
 
 // > --------------------------------------------------------------
 
-// TODO: is taskListHasTaskItems necessary?
 let projectTaskListState = {
   projectObject: null,
   taskListElement: null,

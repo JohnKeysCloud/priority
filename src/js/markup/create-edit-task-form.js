@@ -1,11 +1,7 @@
 // * UTILITIES
-import { set } from "date-fns";
 import { setAttributes } from "../../utilities/set-attributes";
 
 // > --------------------------------------------------------------
-
-// TODO: create edit task delete button and add it to the edit task form
-// ? function to delete task from data... reload tasklist with updated data 
 
 function createEditTaskForm() {
   const titleLabel = document.createElement('label');

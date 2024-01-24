@@ -1,26 +1,33 @@
-// * EVENT NAMES
-import { OPEN_PROJECT_DELETE_DIALOG, TOGGLE_ADD_TASK_FORM, TOGGLE_EDIT_TASK_FORM } from "../eventNames";
+// * DATA
+import { data } from "../data";
+
+// * EMITTERS
+import { toggleAddTaskForm } from "./add-task-form-opener-button-listener";
+
+// * EVENT_NAMES
+import { OPEN_PROJECT_DELETE_DIALOG, TOGGLE_ADD_TASK_FORM } from "../eventNames";
+
+// * HANDLERS
+import { removeEditTaskEvent } from "./handle-task-items";
+
+// * LOGIC
+import { linkObjectFactory } from "../logic";
+
+// * MARKUP
+import { createMainContentContainer } from "../markup/create-main-content-container";
+
+// * STATES
+import { mainState } from "./handle-main";
+import { projectTaskListState } from "./handle-task-list-via-project";
 
 // * UTILITIES
 import { checkTargetElementExistence } from "../../utilities/check-target-element-existence";
 import { events } from "../../utilities/pubsub";
-
-import { data } from "../data";
-import { mainState } from "./handle-main";
-
 import { showModalEnhanced, closeModalEnhanced } from "../../utilities/enhanced-modal-handling";
 
-import { toggleEditTaskFormVisibility } from "./handle-task-items";
-
-import { projectTaskListState } from "./handle-task-list-via-project";
-
-import { removeEditTaskEvent } from "./handle-task-items";
-
+// * PROJECT_DEPENDENT_UTILITIES
 import { updateProjectList } from "./handle-project-add-button";
-
-import { createMainContentContainer } from "../markup/create-main-content-container";
-import { linkObjectFactory } from "../logic";
-import { toggleAddTaskForm } from "./add-task-form-opener-button-listener";
+import { updateUserDataLocalStorage } from "../project-dependent-utilities/update-user-data-local-storage";
 
 // > --------------------------------------------------------------
 
@@ -62,6 +69,8 @@ function deleteProject() {
   const projectNavList = checkTargetElementExistence('#project-nav-list');
 
   data.deleteProject(projectToDeleteObject);
+  updateUserDataLocalStorage();
+
   unsubscribeEditTaskFormEvent();
   reloadMainContentContainerWithAllTasks();
   reloadNav();

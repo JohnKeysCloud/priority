@@ -10,7 +10,7 @@ import { linkObjectFactory } from '../logic';
 // * MARKUP
 import { createTaskList } from '../markup/create-task-list';
 
-// * PROJECT DEPENDENT UTILITIES
+// * PROJECT_DEPENDENT_UTILITIES
 import { checkTaskListPopulation } from './check-task-list-population';
 
 // * UTILITIES

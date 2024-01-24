@@ -1,4 +1,4 @@
-// * EVENT NAMES
+// * EVENT_NAMES
 import { HIDE_NAV_EVENT, SHOW_NAV_EVENT } from '../../js/eventNames.js';
 
 // * HANLDERS

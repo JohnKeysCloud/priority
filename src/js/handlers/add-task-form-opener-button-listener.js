@@ -1,4 +1,4 @@
-// * EVENT NAMES
+// * EVENT_NAMES
 import { TOGGLE_ADD_TASK_FORM } from "../eventNames";
 
 // * HANDLERS

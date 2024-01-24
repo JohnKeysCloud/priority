@@ -4,6 +4,9 @@ import { data } from '../data';
 // * EMITTERS
 import { emitEditTaskFormVisibilityToggle } from './handle-task-items';
 
+// * PROJECT DEPEDENDENT UTILITIES
+import { updateUserDataLocalStorage } from '../project-dependent-utilities/update-user-data-local-storage';
+
 // > --------------------------------------------------------------
 
 function toggleStarIcon(priorityButton, isPriority) {
@@ -24,6 +27,8 @@ function toggleTaskPriority(priorityButton, taskObject) {
   } else if (isPriority === 'true') {
     taskObject.setPriority(false);
   }
+
+  updateUserDataLocalStorage();
 }
 
 // > --------------------------------------------------------------
@@ -45,6 +50,8 @@ function toggleTaskCompletion(checkbox, taskObject) {
     taskObject.setCompleted(false);
     checkbox.setAttribute('data-checked', 'false');
   }
+
+  updateUserDataLocalStorage();
 }
 
 // > --------------------------------------------------------------

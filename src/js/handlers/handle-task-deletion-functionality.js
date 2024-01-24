@@ -1,12 +1,10 @@
-// ! handle delete task button below ⬇️
-
 // * DATA
 import { data } from '../data';
 
 // * EMITTERS
 import { emitEditTaskFormVisibilityToggle } from './handle-task-item-interactables';
 
-// * EVENT NAMES
+// * EVENT_NAMES
 import { OPEN_TASK_DELETE_DIALOG } from '../eventNames';
 
 // * MARKUP
@@ -14,6 +12,7 @@ import { createTaskListPlaceholder } from '../markup/create-task-list-placeholde
 
 // * PROJECT-DEPENDENT-UTILITIES
 import { checkTaskListPopulation } from '../project-dependent-utilities/check-task-list-population';
+import { updateUserDataLocalStorage } from '../project-dependent-utilities/update-user-data-local-storage';
 
 // * STATES
 import { mainState } from './handle-main';
@@ -51,6 +50,7 @@ function deleteTask() {
   );
 
   projectObjectToDeleteTaskFrom.deleteTask(taskToDeleteObject);
+  updateUserDataLocalStorage();
 
   removeTaskItemFromDOM(taskToDeleteObject);
 }

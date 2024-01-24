@@ -4,7 +4,7 @@ import { data } from '../data';
 // * EMITTERS
 import { emitToggleTaskFormVisibility } from './add-task-form-opener-button-listener';
 
-// * EVENT NAMES
+// * EVENT_NAMES
 import { ADD_NEW_TASK } from '../eventNames';
 
 // * LOGIC
@@ -12,6 +12,9 @@ import { taskFactory } from '../logic';
 
 // * HANDLERS
 import { handleTaskListViaProject } from './handle-task-list-via-project';
+
+// * PROJECT DEPEDENDENT UTILITIES
+import { updateUserDataLocalStorage } from '../project-dependent-utilities/update-user-data-local-storage';
 
 // * STATES
 import { mainState } from './handle-main';
@@ -50,9 +53,9 @@ function addNewTask() {
   );
 
   data.addTaskToProject(projectName, taskObject);
-
+  
+  updateUserDataLocalStorage();
   emitToggleTaskFormVisibility();
-
   handleTaskListViaProject(projectName);
 }
 

@@ -1,5 +1,6 @@
-function projectsEncapsulation() {
+function userData() {
   const encapsulatedProjectArray = [];
+  let savedTheme = null;
 
   return {
     addTaskToProject: (projectName, task) => {
@@ -10,6 +11,10 @@ function projectsEncapsulation() {
     },
     getProjectArray: () => {
       return [...encapsulatedProjectArray];
+    },
+    setProjectArray: (projectArray) => {
+      encapsulatedProjectArray.length = 0;
+      projectArray.forEach((project) => encapsulatedProjectArray.push(project));
     },
     arrangeProjectArray: (callback) => {
       return [...encapsulatedProjectArray].filter(callback);
@@ -36,7 +41,13 @@ function projectsEncapsulation() {
         (project) => project.getName() === projectName
       );
     },
+    setSavedTheme: (theme) => {
+      savedTheme = theme;
+    },
+    getSavedTheme: () => {
+      return savedTheme
+    },
   };
 }
 
-export const data = projectsEncapsulation();
+export const data = userData();

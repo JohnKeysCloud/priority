@@ -1,5 +1,5 @@
 
-// * EVENT NAMES
+// * EVENT_NAMES
 import { ADD_NEW_TASK } from '../eventNames';
 
 // * UTITLIIES
