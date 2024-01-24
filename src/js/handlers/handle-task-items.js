@@ -75,7 +75,7 @@ function toggleEditTaskFormVisibility(correspondingTaskObject) {
 
   if (taskModalVisibilityOnCall === 'hidden') {
     editTaskState.modalState = 'visible';
-    taskToEditObjectState = correspondingTaskObject;
+    editTaskState.taskToEditObjectState = correspondingTaskObject;
 
     setModalPlaceholders(correspondingTaskObject);
     showModalEnhanced(editTaskDialog);
