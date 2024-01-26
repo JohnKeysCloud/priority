@@ -1032,10 +1032,10 @@ main {
   font-size: var(--body-fs);
   text-transform: uppercase;
 }
-#add-task-form .input-container .add-task-input,
-#add-task-form .input-container .edit-task-input,
-#edit-task-form .input-container .add-task-input,
-#edit-task-form .input-container .edit-task-input {
+#add-task-form .input-container .add-task-input:not(input[type=date]),
+#add-task-form .input-container .edit-task-input:not(input[type=date]),
+#edit-task-form .input-container .add-task-input:not(input[type=date]),
+#edit-task-form .input-container .edit-task-input:not(input[type=date]) {
   appearance: none;
   background: var(--input-background);
   border: none;
@@ -1045,24 +1045,36 @@ main {
   padding-block: 0.25rem;
   padding-inline: 1rem;
 }
-#add-task-form .input-container .add-task-input:focus, #add-task-form .input-container .add-task-input:focus-visible,
-#add-task-form .input-container .edit-task-input:focus,
-#add-task-form .input-container .edit-task-input:focus-visible,
-#edit-task-form .input-container .add-task-input:focus,
-#edit-task-form .input-container .add-task-input:focus-visible,
-#edit-task-form .input-container .edit-task-input:focus,
-#edit-task-form .input-container .edit-task-input:focus-visible {
+#add-task-form .input-container .add-task-input:not(input[type=date]):focus, #add-task-form .input-container .add-task-input:not(input[type=date]):focus-visible,
+#add-task-form .input-container .edit-task-input:not(input[type=date]):focus,
+#add-task-form .input-container .edit-task-input:not(input[type=date]):focus-visible,
+#edit-task-form .input-container .add-task-input:not(input[type=date]):focus,
+#edit-task-form .input-container .add-task-input:not(input[type=date]):focus-visible,
+#edit-task-form .input-container .edit-task-input:not(input[type=date]):focus,
+#edit-task-form .input-container .edit-task-input:not(input[type=date]):focus-visible {
   outline: none;
   box-shadow: var(--input-focus-box-shadow);
 }
-#add-task-form .input-container .add-task-input::placeholder, #add-task-form .input-container .add-task-input[type=date]:invalid,
-#add-task-form .input-container .edit-task-input::placeholder,
-#add-task-form .input-container .edit-task-input[type=date]:invalid,
-#edit-task-form .input-container .add-task-input::placeholder,
-#edit-task-form .input-container .add-task-input[type=date]:invalid,
-#edit-task-form .input-container .edit-task-input::placeholder,
-#edit-task-form .input-container .edit-task-input[type=date]:invalid {
+#add-task-form .input-container .add-task-input:not(input[type=date])::placeholder, #add-task-form .input-container .add-task-input:not(input[type=date])[type=date]:invalid,
+#add-task-form .input-container .edit-task-input:not(input[type=date])::placeholder,
+#add-task-form .input-container .edit-task-input:not(input[type=date])[type=date]:invalid,
+#edit-task-form .input-container .add-task-input:not(input[type=date])::placeholder,
+#edit-task-form .input-container .add-task-input:not(input[type=date])[type=date]:invalid,
+#edit-task-form .input-container .edit-task-input:not(input[type=date])::placeholder,
+#edit-task-form .input-container .edit-task-input:not(input[type=date])[type=date]:invalid {
   color: var(--input-placeholder-text-color);
+}
+#add-task-form .input-container .add-task-input[type=date],
+#add-task-form .input-container .edit-task-input[type=date],
+#edit-task-form .input-container .add-task-input[type=date],
+#edit-task-form .input-container .edit-task-input[type=date] {
+  background: var(--input-background);
+  border: none;
+  box-shadow: var(--input-box-shadow);
+  color: var(--color-text-primary);
+  border-radius: 100vw;
+  padding-block: 0.25rem;
+  padding-inline: 1rem;
 }
 
 #add-task-form {

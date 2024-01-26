@@ -937,8 +937,8 @@ main {
       text-transform: uppercase;
     }
 
-    .add-task-input,
-    .edit-task-input {
+    .add-task-input:not(input[type=date]),
+    .edit-task-input:not(input[type=date]) {
       appearance: none;
       background: var(--input-background);
       border: none;
@@ -947,7 +947,7 @@ main {
       border-radius: 100vw;
       padding-block: 0.25rem;
       padding-inline: 1rem;
-
+      
       &:focus,
       &:focus-visible {
         outline: none;
@@ -957,6 +957,17 @@ main {
       &[type='date']:invalid {
         color: var(--input-placeholder-text-color);
       }
+    }
+    
+    .add-task-input[type=date],
+    .edit-task-input[type=date] {
+      background: var(--input-background);
+      border: none;
+      box-shadow: var(--input-box-shadow);
+      color: var(--color-text-primary);
+      border-radius: 100vw;
+      padding-block: 0.25rem;
+      padding-inline: 1rem;
     }
   }
 }
