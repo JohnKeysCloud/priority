@@ -13,7 +13,7 @@ import { checkTargetElementExistence } from '../../utilities/check-target-elemen
 // * PROJECT_DEPENDENT_UTILITIES
 import { applyUserPreferredTheme } from '../project-dependent-utilities/apply-user-preferred-theme.js';
 import { checkTaskListPopulation } from '../project-dependent-utilities/check-task-list-population.js';
-import { updateProjectList } from './handle-project-add-button.js';
+import { updateProjectList } from '../project-dependent-utilities/update-project-list.js';
 
 // * STATES
 import { localStorageState } from '../project-dependent-utilities/retrieve-user-data.js';

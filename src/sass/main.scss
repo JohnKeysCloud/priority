@@ -8,8 +8,8 @@
   --h2-fs: clamp(0.938rem, 2vw, 1.125rem);
   --body-fs: clamp(0.75rem, 1.5vw, 0.813rem);
   --open-form-buttons-fs: clamp(0.813rem, 2.125vw, 0.938rem);
-  --delete-buttons-fs: var(--task-item-date-fs);
-  --task-item-date-fs: clamp(0.625rem, 2.3vw, 0.75rem);
+  --delete-buttons-fs: var(--small-text);
+  --small-text: clamp(0.625rem, 2.3vw, 0.75rem);
   
   // > ------------------------------------------------------------------------------
 
@@ -121,6 +121,11 @@
 
   // > ------------------------------------------------------------------------------
 
+  // * FOOTER LINK DROP SHADOW
+  --footer-link-drop-shadow: whitesmoke;
+
+  // > ------------------------------------------------------------------------------
+
   // * CONTENT PADDING
   --content-inline-padding: 1rem;
 
@@ -203,6 +208,9 @@
 
   // * HEADER LOGO OPACITY LIGHT
   --header-logo-opacity: 1;
+
+  // * FOOTER LINK DROP SHADOW
+  --footer-link-drop-shadow: silver;
 }
 
 .bubble-button {
@@ -758,7 +766,7 @@ main {
 
     .task-item-date {
       color: var(--color-text-secondary);
-      font-size: var(--task-item-date-fs);
+      font-size: var(--small-text);
       justify-self: end;
       text-align: center;
       text-transform: uppercase;
@@ -1031,12 +1039,50 @@ main {
 }
 
 footer {
-  background-color: black;
-  border: 2px solid red;
-  height: 200px;
-  inset: unset 0 0 0;
+  $footer-item-gap: 3rem;
+
+  align-items: center;
+  display: flex;
+  gap: $footer-item-gap;
+  justify-content: center;
+  inset: auto 0 0 0;
+  padding-inline:3rem;
+  padding-block: 1rem;
   position: fixed;
-  width: 100vw;
+
+  .cyclone-logo-container,
+  .git-hub-logo-link {
+    opacity: 0.55;
+    transition: transform 150ms ease-in-out, opacity 380ms ease-in-out;
+
+    &:hover {
+      opacity: 1;
+      transform: rotate(360deg) scale(1.1);
+    }
+
+    &:active {
+      opacity: 0.75;
+      transform: scale(0.99);
+    }
+  }
+
+  .cyclone-logo-container {
+    display: flex;
+    flex-direction: column;
+
+    .cyclone-studios-logo-link {
+      filter: drop-shadow(0 0px 2px var(--footer-link-drop-shadow));
+    
+      .cyclone-studios-logo {
+        width: min(15vw, 3.5rem);
+      }
+    }
+
+    .footer-paragraph {
+      font-size: var(--small-text);
+      text-align: center;
+    }
+  }
 }
 
 @media (max-width: 35em) {

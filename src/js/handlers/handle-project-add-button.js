@@ -10,11 +10,9 @@ import { ADD_NEW_PROJECT } from '../eventNames.js';
 // * LOGIC
 import { projectFactory } from '../logic.js';
 
-// * MARKUP
-import { createProjectItem } from '../markup/create-project-item.js';
-
 // * PROJECT_DEPENDENT_UTILITIES
 import { updateUserDataLocalStorage } from '../project-dependent-utilities/update-user-data-local-storage.js';
+import { updateProjectList } from '../project-dependent-utilities/update-project-list.js';
 
 // * STATES
 import { formComponentState } from './handle-new-project-button.js';
@@ -25,24 +23,6 @@ import { events } from '../../utilities/pubsub.js';
 import { toggleScrollBarVisibility } from '../../utilities/toggle-scroll-visibility.js';
 
 // > ---------------------------------------------------
-
-function updateProjectList(data, projectList) {
-  const reversedProjectArray = data.getProjectArray().slice().reverse();
-  // ? to put the most recently added project at the top of the list
-  // * slice() is used to create a copy of the array
-  // * not entering a start and end index will return a copy of the entire array
-  // * reverse() is used to reverse the order of the array
-
-  if (projectList.firstChild) {
-    while (projectList.firstChild) {
-      projectList.removeChild(projectList.firstChild);
-    }
-  }
-
-  reversedProjectArray.forEach((project) => {
-    projectList.appendChild(createProjectItem(project.getName()));
-  });
-}
 
 function checkListOverflow(projectList) {
   toggleScrollBarVisibility(projectList);

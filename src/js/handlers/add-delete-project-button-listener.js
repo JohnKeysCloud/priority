@@ -26,7 +26,7 @@ import { events } from "../../utilities/pubsub";
 import { showModalEnhanced, closeModalEnhanced } from "../../utilities/enhanced-modal-handling";
 
 // * PROJECT_DEPENDENT_UTILITIES
-import { updateProjectList } from "./handle-project-add-button";
+import { updateProjectList } from "../project-dependent-utilities/update-project-list";
 import { updateUserDataLocalStorage } from "../project-dependent-utilities/update-user-data-local-storage";
 
 // > --------------------------------------------------------------

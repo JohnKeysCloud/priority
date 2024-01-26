@@ -299,8 +299,8 @@ input[type=checkbox] {
   --h2-fs: clamp(0.938rem, 2vw, 1.125rem);
   --body-fs: clamp(0.75rem, 1.5vw, 0.813rem);
   --open-form-buttons-fs: clamp(0.813rem, 2.125vw, 0.938rem);
-  --delete-buttons-fs: var(--task-item-date-fs);
-  --task-item-date-fs: clamp(0.625rem, 2.3vw, 0.75rem);
+  --delete-buttons-fs: var(--small-text);
+  --small-text: clamp(0.625rem, 2.3vw, 0.75rem);
   --color-text-primary: whitesmoke;
   --color-text-secondary: silver;
   --container-background: linear-gradient(to bottom, hsl(0 0% 100% / 0.25),transparent);
@@ -349,6 +349,7 @@ input[type=checkbox] {
   --task-item-buttons-color: whitesmoke;
   --delete-button-text-color: red;
   --logo-height: clamp(50px, 8vw, 55px);
+  --footer-link-drop-shadow: whitesmoke;
   --content-inline-padding: 1rem;
   --header-logo-opacity: 0.5;
 }
@@ -401,6 +402,7 @@ input[type=checkbox] {
   --task-item-buttons-color: black;
   --delete-button-text-color: #004B44;
   --header-logo-opacity: 1;
+  --footer-link-drop-shadow: silver;
 }
 
 .bubble-button {
@@ -876,7 +878,7 @@ main {
 }
 .task-item .task-right-side-container .task-item-date {
   color: var(--color-text-secondary);
-  font-size: var(--task-item-date-fs);
+  font-size: var(--small-text);
   justify-self: end;
   text-align: center;
   text-transform: uppercase;
@@ -1132,12 +1134,43 @@ main {
 }
 
 footer {
-  background-color: black;
-  border: 2px solid red;
-  height: 200px;
-  inset: unset 0 0 0;
+  align-items: center;
+  display: flex;
+  gap: 3rem;
+  justify-content: center;
+  inset: auto 0 0 0;
+  padding-inline: 3rem;
+  padding-block: 1rem;
   position: fixed;
-  width: 100vw;
+}
+footer .cyclone-logo-container,
+footer .git-hub-logo-link {
+  opacity: 0.55;
+  transition: transform 150ms ease-in-out, opacity 380ms ease-in-out;
+}
+footer .cyclone-logo-container:hover,
+footer .git-hub-logo-link:hover {
+  opacity: 1;
+  transform: rotate(360deg) scale(1.1);
+}
+footer .cyclone-logo-container:active,
+footer .git-hub-logo-link:active {
+  opacity: 0.75;
+  transform: scale(0.99);
+}
+footer .cyclone-logo-container {
+  display: flex;
+  flex-direction: column;
+}
+footer .cyclone-logo-container .cyclone-studios-logo-link {
+  filter: drop-shadow(0 0px 2px var(--footer-link-drop-shadow));
+}
+footer .cyclone-logo-container .cyclone-studios-logo-link .cyclone-studios-logo {
+  width: min(15vw, 3.5rem);
+}
+footer .cyclone-logo-container .footer-paragraph {
+  font-size: var(--small-text);
+  text-align: center;
 }
 
 @media (max-width: 35em) {

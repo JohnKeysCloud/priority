@@ -2,7 +2,7 @@
 
 [![priority](https://github.com/JohnKeysCloud/priority/assets/90482169/d3d50ce8-7c79-4a52-8655-ca0032e6783c)](https://johnkeyscloud.github.io/priority/)
 
-A variation of a to-do list, built for <a href="https://www.theodinproject.com/lessons/todo-list" target="_blank">The Odin Project</a>. The purpose of this project was to demonstrate data wrangling while implementing SOLID principles, incorporate **Webpack** to bundle JavaScript modules, handle asset management, compile SASS styles to CSS & work various other **NPM** packages into the workflow. I applied the pub/sub design pattern to create the **SPA** (single page application) in order to create a separation of concerns between the data and the DOM to avoid any possible memory leaks. I also used **localStorage** to persist data on the client-side.
+A to-do list variation built for <a href="https://www.theodinproject.com/lessons/todo-list" target="_blank">The Odin Project</a>. The main focus of this project was to implement SOLID principles while incorporating **Webpack** to bundle JavaScript modules, handle asset management, compile SASS styles to CSS & work various other **NPM** packages into the flow. I applied the pub/sub design pattern to create the **SPA** (single page application)… separating the concerns of the data and the DOM to avoid any possible memory leaks and allow for better maintainability/scalability. I also implemented **localStorage** usage for data persistence on the client-side.
 
 I designed and authored this project using JavaScript, CSS, SCSS and EJS for templating. 
 

@@ -4,11 +4,13 @@ import { data } from '../data.js';
 // * EVENT_NAMES
 import { TOGGLE_THEME } from '../eventNames.js';
 
+// *  PROJECT_DEPENDENT_UTILITIES
+import { updateColorSchemeMeta } from '../project-dependent-utilities/update-color-scheme-meta.js';
+
 // * UTILITIES
 import { addEventListener } from '../../utilities/add-event-listener.js';
 import { events } from '../../utilities/pubsub.js';
 import { setLocalStorageItem } from '../../utilities/handle-local-storage.js';
-import { updateColorSchemeMeta } from '../project-dependent-utilities/update-color-scheme-meta.js';
 
 // > --------------------------------------------------------------
 

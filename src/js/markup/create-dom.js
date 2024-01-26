@@ -9,6 +9,7 @@ import { navListObjects } from '../../components/zig-zag-nav/nav-list-objects.js
 import { createHeader } from './create-header.js';
 import { createMain } from './create-main.js';
 import { createZigZagNav } from '../../components/zig-zag-nav/create-zig-zag-nav.js';
+import { createFooter } from './create-footer.js';
 
 // * STYLESHEETS
 import '../../components/zig-zag-nav/zig-zag-nav.scss'
@@ -26,7 +27,8 @@ function createDOM() {
   content.append(
     createHeader(),
     createZigZagNav(navListObjects, 'All Tasks', 'button', 'nav-primary-aria'),
-    createMain(initialMainContent)
+    createMain(initialMainContent),
+    createFooter(),
   );
 }
 
