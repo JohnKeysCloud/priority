@@ -3,6 +3,7 @@ function toggleDueDateInputType(e) {
 
   if (e.target.type === 'text') {
     e.target.type = 'date';
+
   } else if (e.target.type === 'date') {
     e.target.type = 'text';
   }
