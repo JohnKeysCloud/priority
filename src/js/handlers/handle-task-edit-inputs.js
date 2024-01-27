@@ -1,6 +1,9 @@
 // * HANDLERS
 import { handleSaveEditTaskButton } from "./handle-save-edit-task-button";
 
+// * MODIFEIRS
+import { modifyDueDateInput } from "../modifiers/modify-due-date-input";
+
 // > --------------------------------------------------------------
 
 function emitSaveEditTaskViaInput(event) {
@@ -25,6 +28,11 @@ function toggleTaskEditInputListeners(taskEditInputs, formState) {
 function handleTaskEditInputs(editTaskModal, formState) {
   const taskEditInputs = editTaskModal.querySelectorAll('.edit-task-input');
   toggleTaskEditInputListeners(taskEditInputs, formState);
+
+  const dueDateInput = Array.from(taskEditInputs).find(
+    (input) => input.id === 'edit-task-due-date'
+  );  
+  modifyDueDateInput(dueDateInput, formState);
 }
 
 export { handleTaskEditInputs };

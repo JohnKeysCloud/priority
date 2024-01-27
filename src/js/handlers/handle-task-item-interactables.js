@@ -56,6 +56,25 @@ function toggleTaskCompletion(checkbox, taskObject) {
 
 // > --------------------------------------------------------------
 
+function handleCheckBoxKeydown(event) {
+  const target = event.target;
+  const targetTagName = target.tagName.toLowerCase();
+
+  if (targetTagName !== 'input') return;
+
+  const targetClassList = target.classList;
+  const isCheckBox = targetClassList.contains('task-item-checkbox');
+
+  if (!isCheckBox) return;
+
+  if (event.key === 'Enter') {
+    event.preventDefault();
+    target.click();
+  }
+}
+
+// > --------------------------------------------------------------
+
 function handleTaskItemInteractables(event) {
   const target = event.target;
   const targetTagName = target.tagName.toLowerCase();
@@ -81,4 +100,4 @@ function handleTaskItemInteractables(event) {
   if (handler) handler();
 }
 
-export { handleTaskItemInteractables, emitEditTaskFormVisibilityToggle, getTaskObject };
+export { handleTaskItemInteractables, emitEditTaskFormVisibilityToggle, getTaskObject, handleCheckBoxKeydown };

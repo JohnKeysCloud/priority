@@ -50,7 +50,7 @@ function createEditTaskForm() {
     'type': 'date',
     'id': 'edit-task-due-date',
     'required': true,
-    'placeholder': 'yyyy-mm-dd',
+    'placeholder': 'Select a date',
   });
 
   const dueDateContainer = document.createElement('div');

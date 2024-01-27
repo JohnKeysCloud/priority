@@ -937,14 +937,16 @@ main {
       text-transform: uppercase;
     }
 
-    .add-task-input:not(input[type=date]),
-    .edit-task-input:not(input[type=date]) {
+    .add-task-input,
+    .edit-task-input {
       appearance: none;
       background: var(--input-background);
       border: none;
+      border-radius: 100vw;
       box-shadow: var(--input-box-shadow);
       color: var(--color-text-primary);
-      border-radius: 100vw;
+      height: 1.75rem; // ? prevent due-date input from growing on focus
+      line-height: 1.5;
       padding-block: 0.25rem;
       padding-inline: 1rem;
       
@@ -957,17 +959,6 @@ main {
       &[type='date']:invalid {
         color: var(--input-placeholder-text-color);
       }
-    }
-    
-    .add-task-input[type=date],
-    .edit-task-input[type=date] {
-      background: var(--input-background);
-      border: none;
-      box-shadow: var(--input-box-shadow);
-      color: var(--color-text-primary);
-      border-radius: 100vw;
-      padding-block: 0.25rem;
-      padding-inline: 1rem;
     }
   }
 }
@@ -1055,10 +1046,10 @@ footer {
   align-items: center;
   display: flex;
   gap: $footer-item-gap;
-  justify-content: center;
   inset: auto 0 0 0;
-  padding-inline:3rem;
+  justify-content: center;
   padding-block: 1rem;
+  padding-inline:3rem;
   position: fixed;
 
   .cyclone-logo-container,

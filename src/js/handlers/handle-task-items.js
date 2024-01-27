@@ -4,6 +4,7 @@ import { TOGGLE_EDIT_TASK_FORM } from "../eventNames";
 // * HANDLERS
 import { handleEditTaskModalButtons } from './handle-edit-task-modal-buttons';
 import { handleTaskItemInteractables } from './handle-task-item-interactables';
+import { handleCheckBoxKeydown } from "./handle-task-item-interactables";
 
 // * MARKUP
 import { createEditTaskDialog } from '../markup/create-edit-task-dialog';
@@ -132,6 +133,7 @@ function enableTaskDetailOverFlowScrollAnimations(taskListElement) {
 
 function addTaskListEventListener(taskListElement) {
   taskListElement.addEventListener('click', handleTaskItemInteractables);
+  taskListElement.addEventListener('keydown', handleCheckBoxKeydown);
 }
 
 function appendTaskEditModalToMainContentContainer() {
