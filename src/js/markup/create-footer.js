@@ -2,10 +2,10 @@
 import cycloneStudiosLogo from '../../../src/assets/images/cycloneStudios.svg';
 
 // * COMPONENTS
-import { createGitHubLink } from "../../components/create-git-hub-link";
+import { createGitHubLink } from '../../components/create-git-hub-link';
 
 // * UTILITIES
-import { setAttributes } from "../../utilities/set-attributes";
+import { setAttributes } from '../../utilities/set-attributes';
 
 // > --------------------------------------------------------------
 

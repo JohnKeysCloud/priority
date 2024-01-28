@@ -14,7 +14,7 @@ let navState = {
   open: false,
   animating: false,
   zigZagNavReference: null
-}
+};
 
 function hideNav() {
   navState.open = false;

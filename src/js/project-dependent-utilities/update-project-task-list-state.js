@@ -1,8 +1,8 @@
 // * DATA
-import { data } from "../data";
+import { data } from '../data';
 
 // * STATES
-import { projectTaskListState } from "../handlers/handle-task-list-via-project";
+import { projectTaskListState } from '../handlers/handle-task-list-via-project';
 
 // > --------------------------------------------------------------
 

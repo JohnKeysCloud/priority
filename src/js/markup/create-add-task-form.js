@@ -1,5 +1,5 @@
 // * UTILITIES
-import { setAttributes } from "../../utilities/set-attributes";
+import { setAttributes } from '../../utilities/set-attributes';
 
 // > ---------------------------------------------------
 

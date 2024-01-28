@@ -1,5 +1,5 @@
 // * MARKUP
-import { createProjectItem } from "../markup/create-project-item";
+import { createProjectItem } from '../markup/create-project-item';
 
 // > --------------------------------------------------------------
 
@@ -21,4 +21,4 @@ function updateProjectList(data, projectList) {
   });
 }
 
-export { updateProjectList }
+export { updateProjectList };

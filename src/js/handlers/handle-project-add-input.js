@@ -1,8 +1,8 @@
 // * EVENT_NAMES
-import { ADD_NEW_PROJECT } from "../eventNames";
+import { ADD_NEW_PROJECT } from '../eventNames';
 
 // * UTILITIES
-import { events } from "../../utilities/pubsub";
+import { events } from '../../utilities/pubsub';
 
 // > --------------------------------------------------------------
 

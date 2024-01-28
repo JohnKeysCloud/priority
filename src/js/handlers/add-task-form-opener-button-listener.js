@@ -1,18 +1,18 @@
 // * EVENT_NAMES
-import { TOGGLE_ADD_TASK_FORM } from "../eventNames";
+import { TOGGLE_ADD_TASK_FORM } from '../eventNames';
 
 // * HANDLERS
-import { handleTaskAddButton } from "./handle-task-add-button";
-import { handleTaskAddInputs } from "./handle-task-add-inputs";
-import { handleTaskCancelButton } from "./handle-task-cancel-button";
+import { handleTaskAddButton } from './handle-task-add-button';
+import { handleTaskAddInputs } from './handle-task-add-inputs';
+import { handleTaskCancelButton } from './handle-task-cancel-button';
 
 // * STATES
-import { mainState } from "./handle-main";
+import { mainState } from './handle-main';
 
 // * UTITLIIES
-import { checkTargetElementExistence } from "../../utilities/check-target-element-existence";
-import { events } from "../../utilities/pubsub";
-import { setAttributes } from "../../utilities/set-attributes";
+import { checkTargetElementExistence } from '../../utilities/check-target-element-existence';
+import { events } from '../../utilities/pubsub';
+import { setAttributes } from '../../utilities/set-attributes';
 
 // > ---------------------------------------------------
 

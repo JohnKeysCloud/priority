@@ -21,4 +21,4 @@ function formatDate(dateString, options) {
   return date.toLocaleDateString('en-us', dateOptions);
 }
 
-export { formatDate }
+export { formatDate };

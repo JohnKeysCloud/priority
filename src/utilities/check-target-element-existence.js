@@ -6,7 +6,7 @@ function checkTargetElementExistence(selector) {
     return;
   }
 
-  return targetElement
+  return targetElement;
 }
 
 export { checkTargetElementExistence };

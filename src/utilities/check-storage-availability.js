@@ -2,7 +2,7 @@ function checkStorageAvailability(type) {
   let storage;
   try {
     storage = window[type];
-    const x = "__storage_test__";
+    const x = '__storage_test__';
     storage.setItem(x, x);
     storage.removeItem(x);
     return true;
@@ -15,9 +15,9 @@ function checkStorageAvailability(type) {
         exceptionVar.code === 1014 ||
         // test name field too, because code might not be present
         // everything except Firefox
-        exceptionVar.name === "QuotaExceededError" ||
+        exceptionVar.name === 'QuotaExceededError' ||
         // Firefox if error code isn't present
-        exceptionVar.name === "NS_ERROR_DOM_QUOTA_REACHED") &&
+        exceptionVar.name === 'NS_ERROR_DOM_QUOTA_REACHED') &&
       // acknowledge QuotaExceededError only if there's something already stored
       storage &&
       storage.length !== 0

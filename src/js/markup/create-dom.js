@@ -12,7 +12,7 @@ import { createZigZagNav } from '../../components/zig-zag-nav/create-zig-zag-nav
 import { createFooter } from './create-footer.js';
 
 // * STYLESHEETS
-import '../../components/zig-zag-nav/zig-zag-nav.scss'
+import '../../components/zig-zag-nav/zig-zag-nav.scss';
 import '../../css/styles.css';
 
 // * UTILITIES

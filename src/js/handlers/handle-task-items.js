@@ -1,20 +1,20 @@
 // * EVENT_NAMES
-import { TOGGLE_EDIT_TASK_FORM } from "../eventNames";
+import { TOGGLE_EDIT_TASK_FORM } from '../eventNames';
 
 // * HANDLERS
 import { handleEditTaskModalButtons } from './handle-edit-task-modal-buttons';
 import { handleTaskItemInteractables } from './handle-task-item-interactables';
-import { handleCheckBoxKeydown } from "./handle-task-item-interactables";
+import { handleCheckBoxKeydown } from './handle-task-item-interactables';
 
 // * MARKUP
 import { createEditTaskDialog } from '../markup/create-edit-task-dialog';
 
 // * UTILITIES
-import { checkTargetElementExistence } from "../../utilities/check-target-element-existence";
+import { checkTargetElementExistence } from '../../utilities/check-target-element-existence';
 import { closeModalEnhanced, showModalEnhanced } from '../../utilities/enhanced-modal-handling';
-import { events } from "../../utilities/pubsub";
-import { handleTaskEditInputs } from "./handle-task-edit-inputs";
-import { scrollElementContent } from "../../utilities/scroll-element-content";
+import { events } from '../../utilities/pubsub';
+import { handleTaskEditInputs } from './handle-task-edit-inputs';
+import { scrollElementContent } from '../../utilities/scroll-element-content';
 
 // > --------------------------------------------------------------
 
@@ -22,7 +22,7 @@ let editTaskState = {
   modalState: 'hidden',
   isEditTaskFormEventPublished: false,
   taskToEditObjectState: null,
-}
+};
 
 function removeEditTaskEvent() {
   events.off(TOGGLE_EDIT_TASK_FORM, toggleEditTaskFormVisibility);
@@ -101,7 +101,7 @@ function publishEditTaskEvent() {
   events.on(TOGGLE_EDIT_TASK_FORM, toggleEditTaskFormVisibility);
   editTaskState.isEditTaskFormEventPublished = true;
 
-  return editTaskState.isEditTaskFormEventPublished
+  return editTaskState.isEditTaskFormEventPublished;
 }
 
 function getContainersWithOverflow(containers) {

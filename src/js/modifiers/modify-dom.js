@@ -1,6 +1,6 @@
 // * MODIFIERS
-import { modifyGenericNavLinks } from "./modify-generic-nav-links";
-import { modifySecondNavContainer } from "./modify-second-nav-container";
+import { modifyGenericNavLinks } from './modify-generic-nav-links';
+import { modifySecondNavContainer } from './modify-second-nav-container';
 
 // > --------------------------------------------------------------
 

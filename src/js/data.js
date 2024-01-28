@@ -45,7 +45,7 @@ function userData() {
       savedTheme = theme;
     },
     getSavedTheme: () => {
-      return savedTheme
+      return savedTheme;
     },
   };
 }

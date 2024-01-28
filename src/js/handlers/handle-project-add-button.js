@@ -35,7 +35,7 @@ function AddNewProject() {
   const projectName = projectNameInput.value.trim().toLowerCase();
 
   if (!projectName) return alert('Enter Project Name');
-  projectForm.reset()
+  projectForm.reset();
 
   const projectObject = projectFactory(projectName);
   data.addProject(projectObject); 

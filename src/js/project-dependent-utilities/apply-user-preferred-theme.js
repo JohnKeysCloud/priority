@@ -1,8 +1,8 @@
 // * DATA
-import { data } from "../data";
+import { data } from '../data';
 
 // * PROJECT_DEPENDENT_UTILITIES
-import { updateColorSchemeMeta } from "./update-color-scheme-meta";
+import { updateColorSchemeMeta } from './update-color-scheme-meta';
 
 // > --------------------------------------------------------------
 

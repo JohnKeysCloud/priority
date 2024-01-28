@@ -1,17 +1,17 @@
 // * MARKUP
 import { createTaskItem } from './create-task-item.js';
-import { createTaskListPlaceholder } from './create-task-list-placeholder.js'
+import { createTaskListPlaceholder } from './create-task-list-placeholder.js';
 
 // > ---------------------------------------------------
 
 function getTaskListContent(mainUpdateObject) {
-const taskArray = mainUpdateObject.getTaskArray();
+  const taskArray = mainUpdateObject.getTaskArray();
   const mainUpdateObjectType = mainUpdateObject.getType(); 
   
   if (taskArray.length === 0 && mainUpdateObjectType === 'link') {
     const taskListPlaceholder = createTaskListPlaceholder();
 
-    return taskListPlaceholder
+    return taskListPlaceholder;
 
   } else if (taskArray.length > 0) {
     const taskListFragment = document.createDocumentFragment();
@@ -24,7 +24,7 @@ const taskArray = mainUpdateObject.getTaskArray();
 
     return taskListFragment;
   } else {
-    return
+    return;
   }
 }
 

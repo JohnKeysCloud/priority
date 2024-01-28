@@ -25,7 +25,7 @@ let events = {
 };
 
 // ! when an event is called with on:
-  // * event name
+// * event name
 // *   function to run
 // *   add function to events object
 // *   events = {

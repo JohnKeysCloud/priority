@@ -36,16 +36,16 @@ function createZigZagNav(
     const groupedListElements = navListObjects[list].listElements;
 
     const listFragment = document.createDocumentFragment();
-    groupedListElements.forEach((pageNameAndHref, index) => {
+    groupedListElements.forEach((pageNameAndHref) => {
       const pageName = pageNameAndHref[0];
       const pageHref = pageNameAndHref[1];
 
       const navLink = document.createElement(
         anchorOrButton === 'button'
           ? 'button'
-          : 'a'
-          ? 'a'
-          : console.log('zigZagNav only accepts "button" or "a" as arguments')
+          : anchorOrButton === 'a'
+            ? 'a'
+            : (console.log('zigZagNav only accepts "button" or "a" as arguments'), '')
       );
       navLink.classList.add('nav-link');
       if (anchorOrButton === 'a') {
@@ -73,7 +73,7 @@ function createZigZagNav(
     });
 
     listUL.appendChild(listFragment);
-    
+
     listContainer.appendChild(listHeader);
     listContainer.appendChild(listUL);
 

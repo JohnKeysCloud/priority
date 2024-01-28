@@ -18,7 +18,7 @@ import { checkTargetElementExistence } from '../../utilities/check-target-elemen
 
 // > --------------------------------------------------------------
 
-function refreshTaskListFromLink(linkName = activeLink) {
+function refreshTaskListFromLink(linkName) {
   const mainContent = checkTargetElementExistence('#main-content');
   const taskList = mainContent.querySelector('#task-list');
   const pageName = linkName;

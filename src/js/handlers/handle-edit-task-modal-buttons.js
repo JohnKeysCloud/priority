@@ -1,5 +1,5 @@
 // * EMITTERS
-import { emitEditTaskFormVisibilityToggle } from "./handle-task-item-interactables";
+import { emitEditTaskFormVisibilityToggle } from './handle-task-item-interactables';
 
 // * HANDLERS
 import { initiateTaskDeletionFunctionality } from './handle-task-deletion-functionality';

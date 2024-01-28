@@ -21,16 +21,12 @@ import { linkObjectFactory } from '../logic.js';
 import { checkTaskListPopulation } from '../project-dependent-utilities/check-task-list-population.js';
 import { updateProjectTaskListState } from '../project-dependent-utilities/update-project-task-list-state.js';
 
-// * STATES
-import { projectTaskListState } from './handle-task-list-via-project.js';
-
 // * UTILITIES
 import { checkTargetElementExistence } from '../../utilities/check-target-element-existence.js';
 
 // > ---------------------------------------------------
 
 const mainState = {
-  linkOrProjectName: 'null',
   linkType: 'link',
   linkOrProjectName: null,
   addTaskFormState: 'hidden',
@@ -79,14 +75,13 @@ function resolveMainUpdateObject(newCurrentNavLink) {
     const projectArray = data.getProjectArray();
     const projectValue = newCurrentNavLink.getAttribute('data-project-name');
     const projectObject = projectArray.find(
-      (project) => project.getName() === projectValue
-      );
+      (project) => project.getName() === projectValue);
     
     mainState.linkType = 'project';
     
     return projectObject;
       
-    } else if (isPageLink) {
+  } else if (isPageLink) {
     const pageName = newCurrentNavLink.getAttribute('data-page-name');
     
     const linkObjectData = getLinkObjectData(pageName, data.getAllTasks());

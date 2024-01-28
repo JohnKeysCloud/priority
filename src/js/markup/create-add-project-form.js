@@ -1,8 +1,8 @@
 // * MARKUP
-import { createListIcon } from "../../components/listIcon/create-list-icon";
+import { createListIcon } from '../../components/listIcon/create-list-icon';
 
 // * UTILITIES
-import { setAttributes } from "../../utilities/set-attributes";
+import { setAttributes } from '../../utilities/set-attributes';
 
 // > ---------------------------------------------------
 

@@ -1,33 +1,33 @@
 // * DATA
-import { data } from "../data";
+import { data } from '../data';
 
 // * EMITTERS
-import { toggleAddTaskForm } from "./add-task-form-opener-button-listener";
+import { toggleAddTaskForm } from './add-task-form-opener-button-listener';
 
 // * EVENT_NAMES
-import { OPEN_PROJECT_DELETE_DIALOG, TOGGLE_ADD_TASK_FORM } from "../eventNames";
+import { OPEN_PROJECT_DELETE_DIALOG, TOGGLE_ADD_TASK_FORM } from '../eventNames';
 
 // * HANDLERS
-import { removeEditTaskEvent } from "./handle-task-items";
+import { removeEditTaskEvent } from './handle-task-items';
 
 // * LOGIC
-import { linkObjectFactory } from "../logic";
+import { linkObjectFactory } from '../logic';
 
 // * MARKUP
-import { createMainContentContainer } from "../markup/create-main-content-container";
+import { createMainContentContainer } from '../markup/create-main-content-container';
 
 // * STATES
-import { mainState } from "./handle-main";
-import { projectTaskListState } from "./handle-task-list-via-project";
+import { mainState } from './handle-main';
+import { projectTaskListState } from './handle-task-list-via-project';
 
 // * UTILITIES
-import { checkTargetElementExistence } from "../../utilities/check-target-element-existence";
-import { events } from "../../utilities/pubsub";
-import { showModalEnhanced, closeModalEnhanced } from "../../utilities/enhanced-modal-handling";
+import { checkTargetElementExistence } from '../../utilities/check-target-element-existence';
+import { events } from '../../utilities/pubsub';
+import { showModalEnhanced, closeModalEnhanced } from '../../utilities/enhanced-modal-handling';
 
 // * PROJECT_DEPENDENT_UTILITIES
-import { updateProjectList } from "../project-dependent-utilities/update-project-list";
-import { updateUserDataLocalStorage } from "../project-dependent-utilities/update-user-data-local-storage";
+import { updateProjectList } from '../project-dependent-utilities/update-project-list';
+import { updateUserDataLocalStorage } from '../project-dependent-utilities/update-user-data-local-storage';
 
 // > --------------------------------------------------------------
 

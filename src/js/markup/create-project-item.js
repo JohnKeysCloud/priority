@@ -1,5 +1,5 @@
 // * MARKUP
-import { createListIcon } from "../../components/listIcon/create-list-icon"; 
+import { createListIcon } from '../../components/listIcon/create-list-icon'; 
 
 // * UTILITIES
 import { setAttributes } from '../../utilities/set-attributes.js'; 
@@ -13,7 +13,7 @@ function createProjectItem(projectName) {
     'type': 'button',
     'aria-label': `Project ${projectName}`,
     'data-project-name': projectName,
-  })
+  });
   projectButton.textContent = projectName;
 
   const listIcon = createListIcon();

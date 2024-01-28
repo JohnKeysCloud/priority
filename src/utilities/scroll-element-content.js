@@ -5,7 +5,7 @@ function scrollElementContent(containerElement, direction, speed) {
   // ? the content in the viewport without using a horizontal scrollbar in pixels
   // ? more info: https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollWidth
 
-  let elementActualWidth = containerElement.clientWidth
+  let elementActualWidth = containerElement.clientWidth;
   // ? zero for inline elements and elements with no css, otherwise it's the inner
   // ? width of an element in pixels
   // ? more info: https://developer.mozilla.org/en-US/docs/Web/API/Element/clientWidth 
@@ -21,7 +21,7 @@ function scrollElementContent(containerElement, direction, speed) {
         ? -1
         : console.error(`Direction parameter Accepts "forward or "backward" \n You entered: "${direction}"`);
 
-  function scrollElementContent(timestamp) {
+  function scrollElementContent() {
     let currentScrollPosition = containerElement.scrollLeft;
     // ? currentScrollPosition is the current distance in pixels
     // ? that an elements content is scrolled from an the elements

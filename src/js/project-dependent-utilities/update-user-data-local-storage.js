@@ -10,10 +10,10 @@ function getFormattedData() {
   const projectArray = data.getProjectArray();
   const formattedData = [];
 
-  projectArray.forEach((project) => {    
+  projectArray.forEach((project) => {
     const taskArray = project.getTaskArray();
     const projectObjectTaskArray = [];
-    
+
     taskArray.forEach((task) => {
       const taskObject = {
         name: task.getName(),
@@ -25,7 +25,7 @@ function getFormattedData() {
 
       projectObjectTaskArray.push(taskObject);
     });
-    
+
     const projectObject = {
       name: project.getName(),
       taskArray: projectObjectTaskArray,
@@ -41,7 +41,7 @@ function getFormattedData() {
 function updateUserDataLocalStorage() {
   const localStorageKey = 'projectArray';
   let localStorageValue = getFormattedData();
-  
+
   updateLocalStorage(localStorageKey, localStorageValue);
 }
 

@@ -21,7 +21,7 @@ import { editTaskState } from './handle-task-items';
 // * UTILITIES
 import { checkTargetElementExistence } from '../../utilities/check-target-element-existence'; 
 import { events } from '../../utilities/pubsub';
-import { showModalEnhanced, closeModalEnhanced } from "../../utilities/enhanced-modal-handling";
+import { showModalEnhanced, closeModalEnhanced } from '../../utilities/enhanced-modal-handling';
 
 // > --------------------------------------------------------------
 

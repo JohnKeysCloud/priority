@@ -1,18 +1,18 @@
 // * EMITTERS
-import { emitToggleTaskFormVisibility } from "./add-task-form-opener-button-listener";
+import { emitToggleTaskFormVisibility } from './add-task-form-opener-button-listener';
 
 // * EVENT_NAMES
-import { TOGGLE_ADD_TASK_FORM } from "../eventNames";
+import { TOGGLE_ADD_TASK_FORM } from '../eventNames';
 
 // * EVENTS
-import { toggleAddTaskForm } from "./add-task-form-opener-button-listener";
+import { toggleAddTaskForm } from './add-task-form-opener-button-listener';
 
 // * STATES
-import { mainState } from "./handle-main";
+import { mainState } from './handle-main';
 
 // * UTILITIES
-import { checkTargetElementExistence } from "../../utilities/check-target-element-existence";
-import { events } from "../../utilities/pubsub";
+import { checkTargetElementExistence } from '../../utilities/check-target-element-existence';
+import { events } from '../../utilities/pubsub';
 
 // > ---------------------------------------------------
 
