@@ -1046,6 +1046,7 @@ main {
   line-height: 1.5;
   padding-block: 0.25rem;
   padding-inline: 1rem;
+  text-align: start;
 }
 #add-task-form .input-container .add-task-input:focus, #add-task-form .input-container .add-task-input:focus-visible,
 #add-task-form .input-container .edit-task-input:focus,

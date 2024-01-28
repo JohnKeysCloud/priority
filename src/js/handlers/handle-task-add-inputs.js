@@ -2,9 +2,6 @@
 // * EVENT_NAMES
 import { ADD_NEW_TASK } from '../eventNames';
 
-// * MODIFIERS
-import { modifyDueDateInput } from '../modifiers/modify-due-date-input';
-
 // * UTITLIIES
 import { events } from '../../utilities/pubsub';
 
@@ -32,11 +29,6 @@ function toggleTaskAddInputListeners(taskAddInputs, formState) {
 function handleTaskAddInputs(addTaskFormContainer, formState) {
   const taskAddInputs = addTaskFormContainer.querySelectorAll('.add-task-input');
   toggleTaskAddInputListeners(taskAddInputs, formState);
-
-  const dueDateInput = Array.from(taskAddInputs).find(
-    (input) => input.id === 'task-add-due-date'
-  );
-  modifyDueDateInput(dueDateInput, formState);
 }
 
 export { handleTaskAddInputs };

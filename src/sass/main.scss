@@ -961,11 +961,6 @@ main {
         color: var(--input-placeholder-text-color);
       }
     }
-
-    .add-task-input[type='date']:invalid,
-    .edit-task-input[type='date']:invalid {
-      content: attr(placeholder);
-    }
   }
 }
 

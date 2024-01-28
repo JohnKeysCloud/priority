@@ -47,7 +47,7 @@ function createAddTaskForm() {
   const dueDateInput = document.createElement('input');
   dueDateInput.classList.add('add-task-input');
   setAttributes(dueDateInput, {
-    'type': 'text',
+    'type': 'date',
     'id': 'task-add-due-date',
     'required': true,
     'aria-label': 'Enter Due Date',

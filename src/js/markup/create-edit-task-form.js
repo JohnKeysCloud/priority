@@ -51,6 +51,7 @@ function createEditTaskForm() {
     'id': 'edit-task-due-date',
     'required': true,
     'placeholder': 'Select a date',
+    'autocomplete': 'off'
   });
 
   const dueDateContainer = document.createElement('div');
